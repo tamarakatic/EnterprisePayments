@@ -13,3 +13,21 @@ server.pid
 *.eml
 /dist/
 .cache
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+.classpath
+.project
+.settings
