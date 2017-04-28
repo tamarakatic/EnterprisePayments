@@ -26,8 +26,8 @@ public class Company extends Model {
 	@Column(length = 8, nullable = false)
 	public String JMBG;
 
-//	@OneToMany(mappedBy = "company")
-//	public List<BusinessYear> businessYear;
+	@OneToMany(mappedBy = "company")
+	public List<BusinessYear> businessYear;
 	
 	@OneToMany(mappedBy = "company")
 	public List<BusinessPartner> businessPartner;

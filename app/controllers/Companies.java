@@ -25,8 +25,12 @@ public class Companies extends Controller {
 	}
 		
 	public static void filter(Company company) {		
-		List<Company> companies = Company.find("byNameLike", "%"+ company.name + "%").fetch();
-		System.out.println("Company name " + companies);
+		List<Company> companies = Company.find("byNameLikeAndPIBLikeAndAddressLikeAndMobileLikeAndJMBGLike", 
+												"%"+ company.name + "%",
+												"%"+ company.PIB + "%",
+												"%"+ company.address + "%",
+												"%"+ company.mobile + "%",
+												"%"+ company.JMBG + "%").fetch();
 		renderTemplate("Companies/show.html", "edit", companies);		
 	}
 	

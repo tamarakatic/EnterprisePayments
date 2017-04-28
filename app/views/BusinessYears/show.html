@@ -1,0 +1,97 @@
+#{extends 'standardForm.html' /}
+#{set title:'BusinessYear' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{BusinessYears.create()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{BusinessYears.edit()}
+	#{/elseif}
+	#{else}
+		@{BusinessYears.filter()}
+	#{/else}
+#{/set}
+	
+<script>
+
+function sync(item){
+	year = item.find(".year").html()
+    active = item.find(".active").html()
+    $("#businessyear_id").val(id);
+    $("#businessyear_company_id").val(company_id);
+}
+
+function remove(id) {
+	$(location).attr('href', '/BusinessYears/delete?id='+id);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{BusinessYears.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="#" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="#" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{BusinessYears.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+
+<h1>Company</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Year</th> 
+	   <th>Active?</th>
+	</tr>
+#{list items:years, as:'businessyear'}
+	<tr>
+		<td class = "name">${businessyear.year}</td>
+		<td class = "PIB">${businessyear.active}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${businessyear.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+	<p>
+	
+		<form action = "${action}" method = "POST">
+		
+				#{field 'businessyear.company_id'}
+					<input type = "hidden" name = "${field.name}" value = "1" id = "${field.company_id}"/>
+				#{/}
+		
+				#{field 'businessyear.id'}
+					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				
+				<p>
+				#{field 'businessyear.year'}
+					<label for = "${field.id}">Year</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'businessyear.active'}
+					<label for = "${field.id}">Active</label>
+					<input type = "checkbox" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>				
+				<div id = "formActions">
+					<input type = "submit" value = "Submit" style="margin-left:6em"/>
+					<a href = "@{BusinessYears.show('edit')}" style="margin-left:1em">Rollback</a>
+				</div>			
+				
+		</form>
+	</p>
+</div>
+

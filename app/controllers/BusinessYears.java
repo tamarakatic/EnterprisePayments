@@ -14,20 +14,20 @@ public class BusinessYears extends Controller {
 		render(years, mode);
 	}
 
-	public static void create(BusinessYear year) {
-		year.save();
+	public static void create(BusinessYear businessyear) {
+		businessyear.save();
 		show("add");
 	}
 
-	public static void edit(BusinessYear year) {
-		year.save();
+	public static void edit(BusinessYear businessyear) {
+		businessyear.save();
 		show("edit");
 	}
 
-	public static void filter(BusinessYear year) {
-		List<BusinessYear> years = BusinessYear
-				.find("byYearLikeAndActiveLike", "%" + year.year + "%", 
-												 "%" + year.active + "%").fetch();
+	public static void filter(BusinessYear businessyear) {
+		List<BusinessYear> years = BusinessYear.find("byYearLikeAndActiveLike", 
+													  businessyear.year, 
+													  businessyear.active).fetch();
 		renderTemplate("BusinessYears/show.html", "edit", years);
 	}
 
