@@ -1,0 +1,125 @@
+#{extends 'standardForm.html' /}
+#{set title:'Company' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{Companies.create()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{Companies.edit()}
+	#{/elseif}
+	#{else}
+		@{Companies.filter()}
+	#{/else}
+#{/set}
+	
+<script>
+
+function sync(item){
+	name = item.find(".name").html()
+    PIB = item.find(".PIB").html()
+    address = item.find(".address").html()
+    mobile = item.find(".mobile").html()
+    JMBG = item.find(".JMBG").html()
+    id = item.find(".id").html()
+    $("#company_name").val(name);
+    $("#company_PIB").val(PIB);
+    $("#company_address").val(address);
+    $("#company_mobile").val(mobile);
+    $("#company_JMBG").val(JMBG);
+    $("#company_id").val(id);
+}
+
+function remove(id) {
+	$(location).attr('href', '/Companies/delete?id='+id);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{Companies.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="#" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="#" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{Companies.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+
+<h1>Company</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Name</th> 
+	   <th>PIB</th>
+	   <th>Address</th> 
+	   <th>Mobile</th>
+	   <th>JMBG</th>
+	</tr>
+#{list items:companies, as:'company'}
+	<tr>
+		<td class = "name">${company.name}</td>
+		<td class = "PIB">${company.PIB}</td>
+		<td class = "address">${company.address}</td>
+		<td class = "mobile">${company.mobile}</td>
+		<td class = "JMBG">${company.JMBG}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${company.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+	<p>
+	
+		<form action = "${action}" method = "POST">
+		
+				#{field 'company.id'}
+					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				
+				<p>
+				#{field 'company.name'}
+					<label for = "${field.id}">Name</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'company.PIB'}
+					<label for = "${field.id}">PIB</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'company.address'}
+					<label for = "${field.id}">Address</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'company.mobile'}
+					<label for = "${field.id}">Mobile</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'company.JMBG'}
+					<label for = "${field.id}">JMBG</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<div id = "formActions">
+					<input type = "submit" value = "Submit" style="margin-left:6em"/>
+					<a href = "@{Companies.show('edit')}" style="margin-left:1em">Rollback</a>
+				</div>			
+				
+		</form>
+	</p>
+</div>
+
