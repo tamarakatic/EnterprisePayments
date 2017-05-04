@@ -19,11 +19,18 @@ function sync(item){
 	year = item.find(".year").html()
     active = item.find(".active").html()
     id = item.find(".id").html()
-    company_id = item.find(".company_id").html()
+    company = item.find(".company_id").html()
     $("#businessyear_year").val(year);
-    $("#businessyear_active").val(active);
+   	if(active == "true")
+    {
+    	$("#businessyear_active").prop('checked', true);
+    }
+    else 
+    {
+    	$("#businessyear_active").prop('checked', false);
+    } 
     $("#businessyear_id").val(id);
-    $("#businessyear_company_id").val(company_id);
+    $("#businessyear_company_id").val(company);
 }
 
 function remove(id) {
@@ -55,13 +62,13 @@ function remove(id) {
 	<tr class = "header">
 	   <th>Year</th> 
 	   <th>Active?</th>
-	   <th>Company</th>
+	   <th>Company_Id</th>
 	</tr>
 #{list items:years, as:'businessyear'}
 	<tr>
 		<td class = "year">${businessyear.year}</td>
 		<td class = "active">${businessyear.active}</td>
-		<td class = "company_id">${businessyear.company.name}</td>
+		<td class = "company_id">${businessyear.company.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${businessyear.id}</td>
 	</tr>
 #{/list}
@@ -72,9 +79,9 @@ function remove(id) {
 	
 		<form action = "${action}" method = "POST">
 		
-				#{field 'businessyear.company_id'}
+				#{field 'businessyear.company.id'}
 					<label for = "${field.id}">Company</label>			
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>		
+					<input type = "number" name = "${field.name}" id = "${field.id}"/>		
 				#{/}
 		
 				#{field 'businessyear.id'}

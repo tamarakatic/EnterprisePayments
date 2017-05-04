@@ -24,14 +24,14 @@ function sync(item){
 	email = item.find(".email").html()
 	account = item.find(".account").html()
     company_id = item.find(".company_id").html()
-    $("#partner_id").val(id);
-    $("#partner_name").val(name);
-    $("#partner_address").val(address);
-    $("#partner_kind").val(kind);
-    $("#partner_mobile").val(mobile);
-    $("#partner_email").val(email);
-    $("#partner_account").val(account);
-    $("#partner_company_id").val(company_id);
+    $("#businesspartner_id").val(id);
+    $("#businesspartner_name").val(name);
+    $("#businesspartner_address").val(address);
+    $("#businesspartner_kind").val(kind);
+    $("#businesspartner_mobile").val(mobile);
+    $("#businesspartner_email").val(email);
+    $("#businesspartner_account").val(account);
+    $("#businesspartner_company_id").val(company_id);
 }
 
 function remove(id) {
@@ -67,19 +67,19 @@ function remove(id) {
 	   <th>Mobile</th> 
 	   <th>Email</th>
 	   <th>Account</th> 
-	   <th>Company</th>
+	   <th>Company_Id</th>
 	   
 	</tr>
-#{list items:partners, as:'partner'}
+#{list items:partners, as:'businesspartner'}
 	<tr>
-		<td class = "name">${partner.name}</td>
-		<td class = "address">${partner.address}</td>
-		<td class = "kind">${partner.kind}</td>
-		<td class = "mobile">${partner.mobile}</td>
-		<td class = "email">${partner.email}</td>
-		<td class = "account">${partner.account}</td>
-		<td class="company_id">${partner.company.name}</td>
-		<td style = "visibility: hidden; max-width: 0px" class = "id">${partner.id}</td>
+		<td class = "name">${businesspartner.name}</td>
+		<td class = "address">${businesspartner.address}</td>
+		<td class = "kind">${businesspartner.kind}</td>
+		<td class = "mobile">${businesspartner.mobile}</td>
+		<td class = "email">${businesspartner.email}</td>
+		<td class = "account">${businesspartner.account}</td>
+		<td class="company_id">${businesspartner.company.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${businesspartner.id}</td>
 	</tr>
 #{/list}
 </table>
@@ -89,49 +89,49 @@ function remove(id) {
 	
 		<form action = "${action}" method = "POST">
 		
-				#{field 'partner.company_id'}
+				#{field 'businesspartner.company.id'}
 					<label for = "${field.id}">Company</label>		
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input type = "number" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 		
-				#{field 'partner.id'}
+				#{field 'businesspartner.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				
 				<p>
-				#{field 'partner.name'}
+				#{field 'businesspartner.name'}
 					<label for = "${field.id}">Name</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'partner.address'}
+				#{field 'businesspartner.address'}
 					<label for = "${field.id}">Address</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>	
 				<p>
-				#{field 'partner.kind'}
+				#{field 'businesspartner.kind'}
 					<label for = "${field.id}">Kind</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'partner.mobile'}
+				#{field 'businesspartner.mobile'}
 					<label for = "${field.id}">Mobile</label>
-					<input type = "number" name = "${field.name}" id = "${field.id}"/>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>	
 				<p>
-				#{field 'partner.email'}
+				#{field 'businesspartner.email'}
 					<label for = "${field.id}">Email</label>
-					<input type = "email" name = "${field.name}" id = "${field.id}"/>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
 				<p>
-				#{field 'partner.account'}
+				#{field 'businesspartner.account'}
 					<label for = "${field.id}">Account</label>
-					<input type = "number" name = "${field.name}" id = "${field.id}"/>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>				
 				<div id = "formActions">

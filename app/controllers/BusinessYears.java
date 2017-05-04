@@ -28,7 +28,7 @@ public class BusinessYears extends Controller {
 
 	public static void filter(BusinessYear businessyear) {
 		List<BusinessYear> years = BusinessYear.find("byYearLikeAndActiveLike", 
-													  businessyear.year, 
+													  businessyear.year,
 													  businessyear.active).fetch();
 		renderTemplate("BusinessYears/show.html", "edit", years);
 	}

@@ -17,20 +17,25 @@ public class BusinessPartners extends Controller {
 		render(partners, companies, mode);
 	}
 
-	public static void create(BusinessPartner partner) {		
-		partner.save();
+	public static void create(BusinessPartner businesspartner) {		
+		businesspartner.save();
 		show("add");
 	}
 
-	public static void edit(BusinessPartner partner) {
-		partner.save();
+	public static void edit(BusinessPartner businesspartner) {
+		businesspartner.save();
 		show("edit");
 	}
 
-	public static void filter(BusinessPartner partner) {
-		List<BusinessPartner> partners = BusinessYear.find("byNameLikeAndAdressLike", 
-															partner.name, 
-															partner.address).fetch();
+	public static void filter(BusinessPartner businesspartner) {
+		System.out.println("Partner " + businesspartner.name);
+		List<BusinessPartner> partners = BusinessPartner.find("byNameLikeAndAddressLikeAndKindLikeAndMobileLikeAndEmailLikeAndAccountLike", 
+															"%" + businesspartner.name + "%", 
+															"%" + businesspartner.address + "%",
+															"%" + businesspartner.kind + "%",
+															"%" + businesspartner.mobile + "%",
+															"%" + businesspartner.email + "%",
+															"%" + businesspartner.account + "%").fetch();
 		renderTemplate("BusinessPartners/show.html", "edit", partners);
 	}
 
