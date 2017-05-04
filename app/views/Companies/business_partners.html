@@ -1,0 +1,31 @@
+#{extends 'standardForm.html' /}
+#{set title:'Next Form' /}
+
+<p>
+<ul>
+  <li><a href="@{Companies.show}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+</ul>
+</p>
+
+<h1>Business Partners</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Name</th> 
+	   <th>Address</th>
+	   <th>Kind</th> 
+	   <th>Mobile</th>
+	   <th>Email</th>
+	   <th>Account</th>
+	</tr>
+#{list items:businessPartners, as: 'partner'}
+	<tr>
+		<td>${partner.name}</td>
+		<td>${partner.address}</td>
+		<td>${partner.kind}</td>
+		<td>${partner.mobile}</td>
+		<td>${partner.email}</td>
+		<td>${partner.account}</td>
+	</tr>
+#{/list}
+</table>

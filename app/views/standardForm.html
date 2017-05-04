@@ -68,6 +68,18 @@ $(document).ready(function(){
 	$("#add_company").click(function() {
 		$("#businesspartner_name").val("");
 	});
+	
+	$("#business_year").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		business_year(id);
+	});
+	
+	$("#business_partner").click(function() {
+	highlighted = $(".highlighted");
+	id = highlighted.find(".id").html();
+		business_partner(id);
+	});
 });
 
 </script>

@@ -67,7 +67,7 @@ function remove(id) {
 	   <th>Mobile</th> 
 	   <th>Email</th>
 	   <th>Account</th> 
-	   <th>Company_Id</th>
+	   <th>Company</th>
 	   
 	</tr>
 #{list items:partners, as:'businesspartner'}
@@ -78,7 +78,8 @@ function remove(id) {
 		<td class = "mobile">${businesspartner.mobile}</td>
 		<td class = "email">${businesspartner.email}</td>
 		<td class = "account">${businesspartner.account}</td>
-		<td class="company_id">${businesspartner.company.id}</td>
+		<td>${businesspartner.company.name}</td>
+		<td style = "visibility: hidden; max-width: 0px" class="company_id">${businesspartner.company.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${businesspartner.id}</td>
 	</tr>
 #{/list}

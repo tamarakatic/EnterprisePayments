@@ -1,0 +1,23 @@
+#{extends 'standardForm.html' /}
+#{set title:'Next Form' /}
+
+<p>
+<ul>
+  <li><a href="@{Companies.show}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+</ul>
+</p>
+
+<h1>Business Years</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Year</th> 
+	   <th>Active?</th>
+	</tr>
+#{list items:businessYears, as: 'year'}
+	<tr>
+		<td>${year.year}</td>
+		<td>${year.active}</td>
+	</tr>
+#{/list}
+</table>

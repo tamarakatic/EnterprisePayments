@@ -62,13 +62,14 @@ function remove(id) {
 	<tr class = "header">
 	   <th>Year</th> 
 	   <th>Active?</th>
-	   <th>Company_Id</th>
+	   <th>Company</th>
 	</tr>
 #{list items:years, as:'businessyear'}
 	<tr>
 		<td class = "year">${businessyear.year}</td>
 		<td class = "active">${businessyear.active}</td>
-		<td class = "company_id">${businessyear.company.id}</td>
+		<td>${businessyear.company.name}</td>
+		<td style = "visibility: hidden; max-width: 0px" class="company_id">${businessyear.company.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${businessyear.id}</td>
 	</tr>
 #{/list}

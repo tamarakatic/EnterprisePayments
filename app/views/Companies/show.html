@@ -34,6 +34,14 @@ function remove(id) {
 	$(location).attr('href', '/Companies/delete?id='+id);
 }
 
+function business_year(id) {
+	$(location).attr('href', '/Companies/business_year?id='+id);
+}
+
+function business_partner(id) {
+	$(location).attr('href', '/Companies/business_partner?id='+id);
+}
+
 </script>
 
 <p>
@@ -48,10 +56,9 @@ function remove(id) {
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
   <li><a href="@{Companies.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
-  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+  <li><a href="#" id = "nextform_modal" data-toggle="modal" data-target="#next_form_modal"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
-
 
 <h1>Company</h1>
 
@@ -121,5 +128,22 @@ function remove(id) {
 				
 		</form>
 	</p>
+</div>
+
+<div class = "modal fade" id = "next_form_modal" role="dialog">
+	<div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Child form</h4>
+        </div>
+        <div class="modal-footer">
+          <a href="#" id = "business_year" class="btn btn-success" data-dismiss="modal">BusinessYear</a>
+          <a href="#" id = "business_partner" class="btn btn-danger" data-dismiss="modal">BusinessPartner</a>
+        </div>
+      </div>
+      
+    </div>
 </div>
 
