@@ -84,7 +84,7 @@ function remove(id) {
 					<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}"/>		
 				#{/}
 				
-				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#companies">Pick</button>				
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#businessyear_companies">Pick</button>	
 		
 				#{field 'businessyear.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
@@ -111,7 +111,7 @@ function remove(id) {
 	</p>
 </div>
 
-<div class = "modal fade" id = "companies" role="dialog">
+<div class = "modal fade" id = "businessyear_companies" role="dialog">
 	<div class="modal-dialog">
 
       <div class="modal-content">
@@ -135,7 +135,7 @@ function remove(id) {
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
-          <button type="button" class="btn btn-danger" id = "close_company" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" id = "close_company_businessyear" data-dismiss="modal">Close</button>
         </div>
       </div>
       

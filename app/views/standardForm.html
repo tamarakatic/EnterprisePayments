@@ -56,8 +56,17 @@ $(document).ready(function(){
 		remove(id);
 	});
 	
-	$("#close_company").click(function() {
+	$("#close_company_businessyear").click(function() {
 		$("#businessyear_company_id").val("");
+	});
+	
+	$("#close_company_businesspartner").click(function() {
+		$("#businesspartner_company_id").val("");
+		$("#businesspartner_name").val("");
+	});
+	
+	$("#add_company").click(function() {
+		$("#businesspartner_name").val("");
 	});
 });
 
