@@ -1,4 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{welcome /}
+<div class="container">
+  <h2>Welcome Page</h2>
+  <a href="@{Companies.show}" class="btn btn-primary" role="button">Company</a>
+  <a href="@{BusinessYears.show}" class="btn btn-info" role="button">Business Year</a>
+  <a href="@{BusinessPartners.show}" class="btn btn-success" role="button">BusinessPartner</a>
+</div>

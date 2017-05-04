@@ -28,7 +28,6 @@ public class BusinessPartners extends Controller {
 	}
 
 	public static void filter(BusinessPartner businesspartner) {
-		System.out.println("Partner " + businesspartner.name);
 		List<BusinessPartner> partners = BusinessPartner.find("byNameLikeAndAddressLikeAndKindLikeAndMobileLikeAndEmailLikeAndAccountLike", 
 															"%" + businesspartner.name + "%", 
 															"%" + businesspartner.address + "%",
