@@ -81,8 +81,10 @@ function remove(id) {
 		
 				#{field 'businessyear.company.id'}
 					<label for = "${field.id}">Company</label> &nbsp; 		
-					<input type = "number" name = "${field.name}" id = "${field.id}"/>		
+					<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}"/>		
 				#{/}
+				
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#companies">Pick</button>				
 		
 				#{field 'businessyear.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
@@ -91,7 +93,7 @@ function remove(id) {
 				<p>
 				#{field 'businessyear.year'}
 					<label for = "${field.id}">Year</label>
-					<input type = "number" name = "${field.name}" id = "${field.id}"/>
+					<input type = "number" name = "${field.name}" id = "${field.id}" min = "1950" max = "2020"/>
 				#{/}
 				</p>
 				<p>
@@ -101,11 +103,42 @@ function remove(id) {
 				#{/}
 				</p>				
 				<div id = "formActions">
-					<input type = "submit" value = "Submit" style="margin-left:6em"/>
-					<a href = "@{BusinessYears.show('edit')}" style="margin-left:1em">Rollback</a>
+					<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+					<a href = "@{BusinessYears.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
 				</div>			
 				
 		</form>
 	</p>
+</div>
+
+<div class = "modal fade" id = "companies" role="dialog">
+	<div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Companies</h4>
+        </div>
+        <div class="modal-body">
+        <table>
+        	<tr class = "header">
+        		<td>Company Id</td>
+        		<td>Company Name</td>
+        	</tr>
+          #{list items:companies, as:'company'}
+          	<tr>
+				<td class = "company_id">${company.id}</td>
+				<td class = "company_name">${company.name}</td>
+          	</tr>
+          #{/list}
+         </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-danger" id = "close_company" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
 </div>
 
