@@ -3,18 +3,20 @@ package controllers;
 import java.util.List;
 
 import models.BusinessYear;
+import models.Company;
 import play.mvc.Controller;
 
 public class BusinessYears extends Controller {
 
 	public static void show(String mode) {
 		List<BusinessYear> years = BusinessYear.findAll();
+		List<Company> companies = Company.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
-		render(years, mode);
+		render(years, companies, mode);
 	}
 
-	public static void create(BusinessYear businessyear) {
+	public static void create(BusinessYear businessyear) {		
 		businessyear.save();
 		show("add");
 	}

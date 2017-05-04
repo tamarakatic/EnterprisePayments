@@ -14,7 +14,7 @@ public class BusinessPartner extends Model {
 	public String name;
 	
 	@Column(length = 50)
-	public String adress;
+	public String address;
 	
 	@Column(length = 10, nullable = false)
 	public String kind;
@@ -31,13 +31,13 @@ public class BusinessPartner extends Model {
 	@ManyToOne
 	public Company company;
 
-	public BusinessPartner (String name, String adress, String kind, 
+	public BusinessPartner (String name, String address, String kind, 
 							String mobile, String email, String account,
 						    Company company) 
 	{
 		super();
 		this.name = name;
-		this.adress = adress;
+		this.address = address;
 		this.kind = kind;
 		this.mobile = mobile;
 		this.email = email;

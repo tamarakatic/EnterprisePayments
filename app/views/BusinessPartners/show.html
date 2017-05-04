@@ -1,0 +1,145 @@
+#{extends 'standardForm.html' /}
+#{set title:'BusinessPartner' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{BusinessPartners.create()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{BusinessPartners.edit()}
+	#{/elseif}
+	#{else}
+		@{BusinessPartners.filter()}
+	#{/else}
+#{/set}
+	
+<script>
+
+function sync(item){
+	id = item.find(".id").html()
+	name = item.find(".name").html()
+	address = item.find(".address").html()
+	kind = item.find(".kind").html()
+	mobile = item.find(".mobile").html()
+	email = item.find(".email").html()
+	account = item.find(".account").html()
+    company_id = item.find(".company_id").html()
+    $("#partner_id").val(id);
+    $("#partner_name").val(name);
+    $("#partner_address").val(address);
+    $("#partner_kind").val(kind);
+    $("#partner_mobile").val(mobile);
+    $("#partner_email").val(email);
+    $("#partner_account").val(account);
+    $("#partner_company_id").val(company_id);
+}
+
+function remove(id) {
+	$(location).attr('href', '/BusinessPartners/delete?id='+id);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{BusinessPartners.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="#" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="#" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{BusinessPartners.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+
+<h1>Business Partner</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Name</th> 
+	   <th>Address</th>
+	   <th>Kind</th>
+	   <th>Mobile</th> 
+	   <th>Email</th>
+	   <th>Account</th> 
+	   <th>Company</th>
+	   
+	</tr>
+#{list items:partners, as:'partner'}
+	<tr>
+		<td class = "name">${partner.name}</td>
+		<td class = "address">${partner.address}</td>
+		<td class = "kind">${partner.kind}</td>
+		<td class = "mobile">${partner.mobile}</td>
+		<td class = "email">${partner.email}</td>
+		<td class = "account">${partner.account}</td>
+		<td class="company_id">${partner.company.name}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${partner.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+	<p>
+	
+		<form action = "${action}" method = "POST">
+		
+				#{field 'partner.company_id'}
+					<label for = "${field.id}">Company</label>		
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+		
+				#{field 'partner.id'}
+					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				
+				<p>
+				#{field 'partner.name'}
+					<label for = "${field.id}">Name</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'partner.address'}
+					<label for = "${field.id}">Address</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>	
+				<p>
+				#{field 'partner.kind'}
+					<label for = "${field.id}">Kind</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'partner.mobile'}
+					<label for = "${field.id}">Mobile</label>
+					<input type = "number" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>	
+				<p>
+				#{field 'partner.email'}
+					<label for = "${field.id}">Email</label>
+					<input type = "email" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				<p>
+				#{field 'partner.account'}
+					<label for = "${field.id}">Account</label>
+					<input type = "number" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>				
+				<div id = "formActions">
+					<input type = "submit" value = "Submit" style="margin-left:6em"/>
+					<a href = "@{BusinessPartners.show('edit')}" style="margin-left:1em">Rollback</a>
+				</div>			
+				
+		</form>
+	</p>
+</div>
+
