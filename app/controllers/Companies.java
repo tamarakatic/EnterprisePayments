@@ -47,7 +47,6 @@ public class Companies extends Controller {
 	public static void business_partner(Long company_id) {
 		if (company_id != null) {
 			List<BusinessPartner> partners = BusinessPartner.find("byCompany_id", company_id).fetch();
-//			renderTemplate("Companies/business_partners.html" ,businessPartners);
 			renderTemplate("BusinessPartners/show.html", "edit", partners, company_id);
 		}
 		show("edit");
@@ -56,7 +55,6 @@ public class Companies extends Controller {
 	public static void business_year(Long company_id) {
 		if (company_id != null) {
 			List<BusinessYear> years = BusinessYear.find("byCompany_id", company_id).fetch();
-//			renderTemplate("Companies/business_years.html" ,businessYears);
 			renderTemplate("BusinessYears/show.html", "edit", years, company_id);
 		}
 		show("edit");
