@@ -27,12 +27,12 @@ public class Companies extends Controller {
 	}
 		
 	public static void filter(Company company) {		
-		List<Company> companies = Company.find("byNameLikeAndPIBLikeAndAddressLikeAndMobileLikeAndJMBGLike", 
-												"%"+ company.name + "%",
-												"%"+ company.PIB + "%",
-												"%"+ company.address + "%",
-												"%"+ company.mobile + "%",
-												"%"+ company.JMBG + "%").fetch();
+		List<Company> companies = Company.find("name = ? or pib = ? or address = ? or mobile = ? or jmbg = ?", 
+												company.name,
+												company.PIB,
+												company.address,
+												company.mobile,
+												company.JMBG).fetch();
 		renderTemplate("Companies/show.html", "edit", companies);		
 	}
 	
@@ -45,7 +45,6 @@ public class Companies extends Controller {
 	}
 	
 	public static void business_partner(Long id) {
-		System.out.println("Usao partner " + id);
 		if (id != null) {
 			List<BusinessPartner> businessPartners = BusinessPartner.find("byCompany_id", id).fetch();
 			renderTemplate("Companies/business_partners.html" ,businessPartners);

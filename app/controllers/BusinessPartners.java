@@ -28,13 +28,14 @@ public class BusinessPartners extends Controller {
 	}
 
 	public static void filter(BusinessPartner businesspartner) {
-		List<BusinessPartner> partners = BusinessPartner.find("byNameLikeAndAddressLikeAndKindLikeAndMobileLikeAndEmailLikeAndAccountLike", 
-															"%" + businesspartner.name + "%", 
-															"%" + businesspartner.address + "%",
-															"%" + businesspartner.kind + "%",
-															"%" + businesspartner.mobile + "%",
-															"%" + businesspartner.email + "%",
-															"%" + businesspartner.account + "%").fetch();
+		List<BusinessPartner> partners = BusinessPartner.find("name = ? or address = ? or kind = ? or "
+															+ "mobile = ? or email = ? or account = ?", 
+															businesspartner.name, 
+															businesspartner.address,
+															businesspartner.kind,
+															businesspartner.mobile,
+															businesspartner.email,
+															businesspartner.account).fetch();
 		renderTemplate("BusinessPartners/show.html", "edit", partners);
 	}
 
