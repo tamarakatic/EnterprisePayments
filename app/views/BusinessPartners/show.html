@@ -92,10 +92,10 @@ function remove(id) {
 		
 				#{field 'businesspartner.company.id'}
 					<label for = "${field.id}">Company</label> &nbsp
-					<input type = "number" name = "${field.name}" id = "${field.id}" readonly = "true"/>
+					<input type = "number" name = "${field.name}" id = "${field.id}" readonly = "true" value = "${company_id}"/>
 				#{/}
 				
-				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#businesspartner_companies">Pick</button>
+				<button type="button" class="btn btn-info btn-sm" #{if company_id} disabled #{/if} data-toggle="modal" data-target="#businesspartner_companies">Pick</button>
 		
 				#{field 'businesspartner.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
