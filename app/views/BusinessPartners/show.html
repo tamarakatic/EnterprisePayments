@@ -86,64 +86,61 @@ function remove(id) {
 </table>
 
 <div class = "panel">
-	<p>
-	
-		<form action = "${action}" method = "POST">
+  <p>	
+	<form action = "${action}" method = "POST">		
+		#{field 'businesspartner.company.id'}
+			<label for = "${field.id}">Company</label> &nbsp
+			<input type = "number" name = "${field.name}" id = "${field.id}" readonly = "true" value = "${company_id}"/>
+		#{/}
 		
-				#{field 'businesspartner.company.id'}
-					<label for = "${field.id}">Company</label> &nbsp
-					<input type = "number" name = "${field.name}" id = "${field.id}" readonly = "true" value = "${company_id}"/>
-				#{/}
-				
-				<button type="button" class="btn btn-info btn-sm" #{if company_id} disabled #{/if} data-toggle="modal" data-target="#businesspartner_companies">Pick</button>
+		<button type="button" class="btn btn-info btn-sm" #{if company_id} disabled #{/if} data-toggle="modal" data-target="#businesspartner_companies">Pick</button>
+
+		#{field 'businesspartner.id'}
+			<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+		#{/}
 		
-				#{field 'businesspartner.id'}
-					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				
-				<p>
-				#{field 'businesspartner.name'}
-					<label for = "${field.id}">Name</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'businesspartner.address'}
-					<label for = "${field.id}">Address</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>	
-				<p>
-				#{field 'businesspartner.kind'}
-					<label for = "${field.id}">Kind</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'businesspartner.mobile'}
-					<label for = "${field.id}">Mobile</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>	
-				<p>
-				#{field 'businesspartner.email'}
-					<label for = "${field.id}">Email</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'businesspartner.account'}
-					<label for = "${field.id}">Account</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>				
-				<div id = "formActions">
-					<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
-					<a href = "@{BusinessPartners.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
-				</div>			
-				
-		</form>
-	</p>
+		<p>
+		#{field 'businesspartner.name'}
+			<label for = "${field.id}">Name</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>
+		<p>
+		#{field 'businesspartner.address'}
+			<label for = "${field.id}">Address</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>	
+		<p>
+		#{field 'businesspartner.kind'}
+			<label for = "${field.id}">Kind</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>
+		<p>
+		#{field 'businesspartner.mobile'}
+			<label for = "${field.id}">Mobile</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>	
+		<p>
+		#{field 'businesspartner.email'}
+			<label for = "${field.id}">Email</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>
+		<p>
+		#{field 'businesspartner.account'}
+			<label for = "${field.id}">Account</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>				
+		<div id = "formActions">
+			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+			<a href = "@{BusinessPartners.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+		</div>				
+	</form>
+  </p>
 </div>
 
 <div class = "modal fade" id = "businesspartner_companies" role="dialog">

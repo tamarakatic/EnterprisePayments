@@ -83,51 +83,48 @@ function business_partner(id) {
 </table>
 
 <div class = "panel">
-	<p>
-	
-		<form action = "${action}" method = "POST">
+  <p>	
+	<form action = "${action}" method = "POST">		
+		#{field 'company.id'}
+			<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+		#{/}
 		
-				#{field 'company.id'}
-					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				
-				<p>
-				#{field 'company.name'}
-					<label for = "${field.id}">Name</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'company.PIB'}
-					<label for = "${field.id}">PIB</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'company.address'}
-					<label for = "${field.id}">Address</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'company.mobile'}
-					<label for = "${field.id}">Mobile</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'company.JMBG'}
-					<label for = "${field.id}">JMBG</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				<div id = "formActions">
-					<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
-					<a href = "@{Companies.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
-				</div>			
-				
-		</form>
-	</p>
+		<p>
+		#{field 'company.name'}
+			<label for = "${field.id}">Name</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>
+		<p>
+		#{field 'company.PIB'}
+			<label for = "${field.id}">PIB</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>
+		<p>
+		#{field 'company.address'}
+			<label for = "${field.id}">Address</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>
+		<p>
+		#{field 'company.mobile'}
+			<label for = "${field.id}">Mobile</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>
+		<p>
+		#{field 'company.JMBG'}
+			<label for = "${field.id}">JMBG</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>
+		<div id = "formActions">
+			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+			<a href = "@{Companies.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+		</div>			
+	</form>
+  </p>
 </div>
 
 <div class = "modal fade" id = "next_form_modal" role="dialog">

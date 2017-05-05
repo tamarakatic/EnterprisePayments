@@ -76,41 +76,38 @@ function remove(id) {
 </table>
 
 <div class = "panel">
-	<p>
-	
-		<form action = "${action}" method = "POST">
+  <p>	
+	<form action = "${action}" method = "POST">	
+		#{field 'businessyear.company.id'}
+			<label for = "${field.id}">Company</label> &nbsp; 		
+			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${company_id}"/>		
+		#{/}
 		
-				#{field 'businessyear.company.id'}
-					<label for = "${field.id}">Company</label> &nbsp; 		
-					<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${company_id}"/>		
-				#{/}
-				
-					<button type="button" class="btn btn-info btn-sm" #{if company_id} disabled #{/if} data-toggle="modal" data-target="#businessyear_companies">Pick</button>					
-				
-				
-				#{field 'businessyear.id'}
-					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				
-				<p>
-				#{field 'businessyear.year'}
-					<label for = "${field.id}">Year</label>
-					<input type = "number" name = "${field.name}" id = "${field.id}" min = "1950" max = "2020"/>
-				#{/}
-				</p>
-				<p>
-				#{field 'businessyear.active'}
-					<label for = "${field.id}">Active</label>
-					<input type = "checkbox" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>				
-				<div id = "formActions">
-					<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
-					<a href = "@{BusinessYears.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
-				</div>			
-				
-		</form>
-	</p>
+			<button type="button" class="btn btn-info btn-sm" #{if company_id} disabled #{/if} data-toggle="modal" data-target="#businessyear_companies">Pick</button>					
+		
+		
+		#{field 'businessyear.id'}
+			<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		
+		<p>
+		#{field 'businessyear.year'}
+			<label for = "${field.id}">Year</label>
+			<input type = "number" name = "${field.name}" id = "${field.id}" min = "1950" max = "2020"/>
+		#{/}
+		</p>
+		<p>
+		#{field 'businessyear.active'}
+			<label for = "${field.id}">Active</label>
+			<input type = "checkbox" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>				
+		<div id = "formActions">
+			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+			<a href = "@{BusinessYears.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+		</div>				
+	</form>
+  </p>
 </div>
 
 <div class = "modal fade" id = "businessyear_companies" role="dialog">
