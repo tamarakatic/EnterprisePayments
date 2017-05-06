@@ -32,6 +32,9 @@ public class Company extends Model {
 	@OneToMany(mappedBy = "company")
 	public List<BusinessPartner> businessPartner;
 	
+	@OneToMany(mappedBy = "company")
+	public List<Invoice> invoices;
+	
 	public Company(String naziv, int pib, String adresa, 
 				   String mobile, String jmbg) 
 	{

@@ -1,8 +1,11 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
@@ -18,6 +21,9 @@ public class BusinessYear extends Model {
 	@ManyToOne
 	public Company company;
 
+	@OneToMany(mappedBy = "businessYear")
+	public List<Invoice> invoices;
+	
 	public BusinessYear(int year, boolean active, Company company) 
 	{
 		super();

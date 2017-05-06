@@ -1,9 +1,12 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
@@ -30,6 +33,9 @@ public class BusinessPartner extends Model {
 	
 	@ManyToOne
 	public Company company;
+	
+	@OneToMany(mappedBy = "businessPartner")
+	public List<Invoice> invoices;
 
 	public BusinessPartner (String name, String address, String kind, 
 							String mobile, String email, String account,
