@@ -1,32 +1,32 @@
 # Ignore Play! working directory #
-bin/
-/db
+bin
+db
 .eclipse
-/lib/
-/logs/
-/modules
-/project/target
-/target
-tmp/
+lib
+logs
+modules
+projecttarget
+target
+tmp
 test-result
 server.pid
-*.eml
-/dist/
+.eml
+dist
 .cache
 
 # Compiled class file
-*.class
+.class
 
 # Log file
-*.log
+.log
 
 # Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
+.jar
+.war
+.ear
+.zip
+.tar.gz
+.rar
 
 .classpath
 .project

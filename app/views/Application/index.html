@@ -1,15 +1,13 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<script>
-
-$(document).ready(function(){
-	$(".message a").click(function() {
-	  $("form").animate({ height: "toggle", opacity: "toggle" }, "slow");
-	});
-});
-</script>
-
+<div id="header">
+ <ul id="tools">
+   <li style = "float:right; width: 100px;" >
+  		<a href="@{Secure.logout()}" class="btn btn-danger" role="button">Logout</a>
+   </li>
+ </ul> 
+</div>
 <div class="container">
   <h2>Welcome Page</h2>
   <a href="@{Companies.show}" class="btn btn-primary" role="button">Company</a>
@@ -17,20 +15,3 @@ $(document).ready(function(){
   <a href="@{BusinessPartners.show}" class="btn btn-success" role="button">Partner</a>
 </div>
 
-<div class="login-page">
-  <div class="form">
-    <form class="register-form">
-      <input type="text" placeholder="name"/>
-      <input type="password" placeholder="password"/>
-      <input type="text" placeholder="email address"/>
-      <button>create</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>
-    <form class="login-form">
-      <input type="text" placeholder="username"/>
-      <input type="password" placeholder="password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-    </form>
-  </div>
-</div>
