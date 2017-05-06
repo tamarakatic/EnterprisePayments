@@ -6,6 +6,7 @@ import models.BusinessPartner;
 import models.BusinessYear;
 import models.Company;
 import models.Invoice;
+import models.InvoiceItem;
 import play.mvc.Controller;
 
 public class Invoices extends Controller {
@@ -19,9 +20,6 @@ public class Invoices extends Controller {
 		List<BusinessYear> businessYears = BusinessYear.findAll();
 		List<BusinessPartner> businessPartners = BusinessPartner.findAll();
 		renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners);	
-		
-		
-		//render(invoices, mode);
 	}
 	
 	public static void create(Invoice invoice) {
@@ -47,7 +45,6 @@ public class Invoices extends Controller {
 	}
 	
 	public static void filter(Invoice invoice) {		
-		System.out.println(invoice.number);
 		List<Invoice> invoices = Invoice.find("byNumberAndDateOfInvoiceAndDateOfValueAndBasisAndTax", 
 												 invoice.number,
 												 invoice.dateOfInvoice,

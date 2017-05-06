@@ -57,6 +57,10 @@ function remove(id) {
 	$(location).attr('href', '/Invoices/delete?id='+id);
 }
 
+function nextFormInvoice(id) {
+	//$(location).attr('href', '/Invoices/nextform?id='+id);
+}
+
 </script>
 
 <p>
@@ -71,7 +75,7 @@ function remove(id) {
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
   <li><a href="@{Invoices.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
-  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+  <li><a href="#" id = "nextFormInvoice"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
 

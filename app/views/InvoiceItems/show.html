@@ -1,0 +1,180 @@
+#{extends 'standardForm.html' /}
+#{set title:'Invoice items' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{InvoiceItems.create()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{InvoiceItems.edit()}
+	#{/elseif}
+	#{else}
+		@{InvoiceItems.filter()}
+	#{/else}
+#{/set}
+	
+<script>
+
+function sync(item){
+	id = item.find(".id").html();
+	amount = item.find(".amount").html();
+	price = item.find(".price").html();
+	discount = item.find(".discount").html();
+	basis = item.find(".basis").html();
+	tax = item.find(".tax").html();
+	taxTotal = item.find(".taxTotal").html();
+	total = item.find(".total").html();
+	invoiceId = item.find(".invoiceId").html();
+    $("#invoiceItem_id").val(id);
+    $("#invoiceItem_amount").val(amount);
+    $("#invoiceItem_price").val(price);
+    $("#invoiceItem_discount").val(discount);
+    $("#invoiceItem_basis").val(basis);
+    $("#invoiceItem_tax").val(tax);
+    $("#invoiceItem_taxTotal").val(taxTotal);
+    $("#invoiceItem_total").val(total);
+    //za combo boxeve
+    var comboZoomInvoice = document.getElementById('invoiceItem_invoice_id');
+    comboZoomInvoice.value = invoiceId;
+    
+}
+
+function remove(id) {
+	$(location).attr('href', '/InvoiceItems/delete?id='+id);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{InvoiceItems.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="#" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{InvoiceItems.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+
+<h1>Invoice items</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Invoice number</th>
+	   <th>Amount</th>
+	   <th>Price</th>
+	   <th>Discount</th> 
+	   <th>Basis</th>
+	   <th>Tax</th>
+	   <th>Total tax</th> 
+	   <th>Total</th>
+    </tr>
+    
+#{list items:invoiceItems, as:'invoiceItem'}
+	<tr>
+		<td class = "invoice">${invoiceItem.invoice.number}</td>
+		<td class = "amount">${invoiceItem.amount}</td>
+		<td class = "price">${invoiceItem.price}</td>
+		<td class = "discount">${invoiceItem.discount}</td>
+		<td class = "basis">${invoiceItem.basis}</td>
+		<td class = "tax">${invoiceItem.tax}</td>
+		<td class = "taxTotal">${invoiceItem.taxTotal}</td>
+		<td class = "total">${invoiceItem.total}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${invoiceItem.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "invoiceId">${invoiceItem.invoice.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+	<p>
+	
+		<form action = "${action}" method = "POST">
+		
+				
+				#{field 'invoiceItem.id'}
+					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				
+				<p>
+				#{field 'invoiceItem.invoice.id'}
+					<label for = "${field.id}">Invoice</label>
+					
+					<select name = "${field.name}" id = "${field.id}"/>
+						#{list items:invoices, as:'invoice'}
+							<option value = "${invoice.id}">${invoice.number}</option>
+						#{/list}
+					</select>
+					
+				#{/}
+				
+				</p>
+				
+				<p>
+				#{field 'invoiceItem.amount'}
+					<label for = "${field.id}">Amount</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				
+				<p>
+				#{field 'invoiceItem.price'}
+					<label for = "${field.id}">Price</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				
+				<p>
+				#{field 'invoiceItem.discount'}
+					<label for = "${field.id}">Discount</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				
+				<p>
+				#{field 'invoiceItem.basis'}
+					<label for = "${field.id}">Basis</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				
+				<p>
+				#{field 'invoiceItem.tax'}
+					<label for = "${field.id}">Tax</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				
+				<p>
+				#{field 'invoiceItem.taxTotal'}
+					<label for = "${field.id}">Total tax</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				
+				<p>
+				#{field 'invoiceItem.total'}
+					<label for = "${field.id}">Total</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+				
+				
+				<div id = "formActions">
+					<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+					<a href = "@{InvoiceItems.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+				</div>			
+				
+		</form>
+	</p>
+</div>
+
+
+
+   
