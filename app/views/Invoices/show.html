@@ -16,6 +16,12 @@
 <script>
 
 $(document).ready(function(){
+	
+	item = $("table tr:nth-child(2)");
+		$(".highlighted").removeClass("highlighted");
+	item.addClass("highlighted");
+	sync(item);
+	
 	$("#companyPickup").click(function(){
 		id = $(".highlighted").find(".comp_id").html();
 		var comboZoomCompany = document.getElementById('invoice_company_id');
@@ -58,7 +64,7 @@ function remove(id) {
 }
 
 function nextFormInvoice(id) {
-	//$(location).attr('href', '/Invoices/nextform?id='+id);
+	$(location).attr('href', '/Invoices/nextform?id='+id);
 }
 
 </script>

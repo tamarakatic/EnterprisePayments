@@ -53,4 +53,13 @@ public class Invoices extends Controller {
 												 invoice.tax).fetch();
 		renderTemplate("Invoices/show.html", "edit", invoices);		
 	}
+	
+	public static void nextForm(Long id){
+		if(id != null) {
+			Invoice invoice = Invoice.findById(id);
+			List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoice", invoice).fetch();
+			renderTemplate("InvoiceItems/showNext.html", "edit", invoiceItems, invoice);
+		}
+		show("edit");
+	}
 }

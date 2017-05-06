@@ -36,14 +36,38 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void filter(InvoiceItem invoiceItem) {		
-		/*List<Invoice> invoices = Invoice.find("byNumberAndDateOfInvoiceAndDateOfValueAndBasisAndTax", 
-												 invoice.number,
-												 invoice.dateOfInvoice,
-												 invoice.dateOfValue,
-												 invoice.basis,
-												 invoice.tax).fetch();*/
-		//renderTemplate("Invoices/show.html", "edit", invoices);	
 		show("edit");
 	}
+	
+	public static void showNext(String mode, Long id){
+		Invoice invoice = Invoice.findById(id);
+		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoice", invoice).fetch();
+		if (mode == null || mode.equals(""))
+			mode = "edit";
+		renderTemplate("InvoiceItems/showNext.html", mode, invoiceItems, invoice);	
+		
+	}
 
+	public static void createNext(InvoiceItem invoiceItem) {
+		invoiceItem.invoice = Invoice.findById(invoiceItem.invoice.id);
+		invoiceItem.save();
+		showNext("add", invoiceItem.invoice.id);
+	}
+	
+	public static void editNext(InvoiceItem invoiceItem) {
+		invoiceItem.save();
+		showNext("edit", invoiceItem.invoice.id);
+	}
+	
+	public static void deleteNext(Long id, Long invoiceId) {
+		if (id != null){
+			InvoiceItem invoiceItem = InvoiceItem.findById(id);
+			invoiceItem.delete();		
+		}
+		showNext("edit", invoiceId);
+	}
+	
+	public static void filterNext(InvoiceItem invoiceItem) {		
+		show("edit");
+	}
 }
