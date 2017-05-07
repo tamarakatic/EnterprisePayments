@@ -1,7 +1,6 @@
 package controllers;
 
 import java.util.List;
-
 import models.GSTType;
 import play.mvc.Controller;
 
@@ -36,7 +35,4 @@ public class GSTTypes extends Controller{
 		}
 		show("edit");
 	}
-	
-	
-	
 }
