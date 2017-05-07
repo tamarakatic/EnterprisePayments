@@ -1,0 +1,65 @@
+#{extends 'standardForm.html' /}
+#{set title:'GTSRate' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{GSTRates.create()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{GSTRates.edit()}
+	#{/elseif}
+	#{else}
+		@{GSTRates.filter()}
+	#{/else}
+#{/set}
+
+<script>
+
+function sync(item){
+	year = item.find(".date").html()
+    id = item.find(".id").html()
+    company = item.find(".gstrate_id").html()
+    $("#gstrate_id").val(id);
+    $("#gstrate_gtstype_id").val(gtstype);
+}
+
+function remove(id) {
+	$(location).attr('href', '/GSTRates/delete?id='+id);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{GSTRates.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{GSTRates.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{GSTRates.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+<h1>GTRRate</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Date</th> 
+	   <th>Percent</th>
+	   <th>GSTType</th>
+	</tr>
+#{list items:gstrates, as:'gstrate'}
+	<tr>
+		<td class = "date">${gstrate.date}</td>
+		<td class = "percent">${gstrate.GSTPercent}</td>
+		<td>${gstrate.gsttype.name}</td>
+		<td style = "visibility: hidden; max-width: 0px" class="company_id">${gstrate.gsttype.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${gstrate.id}</td>
+	</tr>
+#{/list}
+</table>

@@ -1,8 +1,11 @@
 package models;
 
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
@@ -11,5 +14,12 @@ public class GSTType extends Model{
 	
 	@Column(length = 30, nullable = false)
 	public String name;
+	
+	@OneToMany(mappedBy = "gsttype")
+	public List<GSTRate> gstrate;
 
+	public GSTType(String name) {
+		super();
+		this.name = name;
+	}
 }
