@@ -27,6 +27,4 @@ public class GSTRate extends Model{
 		this.GSTPercent = GSTPercent;
 		this.gsttype = gsttype;
 	}
-
-
 }

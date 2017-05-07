@@ -1,6 +1,9 @@
 package controllers;
 
 import java.util.List;
+
+import models.ArticleGroup;
+import models.GSTRate;
 import models.GSTType;
 import play.mvc.Controller;
 
@@ -32,6 +35,22 @@ public class GSTTypes extends Controller{
 		if (id != null){
 			GSTType gsttype = GSTType.findById(id);
 			gsttype.delete();			
+		}
+		show("edit");
+	}
+	
+	public static void business_partner(Long gsttype_id) {
+		if (gsttype_id != null) {
+			List<ArticleGroup> articlegroups = ArticleGroup.find("byGSTType_id", gsttype_id).fetch();
+			renderTemplate("ArticleGroups/show.html", "edit", articlegroups, gsttype_id);
+		}
+		show("edit");
+	}
+	
+	public static void business_year(Long gsttype_id) {
+		if (gsttype_id != null) {
+			List<GSTRate> gstrates = GSTRate.find("byGSTType_id", gsttype_id).fetch();
+			renderTemplate("GSTRates/show.html", "edit", gstrates, gsttype_id);
 		}
 		show("edit");
 	}

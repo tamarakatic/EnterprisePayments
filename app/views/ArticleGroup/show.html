@@ -1,68 +1,63 @@
 #{extends 'standardForm.html' /}
-#{set title:'GTSRate' /}
+#{set title:'ArticleGroup' /}
 
 #{set 'action'}
 	#{if mode == 'add'}
-		@{GSTRates.create()}
+		@{ArticleGroup.create()}
 	#{/if}
 	#{elseif mode == 'edit'}
-		@{GSTRates.edit()}
+		@{ArticleGroup.edit()}
 	#{/elseif}
 	#{else}
-		@{GSTRates.filter()}
+		@{ArticleGroup.filter()}
 	#{/else}
 #{/set}
 
 <script>
 
 function sync(item){
-	date = item.find(".date").html()
-	gstpercent = item.find("GSTPercent").html()
-    id = item.find(".id").html()
-    gsttype = item.find(".gsttype_id").html()
-    $("#gstrate_gstperecent")
-    $("#gstrate_date").val(date);
-    $("#gstrate_id").val(id);
-    $("#gstrate_gtstype_id").val(gtstype);
+	name = item.find(".name").html()
+	gsttype = item.find(".gsttype_id").html()
+    $("#articlegoupe_name").val(name);
+    $("#articlegoupe_id").val(id);
+    $("#articlegoupe_gsttype_id").val(gsttype);
 }
 
 function remove(id) {
-	$(location).attr('href', '/GSTRates/delete?id='+id);
+	$(location).attr('href', '/ArticleGroups/delete?id='+id);
 }
 
 </script>
 
 <p>
 <ul>
-  <li><a href="@{GSTRates.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
-  <li><a href="@{GSTRates.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{ArticleGroups.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{ArticleGroups.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
   <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
   <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
   <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
   <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
   <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
-  <li><a href="@{GSTRates.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="@{BArticleGroups.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
   <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
 
-<h1>GTRRate</h1>
+<h1>Article Group</h1>
 
 <table>
 	<tr class = "header">
-	   <th>Date</th> 
-	   <th>Percent</th>
+	   <th>Name</th> 
 	   <th>GSTType</th>
 	</tr>
-#{list items:gstrates, as:'gstrate'}
+#{list items:articlegroups, as:'articlegroup'}
 	<tr>
-		<td class = "date">${gstrate.date}</td>
-		<td class = "percent">${gstrate.GSTPercent}</td>
-		<td>${gstrate.gsttype.name}</td>
-		<td style = "visibility: hidden; max-width: 0px" class="company_id">${gstrate.gsttype.id}</td>
-		<td style = "visibility: hidden; max-width: 0px" class = "id">${gstrate.id}</td>
+		<td class = "name">${articlegroup.name}</td>
+		<td>${articlegroup.gsttype.name}</td>
+		<td style = "visibility: hidden; max-width: 0px" class="gsttype_id">${articlegroup.gsttype.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${articlegroup.id}</td>
 	</tr>
 #{/list}
 </table>
@@ -70,39 +65,33 @@ function remove(id) {
 <div class = "panel">
   <p>	
 	<form action = "${action}" method = "POST">	
-		#{field 'gstrate.company.id'}
+		#{field 'articlegroup.gsttype.id'}
 			<label for = "${field.id}">GSTType</label> &nbsp; 		
 			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${gsttype_id}"/>		
 		#{/}
 		
-			<button type="button" class="btn btn-info btn-sm" #{if gsttype_id} disabled #{/if} data-toggle="modal" data-target="#gstrate_gsttypes">Pick</button>					
+			<button type="button" class="btn btn-info btn-sm" #{if gsttype_id} disabled #{/if} data-toggle="modal" data-target="#articlegroup_gsttype">Pick</button>					
 		
 		
-		#{field 'gstrate.id'}
+		#{field 'articlegroup.id'}
 			<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 		#{/}
 		
 		<p>
-		#{field 'gstrate.date'}
-			<label for = "${field.id}">Year</label>
-			<input type = "number" name = "${field.name}" id = "${field.id}" min = "1950" max = "2020"/>
+		#{field 'articlegroup.name'}
+			<label for = "${field.id}">Name</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
 		#{/}
-		</p>
-		<p>
-		#{field 'gstrate.gstpercent'}
-			<label for = "${field.id}">Active</label>
-			<input type = "checkbox" name = "${field.name}" id = "${field.id}" min = "0" max = "99"/>
-		#{/}
-		</p>				
+		</p>			
 		<div id = "formActions">
 			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
-			<a href = "@{GSTType.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+			<a href = "@{ArticleGroups.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
 		</div>				
 	</form>
   </p>
 </div>
 
-<div class = "modal fade" id = "gstrate_gsttypes" role="dialog">
+<div class = "modal fade" id = "articlegroup_gsttypes" role="dialog">
 	<div class="modal-dialog">
 
       <div class="modal-content">
