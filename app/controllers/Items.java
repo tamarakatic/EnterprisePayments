@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import models.Item;
+import models.PricelistItem;
 import models.ArticleGroup;
 import play.mvc.Controller;
 
@@ -36,6 +37,14 @@ public class Items extends Controller{
 		if (id != null) {
 			Item item = Item.findById(id);
 			item.delete();
+		}
+		show("edit");
+	}
+	
+	public static void pricelist_item(Long item_id) {
+		if (item_id != null) {
+			List<PricelistItem> pricelistItems = PricelistItem.find("byItem_id", item_id).fetch();
+			renderTemplate("PricelistItems/show.html", "edit", pricelistItems, item_id);
 		}
 		show("edit");
 	}

@@ -41,7 +41,7 @@ public class ArticleGroups extends Controller{
 		show("edit");
 	}
 	
-	public static void business_partner(Long articlegroup_id) {
+	public static void items(Long articlegroup_id) {
 		if (articlegroup_id != null) {
 			List<Item> items = Item.find("byArticleGroup_id", articlegroup_id).fetch();
 			renderTemplate("Items/show.html", "edit", items, articlegroup_id);

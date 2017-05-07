@@ -39,7 +39,7 @@ public class GSTTypes extends Controller{
 		show("edit");
 	}
 	
-	public static void business_partner(Long gsttype_id) {
+	public static void aricle_group(Long gsttype_id) {
 		if (gsttype_id != null) {
 			List<ArticleGroup> articlegroups = ArticleGroup.find("byGSTType_id", gsttype_id).fetch();
 			renderTemplate("ArticleGroups/show.html", "edit", articlegroups, gsttype_id);
@@ -47,7 +47,7 @@ public class GSTTypes extends Controller{
 		show("edit");
 	}
 	
-	public static void business_year(Long gsttype_id) {
+	public static void gst_rate(Long gsttype_id) {
 		if (gsttype_id != null) {
 			List<GSTRate> gstrates = GSTRate.find("byGSTType_id", gsttype_id).fetch();
 			renderTemplate("GSTRates/show.html", "edit", gstrates, gsttype_id);

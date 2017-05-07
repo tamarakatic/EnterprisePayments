@@ -86,6 +86,30 @@ $(document).ready(function(){
 		id = highlighted.find(".id").html();
 		nextFormInvoice(id);
 	});
+	
+	$("#article_group").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		article_group(id);
+	});
+	
+	$("#close_gsttype_gstrate").click(function() {
+		$("#gstrate_ssttype_id").val("");
+	});
+	
+	$("#close_gsttype_articlegroup").click(function() {
+		$("#articlegroup_gsttype_id").val("");
+	});
+	
+	$("#gst_rate").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		gst_rate(id);
+	});
+	
+	$("#close_articlegroup_item").click(function() {
+		$("#item_articlegroup_id").val("");
+	});
 });
 
 </script>
