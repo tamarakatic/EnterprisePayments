@@ -2,9 +2,12 @@
 bin/
 /db
 .eclipse
+#/lib/
 /logs/
+/modules
 /project/target
 /target
+tmp/
 test-result
 server.pid
 *.eml
@@ -14,6 +17,8 @@ server.pid
 /*.ipr
 eclipse/
 .settings/
+modules/
+/lib/
 
 # Compiled class file
 *.class
@@ -22,6 +27,7 @@ eclipse/
 *.log
 
 # Package Files #
+*.jar
 *.war
 *.ear
 *.zip
