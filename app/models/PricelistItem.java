@@ -10,7 +10,7 @@ import play.db.jpa.Model;
 @Entity
 public class PricelistItem extends Model{
 	
-	@Column(nullable = false)
+	@Column(nullable = false, precision = 2, scale = 9)
 	public double price;
 	
 	@ManyToOne

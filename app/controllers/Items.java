@@ -28,8 +28,9 @@ public class Items extends Controller{
 	}
 	
 	public static void filter(Item item) {
-		List<Item> items = Item.find("date = ?", 
-				item.date).fetch();
+		List<Item> items = Item.find("name = ? or description = ?", 
+				item.name,
+				item.description).fetch();
 		renderTemplate("Items/show.html", "edit", items);
 	}
 
@@ -43,8 +44,8 @@ public class Items extends Controller{
 	
 	public static void pricelist_item(Long item_id) {
 		if (item_id != null) {
-			List<PricelistItem> pricelistItems = PricelistItem.find("byItem_id", item_id).fetch();
-			renderTemplate("PricelistItems/show.html", "edit", pricelistItems, item_id);
+			List<PricelistItem> pricelistitems = PricelistItem.find("byItem_id", item_id).fetch();
+			renderTemplate("PricelistItems/show.html", "edit", pricelistitems, item_id);
 		}
 		show("edit");
 	}

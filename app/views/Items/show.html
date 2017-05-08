@@ -16,15 +16,18 @@
 <script>
 
 function sync(item){
-	date = item.find(".date").html()
+	name = item.find(".name").html()
+	description = item.find(".description").html()
     id = item.find(".id").html()
-    articlegroup = item.find(".company_id").html()
+    articlegroup = item.find(".articlegroup_id").html()
     $("#item_id").val(id);
+	$("#item_name").val(name);
+    $("#item_description").val(description);
     $("#item_articlegroup_id").val(articlegroup);
 }
 
 function remove(id) {
-	$(location).attr('href', '/Item/delete?id='+id);
+	$(location).attr('href', '/Items/delete?id='+id);
 }
 
 </script>
@@ -49,12 +52,14 @@ function remove(id) {
 
 <table>
 	<tr class = "header">
-	   <th>Date constraint</th> 
+	   <th>Name</th> 
+	   <th>Description</th> 
 	   <th>Article Group</th>
 	</tr>
 #{list items:items, as:'item'}
 	<tr>
-		<td class = "year">${item.date}</td>
+		<td class = "name">${item.name}</td>
+		<td class = "description">${item.description}</td>
 		<td>${item.articlegroup.name}</td>
 		<td style = "visibility: hidden; max-width: 0px" class="articlegroup_id">${item.articlegroup.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${item.id}</td>
@@ -82,7 +87,14 @@ function remove(id) {
 			<label for = "${field.id}">Name</label>
 			<input type = "text" name = "${field.name}" id = "${field.id}"/>
 		#{/}
-		</p>			
+		</p>	
+		
+		<p>
+		#{field 'item.description'}
+			<label for = "${field.id}">Description</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>		
 		<div id = "formActions">
 			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
 			<a href = "@{Items.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
@@ -91,7 +103,7 @@ function remove(id) {
   </p>
 </div>
 
-<div class = "modal fade" id = "item_articlegroup" role="dialog">
+<div class = "modal fade" id = "item_articlegroups" role="dialog">
 	<div class="modal-dialog">
 
       <div class="modal-content">
@@ -116,6 +128,22 @@ function remove(id) {
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
           <button type="button" class="btn btn-danger" id = "close_articlegroup_item" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+<div class = "modal fade" id = "next_form_modal" role="dialog">
+	<div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Child form</h4>
+        </div>
+        <div class="modal-footer">
+          <a href="#" id = "pricelist_item" class="btn btn-success" data-dismiss="modal">PricelistItem</a>
         </div>
       </div>
       

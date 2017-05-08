@@ -13,8 +13,11 @@ import play.db.jpa.Model;
 @Entity
 public class Item extends Model{
 	
-	@Column (nullable = false)
-	public Date date;
+	@Column (length = 30, nullable = false)
+	public String name;
+	
+	@Column (length = 50)
+	public String description;
 	
 	@ManyToOne
 	public ArticleGroup articlegroup;
@@ -22,9 +25,10 @@ public class Item extends Model{
 	@OneToMany(mappedBy = "item")
 	public List<PricelistItem> pricelistitem;
 
-	public Item(Date date, ArticleGroup articlegroup) {
+	public Item(String name, String description,ArticleGroup articlegroup) {
 		super();
-		this.date = date;
+		this.name = name;
+		this.description = description;
 		this.articlegroup = articlegroup;
 	}
 }

@@ -16,7 +16,7 @@ public class GSTRate extends Model{
 	@Column(nullable = false)
 	public Date date;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, precision = 2, scale = 2)
 	public double GSTPercent;
 	
 	@ManyToOne

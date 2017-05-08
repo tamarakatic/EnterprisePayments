@@ -10,34 +10,34 @@ import play.mvc.Controller;
 public class PricelistItems extends Controller{
 	
 	public static void show(String mode) {
-		List<PricelistItem> pricelistsItems = PricelistItem.findAll();
+		List<PricelistItem> pricelistsitems = PricelistItem.findAll();
 		List<Item> items = Item.findAll();
 		List<Pricelist> pricelists =Pricelist.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
-		render(pricelistsItems, items, pricelists, mode);
+		render(pricelistsitems, items, pricelists, mode);
 	}
 
-	public static void create(PricelistItem pricelistItem) {		
-		pricelistItem.save();
+	public static void create(PricelistItem pricelistitem) {		
+		pricelistitem.save();
 		show("add");
 	}
 
-	public static void edit(PricelistItem pricelistItem) {
-		pricelistItem.save();
+	public static void edit(PricelistItem pricelistitem) {
+		pricelistitem.save();
 		show("edit");
 	}
 	
-	public static void filter(PricelistItem pricelistItem) {
-		List<PricelistItem> pricelistItems = PricelistItem.find("price = ?", 
-				pricelistItem.price).fetch();
-		renderTemplate("PricelistItems/show.html", "edit", pricelistItems);
+	public static void filter(PricelistItem pricelistitem) {
+		List<PricelistItem> pricelistitems = PricelistItem.find("price = ?", 
+				pricelistitem.price).fetch();
+		renderTemplate("PricelistItems/show.html", "edit", pricelistitems);
 	}
 
 	public static void delete(Long id) {
 		if (id != null) {
-			PricelistItem pricelistItem = PricelistItem.findById(id);
-			pricelistItem.delete();
+			PricelistItem pricelistitem = PricelistItem.findById(id);
+			pricelistitem.delete();
 		}
 		show("edit");
 	}
