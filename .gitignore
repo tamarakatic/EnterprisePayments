@@ -2,7 +2,7 @@
 bin/
 /db
 .eclipse
-#/lib/
+/lib/
 /logs/
 /modules
 /project/target
@@ -16,10 +16,6 @@ server.pid
 /*.iml
 /*.ipr
 eclipse/
-.settings/
-modules/
-/lib/
-.tmp
 
 # Compiled class file
 *.class
@@ -35,6 +31,4 @@ modules/
 *.tar.gz
 *.rar
 
-#.classpath
-#.project
 .settings
