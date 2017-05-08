@@ -19,6 +19,7 @@ eclipse/
 .settings/
 modules/
 /lib/
+.tmp
 
 # Compiled class file
 *.class
@@ -36,4 +37,4 @@ modules/
 
 #.classpath
 #.project
-#.settings
+.settings
