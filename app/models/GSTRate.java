@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
@@ -15,10 +16,10 @@ public class GSTRate extends Model{
 	@Column(nullable = false)
 	public Date date;
 	
-	@Column(precision = 2, scale = 2, nullable = false)
+	@Column(nullable = false)
 	public double GSTPercent;
 	
-	@OneToMany
+	@ManyToOne
 	public GSTType gsttype;
 
 	public GSTRate(Date date, double GSTPercent, GSTType gsttype) {

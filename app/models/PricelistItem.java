@@ -1,14 +1,16 @@
 package models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
+@Entity
 public class PricelistItem extends Model{
 	
-	@Column(nullable = false, precision = 2, scale = 9)
+	@Column(nullable = false)
 	public double price;
 	
 	@ManyToOne

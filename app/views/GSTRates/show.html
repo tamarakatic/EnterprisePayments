@@ -1,5 +1,5 @@
 #{extends 'standardForm.html' /}
-#{set title:'GTSRate' /}
+#{set title:'GSTRate' /}
 
 #{set 'action'}
 	#{if mode == 'add'}
@@ -17,13 +17,13 @@
 
 function sync(item){
 	date = item.find(".date").html()
-	gstpercent = item.find("GSTPercent").html()
+	GSTPerecent = item.find(".GSTPercent").html()
     id = item.find(".id").html()
     gsttype = item.find(".gsttype_id").html()
-    $("#gstrate_gstperecent")
+    $("#gstrate_GSTPerecent").val(GSTPerecent);
     $("#gstrate_date").val(date);
     $("#gstrate_id").val(id);
-    $("#gstrate_gtstype_id").val(gtstype);
+    $("#gstrate_gsttype_id").val(gsttype);
 }
 
 function remove(id) {
@@ -48,20 +48,20 @@ function remove(id) {
 </ul>
 </p>
 
-<h1>GTRRate</h1>
+<h1>GST Rate</h1>
 
 <table>
 	<tr class = "header">
-	   <th>Date</th> 
-	   <th>Percent</th>
+	   <th>date</th> 
+	   <th>GSTPercent</th>
 	   <th>GSTType</th>
 	</tr>
 #{list items:gstrates, as:'gstrate'}
 	<tr>
 		<td class = "date">${gstrate.date}</td>
-		<td class = "percent">${gstrate.GSTPercent}</td>
+		<td class = "GSTPerecent">${gstrate.GSTPercent}</td>
 		<td>${gstrate.gsttype.name}</td>
-		<td style = "visibility: hidden; max-width: 0px" class="company_id">${gstrate.gsttype.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class="gsttype_id">${gstrate.gsttype.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${gstrate.id}</td>
 	</tr>
 #{/list}
@@ -70,7 +70,7 @@ function remove(id) {
 <div class = "panel">
   <p>	
 	<form action = "${action}" method = "POST">	
-		#{field 'gstrate.company.id'}
+		#{field 'gstrate.gsttype.id'}
 			<label for = "${field.id}">GSTType</label> &nbsp; 		
 			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${gsttype_id}"/>		
 		#{/}
@@ -84,19 +84,19 @@ function remove(id) {
 		
 		<p>
 		#{field 'gstrate.date'}
-			<label for = "${field.id}">Year</label>
-			<input type = "number" name = "${field.name}" id = "${field.id}" min = "1950" max = "2020"/>
+			<label for = "${field.id}">Date</label>
+			<input type = "date" name = "${field.name}" id = "${field.id}"/>
 		#{/}
 		</p>
 		<p>
-		#{field 'gstrate.gstpercent'}
-			<label for = "${field.id}">Active</label>
-			<input type = "checkbox" name = "${field.name}" id = "${field.id}" min = "0" max = "99"/>
+		#{field 'gstrate.GSTPercent'}
+			<label for = "${field.id}">GSTPercent</label>
+			<input type = "number" name = "${field.name}" id = "${field.id}" min = "0" max = "100"/>
 		#{/}
 		</p>				
 		<div id = "formActions">
 			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
-			<a href = "@{GSTType.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+			<a href = "@{GSTRates.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
 		</div>				
 	</form>
   </p>
