@@ -33,6 +33,6 @@ modules/
 *.tar.gz
 *.rar
 
-.classpath
-.project
-.settings
+#.classpath
+#.project
+#.settings
