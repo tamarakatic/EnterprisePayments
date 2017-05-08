@@ -6,10 +6,10 @@
 		@{Pricelist.create()}
 	#{/if}
 	#{elseif mode == 'edit'}
-		@{Pricelist.edit()}
+		@{Pricelists.edit()}
 	#{/elseif}
 	#{else}
-		@{Pricelist.filter()}
+		@{Pricelists.filter()}
 	#{/else}
 #{/set}
 
@@ -18,12 +18,16 @@
 function sync(item){
 	validationDate = item.find(".validationDate").html()
     id = item.find(".id").html()
-    $("#company_validationDate").val(validationDate);
-    $("#company_id").val(id);
+    $("#pricelist_validationDate").val(validationDate);
+    $("#pricelist_id").val(id);
 }
 
 function remove(id) {
-	$(location).attr('href', '/Pricelist/delete?id='+id);
+	$(location).attr('href', '/Pricelists/delete?id='+id);
+}
+
+function pricelist_item(id) {
+	$(location).attr('href', '/Pricelists/pricelist_item?pricelist_id='+id);
 }
 
 </script>
@@ -52,8 +56,8 @@ function remove(id) {
 	</tr>
 #{list items:pricelists, as:'pricelist'}
 	<tr>
-		<td class = "validationDate">${pricelist.validationDate}</td>
-		<td style = "visibility: hidden; max-width: 0px" class = "id">${pricelist.id}</td>
+		<td style = "min-width: 100px" class = "validationDate">${pricelist.validationDate}</td>
+		<td style = "visibility: hidden; max-width: 100px" class = "id">${pricelist.id}</td>
 	</tr>
 #{/list}
 </table>
@@ -68,7 +72,7 @@ function remove(id) {
 		<p>
 		#{field 'pricelist.validationDate'}
 			<label for = "${field.id}">validationDate</label>
-			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+			<input type = "date" name = "${field.name}" id = "${field.id}"/>
 		#{/}
 		</p>
 		<div id = "formActions">
@@ -86,6 +90,9 @@ function remove(id) {
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Child form</h4>
+        </div>
+        <div class="modal-footer">
+          <a href="#" id = "pricelist_item" class="btn btn-success" data-dismiss="modal">PricelistItem</a>
         </div>
       </div>
       

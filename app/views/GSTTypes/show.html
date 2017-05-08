@@ -26,6 +26,14 @@ function remove(id) {
 	$(location).attr('href', '/GSTTypes/delete?id='+id);
 }
 
+function gstrate(id) {
+	$(location).attr('href', '/GSTTypes/gst_rate?gsttype_id='+id);
+}
+
+function article_group(id) {
+	$(location).attr('href', '/GSTTypes/article_group?gsttype_id='+id);
+}
+
 </script>
 
 <p>
@@ -86,6 +94,10 @@ function remove(id) {
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Child form</h4>
+        </div>
+        <div class="modal-footer">
+          <a href="#" id = "gstrate" class="btn btn-success" data-dismiss="modal">GSTRate</a>
+          <a href="#" id = "article_group" class="btn btn-danger" data-dismiss="modal">ArticleGroup</a>
         </div>
       </div>
       

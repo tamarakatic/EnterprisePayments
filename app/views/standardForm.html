@@ -81,6 +81,24 @@ $(document).ready(function(){
 		business_partner(id);
 	});
 	
+	$("#gstrate").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		gstrate(id);
+	});
+	
+	$("#pricelist_item").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		pricelist_item(id);
+	});
+	
+	$("#article_group").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		articlegroup(id);
+	});
+	
 	$("#nextFormInvoice").click(function() {
 		highlighted = $(".highlighted");
 		id = highlighted.find(".id").html();
