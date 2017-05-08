@@ -7,7 +7,7 @@ bin/
 /modules
 /project/target
 /target
-tmp/
+tmp/bytecode/DEV
 test-result
 server.pid
 *.eml
@@ -16,6 +16,7 @@ server.pid
 /*.iml
 /*.ipr
 eclipse/
+modules/
 
 # Compiled class file
 *.class
