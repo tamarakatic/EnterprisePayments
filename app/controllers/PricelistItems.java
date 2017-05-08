@@ -10,12 +10,12 @@ import play.mvc.Controller;
 public class PricelistItems extends Controller{
 	
 	public static void show(String mode) {
-		List<PricelistItem> pricelistsitems = PricelistItem.findAll();
+		List<PricelistItem> pricelistitems = PricelistItem.findAll();
 		List<Item> items = Item.findAll();
 		List<Pricelist> pricelists =Pricelist.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
-		render(pricelistsitems, items, pricelists, mode);
+		render(pricelistitems, items, pricelists, mode);
 	}
 
 	public static void create(PricelistItem pricelistitem) {		

@@ -18,11 +18,11 @@
 function sync(item){
 	price = item.find(".price").html()
     id = item.find(".id").html()
-    item = item.find(".item_id").html()
+    mitem = item.find(".item_id").html()
     pricelist = item.find(".pricelist_id").html();
     $("#pricelistitem_price").val(price);
     $("#pricelistitem_id").val(id);
-    $("#pricelistitem_item_id").val(item);
+    $("#pricelistitem_item_id").val(mitem);
     $("#pricelistitem_pricelist_id").val(pricelist);
 }
 
@@ -58,10 +58,10 @@ function remove(id) {
 	   <th>Pricelist</th>
 	</tr>
 #{list items:pricelistitems, as:'pricelistitem'}
-	<tr class="ModalRow">
+	<tr class="modalRow">
 		<td class = "year">${pricelistitem.price}</td>
 		<td>${pricelistitem.item.name}</td>
-		<td>${pricelistitem.pricelist.name}</td>
+		<td>${pricelistitem.pricelist.validationDate}</td>
 		<td style = "visibility: hidden; max-width: 0px" class="item_id">${pricelistitem.item.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class="pricelist_id">${pricelistitem.pricelist.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${pricelistitem.id}</td>
@@ -87,12 +87,12 @@ function remove(id) {
 		
 			<button type="button" class="btn btn-info btn-sm" #{if pricelist_id} disabled #{/if} data-toggle="modal" data-target="#pricelistitem_pricelists">Pick</button>	
 		
-		#{field 'businessyear.id'}
+		#{field 'pricelistitem.id'}
 			<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 		#{/}
 		
 		<p>
-		#{field 'businessyear.price'}
+		#{field 'pricelistitem.price'}
 			<label for = "${field.id}">Price</label>
 			<input type = "number" name = "${field.name}" id = "${field.id}"/>
 		#{/}
