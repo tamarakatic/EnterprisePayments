@@ -17,10 +17,10 @@
 
 function sync(item){
 	date = item.find(".date").html()
-	GSTPerecent = item.find(".GSTPercent").html()
+	GSTPercent = item.find(".GSTPercent").html()
     id = item.find(".id").html()
     gsttype = item.find(".gsttype_id").html()
-    $("#gstrate_GSTPerecent").val(GSTPerecent);
+    $("#gstrate_GSTPercent").val(GSTPercent);
     $("#gstrate_date").val(date);
     $("#gstrate_id").val(id);
     $("#gstrate_gsttype_id").val(gsttype);
@@ -59,7 +59,7 @@ function remove(id) {
 #{list items:gstrates, as:'gstrate'}
 	<tr>
 		<td class = "date">${gstrate.date}</td>
-		<td class = "GSTPerecent">${gstrate.GSTPercent}</td>
+		<td class = "GSTPercent">${gstrate.GSTPercent}</td>
 		<td>${gstrate.gsttype.name}</td>
 		<td style = "visibility: hidden; max-width: 0px" class="gsttype_id">${gstrate.gsttype.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${gstrate.id}</td>
