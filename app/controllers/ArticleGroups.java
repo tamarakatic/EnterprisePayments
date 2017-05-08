@@ -10,27 +10,27 @@ import play.mvc.Controller;
 public class ArticleGroups extends Controller{
 	
 	public static void show(String mode) {
-		List<ArticleGroup> years = ArticleGroup.findAll();
-		List<GSTType> companies = GSTType.findAll();
+		List<ArticleGroup> articlegroups = ArticleGroup.findAll();
+		List<GSTType> gsttypes = GSTType.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
-		render(years, companies, mode);
+		render(articlegroups, gsttypes, mode);
 	}
 	
-	public static void create(ArticleGroup artuckegroup) {		
-		artuckegroup.save();
+	public static void create(ArticleGroup articlegroup) {		
+		articlegroup.save();
 		show("add");
 	}
 
-	public static void edit(ArticleGroup artuckegroup) {
-		artuckegroup.save();
+	public static void edit(ArticleGroup articlegroup) {
+		articlegroup.save();
 		show("edit");
 	}
 	
 	public static void filter(ArticleGroup articlegroup) {
 		List<ArticleGroup> articlegroups = ArticleGroup.find("name = ?",
 				articlegroup.name).fetch();
-		renderTemplate("BusinessYears/show.html", "edit", articlegroups);
+		renderTemplate("ArticleGroups/show.html", "edit", articlegroups);
 	}
 
 	public static void delete(Long id) {
@@ -41,7 +41,7 @@ public class ArticleGroups extends Controller{
 		show("edit");
 	}
 	
-	public static void items(Long articlegroup_id) {
+	public static void item(Long articlegroup_id) {
 		if (articlegroup_id != null) {
 			List<Item> items = Item.find("byArticleGroup_id", articlegroup_id).fetch();
 			renderTemplate("Items/show.html", "edit", items, articlegroup_id);

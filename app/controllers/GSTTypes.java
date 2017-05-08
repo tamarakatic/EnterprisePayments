@@ -47,7 +47,7 @@ public class GSTTypes extends Controller{
 		show("edit");
 	}
 	
-	public static void gst_rate(Long gsttype_id) {
+	public static void gstrate(Long gsttype_id) {
 		if (gsttype_id != null) {
 			List<GSTRate> gstrates = GSTRate.find("byGSTType_id", gsttype_id).fetch();
 			renderTemplate("GSTRates/show.html", "edit", gstrates, gsttype_id);
