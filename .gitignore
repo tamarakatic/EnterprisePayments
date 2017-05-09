@@ -31,3 +31,5 @@ modules/
 *.rar
 
 .settings
+.classpath
+.project
