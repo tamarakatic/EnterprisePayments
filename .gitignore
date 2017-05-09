@@ -4,7 +4,7 @@ bin/
 .eclipse
 /lib/
 /logs/
-/modules
+modules
 /project/target
 /target
 tmp/bytecode/DEV
@@ -17,6 +17,7 @@ server.pid
 /*.ipr
 eclipse/
 modules/
+tmp
 
 # Compiled class file
 *.class
