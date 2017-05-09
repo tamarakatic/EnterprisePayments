@@ -17,16 +17,25 @@
 
 $(document).ready(function(){
 	
-	item = $("table tr:nth-child(2)");
-		$(".highlighted").removeClass("highlighted");
-	item.addClass("highlighted");
-	sync(item);
-	
 	$("#companyPickup").click(function(){
-		id = $(".highlighted").find(".comp_id").html();
+		idCompany = $(".highlighted").find(".comp_id").html();
 		var comboZoomCompany = document.getElementById('invoice_company_id');
-	    comboZoomCompany.value = id;
+	    comboZoomCompany.value = idCompany;
 		$('#companiesModal').modal('toggle');
+	});
+	
+	$("#businessPartnerPickup").click(function(){
+		idPartner = $(".highlighted").find(".partner_id").html();
+		var comboZoomPartner = document.getElementById('invoice_businessPartner_id');
+	    comboZoomPartner.value = idPartner;
+		$('#businessPartnersModal').modal('toggle');
+	});
+	
+	$("#businessYearPickup").click(function(){
+		idYear = $(".highlighted").find(".year_id").html();
+		var comboZoomYear = document.getElementById('invoice_businessYear_id');
+	    comboZoomYear.value = idYear;
+		$('#businessYearsModal').modal('toggle');
 	});
 });
 
@@ -44,8 +53,19 @@ function sync(item){
 	businessPartnerId = item.find(".businessPartnerId").html();
     $("#invoice_id").val(id);
     $("#invoice_number").val(number);
-    $("#invoice_dateOfInvoice").val(dateOfInvoice);
-    $("#invoice_dateOfValue").val(dateOfValue);
+    
+    var date1 = new Date(dateOfInvoice);
+	var day1 = ("0" + date1.getDate()).slice(-2);
+    var month1 = ("0" + (date1.getMonth() + 1)).slice(-2);
+	var today1 = date1.getFullYear()+"-"+(month1)+"-"+(day1) ;
+    $("#invoice_dateOfInvoice").val(today1);
+    
+    var date2 = new Date(dateOfValue);
+	var day2 = ("0" + date2.getDate()).slice(-2);
+    var month2 = ("0" + (date2.getMonth() + 1)).slice(-2);
+	var today2 = date2.getFullYear()+"-"+(month2)+"-"+(day2) ;
+    $("#invoice_dateOfValue").val(today2);
+    
     $("#invoice_basis").val(basis);
     $("#invoice_tax").val(tax);
     $("#invoice_sum").val(sum);
@@ -134,40 +154,43 @@ function nextFormInvoice(id) {
 				#{field 'invoice.company.id'}
 					<label for = "${field.id}">Company</label>
 					
-					<select name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
 						#{list items:companies, as:'company'}
 							<option value = "${company.id}">${company.name}</option>
 						#{/list}
 					</select>
 					<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#companiesModal">...	</button>
 				#{/}
-				
+				<span class="error">#{error 'company' /}</span>
 				</p>
 				
 				<p>
 				#{field 'invoice.businessYear.id'}
-					<label for = "${field.id}">Busines Year</label>
+					<label for = "${field.id}">Business Year</label>
 					
-					<select name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
 						#{list items:businessYears, as:'businessYear'}
 							<option value = "${businessYear.id}">${businessYear.year}</option>
 						#{/list}
 					</select>
-					
+					<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#businessYearsModal">...	</button>
+				<span class="error">#{error 'business year' /}</span>
 				#{/}
 				</p>
 				
 				<p>
 				#{field 'invoice.businessPartner.id'}
-					<label for = "${field.id}">Busines Partner</label>
+					<label for = "${field.id}">Business Partner</label>
 					
-					<select name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
 						#{list items:businessPartners, as:'businessPartner'}
 							<option value = "${businessPartner.id}">${businessPartner.name}</option>
 						#{/list}
 					</select>
+					<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#businessPartnersModal">...	</button>
 					
 				#{/}
+				<span class="error">#{error 'business partner' /}</span>
 				</p>
 				
 				<p>
@@ -175,20 +198,26 @@ function nextFormInvoice(id) {
 					<label for = "${field.id}">Number</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
+				<span class="error">#{error 'number' /}</span>
 				</p>
 				
 				<p>
 				#{field 'invoice.dateOfInvoice'}
 					<label for = "${field.id}">Date of invoice</label>
-					<input type = "date" name = "${field.name}" id = "${field.id}"/>
+					<input type = "date" name = "${field.name}" id = "${field.id}" style="width:175px"/>
+					
 				#{/}
+				<span class="error">#{error 'date of invoice' /}</span>
 				</p>
+				
 				
 				<p>
 				#{field 'invoice.dateOfValue'}
 					<label for = "${field.id}">Date of value</label>
-					<input type = "date" name = "${field.name}" id = "${field.id}"/>
+					<input type = "date" name = "${field.name}" id = "${field.id}" style="width:175px"/>
+					
 				#{/}
+				<span class="error">#{error 'date of value' /}</span>
 				</p>
 				
 				<p>
@@ -222,7 +251,6 @@ function nextFormInvoice(id) {
 	</p>
 </div>
 
-
  <!-- Modal COMPANIES-->
   <div class="modal fade" id="companiesModal" role="dialog">
     <div class="modal-dialog">
@@ -235,10 +263,14 @@ function nextFormInvoice(id) {
 	    <table style = "padding:2em">
 		<tr class = "header">
 		   <th>Name</th>
+		   <th>PIB</th>
+		   <th>MBR</th>
 		</tr>
 		#{list items:companies, as:'company'}
-		<tr>
+		<tr class="modalRow">
 			<td class = "comp_name">${company.name}</td>
+			<td class = "comp_PIB">${company.PIB}</td>
+			<td class = "comp_MBR">${company.JMBG}</td>
 			<td style = "visibility: hidden; max-width: 0px" class = "comp_id">${company.id}</td>
 		</tr>
 		#{/list}
@@ -251,3 +283,65 @@ function nextFormInvoice(id) {
     </div>
    </div>
    
+   
+   <!-- Modal BUSINESS PARTNERS-->
+  <div class="modal fade" id="businessPartnersModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	BusinessPartners
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Name</th>
+		   <th>Adress</th>
+		   <th>Kind</th>
+		</tr>
+		#{list items:businessPartners, as:'businessPartner'}
+		<tr class="modalRow">
+			<td class = "partner_name">${businessPartner.name}</td>
+			<td class = "partner_address">${businessPartner.address}</td>
+			<td class = "partner_kind">${businessPartner.kind}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "partner_id">${businessPartner.id}</td>
+		</tr>
+		#{/list}
+		</table>
+		<div class="modal-footer">
+			<input id = "businessPartnerPickup" type = "button" value = "Choose"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
+   
+    <!-- Modal BUSINESS YEARS-->
+  <div class="modal fade" id="businessYearsModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Business years
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Year</th>
+		   <th>Active?</th>
+		</tr>
+		#{list items:businessYears, as:'businessYear'}
+		<tr class="modalRow">
+			<td class = "year_year">${businessYear.year}</td>
+			<td class = "year_active">${businessYear.active}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "year_id">${businessYear.id}</td>
+		</tr>
+		#{/list}
+		</table>
+		<div class="modal-footer">
+			<input id = "businessYearPickup" type = "button" value = "Choose"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>

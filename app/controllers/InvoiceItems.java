@@ -18,7 +18,15 @@ public class InvoiceItems extends Controller{
 	
 	public static void create(InvoiceItem invoiceItem) {
 		invoiceItem.invoice = Invoice.findById(invoiceItem.invoice.id);
-		invoiceItem.save();
+		validation.required("invoice", invoiceItem.invoice);
+		validation.min("amount", invoiceItem.amount, 0.01);
+		if(validation.hasErrors()) {
+	          params.flash(); 
+	          validation.keep(); 
+	    } else {
+	    	
+	    	 invoiceItem.save();
+	    }
 		show("add");
 	}
 	
@@ -35,8 +43,18 @@ public class InvoiceItems extends Controller{
 		show("edit");
 	}
 	
-	public static void filter(InvoiceItem invoiceItem) {		
-		show("edit");
+	public static void filter(InvoiceItem invoiceItem) {
+		List<Invoice> invoices = Invoice.findAll();
+		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndPriceAndBasisAndTaxAndTaxTotalAndTotal",
+								invoiceItem.invoice,
+								invoiceItem.amount,
+								invoiceItem.discount,
+								invoiceItem.price,
+								invoiceItem.basis,
+								invoiceItem.tax,
+								invoiceItem.taxTotal,
+								invoiceItem.total).fetch();
+		renderTemplate("InvoiceItems/show.html", "edit", invoiceItems, invoices);	
 	}
 	
 	public static void showNext(String mode, Long id){
@@ -68,6 +86,16 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void filterNext(InvoiceItem invoiceItem) {		
-		show("edit");
+		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndPriceAndBasisAndTaxAndTaxTotalAndTotal",
+				invoiceItem.invoice,
+				invoiceItem.amount,
+				invoiceItem.discount,
+				invoiceItem.price,
+				invoiceItem.basis,
+				invoiceItem.tax,
+				invoiceItem.taxTotal,
+				invoiceItem.total).fetch();
+		Invoice invoice = invoiceItem.invoice;
+		renderTemplate("InvoiceItems/showNext.html", "edit", invoiceItems, invoice);	
 	}
 }
