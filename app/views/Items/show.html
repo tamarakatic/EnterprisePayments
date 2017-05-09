@@ -1,0 +1,151 @@
+#{extends 'standardForm.html' /}
+#{set title:'Item' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{Items.create()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{Items.edit()}
+	#{/elseif}
+	#{else}
+		@{Items.filter()}
+	#{/else}
+#{/set}
+
+<script>
+
+function sync(item){
+	name = item.find(".name").html()
+	description = item.find(".description").html()
+    id = item.find(".id").html()
+    articlegroup = item.find(".articlegroup_id").html()
+    $("#item_id").val(id);
+	$("#item_name").val(name);
+    $("#item_description").val(description);
+    $("#item_articlegroup_id").val(articlegroup);
+}
+
+function remove(id) {
+	$(location).attr('href', '/Items/delete?id='+id);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{Items.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{Items.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{Items.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+<h1>Item</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Name</th> 
+	   <th>Description</th> 
+	   <th>Article Group</th>
+	</tr>
+#{list items:items, as:'item'}
+	<tr>
+		<td class = "name">${item.name}</td>
+		<td class = "description">${item.description}</td>
+		<td>${item.articlegroup.name}</td>
+		<td style = "visibility: hidden; max-width: 0px" class="articlegroup_id">${item.articlegroup.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${item.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+  <p>	
+	<form action = "${action}" method = "POST">	
+		#{field 'item.articlegroup.id'}
+			<label for = "${field.id}">ArticleGroup</label> &nbsp; 		
+			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${articlegroup_id}"/>		
+		#{/}
+		
+			<button type="button" class="btn btn-info btn-sm" #{if articlegroup_id} disabled #{/if} data-toggle="modal" data-target="#item_articlegroups">Pick</button>					
+		
+		
+		#{field 'item.id'}
+			<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		
+		<p>
+		#{field 'item.name'}
+			<label for = "${field.id}">Name</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>	
+		
+		<p>
+		#{field 'item.description'}
+			<label for = "${field.id}">Description</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>		
+		<div id = "formActions">
+			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+			<a href = "@{Items.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+		</div>				
+	</form>
+  </p>
+</div>
+
+<div class = "modal fade" id = "item_articlegroups" role="dialog">
+	<div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Article groups</h4>
+        </div>
+        <div class="modal-body">
+        <table>
+        	<tr class = "header">
+        		<td>AritcleGroup Id</td>
+        		<td>AritcleGroup Name</td>
+        	</tr>
+          #{list items:articlegroups, as:'articlegroup'}
+          	<tr>
+				<td class = "articlegroup_id">${articlegroup.id}</td>
+				<td class = "articlegroup_name">${articlegroup.name}</td>
+          	</tr>
+          #{/list}
+         </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-danger" id = "close_articlegroup_item" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+<div class = "modal fade" id = "next_form_modal" role="dialog">
+	<div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Child form</h4>
+        </div>
+        <div class="modal-footer">
+          <a href="#" id = "pricelist_item" class="btn btn-success" data-dismiss="modal">PricelistItem</a>
+        </div>
+      </div>
+      
+    </div>
+</div>

@@ -1,0 +1,140 @@
+#{extends 'standardForm.html' /}
+#{set title:'ArticleGroup' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{ArticleGroups.create()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{ArticleGroups.edit()}
+	#{/elseif}
+	#{else}
+		@{ArticleGroups.filter()}
+	#{/else}
+#{/set}
+
+<script>
+
+function sync(item){
+	name = item.find(".name").html()
+	id = item.find(".id").html()
+	gsttype = item.find(".gsttype_id").html()
+    $("#articlegroup_name").val(name);
+    $("#articlegroup_id").val(id);
+    $("#articlegroup_gsttype_id").val(gsttype);
+}
+
+function remove(id) {
+	$(location).attr('href', '/ArticleGroups/delete?id='+id);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{ArticleGroups.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{ArticleGroups.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{ArticleGroups.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+<h1>Article Group</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Name</th> 
+	   <th>GSTType</th>
+	</tr>
+#{list items:articlegroups, as:'articlegroup'}
+	<tr>
+		<td class = "name">${articlegroup.name}</td>
+		<td>${articlegroup.gsttype.name}</td>
+		<td style = "visibility: hidden; max-width: 0px" class="gsttype_id">${articlegroup.gsttype.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${articlegroup.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+  <p>	
+	<form action = "${action}" method = "POST">	
+		#{field 'articlegroup.gsttype.id'}
+			<label for = "${field.id}">GSTType</label> &nbsp; 		
+			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${gsttype_id}"/>		
+		#{/}
+		
+			<button type="button" class="btn btn-info btn-sm" #{if gsttype_id} disabled #{/if} data-toggle="modal" data-target="#articlegroup_gsttypes">Pick</button>					
+		
+		
+		#{field 'articlegroup.id'}
+			<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		
+		<p>
+		#{field 'articlegroup.name'}
+			<label for = "${field.id}">Name</label>
+			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>			
+		<div id = "formActions">
+			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+			<a href = "@{ArticleGroups.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+		</div>				
+	</form>
+  </p>
+</div>
+
+<div class = "modal fade" id = "articlegroup_gsttypes" role="dialog">
+	<div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">GSTTypes</h4>
+        </div>
+        <div class="modal-body">
+        <table>
+        	<tr class = "header">
+        		<td>GSTType Id</td>
+        		<td>GSTType Name</td>
+        	</tr>
+          #{list items:gsttypes, as:'gsttype'}
+          	<tr>
+				<td class = "gsttype_id">${gsttype.id}</td>
+				<td class = "gsttype_name">${gsttype.name}</td>
+          	</tr>
+          #{/list}
+         </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-danger" id = "close_gsttype_articlegroup" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+<div class = "modal fade" id = "next_form_modal" role="dialog">
+	<div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Child form</h4>
+        </div>
+        <div class="modal-footer">
+          <a href="#" id = "item" class="btn btn-success" data-dismiss="modal">Item</a>
+        </div>
+      </div>
+      
+    </div>
+</div>
