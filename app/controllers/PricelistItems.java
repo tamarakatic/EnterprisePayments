@@ -17,9 +17,6 @@ public class PricelistItems extends Controller{
 			mode = "edit";
 		render(pricelistitems, items, pricelists, mode);
 	}
-//
-//	<td>${pricelistitem.pricelist.validationDate}</td>
-//<td style = "visibility: hidden; max-width: 0px" class="pricelist_id">${pricelistitem.pricelist.id}</td>
 	
 	public static void create(PricelistItem pricelistitem) {	
 		System.out.println("pricelist id " + pricelistitem.pricelist.id);
