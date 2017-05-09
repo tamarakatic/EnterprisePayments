@@ -1,13 +1,11 @@
 # Ignore Play! working directory #
 bin/
 /db
-.eclipse
 /lib/
 /logs/
-modules
 /project/target
 /target
-tmp/bytecode/DEV
+tmp/
 test-result
 server.pid
 *.eml
@@ -17,7 +15,6 @@ server.pid
 /*.ipr
 eclipse/
 modules/
-tmp
 
 # Compiled class file
 *.class
