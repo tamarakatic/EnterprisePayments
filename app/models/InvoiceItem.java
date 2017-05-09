@@ -25,8 +25,11 @@ public class InvoiceItem extends Model{
 	@ManyToOne
 	public Invoice invoice;
 	
+	@ManyToOne
+	public Item article;
+	
 	public InvoiceItem(double amount, double price, double discount, double basis, double tax, double taxTotal,
-			double total, Invoice invoice) {
+			double total, Invoice invoice, Item article) {
 		super();
 		this.amount = amount;
 		this.price = price;
@@ -36,6 +39,7 @@ public class InvoiceItem extends Model{
 		this.taxTotal = taxTotal;
 		this.total = total;
 		this.invoice = invoice;
+		this.article = article;
 	}
 	
 }

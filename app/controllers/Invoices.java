@@ -27,12 +27,37 @@ public class Invoices extends Controller {
 		invoice.company = company;
 		invoice.businessYear = BusinessYear.findById(invoice.businessYear.id);
 		invoice.businessPartner = BusinessPartner.findById(invoice.businessPartner.id);
-		invoice.save();	
+		
+		validation.required("company",invoice.company);
+		validation.required("business partner", invoice.businessPartner);
+		validation.required("business year",invoice.businessYear);
+		validation.min("number", invoice.number, 1);
+		validation.required("date of invoice",invoice.dateOfInvoice);
+		validation.required("date of value",invoice.dateOfValue);
+		
+		if(validation.hasErrors()) {
+	          params.flash(); 
+	          validation.keep(); 
+	    } else {
+	    	  invoice.save();
+	    }
 		show("add");
 	}
 	
 	public static void edit(Invoice invoice) {
-		invoice.save();
+		validation.required("company",invoice.company);
+		validation.required("business partner", invoice.businessPartner);
+		validation.required("business year",invoice.businessYear);
+		validation.min("number", invoice.number, 1);
+		validation.required("date of invoice",invoice.dateOfInvoice);
+		validation.required("date of value",invoice.dateOfValue);
+		
+		if(validation.hasErrors()) {
+	          params.flash(); 
+	          validation.keep(); 
+	    } else {
+	    	  invoice.save();
+	    }
 		show("edit");
 	}
 	
@@ -45,13 +70,19 @@ public class Invoices extends Controller {
 	}
 	
 	public static void filter(Invoice invoice) {		
-		List<Invoice> invoices = Invoice.find("byNumberAndDateOfInvoiceAndDateOfValueAndBasisAndTax", 
+		List<Invoice> invoices = Invoice.find("byNumberAndDateOfInvoiceAndDateOfValueAndBasisAndTaxAndCompanyAndBusinessPartnerAndBusinessYear", 
 												 invoice.number,
 												 invoice.dateOfInvoice,
 												 invoice.dateOfValue,
 												 invoice.basis,
-												 invoice.tax).fetch();
-		renderTemplate("Invoices/show.html", "edit", invoices);		
+												 invoice.tax,
+												 invoice.company,
+												 invoice.businessPartner,
+												 invoice.businessYear).fetch();
+		List<Company> companies = Company.findAll();
+		List<BusinessYear> businessYears = BusinessYear.findAll();
+		List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+		renderTemplate("Invoices/show.html", "edit", invoices, companies, businessYears, businessPartners);		
 	}
 	
 	public static void nextForm(Long id){
