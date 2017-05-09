@@ -1,1 +1,38 @@
-/classes/
+# Ignore Play! working directory #
+bin/
+/db
+.eclipse
+/lib/
+/logs/
+modules
+/project/target
+/target
+tmp/bytecode/DEV
+test-result
+server.pid
+*.eml
+/dist/
+.cache
+/*.iml
+/*.ipr
+eclipse/
+modules/
+tmp
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+.settings
+.classpath
+.project
