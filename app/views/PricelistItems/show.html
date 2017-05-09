@@ -1,0 +1,172 @@
+#{extends 'standardForm.html' /}
+#{set title:'PricelistItem' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{PricelistItems.create()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{PricelistItems.edit()}
+	#{/elseif}
+	#{else}
+		@{PricelistItems.filter()}
+	#{/else}
+#{/set}
+	
+<script>
+
+function sync(item){
+	price = item.find(".price").html()
+    id = item.find(".id").html()
+    mitem = item.find(".item_id").html()
+    pricelist = item.find(".pricelist_id").html();
+    $("#pricelistitem_price").val(price);
+    $("#pricelistitem_id").val(id);
+    $("#pricelistitem_item_id").val(mitem);
+    $("#pricelistitem_pricelist_id").val(pricelist);
+}
+
+function remove(id) {
+	$(location).attr('href', '/PricelistItems/delete?id='+id);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{PricelistItems.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{PricelistItems.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{PricelistItems.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+
+<h1>Pircelist Items</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Price</th> 
+	   <th>Item</th>
+	   <th>Pricelist</th>
+	</tr>
+#{list items:pricelistitems, as:'pricelistitem'}
+	<tr class="modalRow">
+		<td class = "year">${pricelistitem.price}</td>
+		<td>${pricelistitem.item.name}</td>
+		<td>${pricelistitem.pricelist.validationDate}</td>
+		<td style = "visibility: hidden; max-width: 0px" class="item_id">${pricelistitem.item.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class="pricelist_id">${pricelistitem.pricelist.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${pricelistitem.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+  <p>	
+	<form action = "${action}" method = "POST">	
+		#{field 'pricelistitem.item.id'}
+			<label for = "${field.id}">Item</label> &nbsp; 		
+			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${item_id}"/>		
+		#{/}
+		
+			<button type="button" class="btn btn-info btn-sm" #{if item_id} disabled #{/if} data-toggle="modal" data-target="#pricelistitem_items">Pick</button>					
+		
+		
+		#{field 'pricelistitem.pricelist.id'}
+			<label for = "${field.id}">Pricelist</label> &nbsp; 		
+			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${pricelist_id}"/>		
+		#{/}
+		
+			<button type="button" class="btn btn-info btn-sm" #{if pricelist_id} disabled #{/if} data-toggle="modal" data-target="#pricelistitem_pricelists">Pick</button>	
+		
+		#{field 'pricelistitem.id'}
+			<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		
+		<p>
+		#{field 'pricelistitem.price'}
+			<label for = "${field.id}">Price</label>
+			<input type = "number" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>		
+		<div id = "formActions">
+			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+			<a href = "@{PricelistItems.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+		</div>				
+	</form>
+  </p>
+</div>
+
+<div class = "modal fade" id = "pricelistitem_items" role="dialog">
+	<div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Items</h4>
+        </div>
+        <div class="modal-body">
+        <table>
+        	<tr class = "header">
+        		<td>Item Id</td>
+        		<td>Item Date</td>
+        	</tr>
+          #{list items:items, as:'item'}
+          	<tr>
+				<td class = "item_id">${item.id}</td>
+				<td class = "item_name">${item.name}</td>
+          	</tr>
+          #{/list}
+         </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-danger" id = "close_item_pricelistitem" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+<div class = "modal fade" id = "pricelistitem_pricelists" role="dialog">
+	<div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Pricelists</h4>
+        </div>
+        <div class="modal-body">
+        <table>
+        	<tr class = "header">
+        		<td>Pricelist Id</td>
+        		<td>Pricelist Validation Date</td>
+        	</tr>
+          #{list items:pricelists, as:'pricelist'}
+          	<tr>
+				<td class = "pricelist_id">${pricelist.id}</td>
+				<td class = "pricelist_validationDate">${pricelist.validationDate}</td>
+          	</tr>
+          #{/list}
+         </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-danger" id = "close_pricelist_pricelistitem" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+
+
+

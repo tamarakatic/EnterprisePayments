@@ -1,0 +1,101 @@
+#{extends 'standardForm.html' /}
+#{set title:'Pricelist' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{Pricelist.create()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{Pricelists.edit()}
+	#{/elseif}
+	#{else}
+		@{Pricelists.filter()}
+	#{/else}
+#{/set}
+
+<script>
+
+function sync(item){
+	validationDate = item.find(".validationDate").html()
+    id = item.find(".id").html()
+    $("#pricelist_validationDate").val(validationDate);
+    $("#pricelist_id").val(id);
+}
+
+function remove(id) {
+	$(location).attr('href', '/Pricelists/delete?id='+id);
+}
+
+function pricelist_item(id) {
+	$(location).attr('href', '/Pricelists/pricelist_item?pricelist_id='+id);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{Pricelists.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{Pricelists.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{Pricelists.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform_modal" data-toggle="modal" data-target="#next_form_modal"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+<h1>Pricelist</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Validation Date</th>
+	</tr>
+#{list items:pricelists, as:'pricelist'}
+	<tr>
+		<td style = "min-width: 100px" class = "validationDate">${pricelist.validationDate}</td>
+		<td style = "visibility: hidden; max-width: 100px" class = "id">${pricelist.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+  <p>	
+	<form action = "${action}" method = "POST">		
+		#{field 'pricelist.id'}
+			<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		
+		<p>
+		#{field 'pricelist.validationDate'}
+			<label for = "${field.id}">validationDate</label>
+			<input type = "date" name = "${field.name}" id = "${field.id}"/>
+		#{/}
+		</p>
+		<div id = "formActions">
+			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+			<a href = "@{Pricelists.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+		</div>			
+	</form>
+  </p>
+</div>
+
+<div class = "modal fade" id = "next_form_modal" role="dialog">
+	<div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Child form</h4>
+        </div>
+        <div class="modal-footer">
+          <a href="#" id = "pricelist_item" class="btn btn-success" data-dismiss="modal">PricelistItem</a>
+        </div>
+      </div>
+      
+    </div>
+</div>
+

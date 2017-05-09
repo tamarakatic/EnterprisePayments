@@ -83,10 +83,60 @@ $(document).ready(function(){
 		business_partner(id);
 	});
 	
+	$("#gstrate").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		gstrate(id);
+	});
+	
+	$("#pricelist_item").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		pricelist_item(id);
+	});
+	
+	$("#article_group").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		articlegroup(id);
+	});
+	
+	$("#items").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		item(id);
+	});
+	
 	$("#nextFormInvoice").click(function() {
 		highlighted = $(".highlighted");
 		id = highlighted.find(".id").html();
 		nextFormInvoice(id);
+	});
+	
+	$("#article_group").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		article_group(id);
+	});
+	
+	$("#close_gsttype_gstrate").click(function() {
+		$("#gstrate_gsttype_id").val("");
+	});
+	
+	$("#close_gsttype_articlegroup").click(function() {
+		$("#articlegroup_gsttype_id").val("");
+	});
+	
+	$("#close_articlegroup_item").click(function() {
+		$("#item_articlegroup_id").val("");
+	});
+	
+	$("#close_item_pricelistitem").click(function() {
+		$("#pricelistitem_item_id").val("");
+	});
+	
+	$("#close_pricelist_pricelistitem").click(function() {
+		$("#pricelistitem_pricelist_id").val("");
 	});
 });
 
