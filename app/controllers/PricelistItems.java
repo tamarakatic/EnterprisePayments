@@ -11,14 +11,15 @@ public class PricelistItems extends Controller{
 	
 	public static void show(String mode) {
 		List<PricelistItem> pricelistitems = PricelistItem.findAll();
-		List<Item> items = Item.findAll();
-		List<Pricelist> pricelists =Pricelist.findAll();
+		List<Item> items = Item.findAll();		
+		List<Pricelist> pricelists = Pricelist.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
 		render(pricelistitems, items, pricelists, mode);
 	}
-
-	public static void create(PricelistItem pricelistitem) {		
+	
+	public static void create(PricelistItem pricelistitem) {	
+		System.out.println("pricelist id " + pricelistitem.pricelist.id);
 		pricelistitem.save();
 		show("add");
 	}
