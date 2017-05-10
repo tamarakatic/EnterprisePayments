@@ -138,6 +138,12 @@ $(document).ready(function(){
 	$("#close_pricelist_pricelistitem").click(function() {
 		$("#pricelistitem_pricelist_id").val("");
 	});
+	
+	$("#nextFormOrderForm").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		nextFormOrderForm(id);
+	});
 });
 
 </script>

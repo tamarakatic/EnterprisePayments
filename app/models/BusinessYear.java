@@ -24,6 +24,9 @@ public class BusinessYear extends Model {
 	@OneToMany(mappedBy = "businessYear")
 	public List<Invoice> invoices;
 	
+	@OneToMany(mappedBy = "businessYear")
+	public List<OrderForm> orderForms;
+	
 	public BusinessYear(int year, boolean active, Company company) 
 	{
 		super();
