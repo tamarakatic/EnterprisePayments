@@ -17,6 +17,20 @@
 
 $(document).ready(function(){
 	
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+	if(dd<10){
+	    dd='0'+dd
+	} 
+	if(mm<10){
+		mm='0'+mm
+	} 
+	today = yyyy+'-'+mm+'-'+dd;
+	document.getElementById("invoice_dateOfInvoice").setAttribute("max", today);
+	document.getElementById("invoice_dateOfValue").setAttribute("max", today);
+	
 	$("#companyPickup").click(function(){
 		idCompany = $(".highlighted").find(".comp_id").html();
 		var comboZoomCompany = document.getElementById('invoice_company_id');
@@ -47,7 +61,7 @@ function sync(item){
 	dateOfValue = item.find(".dateOfValue").html();
 	basis = item.find(".basis").html();
 	tax = item.find(".tax").html();
-	sum = item.find(".sum").html();
+	total = item.find(".total").html();
 	companyId = item.find(".companyId").html();
 	businessYearId = item.find(".businessYearId").html();
 	businessPartnerId = item.find(".businessPartnerId").html();
@@ -68,7 +82,7 @@ function sync(item){
     
     $("#invoice_basis").val(basis);
     $("#invoice_tax").val(tax);
-    $("#invoice_sum").val(sum);
+    $("#invoice_sum").val(total);
     //za combo boxeve
     var comboZoomCompany = document.getElementById('invoice_company_id');
     comboZoomCompany.value = companyId;
@@ -118,7 +132,7 @@ function nextFormInvoice(id) {
 	   <th>Date of value</th>
 	   <th>Basis</th> 
 	   <th>Tax</th>
-	   <th>Sum</th> 
+	   <th>Total</th> 
     </tr>
     
 #{list items:invoices, as:'invoice'}
@@ -127,11 +141,11 @@ function nextFormInvoice(id) {
 		<td class = "businessYear">${invoice.businessYear.year}</td>
 		<td class = "businessPartner">${invoice.businessPartner.name}</td>
 		<td class = "number">${invoice.number}</td>
-		<td class = "dateOfInvoice">${invoice.dateOfInvoice}</td>
-		<td class = "dateOfValue">${invoice.dateOfValue}</td>
+		<td class = "dateOfInvoice">${invoice.dateOfInvoice.toString().split(" ")[0]}</td>
+		<td class = "dateOfValue">${invoice.dateOfValue.toString().split(" ")[0]}</td>
 		<td class = "basis">${invoice.basis}</td>
 		<td class = "tax">${invoice.tax}</td>
-		<td class = "sum">${invoice.sum}</td>
+		<td class = "total">${invoice.total}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${invoice.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "companyId">${invoice.company.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "businessYearId">${invoice.businessYear.id}</td>
@@ -193,14 +207,14 @@ function nextFormInvoice(id) {
 				<span class="error">#{error 'business partner' /}</span>
 				</p>
 				
-				<p>
+<!-- 				<p>
 				#{field 'invoice.number'}
 					<label for = "${field.id}">Number</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				<span class="error">#{error 'number' /}</span>
 				</p>
-				
+ -->				
 				<p>
 				#{field 'invoice.dateOfInvoice'}
 					<label for = "${field.id}">Date of invoice</label>
@@ -220,7 +234,7 @@ function nextFormInvoice(id) {
 				<span class="error">#{error 'date of value' /}</span>
 				</p>
 				
-				<p>
+<!-- 				<p>
 				#{field 'invoice.basis'}
 					<label for = "${field.id}">Basis</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
@@ -235,12 +249,12 @@ function nextFormInvoice(id) {
 				</p>
 				
 				<p>
-				#{field 'invoice.sum'}
-					<label for = "${field.id}">Sum</label>
+				#{field 'invoice.total'}
+					<label for = "${field.id}">Total</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				</p>
-				
+				 -->
 				
 				<div id = "formActions">
 					<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>

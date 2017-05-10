@@ -90,9 +90,9 @@ function remove(id) {
 	   <th>Article name</th>
 	   <th>Amount</th>
 	   <th>Price</th>
-	   <th>Discount</th> 
+	   <th>Discount %</th> 
 	   <th>Basis</th>
-	   <th>Tax</th>
+	   <th>Tax %</th>
 	   <th>Total tax</th> 
 	   <th>Total</th>
     </tr>
@@ -110,6 +110,7 @@ function remove(id) {
 		<td class = "total">${invoiceItem.total}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${invoiceItem.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "invoiceId">${invoiceItem.invoice.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "articleId">${invoiceItem.article.id}</td>
 	</tr>
 #{/list}
 </table>
@@ -161,21 +162,22 @@ function remove(id) {
 				<span class="error">#{error 'amount' /}</span>
 				</p>
 				
-				<p>
+				<!-- <p>
 				#{field 'invoiceItem.price'}
 					<label for = "${field.id}">Price</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
-				</p>
+				</p> -->
 				
 				<p>
 				#{field 'invoiceItem.discount'}
-					<label for = "${field.id}">Discount</label>
+					<label for = "${field.id}">Discount %</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
+				<span class="error">#{error 'discount' /}</span>
 				</p>
 				
-				<p>
+				<!-- <p>
 				#{field 'invoiceItem.basis'}
 					<label for = "${field.id}">Basis</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
@@ -201,7 +203,7 @@ function remove(id) {
 					<label for = "${field.id}">Total</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
-				</p>
+				</p> -->
 				
 				
 				<div id = "formActions">
