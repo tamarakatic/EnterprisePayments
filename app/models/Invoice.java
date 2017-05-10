@@ -26,7 +26,7 @@ public class Invoice extends Model{
 	public double tax;
 	
 	@Column(precision = 2, scale = 9)
-	public double sum;
+	public double total;
 
 	@ManyToOne
 	public Company company;
@@ -40,7 +40,7 @@ public class Invoice extends Model{
 	@OneToMany(mappedBy = "invoice")
 	public List<InvoiceItem> invoiceItems;
 	
-	public Invoice(Date dateOfInvoice, int number, Date dateOfValue, double basis, double tax, double sum, Company company,
+	public Invoice(Date dateOfInvoice, int number, Date dateOfValue, double basis, double tax, double total, Company company,
 			BusinessYear businessYear, BusinessPartner businessPartner) {
 		super();
 		this.dateOfInvoice = dateOfInvoice;
@@ -48,7 +48,7 @@ public class Invoice extends Model{
 		this.dateOfValue = dateOfValue;
 		this.basis = basis;
 		this.tax = tax;
-		this.sum = sum;
+		this.total = total;
 		this.company = company;
 		this.businessYear = businessYear;
 		this.businessPartner = businessPartner;

@@ -15,6 +15,16 @@
 	
 <script>
 
+$(document).ready(function(){
+	
+	$("#articlePickup").click(function(){
+		id = $(".highlighted").find(".art_id").html();
+		var comboZoomArticle = document.getElementById('invoiceItem_article_id');
+	    comboZoomArticle.value = id;
+		$('#articlesModal').modal('toggle');
+	});
+});
+
 function sync(item){
 	id = item.find(".id").html();
 	amount = item.find(".amount").html();
@@ -25,6 +35,7 @@ function sync(item){
 	taxTotal = item.find(".taxTotal").html();
 	total = item.find(".total").html();
 	invoiceId = item.find(".invoiceId").html();
+	articleId = item.find(".articleId").html();
     $("#invoiceItem_id").val(id);
     $("#invoiceItem_amount").val(amount);
     $("#invoiceItem_price").val(price);
@@ -36,6 +47,8 @@ function sync(item){
     //za combo boxeve
     var comboZoomInvoice = document.getElementById('invoiceItem_invoice_id');
     comboZoomInvoice.value = invoiceId;
+    var comboZoomArticle = document.getElementById('invoiceItem_article_id');
+    comboZoomArticle.value = articleId;
     
 }
 
@@ -68,11 +81,12 @@ function remove(id) {
 <table>
 	<tr class = "header">
 	   <th>Invoice number</th>
+	   <th>Article name</th>
 	   <th>Amount</th>
 	   <th>Price</th>
-	   <th>Discount</th> 
+	   <th>Discount %</th> 
 	   <th>Basis</th>
-	   <th>Tax</th>
+	   <th>Tax %</th>
 	   <th>Total tax</th> 
 	   <th>Total</th>
     </tr>
@@ -80,6 +94,7 @@ function remove(id) {
 #{list items:invoiceItems, as:'invoiceItem'}
 	<tr>
 		<td class = "invoice">${invoiceItem.invoice.number}</td>
+		<td class = "article">${invoiceItem.article.name}</td>
 		<td class = "amount">${invoiceItem.amount}</td>
 		<td class = "price">${invoiceItem.price}</td>
 		<td class = "discount">${invoiceItem.discount}</td>
@@ -89,6 +104,7 @@ function remove(id) {
 		<td class = "total">${invoiceItem.total}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${invoiceItem.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "invoiceId">${invoiceItem.invoice.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "articleId">${invoiceItem.article.id}</td>
 	</tr>
 #{/list}
 </table>
@@ -112,31 +128,48 @@ function remove(id) {
 					</select>
 					
 				#{/}
-				
 				</p>
+				
+				
+				<p>
+				#{field 'invoiceItem.article.id'}
+					<label for = "${field.id}">Article</label>
+					
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
+						#{list items:articles, as:'article'}
+							<option value = "${article.id}">${article.name}</option>
+						#{/list}
+					</select>
+					<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#articlesModal">...	</button>
+				#{/}
+				<span class="error">#{error 'article' /}</span>
+				</p>
+				
 				
 				<p>
 				#{field 'invoiceItem.amount'}
 					<label for = "${field.id}">Amount</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
+				<span class="error">#{error 'amount' /}</span>
 				</p>
 				
-				<p>
+				<!-- <p>
 				#{field 'invoiceItem.price'}
 					<label for = "${field.id}">Price</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
-				</p>
+				</p> -->
 				
 				<p>
 				#{field 'invoiceItem.discount'}
-					<label for = "${field.id}">Discount</label>
+					<label for = "${field.id}">Discount %</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
+				<span class="error">#{error 'discount' /}</span>
 				</p>
 				
-				<p>
+				<!-- <p>
 				#{field 'invoiceItem.basis'}
 					<label for = "${field.id}">Basis</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
@@ -162,7 +195,7 @@ function remove(id) {
 					<label for = "${field.id}">Total</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
-				</p>
+				</p> -->
 				
 				
 				<div id = "formActions">
@@ -174,6 +207,37 @@ function remove(id) {
 	</p>
 </div>
 
+<!-- Modal ARTICLES-->
+  <div class="modal fade" id="articlesModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Articles
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Name</th>
+		   <th>Description</th>
+		   <th>Article group</th>
+		</tr>
+		#{list items:articles, as:'article'}
+		<tr class="modalRow">
+			<td class = "art_name">${article.name}</td>
+			<td class = "art_description">${article.description}</td>
+			<td class = "art_art_group">${article.articlegroup.name}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "art_id">${article.id}</td>
+		</tr>
+		#{/list}
+		</table>
+		<div class="modal-footer">
+			<input id = "articlePickup" type = "button" value = "Choose"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
 
 
    

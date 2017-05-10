@@ -59,7 +59,7 @@ function remove(id) {
 	</tr>
 #{list items:pricelistitems, as:'pricelistitem'}
 	<tr class="modalRow">
-		<td class = "year">${pricelistitem.price}</td>
+		<td class = "price">${pricelistitem.price}</td>
 		<td>${pricelistitem.item.name}</td>
 		<td>${pricelistitem.pricelist.validationDate}</td>
 		<td style = "visibility: hidden; max-width: 0px" class="item_id">${pricelistitem.item.id}</td>
@@ -128,7 +128,7 @@ function remove(id) {
          </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-success" id = "add_item_pricelistitem" data-dismiss="modal">Add</button>
           <button type="button" class="btn btn-danger" id = "close_item_pricelistitem" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -159,14 +159,10 @@ function remove(id) {
          </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-success" id = "add _pricelist_pricelistitem" data-dismiss="modal">Add</button>
           <button type="button" class="btn btn-danger" id = "close_pricelist_pricelistitem" data-dismiss="modal">Close</button>
         </div>
       </div>
       
     </div>
 </div>
-
-
-
-
