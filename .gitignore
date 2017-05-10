@@ -1,10 +1,8 @@
 # Ignore Play! working directory #
 bin/
 /db
-.eclipse
-#/lib/
+/lib/
 /logs/
-/modules
 /project/target
 /target
 tmp/
@@ -16,9 +14,7 @@ server.pid
 /*.iml
 /*.ipr
 eclipse/
-.settings/
 modules/
-/lib/
 
 # Compiled class file
 *.class
@@ -34,6 +30,4 @@ modules/
 *.tar.gz
 *.rar
 
-#.classpath
-#.project
-#.settings
+.settings

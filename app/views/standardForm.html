@@ -35,7 +35,7 @@ $(document).ready(function(){
   		highlighted = $(".highlighted");
   		//nalazi poziciju trazanog u okviru selektovane selekcije
   		//indeksi pocinju od 0
-  		var count = $("tr").length;
+  		var count = $("tr").not(".modal-body tr").length;
   		if (count == 0)
   			return;
   		index =  $("tr").index(highlighted);
@@ -50,6 +50,33 @@ $(document).ready(function(){
   		$(".highlighted").removeClass("highlighted");
 		item.addClass("highlighted");
   		sync(item);
+	});
+  
+   $("#prev").click(function(){
+		highlighted = $(".highlighted");
+		var count = $("tr").not(".modal-body tr").length;
+		if (count == 0)
+			return;
+		index =  $("tr").index(highlighted);
+		if (index < 0)
+			return;
+		if(index == 1) {
+			selectChild = count;
+		} else {
+			selectChild = index;
+		}
+		item = $("tr:nth-child(" + selectChild + ")");
+		$(".highlighted").removeClass("highlighted");
+		item.addClass("highlighted");
+		sync(item); 
+	});
+  
+    $("#last").click(function(){
+ 		var count = $("tr").not(".modal-body tr").length;
+ 		item = $("table tr:nth-child("+count+")");
+ 		$(".highlighted").removeClass("highlighted");
+		item.addClass("highlighted");
+		sync(item);
 	});
 	
 	$("#remove").click(function() {
