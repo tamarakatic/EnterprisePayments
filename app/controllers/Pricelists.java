@@ -63,9 +63,7 @@ public class Pricelists extends Controller{
 					priceListItemId.price = Double.parseDouble(decimalFormat.format(priceListItemId.price - 
 							(priceListItemId.price * (percentage / 100.0f))));
 				} else {
-					// percentage = percentage - 100;
-					priceListItemId.price = Double.parseDouble(decimalFormat.format(priceListItemId.price + 
-							(priceListItemId.price * (percentage / 100.0f))));
+					priceListItemId.price = Double.parseDouble(decimalFormat.format(priceListItemId.price * (percentage / 100.0f)));
 				}				
 				priceListItemId.save();				
 			}			
