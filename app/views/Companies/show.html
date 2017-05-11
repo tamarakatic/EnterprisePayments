@@ -20,13 +20,13 @@ function sync(item){
     PIB = item.find(".PIB").html()
     address = item.find(".address").html()
     mobile = item.find(".mobile").html()
-    JMBG = item.find(".JMBG").html()
+    MBRG = item.find(".MBR").html()
     id = item.find(".id").html()
     $("#company_name").val(name);
     $("#company_PIB").val(PIB);
     $("#company_address").val(address);
     $("#company_mobile").val(mobile);
-    $("#company_JMBG").val(JMBG);
+    $("#company_MBR").val(MBR);
     $("#company_id").val(id);
 }
 
@@ -68,7 +68,7 @@ function business_partner(id) {
 	   <th>PIB</th>
 	   <th>Address</th> 
 	   <th>Mobile</th>
-	   <th>JMBG</th>
+	   <th>MBR</th>
 	</tr>
 #{list items:companies, as:'company'}
 	<tr>
@@ -76,7 +76,7 @@ function business_partner(id) {
 		<td class = "PIB">${company.PIB}</td>
 		<td class = "address">${company.address}</td>
 		<td class = "mobile">${company.mobile}</td>
-		<td class = "JMBG">${company.JMBG}</td>
+		<td class = "MBR">${company.MBR}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${company.id}</td>
 	</tr>
 #{/list}
@@ -114,8 +114,8 @@ function business_partner(id) {
 		#{/}
 		</p>
 		<p>
-		#{field 'company.JMBG'}
-			<label for = "${field.id}">JMBG</label>
+		#{field 'company.MBR'}
+			<label for = "${field.id}">MBR</label>
 			<input type = "text" name = "${field.name}" id = "${field.id}"/>
 		#{/}
 		</p>
