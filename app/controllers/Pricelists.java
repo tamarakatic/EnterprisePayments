@@ -1,5 +1,7 @@
 package controllers;
 
+import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.List;
 
 import models.PricelistItem;
@@ -28,7 +30,7 @@ public class Pricelists extends Controller{
 	
 	public static void filter(Pricelist pricelis) {		
 		List<Pricelist> pricelists = Pricelist.find("validationDate = ?", pricelis.validationDate).fetch();
-		renderTemplate("Pricelist/show.html", "edit", pricelists);		
+		renderTemplate("Pricelists/show.html", "edit", pricelists);		
 	}
 	
 	public static void delete(Long id) {
@@ -42,8 +44,26 @@ public class Pricelists extends Controller{
 	public static void pricelist_item(Long pricelist_id) {
 		if (pricelist_id != null) {
 			List<PricelistItem> pricelistItems = PricelistItem.find("byPricelist_id", pricelist_id).fetch();
-			renderTemplate("PricelistItem/show.html", "edit", pricelistItems, pricelist_id);
+			renderTemplate("PricelistItems/show.html", "edit", pricelistItems, pricelist_id);
 		}
+		show("edit");
+	}
+	
+	public static void change_price_list(Long pricelist_id, Integer percentage) {
+		if (pricelist_id != null) {
+			Pricelist pricelist = Pricelist.findById(pricelist_id);
+			DecimalFormat decimalFormat = new DecimalFormat(".##");
+			pricelist.validationDate = new Date();
+			pricelist.save();
+			List<PricelistItem> pricelistItems = PricelistItem.find("byPricelist_id", pricelist_id).fetch();
+			for (PricelistItem pricelistItem : pricelistItems) {
+				PricelistItem priceListItemId = PricelistItem.findById(pricelistItem.id);
+				priceListItemId.price = Double.parseDouble(decimalFormat.format(priceListItemId.price - 
+										(priceListItemId.price * (percentage / 100.0f))));
+				priceListItemId.save();				
+			}			
+			redirect("/PricelistItems/show?");
+		}    
 		show("edit");
 	}
 

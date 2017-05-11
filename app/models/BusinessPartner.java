@@ -36,6 +36,9 @@ public class BusinessPartner extends Model {
 	
 	@OneToMany(mappedBy = "businessPartner")
 	public List<Invoice> invoices;
+	
+	@OneToMany(mappedBy = "businessPartner")
+	public List<OrderForm> orderForms;
 
 	public BusinessPartner (String name, String address, String kind, 
 							String mobile, String email, String account,

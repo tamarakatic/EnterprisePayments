@@ -1,0 +1,252 @@
+#{extends 'standardForm.html' /}
+#{set title:'OrderForm' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{OrderForms.create()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{OrderForms.edit()}
+	#{/elseif}
+	#{else}
+		@{OrderForms.filter()}
+	#{/else}
+#{/set}
+
+<script>
+
+$(document).ready(function(){
+	
+	$("#companyPickup").click(function(){
+		id = $(".highlighted").find(".comp_id").html();
+		var comboZoomCompany = document.getElementById('orderForm_company_id');
+	    comboZoomCompany.value = id;
+		$('#companiesModal').modal('toggle');
+	});
+	
+	$("#businessPartnerPickup").click(function(){
+		idPartner = $(".highlighted").find(".partner_id").html();
+		var comboZoomPartner = document.getElementById('orderForm_businessPartner_id');
+	    comboZoomPartner.value = idPartner;
+		$('#businessPartnersModal').modal('toggle');
+	});
+	
+	$("#businessYearPickup").click(function(){
+		idYear = $(".highlighted").find(".year_id").html();
+		var comboZoomYear = document.getElementById('orderForm_businessYear_id');
+	    comboZoomYear.value = idYear;
+		$('#businessYearsModal').modal('toggle');
+	});
+});
+
+function sync(item){
+	dateOfOrder = item.find(".dateOfOrder").html()
+    numberOfOrder = item.find(".numberOfOrder").html()
+    $("#orderForm_dateOfOrder").val(dateOfOrder);
+    $("#orderForm_numberOfOrder").val(numberOfOrder);
+}
+
+function remove(id){
+	$(location).attr('href', '/OrderForms/delete?id='+id);
+}
+
+function nextFormOrderForm(id) {
+	$(location).attr('href', '/OrderForms/nextform?id='+id);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{OrderForms.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="@{OrderForms.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{OrderForms.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextFormOrderForm"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+<h1>Order form</h1>
+
+<table>
+	<tr class = "header">
+		<th>Company</th>
+		<th>Bussiness year</th>
+		<th>Bussiness partner</th>
+		<th>Date of order</th>
+		<th>Number of order</th>
+	</tr>
+#{list items:orderForms, as:'orderForm'}
+	<tr>
+		<td class = "company">${orderForm.company.name}</td>
+		<td class = "businessYear">${orderForm.businessYear.year}</td>
+		<td class = "businessPartner">${orderForm.businessPartner.name}</td>
+		<td class = "dateOfOrder">${orderForm.dateOfOrder}</td>
+		<td class = "numberOfOrder">${orderForm.numberOfOrder}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${orderForm.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+	<p>
+		<form action = "${action}" method = "POST">
+			#{field 'orderForm.id'}
+				<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+			#{/}
+			<p>
+			#{field 'orderForm.company.id'}
+					<label for = "${field.id}">Company</label>
+					
+					<select name = "${field.name}" id = "${field.id}"/>
+						#{list items:companies, as:'company'}
+							<option value = "${company.id}">${company.name}</option>
+						#{/list}
+					</select>
+					<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#companiesModal">...	</button>
+			#{/}	
+			</p>
+			
+			<p>
+				#{field 'orderForm.businessYear.id'}
+					<label for = "${field.id}">Business Year</label>
+					
+					<select name = "${field.name}" id = "${field.id}"/>
+						#{list items:businessYears, as:'businessYear'}
+							<option value = "${businessYear.id}">${businessYear.year}</option>
+						#{/list}
+					</select>
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#businessYearsModal">...	</button>
+				#{/}
+			</p>
+			
+			<p>
+				#{field 'orderForm.businessPartner.id'}
+					<label for = "${field.id}">Business Partner</label>
+					
+					<select name = "${field.name}" id = "${field.id}"/>
+						#{list items:businessPartners, as:'businessPartner'}
+							<option value = "${businessPartner.id}">${businessPartner.name}</option>
+						#{/list}
+					</select>
+					<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#businessPartnersModal">...	</button>
+					
+				#{/}
+			</p>
+			
+			<p>
+			#{field 'orderForm.numberOfOrder'}
+				<label for = "${field.id}">Number of order</label>
+				<input type = "text" name = "${field.name}" id = "${field.id}"/>
+			#{/}
+			</p>
+			<p>
+			#{field 'orderForm.dateOfOrder'}
+				<label for = "${field.id}">Date of order</label>
+				<input type = "date" name = "${field.name}" id = "${field.id}"/>
+			#{/}
+			</p>
+			<div id = "formActions">
+			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+			<a href = "@{OrderForms.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+		</div>
+		
+		</form>
+	</p>
+</div>
+
+<!-- Modal COMPANIES-->
+  <div class="modal fade" id="companiesModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Companies
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Name</th>
+		</tr>
+		#{list items:companies, as:'company'}
+		<tr>
+			<td class = "comp_name">${company.name}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "comp_id">${company.id}</td>
+		</tr>
+		#{/list}
+		</table>
+		<div class="modal-footer">
+			<input id = "companyPickup" type = "button" value = "Choose"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
+   
+      <!-- Modal BUSINESS PARTNERS-->
+  <div class="modal fade" id="businessPartnersModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	BusinessPartners
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Name</th>
+		   <th>Adress</th>
+		   <th>Kind</th>
+		</tr>
+		#{list items:businessPartners, as:'businessPartner'}
+		<tr class="modalRow">
+			<td class = "partner_name">${businessPartner.name}</td>
+			<td class = "partner_address">${businessPartner.address}</td>
+			<td class = "partner_kind">${businessPartner.kind}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "partner_id">${businessPartner.id}</td>
+		</tr>
+		#{/list}
+		</table>
+		<div class="modal-footer">
+			<input id = "businessPartnerPickup" type = "button" value = "Choose"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
+   
+    <!-- Modal BUSINESS YEARS-->
+  <div class="modal fade" id="businessYearsModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Business years
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Year</th>
+		   <th>Active?</th>
+		</tr>
+		#{list items:businessYears, as:'businessYear'}
+		<tr class="modalRow">
+			<td class = "year_year">${businessYear.year}</td>
+			<td class = "year_active">${businessYear.active}</td>
+			<td style = "visibility: hidden; max-width: 0px" class = "year_id">${businessYear.id}</td>
+		</tr>
+		#{/list}
+		</table>
+		<div class="modal-footer">
+			<input id = "businessYearPickup" type = "button" value = "Choose"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
