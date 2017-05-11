@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-# Ignore Play! working directory #
 bin/
 /db
 /lib/
@@ -16,44 +14,6 @@ server.pid
 /*.ipr
 eclipse/
 modules/
-
-# Compiled class file
-*.class
-
-# Log file
-*.log
-
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-.settings
-=======
-# Ignore Play! working directory #
-bin/
-/db
-.eclipse
-#/lib/
-/logs/
-/modules
-/project/target
-/target
-tmp/
-test-result
-server.pid
-*.eml
-/dist/
-.cache
-/*.iml
-/*.ipr
-eclipse/
-.settings/
-modules/
-/lib/
 
 # Compiled class file
 *.class
@@ -71,5 +31,5 @@ modules/
 
 .settings
 .classpath
+
 .project
->>>>>>> 0424d57bbd117197c81e97cbb9667d670f142f08
