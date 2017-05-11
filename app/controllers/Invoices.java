@@ -220,4 +220,11 @@ public class Invoices extends Controller {
 	      }
 		
 	}
+	
+	public static void generateKIF(String begin, String end) {
+		System.out.println("*****************************");
+		System.out.println("begin "+begin);
+		System.out.println("end"+end);
+		show("edit");
+	}
 }
