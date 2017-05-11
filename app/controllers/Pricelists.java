@@ -6,6 +6,7 @@ import java.util.List;
 
 import models.PricelistItem;
 import models.GSTType;
+import models.Item;
 import models.Pricelist;
 import play.mvc.Controller;
 
@@ -28,8 +29,8 @@ public class Pricelists extends Controller{
 		show("edit");		
 	}
 	
-	public static void filter(Pricelist pricelis) {		
-		List<Pricelist> pricelists = Pricelist.find("validationDate = ?", pricelis.validationDate).fetch();
+	public static void filter(Pricelist pricelist) {		
+		List<Pricelist> pricelists = Pricelist.find("validationDate = ?", pricelist.validationDate).fetch();
 		renderTemplate("Pricelists/show.html", "edit", pricelists);		
 	}
 	
@@ -43,12 +44,12 @@ public class Pricelists extends Controller{
 	
 	public static void pricelist_item(Long pricelist_id) {
 		if (pricelist_id != null) {
-			List<PricelistItem> pricelistItems = PricelistItem.find("byPricelist_id", pricelist_id).fetch();
-			renderTemplate("PricelistItems/show.html", "edit", pricelistItems, pricelist_id);
+			List<PricelistItem> pricelistitems = PricelistItem.find("byPricelist_id", pricelist_id).fetch();
+			renderTemplate("PricelistItems/show.html", "edit", pricelistitems, pricelist_id);
 		}
 		show("edit");
 	}
-	
+		
 	public static void change_price_list(Long pricelist_id, Integer percentage) {
 		if (pricelist_id != null) {
 			Pricelist pricelist = Pricelist.findById(pricelist_id);
@@ -58,8 +59,12 @@ public class Pricelists extends Controller{
 			List<PricelistItem> pricelistItems = PricelistItem.find("byPricelist_id", pricelist_id).fetch();
 			for (PricelistItem pricelistItem : pricelistItems) {
 				PricelistItem priceListItemId = PricelistItem.findById(pricelistItem.id);
-				priceListItemId.price = Double.parseDouble(decimalFormat.format(priceListItemId.price - 
-										(priceListItemId.price * (percentage / 100.0f))));
+				if (percentage < 100) {
+					priceListItemId.price = Double.parseDouble(decimalFormat.format(priceListItemId.price - 
+							(priceListItemId.price * (percentage / 100.0f))));
+				} else {
+					priceListItemId.price = Double.parseDouble(decimalFormat.format(priceListItemId.price * (percentage / 100.0f)));
+				}				
 				priceListItemId.save();				
 			}			
 			redirect("/PricelistItems/show?");

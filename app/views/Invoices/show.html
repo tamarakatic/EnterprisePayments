@@ -218,7 +218,7 @@ function export_to_xml(id) {
 				#{/}
 				<span class="error">#{error 'business partner' /}</span>
 				</p>
-				
+		
 				<p>
 				#{field 'invoice.dateOfInvoice'}
 					<label for = "${field.id}">Date of invoice</label>
@@ -267,7 +267,7 @@ function export_to_xml(id) {
 		<tr class="modalRow">
 			<td class = "comp_name">${company.name}</td>
 			<td class = "comp_PIB">${company.PIB}</td>
-			<td class = "comp_MBR">${company.JMBG}</td>
+			<td class = "comp_MBR">${company.MBR}</td>
 			<td style = "visibility: hidden; max-width: 0px" class = "comp_id">${company.id}</td>
 		</tr>
 		#{/list}

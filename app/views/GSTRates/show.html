@@ -20,8 +20,12 @@ function sync(item){
 	GSTPercent = item.find(".GSTPercent").html()
     id = item.find(".id").html()
     gsttype = item.find(".gsttype_id").html()
+    var date1 = new Date(date);
+	var day1 = ("0" + date1.getDate()).slice(-2);
+    var month1 = ("0" + (date1.getMonth() + 1)).slice(-2);
+	var today1 = date1.getFullYear()+"-"+(month1)+"-"+(day1) ;
     $("#gstrate_GSTPercent").val(GSTPercent);
-    $("#gstrate_date").val(date);
+    $("#gstrate_date").val(today1);
     $("#gstrate_id").val(id);
     $("#gstrate_gsttype_id").val(gsttype);
 }
@@ -36,8 +40,8 @@ function remove(id) {
 <ul>
   <li><a href="@{GSTRates.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
   <li><a href="@{GSTRates.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
-  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
-  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}nane"/></a></li>
+  <li><a href="@{GSTTypes.show}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
   <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
   <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
   <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
@@ -58,7 +62,7 @@ function remove(id) {
 	</tr>
 #{list items:gstrates, as:'gstrate'}
 	<tr>
-		<td class = "date">${gstrate.date}</td>
+		<td class = "date">${gstrate.date.toString().split(" ")[0]}</td>
 		<td class = "GSTPercent">${gstrate.GSTPercent}</td>
 		<td>${gstrate.gsttype.name}</td>
 		<td style = "visibility: hidden; max-width: 0px" class="gsttype_id">${gstrate.gsttype.id}</td>

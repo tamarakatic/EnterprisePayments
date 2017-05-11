@@ -52,4 +52,18 @@ public class InvoiceItem extends Model{
 		this.unit = unit;
 	}
 	
+	public InvoiceItem(double amount, double price, double discount, double basis, double tax, double taxTotal,
+			double total, Invoice invoice, Item article) {
+		super();
+		this.amount = amount;
+		this.price = price;
+		this.discount = discount;
+		this.basis = basis;
+		this.tax = tax;
+		this.taxTotal = taxTotal;
+		this.total = total;
+		this.invoice = invoice;
+		this.article = article;
+	}
+	
 }

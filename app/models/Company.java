@@ -24,7 +24,7 @@ public class Company extends Model {
 	public String mobile;
 	
 	@Column(length = 8, nullable = false)
-	public String JMBG;
+	public String MBR;
 
 	@OneToMany(mappedBy = "company")
 	public List<BusinessYear> businessYear;
@@ -46,7 +46,7 @@ public class Company extends Model {
 		PIB = pib;
 		this.address = adresa;
 		this.mobile = mobile;
-		JMBG = jmbg;
+		MBR = jmbg;
 	}
 		
 }
