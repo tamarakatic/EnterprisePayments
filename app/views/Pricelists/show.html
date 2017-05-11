@@ -18,7 +18,11 @@
 function sync(item){
 	validationDate = item.find(".validationDate").html()
     id = item.find(".id").html()
-    $("#pricelist_validationDate").val(validationDate);
+    var date1 = new Date(validationDate);
+	var day1 = ("0" + date1.getDate()).slice(-2);
+    var month1 = ("0" + (date1.getMonth() + 1)).slice(-2);
+	var today1 = date1.getFullYear()+"-"+(month1)+"-"+(day1) ;
+    $("#pricelist_validationDate").val(today1);
     $("#pricelist_id").val(id);
 }
 

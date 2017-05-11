@@ -29,8 +29,8 @@ public class Pricelists extends Controller{
 		show("edit");		
 	}
 	
-	public static void filter(Pricelist pricelis) {		
-		List<Pricelist> pricelists = Pricelist.find("validationDate = ?", pricelis.validationDate).fetch();
+	public static void filter(Pricelist pricelist) {		
+		List<Pricelist> pricelists = Pricelist.find("validationDate = ?", pricelist.validationDate).fetch();
 		renderTemplate("Pricelists/show.html", "edit", pricelists);		
 	}
 	
