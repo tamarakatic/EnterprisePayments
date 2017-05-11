@@ -41,6 +41,7 @@ public class InvoiceItems extends Controller{
 		invoiceItem.article = Item.findById(invoiceItem.article.id);
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
+		validation.required("unit", invoiceItem.unit);
 		validation.min("amount", invoiceItem.amount, 0.01);
 		validation.min("discount", invoiceItem.discount, 0);
 		validation.max("discount", invoiceItem.discount, 100);
@@ -57,6 +58,7 @@ public class InvoiceItems extends Controller{
 	public static void edit(InvoiceItem invoiceItem) {
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
+		validation.required("unit", invoiceItem.unit);
 		validation.min("amount", invoiceItem.amount, 0.01);
 		validation.min("discount", invoiceItem.discount, 0);
 		validation.max("discount", invoiceItem.discount, 100);
@@ -81,11 +83,12 @@ public class InvoiceItems extends Controller{
 	public static void filter(InvoiceItem invoiceItem) {
 		List<Invoice> invoices = Invoice.findAll();
 		List<Item> articles = Item.findAll();
-		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticle",
+		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticleAndUnit",
 								invoiceItem.invoice,
 								invoiceItem.amount,
 								invoiceItem.discount,
-								invoiceItem.article).fetch();
+								invoiceItem.article,
+								invoiceItem.unit).fetch();
 		renderTemplate("InvoiceItems/show.html", "edit", invoiceItems, invoices, articles);	
 	}
 	
@@ -115,6 +118,7 @@ public class InvoiceItems extends Controller{
 		invoiceItem.article = Item.findById(invoiceItem.article.id);
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
+		validation.required("unit", invoiceItem.unit);
 		validation.min("amount", invoiceItem.amount, 0.01);
 		validation.min("discount", invoiceItem.discount, 0);
 		validation.max("discount", invoiceItem.discount, 100);
@@ -131,6 +135,7 @@ public class InvoiceItems extends Controller{
 	public static void editNext(InvoiceItem invoiceItem) {
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
+		validation.required("unit", invoiceItem.unit);
 		validation.min("amount", invoiceItem.amount, 0.01);
 		validation.min("discount", invoiceItem.discount, 0);
 		validation.max("discount", invoiceItem.discount, 100);
@@ -153,11 +158,12 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void filterNext(InvoiceItem invoiceItem) {		
-		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticle",
+		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticleAndUnit",
 				invoiceItem.invoice,
 				invoiceItem.amount,
 				invoiceItem.discount,
-				invoiceItem.article).fetch();
+				invoiceItem.article,
+				invoiceItem.unit).fetch();
 		Invoice invoice = invoiceItem.invoice;
 		renderTemplate("InvoiceItems/showNext.html", "edit", invoiceItems, invoice);	
 	}

@@ -94,18 +94,7 @@ public class Invoices extends Controller {
 	
 	public static void nextForm(Long id){
 		if(id != null) {
-			Invoice invoice = Invoice.findById(id);
-			List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoice", invoice).fetch();
-			List<Item> allArticles = Item.findAll();
-			ArrayList<Item> articles = new ArrayList<Item>();
-			//Listaju se samo artikli koji imaju cenu
-			for(Item a : allArticles) {
-				if(a.pricelistitem != null) {
-					if(!a.pricelistitem.isEmpty())
-						articles.add(a);
-				}
-			}
-			renderTemplate("InvoiceItems/showNext.html", "edit", invoiceItems, invoice, articles);
+			InvoiceItems.showNext("edit", id);
 		}
 		show("edit");
 	}

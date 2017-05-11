@@ -35,6 +35,7 @@ $(document).ready(function(){
 function sync(item){
 	id = item.find(".id").html();
 	amount = item.find(".amount").html();
+	unit = item.find(".unit").html();
 	price = item.find(".price").html();
 	discount = item.find(".discount").html();
 	basis = item.find(".basis").html();
@@ -45,6 +46,7 @@ function sync(item){
 	articleId = item.find(".articleId").html();
     $("#invoiceItem_id").val(id);
     $("#invoiceItem_amount").val(amount);
+    $("#invoiceItem_unit").val(unit);
     $("#invoiceItem_price").val(price);
     $("#invoiceItem_discount").val(discount);
     $("#invoiceItem_basis").val(basis);
@@ -89,6 +91,7 @@ function remove(id) {
 	   <th>Invoice number</th>
 	   <th>Article name</th>
 	   <th>Amount</th>
+	   <th>Unit</th>
 	   <th>Price</th>
 	   <th>Discount %</th> 
 	   <th>Basis</th>
@@ -102,6 +105,7 @@ function remove(id) {
 		<td class = "invoice">${invoiceItem.invoice.number}</td>
 		<td class = "article">${invoiceItem.article.name}</td>
 		<td class = "amount">${invoiceItem.amount}</td>
+		<td class = "unit">${invoiceItem.unit}</td>
 		<td class = "price">${invoiceItem.price}</td>
 		<td class = "discount">${invoiceItem.discount}</td>
 		<td class = "basis">${invoiceItem.basis}</td>
@@ -160,6 +164,14 @@ function remove(id) {
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				<span class="error">#{error 'amount' /}</span>
+				</p>
+				
+			 	<p>
+				#{field 'invoiceItem.unit'}
+					<label for = "${field.id}">Unit</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				<span class="error">#{error 'unit' /}</span>
 				</p>
 				
 				<!-- <p>

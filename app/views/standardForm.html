@@ -16,7 +16,9 @@ $(document).ready(function(){
   		//dodajemo na novi selektovani
     	$(this).addClass("highlighted");
     	//pozivamo sinhronizaciju, prosledjujemo dati red
-    	sync($(this));
+    	if(!$(this).hasClass("modalRow")){
+    		sync($(this));
+    	}
     }
   });
   
@@ -127,14 +129,6 @@ $(document).ready(function(){
 	
 	$("#close_articlegroup_item").click(function() {
 		$("#item_articlegroup_id").val("");
-	});
-	
-	$("#close_item_pricelistitem").click(function() {
-		$("#pricelistitem_item_id").val("");
-	});
-	
-	$("#close_pricelist_pricelistitem").click(function() {
-		$("#pricelistitem_pricelist_id").val("");
 	});
 	
 	$("#add_gsttype").click(function() {
