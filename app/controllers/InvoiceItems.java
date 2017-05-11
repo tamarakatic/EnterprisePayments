@@ -162,7 +162,7 @@ public class InvoiceItems extends Controller{
 		renderTemplate("InvoiceItems/showNext.html", "edit", invoiceItems, invoice);	
 	}
 	
-	private static InvoiceItem calculate(InvoiceItem invoiceItem){
+	public static InvoiceItem calculate(InvoiceItem invoiceItem){
 		Item article = invoiceItem.article;
     	Date date = new Date(0L);
     	Date today = new Date();

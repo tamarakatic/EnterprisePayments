@@ -15,9 +15,11 @@
 	
 <script>
 
-$(document).ready(function(){
+$(document).ready(function(item){
+	
 	$("#generateInvoiceButton").click(function(){
-		$(location).attr('href', '/OrderFormItems/);
+		var comboZoomOrderForm = document.getElementById('orderFormItem_orderForm_id').value;
+		$(location).attr('href', '/OrderFormItems/generateInvoice?id='+comboZoomOrderForm);
 	});
 });
 

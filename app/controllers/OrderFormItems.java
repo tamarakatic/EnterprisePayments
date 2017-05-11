@@ -5,6 +5,8 @@ import java.util.List;
 import models.OrderForm;
 import models.OrderFormItem;
 import models.Item;
+import models.Invoice;
+import models.InvoiceItem;
 
 import play.mvc.Controller;
 
@@ -81,5 +83,21 @@ public class OrderFormItems extends Controller {
 				).fetch();
 		OrderForm orderForm = orderFormItem.orderForm;
 		renderTemplate("OrderFormItems/showNext.html", "edit", orderFormItems, orderForm);	
+	}
+	
+	public static void generateInvoice(Long id) {
+		OrderForm orderForm = OrderForm.findById(id);
+		List<OrderFormItem> orderFormItems = OrderFormItem.find("byOrderForm", orderForm).fetch();
+		Invoice invoice = new Invoice(orderForm.dateOfOrder, 321, orderForm.dateOfOrder,
+				0.0, 0.0, 0.0, orderForm.company, orderForm.businessYear, orderForm.businessPartner);
+		for (OrderFormItem ofi : orderFormItems) {
+			InvoiceItem invoiceItem = new InvoiceItem(ofi.amount, 0.0, 0.0, 0.0, 0.0, 0.0,
+					0.0, invoice, ofi.item);
+			invoiceItem = InvoiceItems.calculate(invoiceItem);
+	    	invoiceItem.save();		
+		}
+		List<Invoice> invoices = Invoice.find("byId", invoice.id).fetch();
+		renderTemplate("invoices/show.html", invoices);
+		
 	}
 }
