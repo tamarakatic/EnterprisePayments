@@ -3,3 +3,4 @@ secure.password=Your password:
 secure.signin=Log in now
 validation.required = Please enter a value.
 validation.min = Please enter a correct value.
+validation.max = Please enter a correct value.

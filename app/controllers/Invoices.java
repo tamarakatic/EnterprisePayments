@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import models.BusinessPartner;
@@ -8,6 +9,7 @@ import models.BusinessYear;
 import models.Company;
 import models.Invoice;
 import models.InvoiceItem;
+import models.Item;
 import play.mvc.Controller;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -30,7 +32,7 @@ public class Invoices extends Controller {
 			mode = "edit";
 		
 		List<Company> companies = Company.findAll();
-		List<BusinessYear> businessYears = BusinessYear.findAll();
+		List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 		List<BusinessPartner> businessPartners = BusinessPartner.findAll();
 		renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners);	
 	}
@@ -40,11 +42,10 @@ public class Invoices extends Controller {
 		invoice.company = company;
 		invoice.businessYear = BusinessYear.findById(invoice.businessYear.id);
 		invoice.businessPartner = BusinessPartner.findById(invoice.businessPartner.id);
-		
+				
 		validation.required("company",invoice.company);
 		validation.required("business partner", invoice.businessPartner);
 		validation.required("business year",invoice.businessYear);
-		validation.min("number", invoice.number, 1);
 		validation.required("date of invoice",invoice.dateOfInvoice);
 		validation.required("date of value",invoice.dateOfValue);
 		
@@ -52,7 +53,15 @@ public class Invoices extends Controller {
 	          params.flash(); 
 	          validation.keep(); 
 	    } else {
-	    	  invoice.save();
+	    	int num = 0;
+			List<Invoice> invoicesInYear = Invoice.find("byBusinessYear", invoice.businessYear).fetch();
+			for(Invoice inv : invoicesInYear) {
+				if(inv.number > num) {
+					num = inv.number;
+				}
+			}
+			invoice.number = ++num;
+			invoice.save();
 	    }
 		show("add");
 	}
@@ -85,7 +94,6 @@ public class Invoices extends Controller {
 	public static void export(Long id) {
 		if (id != null) {
 			Invoice invoice = Invoice.findById(id);
-//			List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoice", invoice).fetch();
 			saveToXML(Integer.toString(invoice.number), 
 					  invoice.businessPartner.name, 
 					  Integer.toString(invoice.businessYear.year), 
@@ -94,18 +102,15 @@ public class Invoices extends Controller {
 					  DateFormatUtils.format(invoice.dateOfValue, "yyyy-MM-dd HH:mm:SS"),
 					  Double.toString(invoice.basis),
 					  Double.toString(invoice.tax),
-					  Double.toString(invoice.sum));
+					  Double.toString(invoice.total));
 		}
 		show("edit");
 	}
 	
 	public static void filter(Invoice invoice) {		
-		List<Invoice> invoices = Invoice.find("byNumberAndDateOfInvoiceAndDateOfValueAndBasisAndTaxAndCompanyAndBusinessPartnerAndBusinessYear", 
-												 invoice.number,
+		List<Invoice> invoices = Invoice.find("byDateOfInvoiceAndDateOfValueAndCompanyAndBusinessPartnerAndBusinessYear", 
 												 invoice.dateOfInvoice,
 												 invoice.dateOfValue,
-												 invoice.basis,
-												 invoice.tax,
 												 invoice.company,
 												 invoice.businessPartner,
 												 invoice.businessYear).fetch();
@@ -119,7 +124,16 @@ public class Invoices extends Controller {
 		if(id != null) {
 			Invoice invoice = Invoice.findById(id);
 			List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoice", invoice).fetch();
-			renderTemplate("InvoiceItems/showNext.html", "edit", invoiceItems, invoice);
+			List<Item> allArticles = Item.findAll();
+			ArrayList<Item> articles = new ArrayList<Item>();
+			//Listaju se samo artikli koji imaju cenu
+			for(Item a : allArticles) {
+				if(a.pricelistitem != null) {
+					if(!a.pricelistitem.isEmpty())
+						articles.add(a);
+				}
+			}
+			renderTemplate("InvoiceItems/showNext.html", "edit", invoiceItems, invoice, articles);
 		}
 		show("edit");
 	}
@@ -144,27 +158,7 @@ public class Invoices extends Controller {
 
 	         Element invoice_element = doc.createElement("invoice");
 	         rootElement.appendChild(invoice_element);
-	         
-//	         if (invoiceItems != null) {
-//		         for (InvoiceItem invoiceItem : invoiceItems) {
-//		        	 Element invoiceItemElement = doc.createElement("itemAmount");
-//			         Attr attrType9 = doc.createAttribute("type");
-//			         attrType9.setValue("item_amount");
-//			         invoiceItemElement.setAttributeNode(attrType9);
-//			         String invoiceItemAmount = Double.toString(invoiceItem.amount);
-//			         invoiceItemElement.appendChild(doc.createTextNode(invoiceItemAmount));
-//			         invoice_element.appendChild(invoiceItemElement);
-//			         
-//			         Element invoiceItemElement1 = doc.createElement("itemPrice");
-//			         Attr attrType10 = doc.createAttribute("type");
-//			         attrType10.setValue("item_price");
-//			         invoiceItemElement1.setAttributeNode(attrType10);
-//			         String invoiceItemPrice = Double.toString(invoiceItem.price);
-//			         invoiceItemElement.appendChild(doc.createTextNode(invoiceItemPrice));
-//			         invoice_element.appendChild(invoiceItemElement1);
-//				}
-//	         }
-	         
+	                  
 	         Attr attr = doc.createAttribute("company");
 	         attr.setValue(companyName);
 	         invoice_element.setAttributeNode(attr);

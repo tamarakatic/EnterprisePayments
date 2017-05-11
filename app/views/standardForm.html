@@ -16,7 +16,9 @@ $(document).ready(function(){
   		//dodajemo na novi selektovani
     	$(this).addClass("highlighted");
     	//pozivamo sinhronizaciju, prosledjujemo dati red
-    	sync($(this));
+    	if(!$(this).hasClass("modalRow")){
+    		sync($(this));
+    	}
     }
   });
   
@@ -54,12 +56,6 @@ $(document).ready(function(){
 		highlighted = $(".highlighted");
 		id = highlighted.find(".id").html();
 		remove(id);
-	});
-	
-	$("#export_to_xml").click(function() {
-	highlighted = $(".highlighted");
-	id = highlighted.find(".id").html();
-		export_to_xml(id);
 	});
 	
 	$("#close_company_businessyear").click(function() {
@@ -123,13 +119,6 @@ $(document).ready(function(){
 		article_group(id);
 	});
 	
-	$("#create_price").click(function() {
-		highlighted = $(".highlighted");
-		id = highlighted.find(".id").html();
-		change_price_modal(id);
-	});
-	
-	
 	$("#close_gsttype_gstrate").click(function() {
 		$("#gstrate_gsttype_id").val("");
 	});
@@ -141,7 +130,21 @@ $(document).ready(function(){
 	$("#close_articlegroup_item").click(function() {
 		$("#item_articlegroup_id").val("");
 	});
-		
+	
+	$("#close_item_pricelistitem").click(function() {
+		$("#pricelistitem_item_id").val("");
+	});
+	
+	$("#close_pricelist_pricelistitem").click(function() {
+		$("#pricelistitem_pricelist_id").val("");
+	});
+	
+	$("#nextFormOrderForm").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		nextFormOrderForm(id);
+	});
+	
 	$("#add_gsttype").click(function() {
 		$("#articlegroup_name").val("");
 	});
@@ -150,6 +153,17 @@ $(document).ready(function(){
 		$("#item_name").val("");
 	});
 	
+	$("#export_to_xml").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		export_to_xml(id);
+	});
+	
+	$("#create_price").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		change_price_modal(id);
+	});
 });
 
 </script>

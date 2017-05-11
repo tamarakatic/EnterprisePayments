@@ -27,6 +27,9 @@ public class Item extends Model{
 	
 	@OneToMany(mappedBy = "article")
 	public List<InvoiceItem> invoiceItems;
+	
+	@OneToMany(mappedBy = "item")
+	public List<OrderFormItem> orderFormItems;
 
 	public Item(String name, String description,ArticleGroup articlegroup) {
 		super();

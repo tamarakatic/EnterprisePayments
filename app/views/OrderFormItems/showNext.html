@@ -1,0 +1,135 @@
+#{extends 'standardForm.html' /}
+#{set title:'Order form items' /}
+
+#{set 'action'}
+	#{if mode == 'add'}
+		@{OrderFormItems.createNext()}
+	#{/if}
+	#{elseif mode == 'edit'}
+		@{OrderFormItems.editNext()}
+	#{/elseif}
+	#{else}
+		@{OrderFormItems.filterNext()}
+	#{/else}
+#{/set}
+	
+<script>
+
+$(document).ready(function(){
+	$("#generateInvoiceButton").click(function(){
+		$(location).attr('href', '/OrderFormItems/);
+	});
+});
+
+function sync(item){
+	id = item.find(".id").html();
+	amount = item.find(".amount").html();
+	orderFormId = item.find(".orderFormId").html();
+	itemId = item.find(".itemId").html();
+    $("#orderFormItem_id").val(id);
+    $("#orderFormItem_amount").val(amount);
+    //za combo boxeve
+    var comboZoomOrderForm = document.getElementById('orderFormItem_orderForm_id');
+    comboZoomOrderForm.value = orderFormId;
+    
+    var comboZoomItem = document.getElementById('orderFormItem_item_id');
+    comboZoomItem.value = itemId;
+     
+}
+
+function remove(id) {
+	var comboZoomOrderForm = document.getElementById('orderFormItem_orderForm_id');
+	$(location).attr('href', '/OrderFormItems/deleteNext?id='+id+'&orderFormId='+comboZoomOrderForm.value);
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="@{OrderFormItems.showNext("filter", orderForm.id)}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
+  <li><a href="#" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{OrderForms.show("edit")}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  <li><a href="@{OrderFormItems.showNext("add", orderForm.id)}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
+  <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+</ul>
+</p>
+
+
+<h1>Order form items</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Order form number</th>
+	   <th>Item</th>
+	   <th>Amount</th>
+    </tr>
+    
+#{list items:orderFormItems, as:'orderFormItem'}
+	<tr>
+		<td class = "orderForm">${orderFormItem.orderForm.numberOfOrder}</td>
+		<td class = "item">${orderFormItem.item.name}</td>
+		<td class = "amount">${orderFormItem.amount}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${orderFormItem.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "orderFormId">${orderFormItem.orderForm.id}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "itemId">${orderFormItem.item.id}</td>
+		
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+	<p>
+	
+		<form action = "${action}" method = "POST">
+		
+				
+				#{field 'orderFormItem.id'}
+					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				
+				<p>
+				#{field 'orderFormItem.orderForm.id'}
+					<label for = "${field.id}">Order form</label>
+					
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px" readonly/>
+						<option value = "${orderForm.id}">${orderForm.numberOfOrder}</option>
+					</select>
+					
+				#{/}	
+				</p>
+				<p>
+				#{field 'orderFormItem.item.id'}
+					<label for = "${field.id}">Item name</label>
+					<select name = "${field.name}" id = "${field.id}"/>
+						#{list items:items, as:'item'}
+							<option value = "${item.id}">${item.name}</option>
+						#{/list}
+					</select>
+				#{/}
+				</p>
+				
+				<p>
+				#{field 'orderFormItem.amount'}
+					<label for = "${field.id}">Amount</label>
+					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+				</p>
+					
+				<div id = "formActions">
+					<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+					<a href = "@{OrderFormItems.showNext('edit', orderForm.id)}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
+				</div>			
+				
+		</form>
+	</p>
+</div>
+<input type = "button" value = "Generate invoice" id = "generateInvoiceButton">
+
+
+   
