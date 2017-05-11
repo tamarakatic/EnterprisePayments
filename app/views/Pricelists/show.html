@@ -30,6 +30,11 @@ function pricelist_item(id) {
 	$(location).attr('href', '/Pricelists/pricelist_item?pricelist_id='+id);
 }
 
+function change_price_modal(id) {
+	percantageValue = $("#percentageValue").val()
+	$(location).attr('href', '/Pricelists/change_price_list?pricelist_id='+ id + '&percentage=' +percantageValue);	
+}
+
 </script>
 
 <p>
@@ -44,6 +49,7 @@ function pricelist_item(id) {
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
   <li><a href="@{Pricelists.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+    <li><a href="#" id = "change_price" data-toggle="modal" data-target="#change_price_modal"><img src="@{'/public/images/export.png'}"/></a></li>
   <li><a href="#" id = "nextform_modal" data-toggle="modal" data-target="#next_form_modal"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
@@ -98,4 +104,24 @@ function pricelist_item(id) {
       
     </div>
 </div>
+
+<div class = "modal fade" id = "change_price_modal" role="dialog">
+	<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Pricelists</h4>
+        </div>
+        <div class="modal-body">
+			Percentage: <input type = "text" id = "percentageValue" />
+        </div>
+        <div class="modal-footer">
+          <a href="#" id = "create_price" class="btn btn-success" data-dismiss="modal">Create</a>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>      
+    </div>
+</div>
+
+
 

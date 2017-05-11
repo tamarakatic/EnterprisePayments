@@ -152,11 +152,20 @@ $(document).ready(function(){
 	$("#add_item").click(function() {
 		$("#item_name").val("");
 	});
+	
+	$("#export_to_xml").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		export_to_xml(id);
+	});
+	
+	$("#create_price").click(function() {
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		change_price_modal(id);
+	});
 });
 
 </script>
 
 #{doLayout/}
-
-
-

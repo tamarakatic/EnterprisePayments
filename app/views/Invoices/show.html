@@ -101,6 +101,10 @@ function nextFormInvoice(id) {
 	$(location).attr('href', '/Invoices/nextform?id='+id);
 }
 
+function export_to_xml(id) {
+	$(location).attr('href', '/Invoices/export?id='+id);
+}
+
 </script>
 
 <p>
@@ -116,6 +120,7 @@ function nextFormInvoice(id) {
   <li><a href="@{Invoices.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
   <li><a href="#" id = "nextFormInvoice"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+  <li><a href="#" id = "export_to_xml"><img src="@{'/public/images/export.png'}"/></a></li>
 </ul>
 </p>
 
@@ -207,14 +212,14 @@ function nextFormInvoice(id) {
 				<span class="error">#{error 'business partner' /}</span>
 				</p>
 				
-<!-- 				<p>
+				<p>
 				#{field 'invoice.number'}
 					<label for = "${field.id}">Number</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				<span class="error">#{error 'number' /}</span>
 				</p>
- -->				
+				
 				<p>
 				#{field 'invoice.dateOfInvoice'}
 					<label for = "${field.id}">Date of invoice</label>
@@ -234,7 +239,7 @@ function nextFormInvoice(id) {
 				<span class="error">#{error 'date of value' /}</span>
 				</p>
 				
-<!-- 				<p>
+ 				<p>
 				#{field 'invoice.basis'}
 					<label for = "${field.id}">Basis</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
