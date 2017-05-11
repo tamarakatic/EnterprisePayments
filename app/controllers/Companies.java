@@ -27,12 +27,12 @@ public class Companies extends Controller {
 	}
 		
 	public static void filter(Company company) {		
-		List<Company> companies = Company.find("name = ? or pib = ? or address = ? or mobile = ? or jmbg = ?", 
+		List<Company> companies = Company.find("name = ? or pib = ? or address = ? or mobile = ? or mbr = ?", 
 												company.name,
 												company.PIB,
 												company.address,
 												company.mobile,
-												company.JMBG).fetch();
+												company.MBR).fetch();
 		renderTemplate("Companies/show.html", "edit", companies);		
 	}
 	

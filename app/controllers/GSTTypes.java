@@ -39,7 +39,7 @@ public class GSTTypes extends Controller{
 		show("edit");
 	}
 	
-	public static void aricle_group(Long gsttype_id) {
+	public static void article_group(Long gsttype_id) {
 		if (gsttype_id != null) {
 			List<ArticleGroup> articlegroups = ArticleGroup.find("byGSTType_id", gsttype_id).fetch();
 			renderTemplate("ArticleGroups/show.html", "edit", articlegroups, gsttype_id);

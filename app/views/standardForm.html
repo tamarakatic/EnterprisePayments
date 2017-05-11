@@ -35,7 +35,7 @@ $(document).ready(function(){
   		highlighted = $(".highlighted");
   		//nalazi poziciju trazanog u okviru selektovane selekcije
   		//indeksi pocinju od 0
-  		var count = $("tr").length;
+  		var count = $("tr").not(".modal-body tr").length;
   		if (count == 0)
   			return;
   		index =  $("tr").index(highlighted);
@@ -131,20 +131,12 @@ $(document).ready(function(){
 		$("#item_articlegroup_id").val("");
 	});
 	
-	$("#close_item_pricelistitem").click(function() {
-		$("#pricelistitem_item_id").val("");
-	});
-	
-	$("#close_pricelist_pricelistitem").click(function() {
-		$("#pricelistitem_pricelist_id").val("");
-	});
-	
 	$("#nextFormOrderForm").click(function() {
 		highlighted = $(".highlighted");
 		id = highlighted.find(".id").html();
 		nextFormOrderForm(id);
 	});
-	
+
 	$("#add_gsttype").click(function() {
 		$("#articlegroup_name").val("");
 	});
@@ -163,6 +155,33 @@ $(document).ready(function(){
 		highlighted = $(".highlighted");
 		id = highlighted.find(".id").html();
 		change_price_modal(id);
+	});
+	
+	$("#prev").click(function(){
+		highlighted = $(".highlighted");
+		var count = $("tr").not(".modal-body tr").length;
+		if (count == 0)
+			return;
+		index =  $("tr").index(highlighted);
+		if (index < 0)
+			return;
+		if(index == 1) {
+			selectChild = count;
+		} else {
+			selectChild = index;
+		}
+		item = $("tr:nth-child(" + selectChild + ")");
+		$(".highlighted").removeClass("highlighted");
+		item.addClass("highlighted");
+		sync(item); 
+	});
+  
+    $("#last").click(function(){
+ 		var count = $("tr").not(".modal-body tr").length;
+ 		item = $("table tr:nth-child("+count+")");
+ 		$(".highlighted").removeClass("highlighted");
+		item.addClass("highlighted");
+		sync(item);
 	});
 });
 
