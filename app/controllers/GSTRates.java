@@ -28,8 +28,8 @@ public class GSTRates extends Controller {
 	
 	public static void filter(GSTRate gstrate) {
 		List<GSTRate> gstrates = GSTRate.find("date = ? or GSTPercent = ?", 
-				gstrate.date,
-				gstrate.GSTPercent).fetch();
+											   gstrate.date,
+											   gstrate.GSTPercent).fetch();
 		renderTemplate("GSTRates/show.html", "edit", gstrates);
 	}
 
