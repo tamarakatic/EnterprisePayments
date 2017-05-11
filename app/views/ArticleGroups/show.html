@@ -28,13 +28,17 @@ function remove(id) {
 	$(location).attr('href', '/ArticleGroups/delete?id='+id);
 }
 
+function item(id) {
+	$(location).attr('href', '/ArticleGroups/item?articlegroup_id='+id);
+}
+
 </script>
 
 <p>
 <ul>
   <li><a href="@{ArticleGroups.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
   <li><a href="@{ArticleGroups.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
-  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="@{GSTTypes.show}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
   <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
   <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
   <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
@@ -42,7 +46,7 @@ function remove(id) {
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
   <li><a href="@{ArticleGroups.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
-  <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+  <li><a href="#" id = "nextform" data-toggle="modal" data-target="#next_form_modal"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
 
@@ -132,7 +136,7 @@ function remove(id) {
           <h4 class="modal-title">Child form</h4>
         </div>
         <div class="modal-footer">
-          <a href="#" id = "item" class="btn btn-success" data-dismiss="modal">Item</a>
+          <a href="#" id = "items" class="btn btn-success" data-dismiss="modal">Item</a>
         </div>
       </div>
       

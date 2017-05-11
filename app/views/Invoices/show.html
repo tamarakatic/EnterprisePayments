@@ -212,13 +212,13 @@ function export_to_xml(id) {
 				<span class="error">#{error 'business partner' /}</span>
 				</p>
 				
-				<p>
+				<!--<p>
 				#{field 'invoice.number'}
 					<label for = "${field.id}">Number</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
 				<span class="error">#{error 'number' /}</span>
-				</p>
+				</p>-->
 				
 				<p>
 				#{field 'invoice.dateOfInvoice'}
@@ -239,27 +239,26 @@ function export_to_xml(id) {
 				<span class="error">#{error 'date of value' /}</span>
 				</p>
 				
- 				<p>
+ 				<!--<p>
 				#{field 'invoice.basis'}
 					<label for = "${field.id}">Basis</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
-				</p>
+				</p>-->
 				
-				<p>
+				<!--<p>
 				#{field 'invoice.tax'}
 					<label for = "${field.id}">Tax</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
-				</p>
+				</p>-->
 				
-				<p>
+				<!--<p>
 				#{field 'invoice.total'}
 					<label for = "${field.id}">Total</label>
 					<input type = "text" name = "${field.name}" id = "${field.id}"/>
 				#{/}
-				</p>
-				 -->
+				</p>-->
 				
 				<div id = "formActions">
 					<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
@@ -289,7 +288,7 @@ function export_to_xml(id) {
 		<tr class="modalRow">
 			<td class = "comp_name">${company.name}</td>
 			<td class = "comp_PIB">${company.PIB}</td>
-			<td class = "comp_MBR">${company.JMBG}</td>
+			<td class = "comp_MBR">${company.MBR}</td>
 			<td style = "visibility: hidden; max-width: 0px" class = "comp_id">${company.id}</td>
 		</tr>
 		#{/list}

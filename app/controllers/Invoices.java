@@ -172,7 +172,7 @@ public class Invoices extends Controller {
 	         number.setAttributeNode(attrType3);
 	         number.appendChild(doc.createTextNode(invoiceNumber));
 	         invoice_element.appendChild(number);
-	         
+	                  
 	         Element dateOfInvoice = doc.createElement("invoiceDate");
 	         Attr attrType4 = doc.createAttribute("type");
 	         attrType4.setValue("dateOfInvoice");
