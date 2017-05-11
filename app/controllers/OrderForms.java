@@ -28,6 +28,14 @@ public class OrderForms extends Controller {
 		orderForm.company = company;
 		orderForm.businessYear = BusinessYear.findById(orderForm.businessYear.id);
 		orderForm.businessPartner = BusinessPartner.findById(orderForm.businessPartner.id);
+		int num = 0;
+		List<OrderForm> orderFormsInYear = OrderForm.find("byBusinessYear", orderForm.businessYear).fetch();
+		for(OrderForm of : orderFormsInYear) {
+			if(of.numberOfOrder > num) {
+				num = of.numberOfOrder;
+			}
+		}
+		orderForm.numberOfOrder = ++num;
 		orderForm.save();
 		show("add");
 	}
