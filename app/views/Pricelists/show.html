@@ -62,7 +62,7 @@ function change_price_modal(id) {
 	</tr>
 #{list items:pricelists, as:'pricelist'}
 	<tr>
-		<td style = "min-width: 100px" class = "validationDate">${pricelist.validationDate}</td>
+		<td style = "min-width: 100px" class = "validationDate">${pricelist.validationDate.toString().split(" ")[0]}</td>
 		<td style = "visibility: hidden; max-width: 100px" class = "id">${pricelist.id}</td>
 	</tr>
 #{/list}

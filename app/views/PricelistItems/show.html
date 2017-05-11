@@ -63,10 +63,10 @@ function remove(id) {
 	   <th>Pricelist</th>
 	</tr>
 #{list items:pricelistitems, as:'pricelistitem'}
-	<tr class="modalRow">
+	<tr>
 		<td class = "price">${pricelistitem.price}</td>
 		<td>${pricelistitem.item.name}</td>
-		<td>${pricelistitem.pricelist.validationDate}</td>
+		<td>${pricelistitem.pricelist.validationDate.toString().split(" ")[0]}</td>
 		<td style = "visibility: hidden; max-width: 0px" class="item_id">${pricelistitem.item.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class="pricelist_id">${pricelistitem.pricelist.id}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${pricelistitem.id}</td>
@@ -157,7 +157,7 @@ function remove(id) {
         	</tr>
           #{list items:pricelists, as:'pricelist'}
           	<tr>
-				<td class = "pricelistitem_id">${pricelist.id}</td>
+				<td class = "pricelist_id">${pricelist.id}</td>
 				<td class = "pricelist_validationDate">${pricelist.validationDate}</td>
           	</tr>
           #{/list}
