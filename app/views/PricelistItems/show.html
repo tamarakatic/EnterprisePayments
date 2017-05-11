@@ -41,7 +41,7 @@ function remove(id) {
 <ul>
   <li><a href="@{PricelistItems.show("filter")}" id = "search"><img src="@{'/public/images/search.gif'}"/></a></li>
   <li><a href="@{PricelistItems.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
-  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "pickup" data-toggle="modal" data-target="#pickup_modal"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
   <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
   <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
   <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
@@ -99,7 +99,7 @@ function remove(id) {
 		<p>
 		#{field 'pricelistitem.price'}
 			<label for = "${field.id}">Price</label>
-			<input type = "number" name = "${field.name}" id = "${field.id}"/>
+			<input type = "number" min = "0" name = "${field.name}" id = "${field.id}"/>
 		#{/}
 		</p>		
 		<div id = "formActions">
@@ -166,6 +166,23 @@ function remove(id) {
         <div class="modal-footer">
           <button type="button" class="btn btn-success" id = "add _pricelist_pricelistitem" data-dismiss="modal">Add</button>
           <button type="button" class="btn btn-danger" id = "close_pricelist_pricelistitem" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+
+<div class = "modal fade" id = "pickup_modal" role="dialog">
+	<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Child form</h4>
+        </div>
+        <div class="modal-footer">
+          <a href="@{Items.show}" id = "item_back" class="btn btn-success">Items</a>
+          <a href="@{Pricelists.show}" item = "pricelist_back" class="btn btn-danger">Price List</a>
         </div>
       </div>
       
