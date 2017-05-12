@@ -29,7 +29,7 @@ $(document).ready(function(){
 	} 
 	today = yyyy+'-'+mm+'-'+dd;
 	document.getElementById("invoice_dateOfInvoice").setAttribute("max", today);
-	document.getElementById("invoice_dateOfValue").setAttribute("max", today);
+	document.getElementById("invoice_dateOfValue").setAttribute("min", today);
 	
 	$("#companyPickup").click(function(){
 		idCompany = $(".highlighted").find(".comp_id").html();
@@ -50,6 +50,13 @@ $(document).ready(function(){
 		var comboZoomYear = document.getElementById('invoice_businessYear_id');
 	    comboZoomYear.value = idYear;
 		$('#businessYearsModal').modal('toggle');
+	});
+	
+	$("#dateReportButton").click(function(){
+		d1 = $("#beginDateReport").val();
+		d2 = $("#endDateReport").val();
+		$('#dateReportModal').modal('toggle');
+		$(location).attr('href', '/Invoices/generateKIF?begin='+d1+'&end='+d2);
 	});
 });
 
@@ -211,15 +218,7 @@ function export_to_xml(id) {
 				#{/}
 				<span class="error">#{error 'business partner' /}</span>
 				</p>
-				
-				<!--<p>
-				#{field 'invoice.number'}
-					<label for = "${field.id}">Number</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				<span class="error">#{error 'number' /}</span>
-				</p>-->
-				
+		
 				<p>
 				#{field 'invoice.dateOfInvoice'}
 					<label for = "${field.id}">Date of invoice</label>
@@ -228,7 +227,6 @@ function export_to_xml(id) {
 				#{/}
 				<span class="error">#{error 'date of invoice' /}</span>
 				</p>
-				
 				
 				<p>
 				#{field 'invoice.dateOfValue'}
@@ -239,27 +237,6 @@ function export_to_xml(id) {
 				<span class="error">#{error 'date of value' /}</span>
 				</p>
 				
- 				<!--<p>
-				#{field 'invoice.basis'}
-					<label for = "${field.id}">Basis</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>-->
-				
-				<!--<p>
-				#{field 'invoice.tax'}
-					<label for = "${field.id}">Tax</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>-->
-				
-				<!--<p>
-				#{field 'invoice.total'}
-					<label for = "${field.id}">Total</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>-->
-				
 				<div id = "formActions">
 					<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
 					<a href = "@{Invoices.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
@@ -268,6 +245,8 @@ function export_to_xml(id) {
 		</form>
 	</p>
 </div>
+
+<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dateReportModal"> Generate report </button>
 
  <!-- Modal COMPANIES-->
   <div class="modal fade" id="companiesModal" role="dialog">
@@ -358,6 +337,34 @@ function export_to_xml(id) {
 		</table>
 		<div class="modal-footer">
 			<input id = "businessYearPickup" type = "button" value = "Choose"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
+   
+       <!-- Modal DATE REPORT-->
+  <div class="modal fade" id="dateReportModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Begin and end
+      </div>
+      <div class="modal-body">
+	    <form style = "padding:2em">
+			<p>
+				<label for = "beginDateReport">Begin date</label>
+				<input type = "date" id = "beginDateReport" style="width:175px"/>
+				
+				
+				<label for = "endDateReport">End date</label>
+				<input type = "date" id = "endDateReport" style="width:175px"/>
+				
+			</p>
+		</form>
+		<div class="modal-footer">
+			<input id = "dateReportButton" type = "button" value = "Choose"/>
 		</div>
 		</div>
       </div>

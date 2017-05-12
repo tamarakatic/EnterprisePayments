@@ -89,7 +89,7 @@ function remove(id) {
 				#{field 'orderFormItem.orderForm.id'}
 					<label for = "${field.id}">Order form</label>
 					
-					<select name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
 						#{list items:orderForms, as:'orderForm'}
 							<option value = "${orderForm.id}">${orderForm.numberOfOrder}</option>
 						#{/list}
@@ -102,7 +102,7 @@ function remove(id) {
 				<p>
 				#{field 'orderFormItem.item.id'}
 					<label for = "${field.id}">Item name</label>
-					<select name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
 						#{list items:items, as:'item'}
 							<option value = "${item.id}">${item.name}</option>
 						#{/list}
@@ -113,7 +113,7 @@ function remove(id) {
 				<p>
 				#{field 'orderFormItem.amount'}
 					<label for = "${field.id}">Amount</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input type = "text" name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
 				#{/}
 				</p>
 				

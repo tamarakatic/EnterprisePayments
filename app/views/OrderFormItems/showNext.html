@@ -108,7 +108,7 @@ function remove(id) {
 				<p>
 				#{field 'orderFormItem.item.id'}
 					<label for = "${field.id}">Item name</label>
-					<select name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
 						#{list items:items, as:'item'}
 							<option value = "${item.id}">${item.name}</option>
 						#{/list}
@@ -119,7 +119,8 @@ function remove(id) {
 				<p>
 				#{field 'orderFormItem.amount'}
 					<label for = "${field.id}">Amount</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
+					<input type = "number" name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"
+					min = "0"/>
 				#{/}
 				</p>
 					
@@ -131,7 +132,7 @@ function remove(id) {
 		</form>
 	</p>
 </div>
-<input type = "button" value = "Generate invoice" id = "generateInvoiceButton">
+<input type = "button" class = "btn btn-success" value = "Generate invoice" id = "generateInvoiceButton" style="margin:0px 0px 0px 10px">
 
 
    
