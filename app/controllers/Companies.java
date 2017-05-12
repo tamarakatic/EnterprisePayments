@@ -38,8 +38,22 @@ public class Companies extends Controller {
 	
 	public static void delete(Long id) {
 		if (id != null){
+			List<BusinessPartner> partners = BusinessPartner.find("byCompany_id", id).fetch();
+			List<BusinessYear> years = BusinessYear.find("byCompany_id", id).fetch();
 			Company company = Company.findById(id);
-			company.delete();			
+			String has_child = "has_child";
+			try {
+				if (partners != null && !partners.isEmpty() && years != null && !years.isEmpty()) {
+					renderTemplate("Companies/show.html", "edit", has_child);
+				}
+				else {
+					company.delete();
+					show("edit");
+				}
+					
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		show("edit");
 	}
