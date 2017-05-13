@@ -37,7 +37,19 @@ public class Pricelists extends Controller{
 	public static void delete(Long id) {
 		if (id != null){
 			Pricelist pricelist = Pricelist.findById(id);
-			pricelist.delete();			
+			List<PricelistItem> pricelistitems = PricelistItem.find("byPricelist_id", id).fetch();
+			String has_child = "has_child";
+			try {
+				if (pricelistitems != null && !pricelistitems.isEmpty()) {
+					renderTemplate("Pricelists/show.html", "edit", has_child);
+				}
+				else {
+					pricelist.delete();
+					show("edit");
+				}					
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
 		}
 		show("edit");
 	}

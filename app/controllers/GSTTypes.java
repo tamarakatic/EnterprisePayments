@@ -34,7 +34,21 @@ public class GSTTypes extends Controller{
 	public static void delete(Long id) {
 		if (id != null){
 			GSTType gsttype = GSTType.findById(id);
-			gsttype.delete();			
+			List<ArticleGroup> articlegroups = ArticleGroup.find("byGSTType_id", id).fetch();
+			List<GSTRate> gstrates = GSTRate.find("byGSTType_id", id).fetch();
+			String has_child = "has_child";
+			try {
+				if (articlegroups != null && !articlegroups.isEmpty() && gstrates != null && !gstrates.isEmpty()) {
+					renderTemplate("GSTTypes/show.html", "edit", has_child);
+				}
+				else {
+					gsttype.delete();
+					show("edit");
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
 		}
 		show("edit");
 	}

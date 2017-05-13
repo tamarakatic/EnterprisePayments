@@ -36,7 +36,20 @@ public class ArticleGroups extends Controller{
 	public static void delete(Long id) {
 		if (id != null) {
 			ArticleGroup articlegroup = ArticleGroup.findById(id);
-			articlegroup.delete();
+			List<Item> items = Item.find("byArticlegroup_id", id).fetch();			
+			String has_child = "has_child";
+			try {
+				if (items != null && !items.isEmpty()) {
+					renderTemplate("ArticleGroups/show.html", "edit", has_child);
+				}
+				else {
+					articlegroup.delete();
+					show("edit");
+				}
+					
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		show("edit");
 	}

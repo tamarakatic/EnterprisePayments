@@ -55,6 +55,12 @@ $(document).ready(function(){
 	$("#dateReportButton").click(function(){
 		d1 = $("#beginDateReport").val();
 		d2 = $("#endDateReport").val();
+		if(d1 != '' && d2 != ''){
+			if(d1 > d2){
+				alert("Begin date must be before end date.");
+				return;
+			}
+		}
 		$('#dateReportModal').modal('toggle');
 		$(location).attr('href', '/Invoices/generateKIF?begin='+d1+'&end='+d2);
 	});
@@ -127,7 +133,9 @@ function export_to_xml(id) {
   <li><a href="@{Invoices.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
   <li><a href="#" id = "nextFormInvoice"><img src="@{'/public/images/nextform.gif'}"/></a></li>
-  <li><a href="#" id = "export_to_xml"><img src="@{'/public/images/export.png'}"/></a></li>
+  <li><a href="#" id = "export_to_xml"><img src="@{'/public/images/xml.png'}"/></a></li>
+  <li><a href="#" id = "invoiceReport"><img src="@{'/public/images/reporta.png'}"/></a></li>
+  <li><a href="#" id = "dateReport" data-toggle="modal" data-target="#dateReportModal"><img src="@{'/public/images/kif.png'}"/></a></li>
 </ul>
 </p>
 
@@ -245,8 +253,6 @@ function export_to_xml(id) {
 		</form>
 	</p>
 </div>
-
-<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dateReportModal"> Generate report </button>
 
  <!-- Modal COMPANIES-->
   <div class="modal fade" id="companiesModal" role="dialog">
