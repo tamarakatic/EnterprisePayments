@@ -3,6 +3,8 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
 
 import models.BusinessPartner;
 import models.BusinessYear;
@@ -222,9 +224,44 @@ public class Invoices extends Controller {
 	}
 	
 	public static void generateKIF(String begin, String end) {
-		System.out.println("*****************************");
-		System.out.println("begin "+begin);
-		System.out.println("end"+end);
+		Date beginDate = new Date();
+		Date endDate = new Date();
+		if(begin != null && !begin.equals("")) {
+			String beginTokens[] = begin.split("-");
+			int beginYear = Integer.parseInt(beginTokens[0]);
+			int beginMonth = Integer.parseInt(beginTokens[1]);
+			int beginDay = Integer.parseInt(beginTokens[2]);
+			
+			Calendar c = Calendar.getInstance();
+	    	c.set(Calendar.HOUR_OF_DAY, 0);
+	    	c.set(Calendar.MINUTE, 0);
+	    	c.set(Calendar.SECOND, 0);
+	    	c.set(Calendar.MILLISECOND, 0);
+	    	c.set(Calendar.DAY_OF_MONTH, beginDay);
+	    	c.set(Calendar.MONTH, beginMonth-1);
+	    	c.set(Calendar.YEAR, beginYear);
+	    	beginDate = c.getTime();
+	    } else {
+	    	beginDate = new Date(Long.MIN_VALUE);
+	    }
+		if(end != null && !end.equals("")) {
+			String endTokens[] = end.split("-");
+			int endYear = Integer.parseInt(endTokens[0]);
+			int endMonth = Integer.parseInt(endTokens[1]);
+			int endDay = Integer.parseInt(endTokens[2]);
+			Calendar c = Calendar.getInstance();
+	    	c.set(Calendar.HOUR_OF_DAY, 0);
+	    	c.set(Calendar.MINUTE, 0);
+	    	c.set(Calendar.SECOND, 0);
+	    	c.set(Calendar.MILLISECOND, 0);
+	    	c.set(Calendar.DAY_OF_MONTH, endDay);
+	    	c.set(Calendar.MONTH, endMonth-1);
+	    	c.set(Calendar.YEAR, endYear);
+	    	endDate = c.getTime();
+		} else {
+			endDate = new Date(Long.MAX_VALUE);
+		}
+		System.out.println("****** from "+beginDate+" to "+endDate);
 		show("edit");
 	}
 }
