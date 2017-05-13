@@ -37,7 +37,19 @@ public class Items extends Controller{
 	public static void delete(Long id) {
 		if (id != null) {
 			Item item = Item.findById(id);
-			item.delete();
+			List<PricelistItem> pricelistitems = PricelistItem.find("byItem_id", id).fetch();
+			String has_child = "has_child";
+			try {
+				if (pricelistitems != null && !pricelistitems.isEmpty()) {
+					renderTemplate("Items/show.html", "edit", has_child);
+				}
+				else {
+					item.delete();
+					show("edit");
+				}					
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		show("edit");
 	}

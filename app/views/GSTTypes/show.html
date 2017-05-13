@@ -54,6 +54,13 @@ function article_group(id) {
 
 <h1>GSTType</h1>
 
+#{if has_child}
+	<div class="alert alert-danger">
+		 <strong>Danger!</strong> You could't delete parent who has child!!!.
+		 <a href="@{GSTTypes.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a>
+	</div>
+#{/if}
+
 <table>
 	<tr class = "header">
 	   <th>Name</th>

@@ -76,19 +76,19 @@ function nextFormOrderForm(id) {
 
 <table>
 	<tr class = "header">
+		<th>Number of order</th>
 		<th>Company</th>
 		<th>Bussiness year</th>
 		<th>Bussiness partner</th>
 		<th>Date of order</th>
-		<th>Number of order</th>
 	</tr>
 #{list items:orderForms, as:'orderForm'}
 	<tr>
+		<td class = "numberOfOrder">${orderForm.numberOfOrder}</td>
 		<td class = "company">${orderForm.company.name}</td>
 		<td class = "businessYear">${orderForm.businessYear.year}</td>
 		<td class = "businessPartner">${orderForm.businessPartner.name}</td>
-		<td class = "dateOfOrder">${orderForm.dateOfOrder}</td>
-		<td class = "numberOfOrder">${orderForm.numberOfOrder}</td>
+		<td class = "dateOfOrder">${orderForm.dateOfOrder.toString().split(" ")[0]}</td>
 		<td style = "visibility: hidden; max-width: 0px" class = "id">${orderForm.id}</td>
 	</tr>
 #{/list}
@@ -104,7 +104,7 @@ function nextFormOrderForm(id) {
 			#{field 'orderForm.company.id'}
 					<label for = "${field.id}">Company</label>
 					
-					<select name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
 						#{list items:companies, as:'company'}
 							<option value = "${company.id}">${company.name}</option>
 						#{/list}
@@ -117,7 +117,7 @@ function nextFormOrderForm(id) {
 				#{field 'orderForm.businessYear.id'}
 					<label for = "${field.id}">Business Year</label>
 					
-					<select name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
 						#{list items:businessYears, as:'businessYear'}
 							<option value = "${businessYear.id}">${businessYear.year}</option>
 						#{/list}
@@ -130,7 +130,7 @@ function nextFormOrderForm(id) {
 				#{field 'orderForm.businessPartner.id'}
 					<label for = "${field.id}">Business Partner</label>
 					
-					<select name = "${field.name}" id = "${field.id}"/>
+					<select name = "${field.name}" id = "${field.id}" style="margin:0px 0px 0px 20px; width:170px"/>
 						#{list items:businessPartners, as:'businessPartner'}
 							<option value = "${businessPartner.id}">${businessPartner.name}</option>
 						#{/list}
@@ -141,11 +141,7 @@ function nextFormOrderForm(id) {
 			</p>
 			
 			<p>
-			#{field 'orderForm.numberOfOrder'}
-				<label for = "${field.id}">Number of order</label>
-				<input type = "text" name = "${field.name}" id = "${field.id}"/>
-			#{/}
-			</p>
+
 			<p>
 			#{field 'orderForm.dateOfOrder'}
 				<label for = "${field.id}">Date of order</label>

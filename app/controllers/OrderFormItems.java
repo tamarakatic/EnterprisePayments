@@ -7,6 +7,9 @@ import models.OrderFormItem;
 import models.Item;
 import models.Invoice;
 import models.InvoiceItem;
+import models.Company;
+import models.BusinessYear;
+import models.BusinessPartner;
 
 import play.mvc.Controller;
 
@@ -91,13 +94,15 @@ public class OrderFormItems extends Controller {
 		Invoice invoice = new Invoice(orderForm.dateOfOrder, 321, orderForm.dateOfOrder,
 				0.0, 0.0, 0.0, orderForm.company, orderForm.businessYear, orderForm.businessPartner);
 		for (OrderFormItem ofi : orderFormItems) {
-			InvoiceItem invoiceItem = new InvoiceItem(ofi.amount, 0.0, 0.0, 0.0, 0.0, 0.0,
-					0.0, invoice, ofi.item);
+			InvoiceItem invoiceItem = new InvoiceItem(ofi.amount, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, invoice, ofi.item, "");
 			invoiceItem = InvoiceItems.calculate(invoiceItem);
 	    	invoiceItem.save();		
 		}
 		List<Invoice> invoices = Invoice.find("byId", invoice.id).fetch();
-		renderTemplate("invoices/show.html", invoices);
-		
+		String mode = "edit";
+		List<Company> companies = Company.findAll();
+		List<BusinessYear> businessYears = BusinessYear.findAll();
+		List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+		renderTemplate("invoices/show.html", mode, invoices, companies, businessYears, businessPartners);
 	}
 }

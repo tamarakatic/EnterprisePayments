@@ -96,6 +96,13 @@ public class Invoices extends Controller {
 	public static void export(Long id) {
 		if (id != null) {
 			Invoice invoice = Invoice.findById(id);
+			List<InvoiceItem> items = InvoiceItem.find("byInvoice_id", id).fetch();
+			String itemValue = "";
+			 if (items != null && !items.isEmpty()) {
+	        	 for (InvoiceItem item : items) {
+	        		 itemValue = Double.toString(item.amount);
+	        	 }
+			 }
 			saveToXML(Integer.toString(invoice.number), 
 					  invoice.businessPartner.name, 
 					  Integer.toString(invoice.businessYear.year), 
@@ -104,7 +111,8 @@ public class Invoices extends Controller {
 					  DateFormatUtils.format(invoice.dateOfValue, "yyyy-MM-dd HH:mm:SS"),
 					  Double.toString(invoice.basis),
 					  Double.toString(invoice.tax),
-					  Double.toString(invoice.total));
+					  Double.toString(invoice.total), 
+					  itemValue);
 		}
 		show("edit");
 	}
@@ -137,7 +145,8 @@ public class Invoices extends Controller {
 								 String invoiceValueDate,
 								 String basic,
 								 String tax,
-								 String sum) {
+								 String sum,
+								 String itemValue) {
 		
 	  try {
 	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -149,10 +158,17 @@ public class Invoices extends Controller {
 
 	         Element invoice_element = doc.createElement("invoice");
 	         rootElement.appendChild(invoice_element);
-	                  
-	         Attr attr = doc.createAttribute("company");
-	         attr.setValue(companyName);
-	         invoice_element.setAttributeNode(attr);
+	         
+    		 Attr attrItem = doc.createAttribute("amount");
+    		 attrItem.setValue(itemValue);
+			 invoice_element.setAttributeNode(attrItem);
+	         
+	         Element company = doc.createElement("company");
+	         Attr attr = doc.createAttribute("type");
+	         attr.setValue("invoice_company");
+	         company.setAttributeNode(attr);
+	         company.appendChild(doc.createTextNode(companyName));
+	         invoice_element.appendChild(company);
 
 	         Element partner = doc.createElement("partner");
 	         Attr attrType = doc.createAttribute("type");

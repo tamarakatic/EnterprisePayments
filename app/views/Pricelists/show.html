@@ -53,12 +53,19 @@ function change_price_modal(id) {
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
   <li><a href="@{Pricelists.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
-    <li><a href="#" id = "change_price" data-toggle="modal" data-target="#change_price_modal"><img src="@{'/public/images/export.png'}"/></a></li>
+    <li><a href="#" id = "change_price" data-toggle="modal" data-target="#change_price_modal"><img src="@{'/public/images/percentage.png'}"/></a></li>
   <li><a href="#" id = "nextform_modal" data-toggle="modal" data-target="#next_form_modal"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
 
 <h1>Price Lists</h1>
+
+#{if has_child}
+	<div class="alert alert-danger">
+		 <strong>Danger!</strong> You could't delete parent who has child!!!.
+		 <a href="@{Pricelists.show}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a>
+	</div>
+#{/if}
 
 <table>
 	<tr class = "header">
