@@ -2,8 +2,13 @@
 <classpath>
 	<classpathentry excluding="japidviews/**|rythm/**|views/**" kind="src" path="app"/>
 	<classpathentry kind="src" path="test"/>
+<<<<<<< HEAD
+	<classpathentry kind="src" path="docviewer"/>
+	
+=======
 	<classpathentry kind="src" path="secure"/>
 	<classpathentry kind="src" path="docviewer"/>
+>>>>>>> 70e6456c4910025267cec82342c7dce18da29a9c
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/play-1.4.4/framework/play-1.4.4.jar" sourcepath="C:/play-1.4.4/framework/src"/>
 	<classpathentry kind="lib" path="C:/play-1.4.4/modules/docviewer/lib/play-docviewer.jar"/>

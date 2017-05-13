@@ -55,6 +55,12 @@ $(document).ready(function(){
 	$("#dateReportButton").click(function(){
 		d1 = $("#beginDateReport").val();
 		d2 = $("#endDateReport").val();
+		if(d1 != '' && d2 != ''){
+			if(d1 > d2){
+				alert("Begin date must be before end date.");
+				return;
+			}
+		}
 		$('#dateReportModal').modal('toggle');
 		$(location).attr('href', '/Invoices/generateKIF?begin='+d1+'&end='+d2);
 	});

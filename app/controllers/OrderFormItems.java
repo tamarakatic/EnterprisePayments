@@ -91,7 +91,16 @@ public class OrderFormItems extends Controller {
 	public static void generateInvoice(Long id) {
 		OrderForm orderForm = OrderForm.findById(id);
 		List<OrderFormItem> orderFormItems = OrderFormItem.find("byOrderForm", orderForm).fetch();
-		Invoice invoice = new Invoice(orderForm.dateOfOrder, 321, orderForm.dateOfOrder,
+		
+		int num = 0;
+		List<Invoice> invoicesInYear = Invoice.find("byBusinessYear", orderForm.businessYear).fetch(); //invoice is not created yet
+		for(Invoice inv : invoicesInYear) {
+			if(inv.number > num) {
+				num = inv.number;
+			}
+		}
+		
+		Invoice invoice = new Invoice(orderForm.dateOfOrder, ++num, orderForm.dateOfOrder,
 				0.0, 0.0, 0.0, orderForm.company, orderForm.businessYear, orderForm.businessPartner);
 		for (OrderFormItem ofi : orderFormItems) {
 			InvoiceItem invoiceItem = new InvoiceItem(ofi.amount, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, invoice, ofi.item, "");
