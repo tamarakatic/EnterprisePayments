@@ -193,6 +193,12 @@ $(document).ready(function(){
 		item.addClass("highlighted");
 		sync(item);
 	});
+	
+	$("#invoiceReport").click(function(){
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		invoiceReport(id);
+	});
 });
 
 </script>
