@@ -41,7 +41,6 @@ public class InvoiceItems extends Controller{
 		invoiceItem.article = Item.findById(invoiceItem.article.id);
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
-		validation.required("unit", invoiceItem.unit);
 		validation.min("amount", invoiceItem.amount, 0.01);
 		validation.min("discount", invoiceItem.discount, 0);
 		validation.max("discount", invoiceItem.discount, 100);
@@ -58,7 +57,6 @@ public class InvoiceItems extends Controller{
 	public static void edit(InvoiceItem invoiceItem) {
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
-		validation.required("unit", invoiceItem.unit);
 		validation.min("amount", invoiceItem.amount, 0.01);
 		validation.min("discount", invoiceItem.discount, 0);
 		validation.max("discount", invoiceItem.discount, 100);
@@ -75,6 +73,11 @@ public class InvoiceItems extends Controller{
 	public static void delete(Long id) {
 		if (id != null){
 			InvoiceItem invoiceItem = InvoiceItem.findById(id);
+			Invoice invoice = invoiceItem.invoice;
+			invoice.basis -= invoiceItem.basis;
+			invoice.tax -= invoiceItem.taxTotal;
+			invoice.total -= invoiceItem.total;
+			invoice.save();
 			invoiceItem.delete();			
 		}
 		show("edit");
@@ -83,12 +86,11 @@ public class InvoiceItems extends Controller{
 	public static void filter(InvoiceItem invoiceItem) {
 		List<Invoice> invoices = Invoice.findAll();
 		List<Item> articles = Item.findAll();
-		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticleAndUnit",
+		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticle",
 								invoiceItem.invoice,
 								invoiceItem.amount,
 								invoiceItem.discount,
-								invoiceItem.article,
-								invoiceItem.unit).fetch();
+								invoiceItem.article).fetch();
 		renderTemplate("InvoiceItems/show.html", "edit", invoiceItems, invoices, articles);	
 	}
 	
@@ -118,7 +120,6 @@ public class InvoiceItems extends Controller{
 		invoiceItem.article = Item.findById(invoiceItem.article.id);
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
-		validation.required("unit", invoiceItem.unit);
 		validation.min("amount", invoiceItem.amount, 0.01);
 		validation.min("discount", invoiceItem.discount, 0);
 		validation.max("discount", invoiceItem.discount, 100);
@@ -135,7 +136,6 @@ public class InvoiceItems extends Controller{
 	public static void editNext(InvoiceItem invoiceItem) {
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
-		validation.required("unit", invoiceItem.unit);
 		validation.min("amount", invoiceItem.amount, 0.01);
 		validation.min("discount", invoiceItem.discount, 0);
 		validation.max("discount", invoiceItem.discount, 100);
@@ -152,18 +152,22 @@ public class InvoiceItems extends Controller{
 	public static void deleteNext(Long id, Long invoiceId) {
 		if (id != null){
 			InvoiceItem invoiceItem = InvoiceItem.findById(id);
-			invoiceItem.delete();		
+			Invoice invoice = invoiceItem.invoice;
+			invoice.basis -= invoiceItem.basis;
+			invoice.tax -= invoiceItem.taxTotal;
+			invoice.total -= invoiceItem.total;
+			invoice.save();
+			invoiceItem.delete();			
 		}
 		showNext("edit", invoiceId);
 	}
 	
 	public static void filterNext(InvoiceItem invoiceItem) {		
-		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticleAndUnit",
+		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticle",
 				invoiceItem.invoice,
 				invoiceItem.amount,
 				invoiceItem.discount,
-				invoiceItem.article,
-				invoiceItem.unit).fetch();
+				invoiceItem.article).fetch();
 		Invoice invoice = invoiceItem.invoice;
 		renderTemplate("InvoiceItems/showNext.html", "edit", invoiceItems, invoice);	
 	}
@@ -219,6 +223,10 @@ public class InvoiceItems extends Controller{
 		invoiceItem.tax = taxRate;
 		invoiceItem.taxTotal = taxRate / 100.0 * invoiceItem.basis;
 		invoiceItem.total = invoiceItem.basis + invoiceItem.taxTotal;
+		
+		invoiceItem.tax = Double.parseDouble(df.format(invoiceItem.tax));
+		invoiceItem.taxTotal = Double.parseDouble(df.format(invoiceItem.taxTotal));
+		invoiceItem.total = Double.parseDouble(df.format(invoiceItem.total));
 		
 		Invoice invoice = invoiceItem.invoice;
 		invoice.basis += invoiceItem.basis;

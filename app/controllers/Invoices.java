@@ -94,7 +94,17 @@ public class Invoices extends Controller {
 	public static void delete(Long id) {
 		if (id != null){
 			Invoice invoice = Invoice.findById(id);
-			invoice.delete();			
+			if(invoice.invoiceItems != null && !invoice.invoiceItems.isEmpty()){
+				List<Invoice> invoices = Invoice.findAll();
+				String mode = "edit";
+				boolean hasChildren = true;
+				List<Company> companies = Company.findAll();
+				List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
+				List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+				renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, hasChildren);	
+			} else {
+				invoice.delete();			
+			} 
 		}
 		show("edit");
 	}
@@ -139,6 +149,13 @@ public class Invoices extends Controller {
 		    JasperPrint jrprint = JasperFillManager.fillReport(compiledFile, reportParams, play.db.DB.getConnection());
 			JasperExportManager.exportReportToPdfFile(jrprint, reportName("report-" + id + ".pdf"));
 			
+			List<Invoice> invoices = Invoice.findAll();
+			String mode = "edit";
+			String generatedReport = "generatedReport";
+			List<Company> companies = Company.findAll();
+			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
+			List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -281,7 +298,10 @@ public class Invoices extends Controller {
 	    	c.set(Calendar.YEAR, beginYear);
 	    	beginDate = c.getTime();
 	    } else {
-	    	beginDate = new Date(Long.MIN_VALUE);
+	    	Calendar c = Calendar.getInstance();
+			c.setTime(beginDate);
+			c.set(Calendar.YEAR, 1990);
+			beginDate = c.getTime();
 	    }
 		if(end != null && !end.equals("")) {
 			String endTokens[] = end.split("-");
@@ -297,10 +317,29 @@ public class Invoices extends Controller {
 	    	c.set(Calendar.MONTH, endMonth-1);
 	    	c.set(Calendar.YEAR, endYear);
 	    	endDate = c.getTime();
-		} else {
-			endDate = new Date(Long.MAX_VALUE);
 		}
-		System.out.println("****** from "+beginDate+" to "+endDate);
+		try {
+			Map reportParams = new HashMap();
+			reportParams.put("beginDate", beginDate);
+			reportParams.put("endDate", endDate);
+
+		    String compiledFile = "app/reports/" + "KIF" + ".jasper";
+		    JasperCompileManager.compileReportToFile("app/reports/" + "KIF" + ".jrxml", compiledFile);
+		    JasperPrint jrprint = JasperFillManager.fillReport(compiledFile, reportParams, play.db.DB.getConnection());
+			JasperExportManager.exportReportToPdfFile(jrprint, reportName("report-" + "KIF" + ".pdf"));
+			
+			List<Invoice> invoices = Invoice.findAll();
+			String mode = "edit";
+			String generatedReport = "generatedReport";
+			List<Company> companies = Company.findAll();
+			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
+			List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		show("edit");
 	}
+	
 }

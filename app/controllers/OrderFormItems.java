@@ -103,7 +103,7 @@ public class OrderFormItems extends Controller {
 		Invoice invoice = new Invoice(orderForm.dateOfOrder, ++num, orderForm.dateOfOrder,
 				0.0, 0.0, 0.0, orderForm.company, orderForm.businessYear, orderForm.businessPartner);
 		for (OrderFormItem ofi : orderFormItems) {
-			InvoiceItem invoiceItem = new InvoiceItem(ofi.amount, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, invoice, ofi.item, "");
+			InvoiceItem invoiceItem = new InvoiceItem(ofi.amount, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, invoice, ofi.item);
 			invoiceItem = InvoiceItems.calculate(invoiceItem);
 	    	invoiceItem.save();		
 		}

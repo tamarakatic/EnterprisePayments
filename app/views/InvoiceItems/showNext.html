@@ -23,12 +23,30 @@ $(document).ready(function(){
 	    comboZoomArticle.value = id;
 		$('#articlesModal').modal('toggle');
 	});
+	
+	$("#nextform").click(function(){
+		articleId = $(".highlighted").find(".articleId").html();
+		#{list items:articles, as:'article'}
+	    	if(check(${article.id}, articleId)){
+	    		$("#articleZoomName").html("${article.name}");
+	    		$("#articleZoomDescription").html("${article.description}");
+	    		$("#articleZoomGroup").html("${article.articlegroup.name}");
+	    	}
+		#{/list}
+		$('#articleZoomModal').modal('toggle');
+	});
 });
+
+
+function check(item, id){
+	if(item == id)
+		return true;
+	else return false;
+}
 
 function sync(item){
 	id = item.find(".id").html();
 	amount = item.find(".amount").html();
-	unit = item.find(".unit").html();
 	price = item.find(".price").html();
 	discount = item.find(".discount").html();
 	basis = item.find(".basis").html();
@@ -39,7 +57,6 @@ function sync(item){
 	articleId = item.find(".articleId").html();
     $("#invoiceItem_id").val(id);
     $("#invoiceItem_amount").val(amount);
-    $("#invoiceItem_unit").val(unit);
     $("#invoiceItem_price").val(price);
     $("#invoiceItem_discount").val(discount);
     $("#invoiceItem_basis").val(basis);
@@ -85,7 +102,6 @@ function remove(id) {
 	   <th>Invoice number</th>
 	   <th>Article name</th>
 	   <th>Amount</th>
-	   <th>Unit</th>
 	   <th>Price</th>
 	   <th>Discount %</th> 
 	   <th>Basis</th>
@@ -99,7 +115,6 @@ function remove(id) {
 		<td class = "invoice">${invoiceItem.invoice.number}</td>
 		<td class = "article">${invoiceItem.article.name}</td>
 		<td class = "amount">${invoiceItem.amount}</td>
-		<td class = "unit">${invoiceItem.unit}</td>
 		<td class = "price">${invoiceItem.price}</td>
 		<td class = "discount">${invoiceItem.discount}</td>
 		<td class = "basis">${invoiceItem.basis}</td>
@@ -157,22 +172,7 @@ function remove(id) {
 				#{/}
 				<span class="error">#{error 'amount' /}</span>
 				</p>
-				
-				<p>
-				#{field 'invoiceItem.unit'}
-					<label for = "${field.id}">Unit</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				<span class="error">#{error 'unit' /}</span>
-				</p>
-				
-				<!-- <p>
-				#{field 'invoiceItem.price'}
-					<label for = "${field.id}">Price</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p> -->
-				
+								
 				<p>
 				#{field 'invoiceItem.discount'}
 					<label for = "${field.id}">Discount %</label>
@@ -180,36 +180,7 @@ function remove(id) {
 				#{/}
 				<span class="error">#{error 'discount' /}</span>
 				</p>
-				
-				<!-- <p>
-				#{field 'invoiceItem.basis'}
-					<label for = "${field.id}">Basis</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				
-				<p>
-				#{field 'invoiceItem.tax'}
-					<label for = "${field.id}">Tax</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				
-				<p>
-				#{field 'invoiceItem.taxTotal'}
-					<label for = "${field.id}">Total tax</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p>
-				
-				<p>
-				#{field 'invoiceItem.total'}
-					<label for = "${field.id}">Total</label>
-					<input type = "text" name = "${field.name}" id = "${field.id}"/>
-				#{/}
-				</p> -->
-				
-				
+								
 				<div id = "formActions">
 					<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
 					<a href = "@{InvoiceItems.showNext('edit', invoice.id)}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
@@ -217,6 +188,10 @@ function remove(id) {
 				
 		</form>
 	</p>
+</div>
+
+<div class=" panel" style="width:100%">
+	<p style="margin-left:1em"><b>Mode: ${mode}</b></p>
 </div>
 
 <!-- Modal ARTICLES-->
@@ -251,5 +226,33 @@ function remove(id) {
     </div>
    </div>
 
+ <!-- Modal ARTICLE ZOOM-->
+  <div class="modal fade" id="articleZoomModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Article
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Name</th>
+		   <th>Description</th>
+		   <th>Article group</th>
+		</tr>
+		<tr class="modalRow">
+			<td id="articleZoomName"></td>
+			<td id="articleZoomDescription"></td>
+			<td id="articleZoomGroup"></td>
+		</tr>
+		</table>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
 
    
