@@ -14,7 +14,7 @@ public class Company extends Model {
 	@Column(length = 30, nullable = false)
 	public String name;
 	
-	@Column(length = 8, nullable = false)
+	@Column(length = 9, nullable = false)
 	public int PIB;
 	
 	@Column(length = 50)
