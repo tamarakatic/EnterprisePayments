@@ -41,7 +41,7 @@ public class Invoices extends Controller {
 		
 		List<Company> companies = Company.findAll();
 		List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
-		List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+		List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
 		renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners);	
 	}
 	
@@ -127,8 +127,8 @@ public class Invoices extends Controller {
 												 invoice.businessPartner,
 												 invoice.businessYear).fetch();
 		List<Company> companies = Company.findAll();
-		List<BusinessYear> businessYears = BusinessYear.findAll();
-		List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+		List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
+		List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
 		renderTemplate("Invoices/show.html", "edit", invoices, companies, businessYears, businessPartners);		
 	}
 	
@@ -154,7 +154,7 @@ public class Invoices extends Controller {
 			String generatedReport = "generatedReport";
 			List<Company> companies = Company.findAll();
 			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
-			List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+			List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
 			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -333,7 +333,7 @@ public class Invoices extends Controller {
 			String generatedReport = "generatedReport";
 			List<Company> companies = Company.findAll();
 			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
-			List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+			List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
 			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);	
 			
 		} catch (Exception e) {

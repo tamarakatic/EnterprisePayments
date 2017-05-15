@@ -46,9 +46,13 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void filter(OrderForm orderForm) {
-		List<OrderForm> orderForms = OrderForm.find("dateOfOrder = ? or numberOfOrder = ?",
-													orderForm.dateOfOrder, orderForm.numberOfOrder).fetch();
-		renderTemplate("OrderForms/show.html", "edit", orderForms);
+		List<OrderForm> orderForms = OrderForm.find("byDateOfOrderAndCompanyAndBusinessYearAndBusinessPartner",
+				orderForm.dateOfOrder, orderForm.company, orderForm.businessYear,
+				orderForm.businessPartner).fetch();
+		List<Company> companies = Company.findAll();
+		List<BusinessYear> businessYears = BusinessYear.findAll();
+		List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+		renderTemplate("OrderForms/show.html", "edit", orderForms, companies, businessYears, businessPartners);
 	}
 	
 	public static void delete(Long id) {
