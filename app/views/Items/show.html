@@ -48,7 +48,7 @@ function pricelist_item(id) {
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
   <li><a href="@{Items.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
-  <li><a href="#" id = "nextform_modal_item" data-toggle="modal" data-target="#next_form_modal_item"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+  <li><a href="#" id = "pricelist_item"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
 
@@ -143,22 +143,6 @@ function pricelist_item(id) {
         <div class="modal-footer">
           <button type="button" class="btn btn-success" id = "add_item" data-dismiss="modal">Add</button>
           <button type="button" class="btn btn-danger" id = "close_articlegroup_item" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-</div>
-
-<div class = "modal fade" id = "next_form_modal_item" role="dialog">
-	<div class="modal-dialog">
-
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Child form</h4>
-        </div>
-        <div class="modal-footer">
-          <a href="#" id = "pricelist_item" class="btn btn-success" data-dismiss="modal">Price List Item</a>
         </div>
       </div>
       
