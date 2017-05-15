@@ -17,13 +17,25 @@ public class ArticleGroups extends Controller{
 		render(articlegroups, gsttypes, mode);
 	}
 	
-	public static void create(ArticleGroup articlegroup) {		
-		articlegroup.save();
+	public static void create(ArticleGroup articlegroup) {	
+		validation.required("name", articlegroup.name);		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} else 
+			articlegroup.save();
+		
 		show("add");
 	}
 
 	public static void edit(ArticleGroup articlegroup) {
-		articlegroup.save();
+		validation.required("name", articlegroup.name);		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} else 
+			articlegroup.save();
+		
 		show("edit");
 	}
 	

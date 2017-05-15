@@ -24,10 +24,24 @@ public class InvoiceItems extends Controller{
 		if(mode != null && mode.equals("filter")) {
 			articles.addAll(allArticles);
 		} else {
+			Date today = new Date();
+			Calendar c = Calendar.getInstance();
+			c.setTime(today);
+			c.set(Calendar.HOUR_OF_DAY, 0);
+			c.set(Calendar.MINUTE, 0);
+	    	c.set(Calendar.SECOND, 0);
+	    	c.set(Calendar.MILLISECOND, 0);
+	    	today = c.getTime();
 			for (Item a : allArticles) {
 				if (a.pricelistitem != null) {
-					if (!a.pricelistitem.isEmpty())
-						articles.add(a);
+					if (!a.pricelistitem.isEmpty()) {
+						for(PricelistItem plitem : a.pricelistitem){
+							if(!plitem.pricelist.validationDate.after(today)) {
+								articles.add(a);
+								break;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -85,7 +99,7 @@ public class InvoiceItems extends Controller{
 	
 	public static void filter(InvoiceItem invoiceItem) {
 		List<Invoice> invoices = Invoice.findAll();
-		List<Item> articles = Item.findAll();
+		ArrayList<Item> articles = getArticles();
 		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticle",
 								invoiceItem.invoice,
 								invoiceItem.amount,
@@ -102,13 +116,28 @@ public class InvoiceItems extends Controller{
 		if(mode != null && mode.equals("filter")) {
 			articles.addAll(allArticles);
 		} else {
+			Date today = new Date();
+			Calendar c = Calendar.getInstance();
+			c.setTime(today);
+			c.set(Calendar.HOUR_OF_DAY, 0);
+			c.set(Calendar.MINUTE, 0);
+	    	c.set(Calendar.SECOND, 0);
+	    	c.set(Calendar.MILLISECOND, 0);
+	    	today = c.getTime();
 			for (Item a : allArticles) {
 				if (a.pricelistitem != null) {
-					if (!a.pricelistitem.isEmpty())
-						articles.add(a);
+					if (!a.pricelistitem.isEmpty()) {
+						for(PricelistItem plitem : a.pricelistitem){
+							if(!plitem.pricelist.validationDate.after(today)) {
+								articles.add(a);
+								break;
+							}
+						}
+					}
 				}
 			}
 		}
+		
 		if (mode == null || mode.equals(""))
 			mode = "edit";
 		renderTemplate("InvoiceItems/showNext.html", mode, invoiceItems, invoice, articles);	
@@ -162,14 +191,15 @@ public class InvoiceItems extends Controller{
 		showNext("edit", invoiceId);
 	}
 	
-	public static void filterNext(InvoiceItem invoiceItem) {		
+	public static void filterNext(InvoiceItem invoiceItem) {	
+		ArrayList<Item> articles = getArticles();
 		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticle",
 				invoiceItem.invoice,
 				invoiceItem.amount,
 				invoiceItem.discount,
 				invoiceItem.article).fetch();
 		Invoice invoice = invoiceItem.invoice;
-		renderTemplate("InvoiceItems/showNext.html", "edit", invoiceItems, invoice);	
+		renderTemplate("InvoiceItems/showNext.html", "edit", invoiceItems, invoice, articles);	
 	}
 	
 	public static InvoiceItem calculate(InvoiceItem invoiceItem){
@@ -234,6 +264,34 @@ public class InvoiceItems extends Controller{
 		invoice.total += invoiceItem.total;
 		invoice.save();
 		return invoiceItem;
+		
+	}
+	
+	private static ArrayList<Item> getArticles() {
+		List<Item> allArticles = Item.findAll();
+		ArrayList<Item> articles = new ArrayList<Item>();
+
+		Date today = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(today);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+		today = c.getTime();
+		for (Item a : allArticles) {
+			if (a.pricelistitem != null) {
+				if (!a.pricelistitem.isEmpty()) {
+					for (PricelistItem plitem : a.pricelistitem) {
+						if (!plitem.pricelist.validationDate.after(today)) {
+							articles.add(a);
+							break;
+						}
+					}
+				}
+			}
+		}
+		return articles;
 		
 	}
 }

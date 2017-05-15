@@ -85,6 +85,7 @@ function article_group(id) {
 			<label for = "${field.id}">Name</label>
 			<input type = "text" name = "${field.name}" id = "${field.id}"/>
 		#{/}
+		<span class="error">#{error 'name' /}</span>
 		</p>
 		<div id = "formActions">
 			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
