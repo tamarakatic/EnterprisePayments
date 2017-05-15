@@ -37,9 +37,11 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void filter(OrderFormItem orderFormItem) {
-		List<OrderFormItem> orderFormItems= OrderFormItem.find("amount = ?",
-													orderFormItem.amount).fetch();
-		renderTemplate("OrderForms/show.html", "edit", orderFormItems);
+		List<OrderFormItem> orderFormItems= OrderFormItem.find("byAmountAndItem",
+													orderFormItem.amount, orderFormItem.item).fetch();
+		List<OrderForm> orderForms = OrderForm.findAll();
+		List<Item> items = Item.findAll();
+		renderTemplate("OrderFormItems/show.html", "edit", orderFormItems, orderForms, items);
 	}
 	
 	public static void delete(Long id) {
