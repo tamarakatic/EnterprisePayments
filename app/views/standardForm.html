@@ -159,7 +159,7 @@ $(document).ready(function(){
 		highlighted = $(".highlighted");
 		id = highlighted.find(".id").html();
 		if(id == null || id == ''){
-			alert("Please select an invoice.");
+			$("#reportAlert1").attr("hidden", false);
 			return;
 		}
 		export_to_xml(id);
@@ -198,8 +198,29 @@ $(document).ready(function(){
 		sync(item);
 	});
 	
+    $("#help").click(function(){
+    	$("#helpModal").modal('toggle');
+	});
 });
 
 </script>
+
+        <!-- Modal HELP-->
+  <div class="modal fade" id="helpModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Help
+      </div>
+      <div class="modal-body">
+	    <img src="@{'/public/images/helpIcons.png'}"/>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
 
 #{doLayout/}
