@@ -21,7 +21,28 @@ $(document).ready(function(item){
 		var comboZoomOrderForm = document.getElementById('orderFormItem_orderForm_id').value;
 		$(location).attr('href', '/OrderFormItems/generateInvoice?id='+comboZoomOrderForm);
 	});
+	
+	$("#nextform").click(function(){
+		articleId = $(".highlighted").find(".itemId").html();
+		#{list items:items, as:'article'}
+	    	if(check(${article.id}, articleId)){
+	    		$("#articleZoomName").html("${article.name}");
+	    		$("#articleZoomDescription").html("${article.description}");
+	    		$("#articleZoomGroup").html("${article.articlegroup.name}");
+	    	}
+		#{/list}
+		$('#articleZoomModal').modal('toggle');
+	});
 });
+
+function check(item, id){
+	if(item == id) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 
 function sync(item){
 	id = item.find(".id").html();
@@ -138,3 +159,60 @@ function remove(id) {
 		<p style="margin-left:1em"><b>Mode: ${mode}</b></p>
 	</div>
    
+    <!-- Modal ARTICLE ZOOM-->
+  <div class="modal fade" id="articleZoomModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Article
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Name</th>
+		   <th>Description</th>
+		   <th>Article group</th>
+		</tr>
+		<tr class="modalRow">
+			<td id="articleZoomName"></td>
+			<td id="articleZoomDescription"></td>
+			<td id="articleZoomGroup"></td>
+		</tr>
+		</table>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
+   
+      <!-- Modal ARTICLE ZOOM-->
+  <div class="modal fade" id="articleZoomModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Article
+      </div>
+      <div class="modal-body">
+	    <table style = "padding:2em">
+		<tr class = "header">
+		   <th>Name</th>
+		   <th>Description</th>
+		   <th>Article group</th>
+		</tr>
+		<tr class="modalRow">
+			<td id="articleZoomName"></td>
+			<td id="articleZoomDescription"></td>
+			<td id="articleZoomGroup"></td>
+		</tr>
+		</table>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
