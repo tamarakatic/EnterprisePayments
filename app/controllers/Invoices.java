@@ -1,20 +1,15 @@
 package controllers;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Calendar;
 import java.util.Date;
 
-import models.BusinessPartner;
-import models.BusinessYear;
-import models.Company;
-import models.Invoice;
-import models.InvoiceItem;
-import models.Item;
-import play.mvc.Controller;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -24,7 +19,18 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import java.io.File;
+
+import models.BusinessPartner;
+import models.BusinessYear;
+import models.Company;
+import models.Invoice;
+import models.InvoiceItem;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import play.Play;
+import play.mvc.Controller;
 
 public class Invoices extends Controller {
 
@@ -88,7 +94,17 @@ public class Invoices extends Controller {
 	public static void delete(Long id) {
 		if (id != null){
 			Invoice invoice = Invoice.findById(id);
-			invoice.delete();			
+			if(invoice.invoiceItems != null && !invoice.invoiceItems.isEmpty()){
+				List<Invoice> invoices = Invoice.findAll();
+				String mode = "edit";
+				boolean hasChildren = true;
+				List<Company> companies = Company.findAll();
+				List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
+				List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+				renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, hasChildren);	
+			} else {
+				invoice.delete();			
+			} 
 		}
 		show("edit");
 	}
@@ -97,22 +113,8 @@ public class Invoices extends Controller {
 		if (id != null) {
 			Invoice invoice = Invoice.findById(id);
 			List<InvoiceItem> items = InvoiceItem.find("byInvoice_id", id).fetch();
-			String itemValue = "";
-			 if (items != null && !items.isEmpty()) {
-	        	 for (InvoiceItem item : items) {
-	        		 itemValue = Double.toString(item.amount);
-	        	 }
-			 }
-			saveToXML(Integer.toString(invoice.number), 
-					  invoice.businessPartner.name, 
-					  Integer.toString(invoice.businessYear.year), 
-					  invoice.company.name, 
-					  DateFormatUtils.format(invoice.dateOfInvoice, "yyyy-MM-dd HH:mm:SS"),
-					  DateFormatUtils.format(invoice.dateOfValue, "yyyy-MM-dd HH:mm:SS"),
-					  Double.toString(invoice.basis),
-					  Double.toString(invoice.tax),
-					  Double.toString(invoice.total), 
-					  itemValue);
+			
+			saveToXML(invoice, items);
 		}
 		show("edit");
 	}
@@ -137,94 +139,134 @@ public class Invoices extends Controller {
 		show("edit");
 	}
 	
-	public static void saveToXML(String invoiceNumber, 
-								 String businessPartnerName, 
-								 String businessYearYear, 
-								 String companyName,
-								 String invoiceDate,
-								 String invoiceValueDate,
-								 String basic,
-								 String tax,
-								 String sum,
-								 String itemValue) {
+	public static void invoiceReport(Integer id) {
+		try {
+			Map reportParams = new HashMap();
+			reportParams.put("invoicesjasper", id);
+
+		    String compiledFile = "app/reports/" + "Blank_A4" + ".jasper";
+		    JasperCompileManager.compileReportToFile("app/reports/" + "Blank_A4" + ".jrxml", compiledFile);
+		    JasperPrint jrprint = JasperFillManager.fillReport(compiledFile, reportParams, play.db.DB.getConnection());
+			JasperExportManager.exportReportToPdfFile(jrprint, reportName("report-" + id + ".pdf"));
+			
+			List<Invoice> invoices = Invoice.findAll();
+			String mode = "edit";
+			String generatedReport = "generatedReport";
+			List<Company> companies = Company.findAll();
+			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
+			List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+		show("edit");
+	}
+	
+	private static String reportName(String name) {
+		return Play.applicationPath + File.separator + "app" + File.separator + "reports" + File.separator + name;
+	}
+	
+	private static void saveToXML(Invoice invoice, List<InvoiceItem> items) {
+		String invoiceNumber= Integer.toString(invoice.number);
+		String bussinessPartner = invoice.businessPartner.name;
+		String businessYear = Integer.toString(invoice.businessYear.year);
+	    String companyName = invoice.company.name;
+	    String invoiceDate = DateFormatUtils.format(invoice.dateOfInvoice, "yyyy-MM-dd HH:mm:SS");
+	    String invoiceValueDate = DateFormatUtils.format(invoice.dateOfValue, "yyyy-MM-dd HH:mm:SS");
+	    String basis = Double.toString(invoice.basis);
+	    String tax = Double.toString(invoice.tax);
+	    String total = Double.toString(invoice.total);
+
 	  try {
 	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	         Document doc = dBuilder.newDocument();
 	   
-	         Element rootElement = doc.createElement("invoices");
-	         doc.appendChild(rootElement);
+	         Element topElement = doc.createElement("invoices");
+	         doc.appendChild(topElement);
 
-	         Element invoice_element = doc.createElement("invoice");
-	         rootElement.appendChild(invoice_element);
-	         
-    		 Attr attrItem = doc.createAttribute("amount");
-    		 attrItem.setValue(itemValue);
-			 invoice_element.setAttributeNode(attrItem);
-	         
+	         Element rootElement = doc.createElement("invoices_data");
+	         topElement.appendChild(rootElement);
+
 	         Element company = doc.createElement("company");
 	         Attr attr = doc.createAttribute("type");
 	         attr.setValue("invoice_company");
 	         company.setAttributeNode(attr);
 	         company.appendChild(doc.createTextNode(companyName));
-	         invoice_element.appendChild(company);
+	         rootElement.appendChild(company);
 
 	         Element partner = doc.createElement("partner");
 	         Attr attrType = doc.createAttribute("type");
 	         attrType.setValue("business_partner");
 	         partner.setAttributeNode(attrType);
-	         partner.appendChild(doc.createTextNode(businessPartnerName));
-	         invoice_element.appendChild(partner);
+	         partner.appendChild(doc.createTextNode(bussinessPartner));
+	         rootElement.appendChild(partner);
 
 	         Element year = doc.createElement("year");
 	         Attr attrType1 = doc.createAttribute("type");
 	         attrType1.setValue("business_year");
 	         year.setAttributeNode(attrType1);
-	         year.appendChild(doc.createTextNode(businessYearYear));
-	         invoice_element.appendChild(year);
+	         year.appendChild(doc.createTextNode(businessYear));
+	         rootElement.appendChild(year);
 	         
 	         Element number = doc.createElement("number");
 	         Attr attrType3 = doc.createAttribute("type");
 	         attrType3.setValue("invoice_number");
 	         number.setAttributeNode(attrType3);
 	         number.appendChild(doc.createTextNode(invoiceNumber));
-	         invoice_element.appendChild(number);
+	         rootElement.appendChild(number);
 	                  
 	         Element dateOfInvoice = doc.createElement("invoiceDate");
 	         Attr attrType4 = doc.createAttribute("type");
 	         attrType4.setValue("dateOfInvoice");
 	         dateOfInvoice.setAttributeNode(attrType4);
 	         dateOfInvoice.appendChild(doc.createTextNode(invoiceDate));
-	         invoice_element.appendChild(dateOfInvoice);
+	         rootElement.appendChild(dateOfInvoice);
 	         
 	         Element dateOfValue = doc.createElement("valueDate");
 	         Attr attrType5 = doc.createAttribute("type");
 	         attrType5.setValue("dateOfValue");
 	         dateOfValue.setAttributeNode(attrType5);
 	         dateOfValue.appendChild(doc.createTextNode(invoiceValueDate));
-	         invoice_element.appendChild(dateOfValue);
+	         rootElement.appendChild(dateOfValue);
 	         
 	         Element basicValue = doc.createElement("basicValue");
 	         Attr attrType6 = doc.createAttribute("type");
 	         attrType6.setValue("basic_number");
 	         basicValue.setAttributeNode(attrType6);
-	         basicValue.appendChild(doc.createTextNode(basic));
-	         invoice_element.appendChild(basicValue);
+	         basicValue.appendChild(doc.createTextNode(basis));
+	         rootElement.appendChild(basicValue);
 	         
 	         Element taxValue = doc.createElement("taxValue");
 	         Attr attrType7 = doc.createAttribute("type");
 	         attrType7.setValue("tax_number");
 	         taxValue.setAttributeNode(attrType7);
 	         taxValue.appendChild(doc.createTextNode(tax));
-	         invoice_element.appendChild(taxValue);
+	         rootElement.appendChild(taxValue);
 	         
 	         Element sumValue = doc.createElement("sumValue");
 	         Attr attrType8 = doc.createAttribute("type");
 	         attrType8.setValue("sum_number");
 	         sumValue.setAttributeNode(attrType8);
-	         sumValue.appendChild(doc.createTextNode(sum));
-	         invoice_element.appendChild(sumValue);
+	         sumValue.appendChild(doc.createTextNode(total));
+	         rootElement.appendChild(sumValue);
+
+	         if (items != null) {
+				 for (InvoiceItem item : items) {
+					 Element invoice_element =  doc.createElement("invoice");
+					 Attr attrItem = doc.createAttribute("amount");
+					 Attr attrItemTotal = doc.createAttribute("total");
+					 Attr attrItemPrice = doc.createAttribute("price");
+					 attrItem.setValue(Double.toString(item.amount));
+					 attrItemTotal.setValue(Double.toString(item.total));
+					 attrItemPrice.setValue(Double.toString(item.price));
+					 invoice_element.setAttributeNode(attrItem);
+					 invoice_element.setAttributeNode(attrItemTotal);
+					 invoice_element.setAttributeNode(attrItemPrice);
+					 topElement.appendChild(invoice_element);
+				 }
+	         }
 	         
 	         TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	         Transformer transformer = transformerFactory.newTransformer();
@@ -232,12 +274,10 @@ public class Invoices extends Controller {
 	         StreamResult result = new StreamResult(new File("invoices.xml"));
 	         transformer.transform(source, result);
 	               
-	         show("edit");
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }
-		
-	}
+		}
 	
 	public static void generateKIF(String begin, String end) {
 		Date beginDate = new Date();
@@ -258,7 +298,10 @@ public class Invoices extends Controller {
 	    	c.set(Calendar.YEAR, beginYear);
 	    	beginDate = c.getTime();
 	    } else {
-	    	beginDate = new Date(Long.MIN_VALUE);
+	    	Calendar c = Calendar.getInstance();
+			c.setTime(beginDate);
+			c.set(Calendar.YEAR, 1990);
+			beginDate = c.getTime();
 	    }
 		if(end != null && !end.equals("")) {
 			String endTokens[] = end.split("-");
@@ -274,10 +317,29 @@ public class Invoices extends Controller {
 	    	c.set(Calendar.MONTH, endMonth-1);
 	    	c.set(Calendar.YEAR, endYear);
 	    	endDate = c.getTime();
-		} else {
-			endDate = new Date(Long.MAX_VALUE);
 		}
-		System.out.println("****** from "+beginDate+" to "+endDate);
+		try {
+			Map reportParams = new HashMap();
+			reportParams.put("beginDate", beginDate);
+			reportParams.put("endDate", endDate);
+
+		    String compiledFile = "app/reports/" + "KIF" + ".jasper";
+		    JasperCompileManager.compileReportToFile("app/reports/" + "KIF" + ".jrxml", compiledFile);
+		    JasperPrint jrprint = JasperFillManager.fillReport(compiledFile, reportParams, play.db.DB.getConnection());
+			JasperExportManager.exportReportToPdfFile(jrprint, reportName("report-" + "KIF" + ".pdf"));
+			
+			List<Invoice> invoices = Invoice.findAll();
+			String mode = "edit";
+			String generatedReport = "generatedReport";
+			List<Company> companies = Company.findAll();
+			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
+			List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		show("edit");
 	}
+	
 }

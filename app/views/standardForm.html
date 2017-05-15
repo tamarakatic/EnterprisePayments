@@ -158,6 +158,10 @@ $(document).ready(function(){
 	$("#export_to_xml").click(function() {
 		highlighted = $(".highlighted");
 		id = highlighted.find(".id").html();
+		if(id == null || id == ''){
+			alert("Please select an invoice.");
+			return;
+		}
 		export_to_xml(id);
 	});
 	
@@ -193,6 +197,7 @@ $(document).ready(function(){
 		item.addClass("highlighted");
 		sync(item);
 	});
+	
 });
 
 </script>

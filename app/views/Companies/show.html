@@ -105,7 +105,7 @@ function business_partner(id) {
 		<p>
 		#{field 'company.PIB'}
 			<label for = "${field.id}">PIB</label>
-			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+			<input type = "text" name = "${field.name}" id = "${field.id}" min = "8" max = "8"/>
 		#{/}
 		</p>
 		<p>
@@ -123,7 +123,7 @@ function business_partner(id) {
 		<p>
 		#{field 'company.MBR'}
 			<label for = "${field.id}">MBR</label>
-			<input type = "text" name = "${field.name}" id = "${field.id}"/>
+			<input type = "text" name = "${field.name}" id = "${field.id}" min="13"/>
 		#{/}
 		</p>
 		<div id = "formActions">
@@ -132,6 +132,10 @@ function business_partner(id) {
 		</div>			
 	</form>
   </p>
+</div>
+
+<div class = "panel" style = "width:100%">
+	<p style = "margin-left:1em"><b>Mode: ${mode}</b></p>
 </div>
 
 <div class = "modal fade" id = "next_form_modal" role="dialog">
