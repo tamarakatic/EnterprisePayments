@@ -19,13 +19,28 @@ public class PricelistItems extends Controller{
 	}
 	
 	public static void create(PricelistItem pricelistitem) {	
-		System.out.println("pricelist id " + pricelistitem.pricelist.id);
-		pricelistitem.save();
+		validation.required("price", pricelistitem.price);
+		validation.min("price", pricelistitem.price, 0.01);		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} 
+		else 
+			pricelistitem.save();
+		
 		show("add");
 	}
 
 	public static void edit(PricelistItem pricelistitem) {
-		pricelistitem.save();
+		validation.required("price", pricelistitem.price);
+		validation.min("price", pricelistitem.price, 0.01);		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} 
+		else 
+			pricelistitem.save();
+		
 		show("edit");
 	}
 	

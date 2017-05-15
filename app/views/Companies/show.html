@@ -101,12 +101,14 @@ function business_partner(id) {
 			<label for = "${field.id}">Name</label>
 			<input type = "text" name = "${field.name}" id = "${field.id}"/>
 		#{/}
+		<span class="error">#{error 'name' /}</span>
 		</p>
 		<p>
 		#{field 'company.PIB'}
 			<label for = "${field.id}">PIB</label>
-			<input type = "text" name = "${field.name}" id = "${field.id}" min = "8" max = "8"/>
+			<input type = "number" name = "${field.name}" id = "${field.id}" min = "0" style="width:170px"/>
 		#{/}
+		<span class="error">#{error 'PIB' /}</span>
 		</p>
 		<p>
 		#{field 'company.address'}
@@ -125,6 +127,7 @@ function business_partner(id) {
 			<label for = "${field.id}">MBR</label>
 			<input type = "text" name = "${field.name}" id = "${field.id}" min="13"/>
 		#{/}
+		<span class="error">#{error 'MBR' /}</span>
 		</p>
 		<div id = "formActions">
 			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>

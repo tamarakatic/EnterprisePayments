@@ -16,13 +16,13 @@ public class BusinessYears extends Controller {
 		render(years, companies, mode);
 	}
 
-	public static void create(BusinessYear businessyear) {		
-		businessyear.save();
+	public static void create(BusinessYear businessyear) {
+		businessyear.save();		
 		show("add");
 	}
 
 	public static void edit(BusinessYear businessyear) {
-		businessyear.save();
+		businessyear.save();		
 		show("edit");
 	}
 

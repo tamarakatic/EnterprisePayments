@@ -17,13 +17,31 @@ public class BusinessPartners extends Controller {
 		render(partners, companies, mode);
 	}
 
-	public static void create(BusinessPartner businesspartner) {		
-		businesspartner.save();
+	public static void create(BusinessPartner businesspartner) {
+		validation.required("name", businesspartner.name);
+		validation.required("kind", businesspartner.kind);
+		validation.required("account", businesspartner.account);
+		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} else
+			businesspartner.save();
+		
 		show("add");
 	}
 
 	public static void edit(BusinessPartner businesspartner) {
-		businesspartner.save();
+		validation.required("name", businesspartner.name);
+		validation.required("kind", businesspartner.kind);
+		validation.required("account", businesspartner.account);
+		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} else
+			businesspartner.save();
+		
 		show("edit");
 	}
 

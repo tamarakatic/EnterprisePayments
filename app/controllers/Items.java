@@ -17,13 +17,25 @@ public class Items extends Controller{
 		render(items, articlegroups, mode);
 	}
 
-	public static void create(Item item) {		
-		item.save();
+	public static void create(Item item) {	
+		validation.required("name", item.name);
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} else
+			item.save();
+		
 		show("add");
 	}
 
 	public static void edit(Item item) {
-		item.save();
+		validation.required("name", item.name);
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} else
+			item.save();
+		
 		show("edit");
 	}
 	

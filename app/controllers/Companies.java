@@ -17,12 +17,34 @@ public class Companies extends Controller {
 	}
 	
 	public static void create(Company company) {
-		company.save();		
+		validation.required("name",company.name);
+		validation.required("PIB", company.PIB);
+		validation.minSize("PIB", company.PIB, 9);
+		validation.required("MBR",company.MBR);
+		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} 
+		else 
+			company.save();
+		
 		show("add");
 	}
 	
 	public static void edit(Company company) {
-		company.save();
+		validation.required("name",company.name);
+		validation.required("PIB", company.PIB);
+		validation.minSize("PIB", company.PIB, 9);
+		validation.required("MBR",company.MBR);
+		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} 
+		else 
+			company.save();
+		
 		show("edit");		
 	}
 		

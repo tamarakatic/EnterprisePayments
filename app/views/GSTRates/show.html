@@ -97,6 +97,7 @@ function remove(id) {
 			<label for = "${field.id}">GSTPercent</label>
 			<input type = "number" name = "${field.name}" id = "${field.id}" min = "0" max = "100"/>
 		#{/}
+		<span class="error">#{error 'GSTPercent' /}</span>
 		</p>				
 		<div id = "formActions">
 			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>

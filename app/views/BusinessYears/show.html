@@ -83,7 +83,7 @@ function remove(id) {
 			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${company_id}"/>		
 		#{/}
 		
-			<button type="button" class="btn btn-info btn-sm" #{if company_id} disabled #{/if} data-toggle="modal" data-target="#businessyear_companies">Pick</button>					
+		<button type="button" class="btn btn-info btn-sm" #{if company_id} disabled #{/if} data-toggle="modal" data-target="#businessyear_companies">Pick</button>					
 		
 		
 		#{field 'businessyear.id'}
@@ -95,6 +95,7 @@ function remove(id) {
 			<label for = "${field.id}">Year</label>
 			<input type = "number" name = "${field.name}" id = "${field.id}" min = "1950" max = "2020"/>
 		#{/}
+		<span class="error">#{error 'year' /}</span>
 		</p>
 		<p>
 		#{field 'businessyear.active'}

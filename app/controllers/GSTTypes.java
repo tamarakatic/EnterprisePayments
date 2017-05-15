@@ -17,12 +17,26 @@ public class GSTTypes extends Controller{
 	}
 	
 	public static void create(GSTType gsttype) {
-		gsttype.save();		
+		validation.required("name",gsttype.name);		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} 
+		else
+			gsttype.save();		
+		
 		show("add");
 	}
 	
 	public static void edit(GSTType gsttype) {
-		gsttype.save();
+		validation.required("name",gsttype.name);
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} 
+		else
+			gsttype.save();	
+		
 		show("edit");		
 	}
 	

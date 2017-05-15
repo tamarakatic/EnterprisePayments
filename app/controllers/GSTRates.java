@@ -16,13 +16,27 @@ public class GSTRates extends Controller {
 		render(gstrates, gsttypes, mode);
 	}
 	
-	public static void create(GSTRate gstrate) {		
-		gstrate.save();
+	public static void create(GSTRate gstrate) {
+		validation.required("GSTPercent", gstrate.GSTPercent);
+		validation.min("GSTPercent", gstrate.GSTPercent, 0.01);		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} else
+			gstrate.save();
+		
 		show("add");
 	}
 
 	public static void edit(GSTRate gstrate) {
-		gstrate.save();
+		validation.required("GSTPercent", gstrate.GSTPercent);
+		validation.min("GSTPercent", gstrate.GSTPercent, 0.01);		
+		if (validation.hasErrors()) {
+			params.flash();
+			validation.keep();
+		} else
+			gstrate.save();
+		
 		show("edit");
 	}
 	
