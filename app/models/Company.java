@@ -14,7 +14,7 @@ public class Company extends Model {
 	@Column(length = 30, nullable = false)
 	public String name;
 	
-	@Column(length = 9, nullable = false)
+	@Column(length = 8, nullable = false)
 	public int PIB;
 	
 	@Column(length = 50)
@@ -23,7 +23,7 @@ public class Company extends Model {
 	@Column(length = 30)
 	public String mobile;
 	
-	@Column(length = 13, nullable = false)
+	@Column(length = 8, nullable = false)
 	public String MBR;
 
 	@OneToMany(mappedBy = "company")

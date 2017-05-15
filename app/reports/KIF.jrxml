@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-05-15T15:31:09 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="KIF" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c2060901-5133-4c8f-b575-6f52aee419b7">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+<!-- 2017-05-14T14:19:54 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="KIF" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c2060901-5133-4c8f-b575-6f52aee419b7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Poslovna"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="650"/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="336"/>
 	<parameter name="beginDate" class="java.util.Date"/>
 	<parameter name="endDate" class="java.util.Date"/>
 	<queryString>
-		<![CDATA[SELECT enterprise_payments.businesspartner.name,
-	enterprise_payments.invoice.number,
-	enterprise_payments.businessyear.`year`,
-	enterprise_payments.invoice.`dateOfInvoice`,
-	enterprise_payments.invoice.`dateOfValue`,
-	enterprise_payments.invoice.basis,
-	enterprise_payments.invoice.tax,
-	enterprise_payments.invoice.total,
-	enterprise_payments.company.name
-FROM enterprise_payments.invoice
-	INNER JOIN enterprise_payments.businesspartner ON 
-	 enterprise_payments.invoice.`businessPartner_id` = enterprise_payments.businesspartner.id 
-	INNER JOIN enterprise_payments.businessyear ON 
-	 enterprise_payments.invoice.`businessYear_id` = enterprise_payments.businessyear.id 
-	INNER JOIN enterprise_payments.company ON 
-	 enterprise_payments.businesspartner.company_id = enterprise_payments.company.id 
-	 AND enterprise_payments.invoice.company_id = enterprise_payments.company.id 
-	 AND enterprise_payments.businessyear.company_id =enterprise_payments.company.id
-	 WHERE  $P{beginDate} <= enterprise_payments.invoice.`dateOfInvoice`
-	 AND $P{endDate} >= enterprise_payments.invoice.`dateOfInvoice`
-	 AND enterprise_payments.invoice.total > 0]]>
+		<![CDATA[SELECT ep.businesspartner.name,
+	ep.invoice.number,
+	ep.businessyear.`year`,
+	ep.invoice.`dateOfInvoice`,
+	ep.invoice.`dateOfValue`,
+	ep.invoice.basis,
+	ep.invoice.tax,
+	ep.invoice.total,
+	ep.company.name
+FROM ep.invoice
+	INNER JOIN ep.businesspartner ON 
+	 ep.invoice.`businessPartner_id` = ep.businesspartner.id 
+	INNER JOIN ep.businessyear ON 
+	 ep.invoice.`businessYear_id` = ep.businessyear.id 
+	INNER JOIN ep.company ON 
+	 ep.businesspartner.company_id = ep.company.id 
+	 AND ep.invoice.company_id = ep.company.id 
+	 AND ep.businessyear.company_id = ep.company.id
+	 WHERE  $P{beginDate} < ep.invoice.`dateOfInvoice`
+	 AND $P{endDate} > ep.invoice.`dateOfInvoice`
+	 AND ep.invoice.total > 0]]>
 	</queryString>
 	<field name="name" class="java.lang.String"/>
 	<field name="number" class="java.lang.Integer"/>
-	<field name="year" class="java.math.BigDecimal"/>
+	<field name="year" class="java.lang.Integer"/>
 	<field name="dateOfInvoice" class="java.sql.Timestamp"/>
 	<field name="dateOfValue" class="java.sql.Timestamp"/>
 	<field name="basis" class="java.lang.Double"/>

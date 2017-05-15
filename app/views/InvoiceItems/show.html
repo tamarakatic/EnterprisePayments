@@ -33,6 +33,9 @@ $(document).ready(function(){
 	
 	$("#nextform").click(function(){
 		articleId = $(".highlighted").find(".articleId").html();
+		if(articleId == '' || articleId == null) {
+			return;
+		}
 		#{list items:articles, as:'article'}
 	    	if(check(${article.id}, articleId)){
 	    		$("#articleZoomName").html("${article.name}");
