@@ -74,6 +74,13 @@ function nextFormOrderForm(id) {
 
 <h1>Order form</h1>
 
+#{if hasChildren}
+	<div class="alert alert-info">
+		 <strong>Error!</strong> Unable to delete an order form that has items.
+		 <a href="@{OrderForms.show("edit")}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a>
+	</div>
+#{/if}
+
 <table>
 	<tr class = "header">
 		<th>Number of order</th>

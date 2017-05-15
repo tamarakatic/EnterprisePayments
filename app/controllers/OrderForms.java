@@ -58,7 +58,18 @@ public class OrderForms extends Controller {
 	public static void delete(Long id) {
 		if (id != null) {
 			OrderForm orderForm = OrderForm.findById(id);
-			orderForm.delete();
+			if (orderForm.orderFormItems.isEmpty()) {
+				orderForm.delete();
+			}
+			else {
+				List<OrderForm> orderForms = OrderForm.findAll();
+				String mode = "edit";
+				boolean hasChildren = true;
+				List<Company> companies = Company.findAll();
+				List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
+				List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+				renderTemplate("OrderForms/show.html", mode, orderForms, companies, businessYears, businessPartners, hasChildren);	
+			}
 		}
 		show("edit");
 	}
