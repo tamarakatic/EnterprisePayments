@@ -145,14 +145,6 @@ function export_to_xml(id) {
 }
 
 function invoiceReport(id) {
-	/* #{list items:invoices, as:'invoice'}
-	    if(check(${invoice.id}, id)){
-	    	if(${invoice.invoiceItems.size() == 0}){
-	    		$("#reportAlert2").attr("hidden", false);
-	    		return;
-	    	} 
-	    }
-	#{/list} */
 	$(location).attr('href', '/Invoices/invoiceReport?id='+id);
 }
 
@@ -201,10 +193,12 @@ function check(item, id){
 	</div>
 #{/if}
 
-<div class="alert alert-info" hidden="true" id="reportAlert2">
+#{if errorReport}
+<div class="alert alert-info" id="reportAlert2">
 		 <strong>Error!</strong> Please select an invoice with items.
 		 <a href="@{Invoices.show("edit")}" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a>
 </div>
+#{/if}
 
 <div class="alert alert-info" hidden="true" id="reportAlert1">
 		 <strong>Error!</strong> Please select an invoice.

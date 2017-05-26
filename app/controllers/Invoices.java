@@ -25,10 +25,12 @@ import models.BusinessYear;
 import models.Company;
 import models.Invoice;
 import models.InvoiceItem;
+import models.OperationsRegistry;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import play.Logger;
 import play.Play;
 import play.mvc.Controller;
 
@@ -70,6 +72,8 @@ public class Invoices extends Controller {
 			}
 			invoice.number = ++num;
 			invoice.save();
+			String code = "5_1";
+			Logger.info(code + " : id = "+invoice.id);
 	    }
 		show("add");
 	}
@@ -87,6 +91,8 @@ public class Invoices extends Controller {
 	          validation.keep(); 
 	    } else {
 	    	  invoice.save();
+	    	  String code = "5_2";
+			  Logger.info(code + " : id = "+invoice.id);
 	    }
 		show("edit");
 	}
@@ -103,7 +109,9 @@ public class Invoices extends Controller {
 				List<BusinessPartner> businessPartners = BusinessPartner.findAll();
 				renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, hasChildren);	
 			} else {
-				invoice.delete();			
+				invoice.delete();	
+				String code = "5_3";
+				Logger.info(code + " : id = "+invoice.id);
 			} 
 		}
 		show("edit");
@@ -140,6 +148,18 @@ public class Invoices extends Controller {
 	}
 	
 	public static void invoiceReport(Integer id) {
+		Long idd = Long.parseLong(id.toString());
+		Invoice inv = Invoice.findById(idd);
+		if(inv.invoiceItems == null || inv.invoiceItems.size() ==0){
+			List<Invoice> invoices = Invoice.findAll();
+			String mode = "edit";
+			String errorReport = "errorReport";
+			List<Company> companies = Company.findAll();
+			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
+			List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
+			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, errorReport);
+			
+		}
 		try {
 			Map reportParams = new HashMap();
 			reportParams.put("invoicesjasper", id);
