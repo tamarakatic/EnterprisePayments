@@ -5,6 +5,7 @@ import java.util.List;
 import models.BusinessPartner;
 import models.BusinessYear;
 import models.Company;
+import play.Logger;
 import play.mvc.Controller;
 
 public class Companies extends Controller {
@@ -26,9 +27,12 @@ public class Companies extends Controller {
 			params.flash();
 			validation.keep();
 		} 
-		else 
+		else {
 			company.save();
-		
+			String code = "1_1";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+company.id);
+		}
 		show("add");
 	}
 	
@@ -42,8 +46,12 @@ public class Companies extends Controller {
 			params.flash();
 			validation.keep();
 		} 
-		else 
+		else {
 			company.save();
+			String code = "1_2";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+company.id);
+		}
 		
 		show("edit");		
 	}
@@ -66,10 +74,16 @@ public class Companies extends Controller {
 			String has_child = "has_child";
 			try {
 				if (partners != null && !partners.isEmpty() && years != null && !years.isEmpty()) {
+					String code = "1_3";
+					String user = Security.connected();
+					Logger.error(code + " : user = "+user + " id = "+company.id);
 					renderTemplate("Companies/show.html", "edit", has_child);
 				}
 				else {
 					company.delete();
+					String code = "1_3";
+					String user = Security.connected();
+					Logger.info(code + " : user = "+user + " id = "+company.id);
 					show("edit");
 				}
 					

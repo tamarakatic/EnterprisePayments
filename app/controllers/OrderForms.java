@@ -8,6 +8,7 @@ import models.Company;
 import models.OrderForm;
 import models.OrderFormItem;
 import models.Item;
+import play.Logger;
 import play.mvc.Controller;
 
 public class OrderForms extends Controller {
@@ -37,11 +38,17 @@ public class OrderForms extends Controller {
 		}
 		orderForm.numberOfOrder = ++num;
 		orderForm.save();
+		String code = "4_1";
+		String user = Security.connected();
+		Logger.info(code + " : user = "+user + " id = "+orderForm.id);
 		show("add");
 	}
 	
 	public static void edit(OrderForm orderForm) {
 		orderForm.save();
+		String code = "4_2";
+		String user = Security.connected();
+		Logger.info(code + " : user = "+user + " id = "+orderForm.id);
 		show("edit");
 	}
 	
@@ -60,6 +67,9 @@ public class OrderForms extends Controller {
 			OrderForm orderForm = OrderForm.findById(id);
 			if (orderForm.orderFormItems.isEmpty()) {
 				orderForm.delete();
+				String code = "4_3";
+				String user = Security.connected();
+				Logger.info(code + " : user = "+user + " id = "+orderForm.id);
 			}
 			else {
 				List<OrderForm> orderForms = OrderForm.findAll();
@@ -68,6 +78,11 @@ public class OrderForms extends Controller {
 				List<Company> companies = Company.findAll();
 				List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 				List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+				
+				String code = "4_3";
+				String user = Security.connected();
+				Logger.error(code + " : user = "+user + " id = "+orderForm.id);
+				
 				renderTemplate("OrderForms/show.html", mode, orderForms, companies, businessYears, businessPartners, hasChildren);	
 			}
 		}

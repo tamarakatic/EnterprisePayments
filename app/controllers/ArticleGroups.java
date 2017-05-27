@@ -5,6 +5,7 @@ import java.util.List;
 import models.ArticleGroup;
 import models.GSTType;
 import models.Item;
+import play.Logger;
 import play.mvc.Controller;
 
 public class ArticleGroups extends Controller{
@@ -22,8 +23,12 @@ public class ArticleGroups extends Controller{
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
-		} else 
+		} else {
 			articlegroup.save();
+			String code = "7_1";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+articlegroup.id);
+		}
 		
 		show("add");
 	}
@@ -33,8 +38,12 @@ public class ArticleGroups extends Controller{
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
-		} else 
+		} else {
 			articlegroup.save();
+			String code = "7_2";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+articlegroup.id);
+		}
 		
 		show("edit");
 	}
@@ -51,11 +60,15 @@ public class ArticleGroups extends Controller{
 			List<Item> items = Item.find("byArticlegroup_id", id).fetch();			
 			String has_child = "has_child";
 			try {
+				String code = "7_3";
+				String user = Security.connected();
 				if (items != null && !items.isEmpty()) {
+					Logger.error(code + " : user = "+user + " id = "+articlegroup.id);
 					renderTemplate("ArticleGroups/show.html", "edit", has_child);
 				}
 				else {
 					articlegroup.delete();
+					Logger.info(code + " : user = "+user + " id = "+articlegroup.id);
 					show("edit");
 				}
 					

@@ -5,6 +5,7 @@ import java.util.List;
 import models.Item;
 import models.Pricelist;
 import models.PricelistItem;
+import play.Logger;
 import play.mvc.Controller;
 
 public class PricelistItems extends Controller{
@@ -25,8 +26,12 @@ public class PricelistItems extends Controller{
 			params.flash();
 			validation.keep();
 		} 
-		else 
+		else {
 			pricelistitem.save();
+			String code = "10_4";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+pricelistitem.id);
+		}
 		
 		show("add");
 	}
@@ -38,8 +43,12 @@ public class PricelistItems extends Controller{
 			params.flash();
 			validation.keep();
 		} 
-		else 
+		else {
 			pricelistitem.save();
+			String code = "10_5";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+pricelistitem.id);
+		}
 		
 		show("edit");
 	}
@@ -54,6 +63,9 @@ public class PricelistItems extends Controller{
 		if (id != null) {
 			PricelistItem pricelistitem = PricelistItem.findById(id);
 			pricelistitem.delete();
+			String code = "10_6";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+pricelistitem.id);
 		}
 		show("edit");
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.GSTRate;
 import models.GSTType;
+import play.Logger;
 import play.mvc.Controller;
 
 public class GSTRates extends Controller {
@@ -22,8 +23,12 @@ public class GSTRates extends Controller {
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
-		} else
+		} else {
 			gstrate.save();
+			String code = "9_1";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+gstrate.id);
+		}
 		
 		show("add");
 	}
@@ -34,8 +39,12 @@ public class GSTRates extends Controller {
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
-		} else
+		} else {
 			gstrate.save();
+			String code = "9_2";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+gstrate.id);
+		}
 		
 		show("edit");
 	}
@@ -51,6 +60,9 @@ public class GSTRates extends Controller {
 		if (id != null) {
 			GSTRate gstrate = GSTRate.findById(id);
 			gstrate.delete();
+			String code = "9_3";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+gstrate.id);
 		}
 		show("edit");
 	}

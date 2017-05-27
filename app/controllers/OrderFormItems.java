@@ -10,7 +10,7 @@ import models.InvoiceItem;
 import models.Company;
 import models.BusinessYear;
 import models.BusinessPartner;
-
+import play.Logger;
 import play.mvc.Controller;
 
 public class OrderFormItems extends Controller {
@@ -28,11 +28,17 @@ public class OrderFormItems extends Controller {
 	public static void create(OrderFormItem orderFormItem) {
 		orderFormItem.orderForm = OrderForm.findById(orderFormItem.orderForm.id);
 		orderFormItem.save();
+		String code = "4_4";
+		String user = Security.connected();
+		Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
 		show("add");
 	}
 	
 	public static void edit(OrderFormItem orderFormItem) {
 		orderFormItem.save();
+		String code = "4_5";
+		String user = Security.connected();
+		Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
 		show("edit");
 	}
 	
@@ -48,6 +54,9 @@ public class OrderFormItems extends Controller {
 		if (id != null) {
 			OrderFormItem orderFormItem = OrderFormItem.findById(id);
 			orderFormItem.delete();
+			String code = "4_6";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
 		}
 		show("edit");
 	}
@@ -65,11 +74,17 @@ public class OrderFormItems extends Controller {
 	public static void createNext(OrderFormItem orderFormItem) {
 		orderFormItem.orderForm = OrderForm.findById(orderFormItem.orderForm.id);
 		orderFormItem.save();
+		String code = "4_4";
+		String user = Security.connected();
+		Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
 		showNext("add", orderFormItem.orderForm.id);
 	}
 	
 	public static void editNext(OrderFormItem orderFormItem) {
 		orderFormItem.save();
+		String code = "4_5";
+		String user = Security.connected();
+		Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
 		showNext("edit", orderFormItem.orderForm.id);
 	}
 	
@@ -77,6 +92,9 @@ public class OrderFormItems extends Controller {
 		if (id != null){
 			OrderFormItem orderFormItem = OrderFormItem.findById(id);
 			orderFormItem.delete();		
+			String code = "4_6";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
 		}
 		showNext("edit", orderFormId);
 	}
@@ -114,6 +132,11 @@ public class OrderFormItems extends Controller {
 		List<Company> companies = Company.findAll();
 		List<BusinessYear> businessYears = BusinessYear.findAll();
 		List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+		
+		String code = "4_7";
+		String user = Security.connected();
+		Logger.info(code + " : user = "+user + " id = "+id);
+		
 		renderTemplate("invoices/show.html", mode, invoices, companies, businessYears, businessPartners);
 	}
 }

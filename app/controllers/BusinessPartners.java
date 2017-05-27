@@ -5,6 +5,7 @@ import java.util.List;
 import models.BusinessPartner;
 import models.BusinessYear;
 import models.Company;
+import play.Logger;
 import play.mvc.Controller;
 
 public class BusinessPartners extends Controller {
@@ -25,8 +26,12 @@ public class BusinessPartners extends Controller {
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
-		} else
+		} else {
+			String code = "2_1";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+businesspartner.id);
 			businesspartner.save();
+		}
 		
 		show("add");
 	}
@@ -39,8 +44,12 @@ public class BusinessPartners extends Controller {
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
-		} else
+		} else {
+			String code = "2_2";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+businesspartner.id);
 			businesspartner.save();
+		}
 		
 		show("edit");
 	}
@@ -61,6 +70,9 @@ public class BusinessPartners extends Controller {
 		if (id != null) {
 			BusinessPartner partners = BusinessPartner.findById(id);
 			partners.delete();
+			String code = "2_3";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+id);
 		}
 		show("edit");
 	}

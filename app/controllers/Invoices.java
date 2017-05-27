@@ -1,12 +1,11 @@
 package controllers;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,7 +24,8 @@ import models.BusinessYear;
 import models.Company;
 import models.Invoice;
 import models.InvoiceItem;
-import models.OperationsRegistry;
+import models.Permission;
+import models.User;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -33,6 +33,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import play.Logger;
 import play.Play;
 import play.mvc.Controller;
+import play.mvc.results.Result;
 
 public class Invoices extends Controller {
 
@@ -48,6 +49,7 @@ public class Invoices extends Controller {
 	}
 	
 	public static void create(Invoice invoice) {
+		authorize("createInvoice");
 		Company company = Company.findById(invoice.company.id);
 		invoice.company = company;
 		invoice.businessYear = BusinessYear.findById(invoice.businessYear.id);
@@ -72,8 +74,9 @@ public class Invoices extends Controller {
 			}
 			invoice.number = ++num;
 			invoice.save();
+			String user = Security.connected();
 			String code = "5_1";
-			Logger.info(code + " : id = "+invoice.id);
+			Logger.info(code + " : user = "+user + " id = "+invoice.id);
 	    }
 		show("add");
 	}
@@ -91,13 +94,15 @@ public class Invoices extends Controller {
 	          validation.keep(); 
 	    } else {
 	    	  invoice.save();
-	    	  String code = "5_2";
-			  Logger.info(code + " : id = "+invoice.id);
+			  String code = "5_2";
+			  String user = Security.connected();
+			  Logger.info(code + " : user = "+user + " id = "+invoice.id);
 	    }
 		show("edit");
 	}
 	
 	public static void delete(Long id) {
+		authorize("deleteInvoice");
 		if (id != null){
 			Invoice invoice = Invoice.findById(id);
 			if(invoice.invoiceItems != null && !invoice.invoiceItems.isEmpty()){
@@ -107,11 +112,17 @@ public class Invoices extends Controller {
 				List<Company> companies = Company.findAll();
 				List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 				List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+				
+				String code = "5_3";
+				String user = Security.connected();
+				Logger.error(code + " : user = "+user + " id = "+invoice.id);
+				
 				renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, hasChildren);	
 			} else {
 				invoice.delete();	
 				String code = "5_3";
-				Logger.info(code + " : id = "+invoice.id);
+				String user = Security.connected();
+				Logger.info(code + " : user = "+user + " id = "+invoice.id);
 			} 
 		}
 		show("edit");
@@ -175,9 +186,17 @@ public class Invoices extends Controller {
 			List<Company> companies = Company.findAll();
 			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 			List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
+			
+			String code = "5_8";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+id);
+			
 			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);
 		} catch (Exception e) {
 			e.printStackTrace();
+			String code = "5_8";
+			String user = Security.connected();
+			Logger.error(code + " : user = "+user + " id = "+id);
 		}
 		
 		show("edit");
@@ -293,9 +312,16 @@ public class Invoices extends Controller {
 	         DOMSource source = new DOMSource(doc);
 	         StreamResult result = new StreamResult(new File("invoices.xml"));
 	         transformer.transform(source, result);
+	         
+	         String code = "5_7";
+			 String user = Security.connected();
+			 Logger.info(code + " : user = "+user + " id = "+invoice.id);
 	               
 	      } catch (Exception e) {
 	         e.printStackTrace();
+	         String code = "5_7";
+			 String user = Security.connected();
+			 Logger.error(code + " : user = "+user + " id = "+invoice.id);
 	      }
 		}
 	
@@ -354,12 +380,40 @@ public class Invoices extends Controller {
 			List<Company> companies = Company.findAll();
 			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 			List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
+			
+			String code = "5_9";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user);
+			
 			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			String code = "5_9";
+			String user = Security.connected();
+			Logger.error(code + " : user = "+user);
 		}
 		show("edit");
+	}
+	
+	private static void authorize(String operationName){
+		String username = Security.connected();
+		List<User> users = User.find("byUsername", username).fetch();
+		if(users.isEmpty()) {
+			render("errors/401.html");
+		} 
+		User user = users.get(0);
+		boolean check = false;
+		List<Permission> permissions = user.role.permissions;
+		for(Permission p : permissions){
+			if(p.name.equals(operationName)){
+				check = true;
+				break;
+			}
+		}
+		if(!check) {
+			render("errors/401.html");
+		}
 	}
 	
 }

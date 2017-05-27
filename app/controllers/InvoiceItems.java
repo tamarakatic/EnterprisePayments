@@ -12,6 +12,7 @@ import models.Invoice;
 import models.InvoiceItem;
 import models.Item;
 import models.PricelistItem;
+import play.Logger;
 import play.mvc.Controller;
 
 public class InvoiceItems extends Controller{
@@ -64,6 +65,10 @@ public class InvoiceItems extends Controller{
 	    } else {
 	    	invoiceItem = calculate(invoiceItem);
 	    	invoiceItem.save();
+	    	
+			String code = "5_4";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
 	    }
 		show("add");
 	}
@@ -80,6 +85,10 @@ public class InvoiceItems extends Controller{
 	    } else {
 	    	invoiceItem = calculate(invoiceItem);
 	    	invoiceItem.save();
+	    	
+			String code = "5_5";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
 	    }
 		show("edit");
 	}
@@ -92,7 +101,11 @@ public class InvoiceItems extends Controller{
 			invoice.tax -= invoiceItem.taxTotal;
 			invoice.total -= invoiceItem.total;
 			invoice.save();
-			invoiceItem.delete();			
+			invoiceItem.delete();	
+			
+			String code = "5_6";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
 		}
 		show("edit");
 	}
@@ -158,6 +171,9 @@ public class InvoiceItems extends Controller{
 	    } else {
 			invoiceItem = calculate(invoiceItem);
 	    	invoiceItem.save();
+			String code = "5_4";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
 	    }
 		showNext("add", invoiceItem.invoice.id);
 	}
@@ -174,6 +190,9 @@ public class InvoiceItems extends Controller{
 	    } else {
 	    	invoiceItem = calculate(invoiceItem);
 	    	invoiceItem.save();
+			String code = "5_5";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
 	    }
 		showNext("edit", invoiceItem.invoice.id);
 	}
@@ -186,7 +205,10 @@ public class InvoiceItems extends Controller{
 			invoice.tax -= invoiceItem.taxTotal;
 			invoice.total -= invoiceItem.total;
 			invoice.save();
-			invoiceItem.delete();			
+			invoiceItem.delete();	
+			String code = "5_6";
+			String user = Security.connected();
+			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
 		}
 		showNext("edit", invoiceId);
 	}
