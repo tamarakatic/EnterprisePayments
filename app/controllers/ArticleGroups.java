@@ -5,12 +5,15 @@ import java.util.List;
 import models.ArticleGroup;
 import models.GSTType;
 import models.Item;
+import models.Permission;
+import models.User;
 import play.Logger;
 import play.mvc.Controller;
 
 public class ArticleGroups extends Controller{
 	
 	public static void show(String mode) {
+		authorize("viewArticleGroups");
 		List<ArticleGroup> articlegroups = ArticleGroup.findAll();
 		List<GSTType> gsttypes = GSTType.findAll();
 		if (mode == null || mode.equals(""))
@@ -19,6 +22,7 @@ public class ArticleGroups extends Controller{
 	}
 	
 	public static void create(ArticleGroup articlegroup) {	
+		authorize("createArticleGroup");
 		validation.required("name", articlegroup.name);		
 		if (validation.hasErrors()) {
 			params.flash();
@@ -34,6 +38,7 @@ public class ArticleGroups extends Controller{
 	}
 
 	public static void edit(ArticleGroup articlegroup) {
+		authorize("editArticleGroup");
 		validation.required("name", articlegroup.name);		
 		if (validation.hasErrors()) {
 			params.flash();
@@ -55,6 +60,7 @@ public class ArticleGroups extends Controller{
 	}
 
 	public static void delete(Long id) {
+		authorize("deleteArticleGroup");
 		if (id != null) {
 			ArticleGroup articlegroup = ArticleGroup.findById(id);
 			List<Item> items = Item.find("byArticlegroup_id", id).fetch();			
@@ -85,6 +91,26 @@ public class ArticleGroups extends Controller{
 			renderTemplate("Items/show.html", "edit", items, articlegroup_id);
 		}
 		show("edit");
+	}
+	
+	private static void authorize(String operationName){
+		String username = Security.connected();
+		List<User> users = User.find("byUsername", username).fetch();
+		if(users.isEmpty()) {
+			render("errors/401.html");
+		} 
+		User user = users.get(0);
+		boolean check = false;
+		List<Permission> permissions = user.role.permissions;
+		for(Permission p : permissions){
+			if(p.name.equals(operationName)){
+				check = true;
+				break;
+			}
+		}
+		if(!check) {
+			render("errors/401.html");
+		}
 	}
 
 }

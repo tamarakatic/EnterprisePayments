@@ -5,12 +5,15 @@ import java.util.List;
 import models.ArticleGroup;
 import models.GSTRate;
 import models.GSTType;
+import models.Permission;
+import models.User;
 import play.Logger;
 import play.mvc.Controller;
 
 public class GSTTypes extends Controller{
 
 	public static void show(String mode) {
+		authorize("viewGSTTypes");
 		List<GSTType> gsttypes = GSTType.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
@@ -18,6 +21,7 @@ public class GSTTypes extends Controller{
 	}
 	
 	public static void create(GSTType gsttype) {
+		authorize("createGSTType");
 		validation.required("name",gsttype.name);		
 		if (validation.hasErrors()) {
 			params.flash();
@@ -34,6 +38,7 @@ public class GSTTypes extends Controller{
 	}
 	
 	public static void edit(GSTType gsttype) {
+		authorize("editGSTType");
 		validation.required("name",gsttype.name);
 		if (validation.hasErrors()) {
 			params.flash();
@@ -55,6 +60,7 @@ public class GSTTypes extends Controller{
 	}
 	
 	public static void delete(Long id) {
+		authorize("deleteGSTType");
 		if (id != null){
 			GSTType gsttype = GSTType.findById(id);
 			List<ArticleGroup> articlegroups = ArticleGroup.find("byGSTType_id", id).fetch();
@@ -94,5 +100,25 @@ public class GSTTypes extends Controller{
 			renderTemplate("GSTRates/show.html", "edit", gstrates, gsttype_id);
 		}
 		show("edit");
+	}
+	
+	private static void authorize(String operationName){
+		String username = Security.connected();
+		List<User> users = User.find("byUsername", username).fetch();
+		if(users.isEmpty()) {
+			render("errors/401.html");
+		} 
+		User user = users.get(0);
+		boolean check = false;
+		List<Permission> permissions = user.role.permissions;
+		for(Permission p : permissions){
+			if(p.name.equals(operationName)){
+				check = true;
+				break;
+			}
+		}
+		if(!check) {
+			render("errors/401.html");
+		}
 	}
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import models.OrderForm;
 import models.OrderFormItem;
+import models.Permission;
+import models.User;
 import models.Item;
 import models.Invoice;
 import models.InvoiceItem;
@@ -16,6 +18,7 @@ import play.mvc.Controller;
 public class OrderFormItems extends Controller {
 	
 	public static void show(String mode) {
+		authorize("viewOrderFormItems");
 		List<OrderFormItem> orderFormItems = OrderFormItem.findAll();
 		List<OrderForm> orderForms = OrderForm.findAll();
 		List<Item> items = Item.findAll();
@@ -26,6 +29,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void create(OrderFormItem orderFormItem) {
+		authorize("createOrderFormItem");
 		orderFormItem.orderForm = OrderForm.findById(orderFormItem.orderForm.id);
 		orderFormItem.save();
 		String code = "4_4";
@@ -35,6 +39,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void edit(OrderFormItem orderFormItem) {
+		authorize("editOrderFormItem");
 		orderFormItem.save();
 		String code = "4_5";
 		String user = Security.connected();
@@ -51,6 +56,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void delete(Long id) {
+		authorize("deleteOrderFormItem");
 		if (id != null) {
 			OrderFormItem orderFormItem = OrderFormItem.findById(id);
 			orderFormItem.delete();
@@ -62,6 +68,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void showNext(String mode, Long id) {
+		authorize("viewOrderFormItems");
 		OrderForm orderForm = OrderForm.findById(id);
 		List<OrderFormItem> orderFormItems = OrderFormItem.find("byOrderForm", orderForm).fetch();
 		List<Item> items = Item.findAll();
@@ -72,6 +79,7 @@ public class OrderFormItems extends Controller {
 	}
 
 	public static void createNext(OrderFormItem orderFormItem) {
+		authorize("createOrderFormItem");
 		orderFormItem.orderForm = OrderForm.findById(orderFormItem.orderForm.id);
 		orderFormItem.save();
 		String code = "4_4";
@@ -81,6 +89,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void editNext(OrderFormItem orderFormItem) {
+		authorize("editOrderFormItem");
 		orderFormItem.save();
 		String code = "4_5";
 		String user = Security.connected();
@@ -89,6 +98,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void deleteNext(Long id, Long orderFormId) {
+		authorize("deleteOrderFormItem");
 		if (id != null){
 			OrderFormItem orderFormItem = OrderFormItem.findById(id);
 			orderFormItem.delete();		
@@ -109,6 +119,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void generateInvoice(Long id) {
+		authorize("generateInvoiceFromOrderForm");
 		OrderForm orderForm = OrderForm.findById(id);
 		List<OrderFormItem> orderFormItems = OrderFormItem.find("byOrderForm", orderForm).fetch();
 		
@@ -138,5 +149,25 @@ public class OrderFormItems extends Controller {
 		Logger.info(code + " : user = "+user + " id = "+id);
 		
 		renderTemplate("invoices/show.html", mode, invoices, companies, businessYears, businessPartners);
+	}
+	
+	private static void authorize(String operationName){
+		String username = Security.connected();
+		List<User> users = User.find("byUsername", username).fetch();
+		if(users.isEmpty()) {
+			render("errors/401.html");
+		} 
+		User user = users.get(0);
+		boolean check = false;
+		List<Permission> permissions = user.role.permissions;
+		for(Permission p : permissions){
+			if(p.name.equals(operationName)){
+				check = true;
+				break;
+			}
+		}
+		if(!check) {
+			render("errors/401.html");
+		}
 	}
 }

@@ -4,12 +4,15 @@ import java.util.List;
 
 import models.GSTRate;
 import models.GSTType;
+import models.Permission;
+import models.User;
 import play.Logger;
 import play.mvc.Controller;
 
 public class GSTRates extends Controller {
 	
 	public static void show(String mode) {
+		authorize("viewGSTRates");
 		List<GSTRate> gstrates = GSTRate.findAll();
 		List<GSTType> gsttypes = GSTType.findAll();
 		if (mode == null || mode.equals(""))
@@ -18,6 +21,7 @@ public class GSTRates extends Controller {
 	}
 	
 	public static void create(GSTRate gstrate) {
+		authorize("createGSTRate");
 		validation.required("GSTPercent", gstrate.GSTPercent);
 		validation.min("GSTPercent", gstrate.GSTPercent, 0.01);		
 		if (validation.hasErrors()) {
@@ -34,6 +38,7 @@ public class GSTRates extends Controller {
 	}
 
 	public static void edit(GSTRate gstrate) {
+		authorize("editGSTRate");
 		validation.required("GSTPercent", gstrate.GSTPercent);
 		validation.min("GSTPercent", gstrate.GSTPercent, 0.01);		
 		if (validation.hasErrors()) {
@@ -57,6 +62,7 @@ public class GSTRates extends Controller {
 	}
 
 	public static void delete(Long id) {
+		authorize("deleteGSTRate");
 		if (id != null) {
 			GSTRate gstrate = GSTRate.findById(id);
 			gstrate.delete();
@@ -65,6 +71,26 @@ public class GSTRates extends Controller {
 			Logger.info(code + " : user = "+user + " id = "+gstrate.id);
 		}
 		show("edit");
+	}
+	
+	private static void authorize(String operationName){
+		String username = Security.connected();
+		List<User> users = User.find("byUsername", username).fetch();
+		if(users.isEmpty()) {
+			render("errors/401.html");
+		} 
+		User user = users.get(0);
+		boolean check = false;
+		List<Permission> permissions = user.role.permissions;
+		for(Permission p : permissions){
+			if(p.name.equals(operationName)){
+				check = true;
+				break;
+			}
+		}
+		if(!check) {
+			render("errors/401.html");
+		}
 	}
 
 }

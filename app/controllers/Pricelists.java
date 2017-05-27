@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import models.PricelistItem;
+import models.User;
 import models.GSTType;
 import models.Item;
+import models.Permission;
 import models.Pricelist;
 import play.Logger;
 import play.mvc.Controller;
@@ -14,6 +16,7 @@ import play.mvc.Controller;
 public class Pricelists extends Controller{
 	
 	public static void show(String mode) {
+		authorize("viewPriceLists");
 		List<Pricelist> pricelists = Pricelist.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
@@ -21,6 +24,7 @@ public class Pricelists extends Controller{
 	}
 	
 	public static void create(Pricelist pricelist) {
+		authorize("createPriceList");
 		pricelist.save();	
 		String code = "10_1";
 		String user = Security.connected();
@@ -29,6 +33,7 @@ public class Pricelists extends Controller{
 	}
 	
 	public static void edit(Pricelist pricelist) {
+		authorize("editPriceList");
 		pricelist.save();
 		String code = "10_2";
 		String user = Security.connected();
@@ -42,6 +47,7 @@ public class Pricelists extends Controller{
 	}
 	
 	public static void delete(Long id) {
+		authorize("deletePriceList");
 		if (id != null){
 			Pricelist pricelist = Pricelist.findById(id);
 			List<PricelistItem> pricelistitems = PricelistItem.find("byPricelist_id", id).fetch();
@@ -74,6 +80,7 @@ public class Pricelists extends Controller{
 	}
 		
 	public static void change_price_list(Long pricelist_id, Integer percentage) {
+		authorize("copyPriceList");
 		if (pricelist_id != null) {
 			Pricelist pricelist = Pricelist.findById(pricelist_id);
 			DecimalFormat decimalFormat = new DecimalFormat(".##");
@@ -96,6 +103,26 @@ public class Pricelists extends Controller{
 			redirect("/PricelistItems/show?");
 		}    
 		show("edit");
+	}
+	
+	private static void authorize(String operationName){
+		String username = Security.connected();
+		List<User> users = User.find("byUsername", username).fetch();
+		if(users.isEmpty()) {
+			render("errors/401.html");
+		} 
+		User user = users.get(0);
+		boolean check = false;
+		List<Permission> permissions = user.role.permissions;
+		for(Permission p : permissions){
+			if(p.name.equals(operationName)){
+				check = true;
+				break;
+			}
+		}
+		if(!check) {
+			render("errors/401.html");
+		}
 	}
 
 }

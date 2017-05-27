@@ -38,6 +38,7 @@ import play.mvc.results.Result;
 public class Invoices extends Controller {
 
 	public static void show(String mode){
+		authorize("viewInvoices");
 		List<Invoice> invoices = Invoice.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
@@ -82,6 +83,7 @@ public class Invoices extends Controller {
 	}
 	
 	public static void edit(Invoice invoice) {
+		authorize("editInvoice");
 		validation.required("company",invoice.company);
 		validation.required("business partner", invoice.businessPartner);
 		validation.required("business year",invoice.businessYear);
@@ -129,6 +131,7 @@ public class Invoices extends Controller {
 	}
 	
 	public static void export(Long id) {
+		authorize("exportInvoiceAsXML");
 		if (id != null) {
 			Invoice invoice = Invoice.findById(id);
 			List<InvoiceItem> items = InvoiceItem.find("byInvoice_id", id).fetch();
@@ -159,6 +162,7 @@ public class Invoices extends Controller {
 	}
 	
 	public static void invoiceReport(Integer id) {
+		authorize("exportInvoiceAsPdf");
 		Long idd = Long.parseLong(id.toString());
 		Invoice inv = Invoice.findById(idd);
 		if(inv.invoiceItems == null || inv.invoiceItems.size() ==0){
@@ -326,6 +330,7 @@ public class Invoices extends Controller {
 		}
 	
 	public static void generateKIF(String begin, String end) {
+		authorize("exportMultipleInvoicesAsPdf");
 		Date beginDate = new Date();
 		Date endDate = new Date();
 		if(begin != null && !begin.equals("")) {

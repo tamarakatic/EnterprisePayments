@@ -7,6 +7,8 @@ import models.BusinessYear;
 import models.Company;
 import models.OrderForm;
 import models.OrderFormItem;
+import models.Permission;
+import models.User;
 import models.Item;
 import play.Logger;
 import play.mvc.Controller;
@@ -14,6 +16,7 @@ import play.mvc.Controller;
 public class OrderForms extends Controller {
 	
 	public static void show(String mode) {
+		authorize("viewOrderForms");
 		List<OrderForm> orderForms = OrderForm.findAll();
 		List<Company> companies = Company.findAll();
 		List<BusinessYear> businessYears = BusinessYear.findAll();
@@ -25,6 +28,7 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void create(OrderForm orderForm) {
+		authorize("createOrderForm");
 		Company company = Company.findById(orderForm.company.id);
 		orderForm.company = company;
 		orderForm.businessYear = BusinessYear.findById(orderForm.businessYear.id);
@@ -45,6 +49,7 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void edit(OrderForm orderForm) {
+		authorize("editOrderForm");
 		orderForm.save();
 		String code = "4_2";
 		String user = Security.connected();
@@ -63,6 +68,7 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void delete(Long id) {
+		authorize("deleteOrderForm");
 		if (id != null) {
 			OrderForm orderForm = OrderForm.findById(id);
 			if (orderForm.orderFormItems.isEmpty()) {
@@ -99,4 +105,23 @@ public class OrderForms extends Controller {
 		show("edit");
 	}
 	
+	private static void authorize(String operationName){
+		String username = Security.connected();
+		List<User> users = User.find("byUsername", username).fetch();
+		if(users.isEmpty()) {
+			render("errors/401.html");
+		} 
+		User user = users.get(0);
+		boolean check = false;
+		List<Permission> permissions = user.role.permissions;
+		for(Permission p : permissions){
+			if(p.name.equals(operationName)){
+				check = true;
+				break;
+			}
+		}
+		if(!check) {
+			render("errors/401.html");
+		}
+	}
 }

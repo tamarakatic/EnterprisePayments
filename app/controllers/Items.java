@@ -3,7 +3,9 @@ package controllers;
 import java.util.List;
 
 import models.Item;
+import models.Permission;
 import models.PricelistItem;
+import models.User;
 import models.ArticleGroup;
 import play.Logger;
 import play.mvc.Controller;
@@ -11,6 +13,7 @@ import play.mvc.Controller;
 public class Items extends Controller{
 	
 	public static void show(String mode) {
+		authorize("viewItems");
 		List<Item> items = Item.findAll();
 		List<ArticleGroup> articlegroups = ArticleGroup.findAll();
 		if (mode == null || mode.equals(""))
@@ -19,6 +22,7 @@ public class Items extends Controller{
 	}
 
 	public static void create(Item item) {	
+		authorize("createItem");
 		validation.required("name", item.name);
 		if (validation.hasErrors()) {
 			params.flash();
@@ -34,6 +38,7 @@ public class Items extends Controller{
 	}
 
 	public static void edit(Item item) {
+		authorize("editItem");
 		validation.required("name", item.name);
 		if (validation.hasErrors()) {
 			params.flash();
@@ -56,6 +61,7 @@ public class Items extends Controller{
 	}
 
 	public static void delete(Long id) {
+		authorize("deleteItem");
 		if (id != null) {
 			Item item = Item.findById(id);
 			List<PricelistItem> pricelistitems = PricelistItem.find("byItem_id", id).fetch();
@@ -89,4 +95,23 @@ public class Items extends Controller{
 		show("edit");
 	}
 
+	private static void authorize(String operationName){
+		String username = Security.connected();
+		List<User> users = User.find("byUsername", username).fetch();
+		if(users.isEmpty()) {
+			render("errors/401.html");
+		} 
+		User user = users.get(0);
+		boolean check = false;
+		List<Permission> permissions = user.role.permissions;
+		for(Permission p : permissions){
+			if(p.name.equals(operationName)){
+				check = true;
+				break;
+			}
+		}
+		if(!check) {
+			render("errors/401.html");
+		}
+	}
 }
