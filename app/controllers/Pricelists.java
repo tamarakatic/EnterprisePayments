@@ -25,19 +25,15 @@ public class Pricelists extends Controller{
 	
 	public static void create(Pricelist pricelist) {
 		authorize("createPriceList");
-		pricelist.save();	
-		String code = "10_1";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+pricelist.id);
+		Pricelist p = pricelist.save();	
+		Application.logToFile("10_1", p.id, " - date : "+pricelist.validationDate);
 		show("add");
 	}
 	
 	public static void edit(Pricelist pricelist) {
 		authorize("editPriceList");
 		pricelist.save();
-		String code = "10_2";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+pricelist.id);
+		Application.logToFile("10_2", pricelist.id, " - date : "+pricelist.validationDate);
 		show("edit");		
 	}
 	
@@ -52,16 +48,14 @@ public class Pricelists extends Controller{
 			Pricelist pricelist = Pricelist.findById(id);
 			List<PricelistItem> pricelistitems = PricelistItem.find("byPricelist_id", id).fetch();
 			String has_child = "has_child";
-			String code = "10_3";
-			String user = Security.connected();
 			try {
 				if (pricelistitems != null && !pricelistitems.isEmpty()) {
-					Logger.error(code + " : user = "+user + " id = "+pricelist.id);
+					Application.logErrorToFile("10_1", pricelist.id);
 					renderTemplate("Pricelists/show.html", "edit", has_child);
 				}
 				else {
 					pricelist.delete();
-					Logger.info(code + " : user = "+user + " id = "+pricelist.id);
+					Application.logToFile("10_1", pricelist.id, "");
 					show("edit");
 				}					
 			} catch (Exception e) {
@@ -96,9 +90,7 @@ public class Pricelists extends Controller{
 					priceListItemId.price = Double.parseDouble(decimalFormat.format(priceListItemId.price * (percentage / 100.0f)));
 				}				
 				priceListItemId.save();		
-				String code = "10_7";
-				String user = Security.connected();
-				Logger.info(code + " : user = "+user + " id = "+pricelist.id);
+				Application.logToFile("10_7", pricelist_id, " - percentage : "+percentage);
 			}			
 			redirect("/PricelistItems/show?");
 		}    

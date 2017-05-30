@@ -31,10 +31,8 @@ public class BusinessPartners extends Controller {
 			params.flash();
 			validation.keep();
 		} else {
-			String code = "2_1";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+businesspartner.id);
-			businesspartner.save();
+			BusinessPartner bp = businesspartner.save();
+			Application.logToFile("2_1", bp.id, " - account : "+businesspartner.account);
 		}
 		
 		show("add");
@@ -50,9 +48,7 @@ public class BusinessPartners extends Controller {
 			params.flash();
 			validation.keep();
 		} else {
-			String code = "2_2";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+businesspartner.id);
+			Application.logToFile("2_2", businesspartner.id, " - account : "+businesspartner.account);
 			businesspartner.save();
 		}
 		
@@ -76,9 +72,7 @@ public class BusinessPartners extends Controller {
 		if (id != null) {
 			BusinessPartner partners = BusinessPartner.findById(id);
 			partners.delete();
-			String code = "2_3";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+id);
+			Application.logToFile("2_3", id, "");
 		}
 		show("edit");
 	}

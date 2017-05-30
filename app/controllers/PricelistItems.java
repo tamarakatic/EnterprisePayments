@@ -31,10 +31,8 @@ public class PricelistItems extends Controller{
 			validation.keep();
 		} 
 		else {
-			pricelistitem.save();
-			String code = "10_4";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+pricelistitem.id);
+			PricelistItem p = pricelistitem.save();
+			Application.logToFile("10_4", p.id, " - price : "+pricelistitem.price);
 		}
 		
 		show("add");
@@ -50,9 +48,7 @@ public class PricelistItems extends Controller{
 		} 
 		else {
 			pricelistitem.save();
-			String code = "10_5";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+pricelistitem.id);
+			Application.logToFile("10_5", pricelistitem.id, " - price : "+pricelistitem.price);
 		}
 		
 		show("edit");
@@ -69,9 +65,7 @@ public class PricelistItems extends Controller{
 		if (id != null) {
 			PricelistItem pricelistitem = PricelistItem.findById(id);
 			pricelistitem.delete();
-			String code = "10_6";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+pricelistitem.id);
+			Application.logToFile("10_6", id, "");
 		}
 		show("edit");
 	}

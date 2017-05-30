@@ -28,10 +28,8 @@ public class GSTTypes extends Controller{
 			validation.keep();
 		} 
 		else {
-			gsttype.save();	
-			String code = "8_1";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+gsttype.id);
+			GSTType g = gsttype.save();	
+			Application.logToFile("8_1", g.id, "");
 		}
 		
 		show("add");
@@ -46,9 +44,7 @@ public class GSTTypes extends Controller{
 		} 
 		else {
 			gsttype.save();	
-			String code = "8_2";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+gsttype.id);
+			Application.logToFile("8_2", gsttype.id, "");
 		}
 		
 		show("edit");		
@@ -66,16 +62,14 @@ public class GSTTypes extends Controller{
 			List<ArticleGroup> articlegroups = ArticleGroup.find("byGSTType_id", id).fetch();
 			List<GSTRate> gstrates = GSTRate.find("byGSTType_id", id).fetch();
 			String has_child = "has_child";
-			String code = "8_1";
-			String user = Security.connected();
 			try {
 				if (articlegroups != null && !articlegroups.isEmpty() && gstrates != null && !gstrates.isEmpty()) {
-					Logger.info(code + " : user = "+user + " id = "+gsttype.id);
+					Application.logToFile("8_3", id, "");
 					renderTemplate("GSTTypes/show.html", "edit", has_child);
 				}
 				else {
 					gsttype.delete();
-					Logger.error(code + " : user = "+user + " id = "+gsttype.id);
+					Application.logErrorToFile("8_3", id);
 					show("edit");
 				}
 				

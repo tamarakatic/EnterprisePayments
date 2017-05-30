@@ -28,10 +28,8 @@ public class GSTRates extends Controller {
 			params.flash();
 			validation.keep();
 		} else {
-			gstrate.save();
-			String code = "9_1";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+gstrate.id);
+			GSTRate g = gstrate.save();
+			Application.logToFile("9_1", g.id, " - percent : "+g.GSTPercent);
 		}
 		
 		show("add");
@@ -46,9 +44,7 @@ public class GSTRates extends Controller {
 			validation.keep();
 		} else {
 			gstrate.save();
-			String code = "9_2";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+gstrate.id);
+			Application.logToFile("9_2", gstrate.id, " - percent : "+gstrate.GSTPercent);
 		}
 		
 		show("edit");
@@ -66,9 +62,7 @@ public class GSTRates extends Controller {
 		if (id != null) {
 			GSTRate gstrate = GSTRate.findById(id);
 			gstrate.delete();
-			String code = "9_3";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+gstrate.id);
+			Application.logToFile("9_3", gstrate.id, "");
 		}
 		show("edit");
 	}

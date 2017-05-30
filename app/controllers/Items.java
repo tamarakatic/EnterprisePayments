@@ -28,10 +28,8 @@ public class Items extends Controller{
 			params.flash();
 			validation.keep();
 		} else {
-			item.save();
-			String code = "6_1";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+item.id);
+			Item i = item.save();
+			Application.logToFile("6_1", i.id, " - name : "+i.name);
 		}
 		
 		show("add");
@@ -45,9 +43,7 @@ public class Items extends Controller{
 			validation.keep();
 		} else {
 			item.save();
-			String code = "6_2";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+item.id);
+			Application.logToFile("6_2", item.id, " - name : "+item.name);
 		}
 		
 		show("edit");
@@ -68,16 +64,12 @@ public class Items extends Controller{
 			String has_child = "has_child";
 			try {
 				if (pricelistitems != null && !pricelistitems.isEmpty()) {
-					String code = "6_3";
-					String user = Security.connected();
-					Logger.error(code + " : user = "+user + " id = "+item.id);
+					Application.logErrorToFile("6_3", id);
 					renderTemplate("Items/show.html", "edit", has_child);
 				}
 				else {
 					item.delete();
-					String code = "6_3";
-					String user = Security.connected();
-					Logger.info(code + " : user = "+user + " id = "+item.id);
+					Application.logToFile("6_3", id, "");
 					show("edit");
 				}					
 			} catch (Exception e) {

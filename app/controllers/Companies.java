@@ -32,10 +32,8 @@ public class Companies extends Controller {
 			validation.keep();
 		} 
 		else {
-			company.save();
-			String code = "1_1";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+company.id);
+			Company c = company.save();
+			Application.logToFile("1_1", c.id, " - PIB : "+company.PIB+" MBR : "+company.MBR);
 		}
 		show("add");
 	}
@@ -53,9 +51,7 @@ public class Companies extends Controller {
 		} 
 		else {
 			company.save();
-			String code = "1_2";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+company.id);
+			Application.logToFile("1_2", company.id, " - PIB : "+company.PIB+ " MBR : "+company.MBR);
 		}
 		
 		show("edit");		
@@ -80,16 +76,12 @@ public class Companies extends Controller {
 			String has_child = "has_child";
 			try {
 				if (partners != null && !partners.isEmpty() && years != null && !years.isEmpty()) {
-					String code = "1_3";
-					String user = Security.connected();
-					Logger.error(code + " : user = "+user + " id = "+company.id);
+					Application.logErrorToFile("1_3", company.id);
 					renderTemplate("Companies/show.html", "edit", has_child);
 				}
 				else {
 					company.delete();
-					String code = "1_3";
-					String user = Security.connected();
-					Logger.info(code + " : user = "+user + " id = "+company.id);
+					Application.logToFile("1_3", company.id, "");
 					show("edit");
 				}
 					

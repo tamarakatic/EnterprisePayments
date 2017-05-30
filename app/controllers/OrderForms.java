@@ -41,19 +41,15 @@ public class OrderForms extends Controller {
 			}
 		}
 		orderForm.numberOfOrder = ++num;
-		orderForm.save();
-		String code = "4_1";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+orderForm.id);
+		OrderForm o = orderForm.save();
+		Application.logToFile("4_1", o.id, " - business_partner : "+o.businessPartner.name);
 		show("add");
 	}
 	
 	public static void edit(OrderForm orderForm) {
 		authorize("editOrderForm");
 		orderForm.save();
-		String code = "4_2";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+orderForm.id);
+		Application.logToFile("4_2", orderForm.id, " - business_partner : "+orderForm.businessPartner.name);
 		show("edit");
 	}
 	
@@ -73,9 +69,7 @@ public class OrderForms extends Controller {
 			OrderForm orderForm = OrderForm.findById(id);
 			if (orderForm.orderFormItems.isEmpty()) {
 				orderForm.delete();
-				String code = "4_3";
-				String user = Security.connected();
-				Logger.info(code + " : user = "+user + " id = "+orderForm.id);
+				Application.logToFile("4_3", id, "");
 			}
 			else {
 				List<OrderForm> orderForms = OrderForm.findAll();
@@ -84,11 +78,7 @@ public class OrderForms extends Controller {
 				List<Company> companies = Company.findAll();
 				List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 				List<BusinessPartner> businessPartners = BusinessPartner.findAll();
-				
-				String code = "4_3";
-				String user = Security.connected();
-				Logger.error(code + " : user = "+user + " id = "+orderForm.id);
-				
+				Application.logErrorToFile("4_3", id);
 				renderTemplate("OrderForms/show.html", mode, orderForms, companies, businessYears, businessPartners, hasChildren);	
 			}
 		}

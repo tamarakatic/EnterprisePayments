@@ -28,10 +28,8 @@ public class ArticleGroups extends Controller{
 			params.flash();
 			validation.keep();
 		} else {
-			articlegroup.save();
-			String code = "7_1";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+articlegroup.id);
+			ArticleGroup a = articlegroup.save();
+			Application.logToFile("7_1", a.id, "");
 		}
 		
 		show("add");
@@ -45,9 +43,7 @@ public class ArticleGroups extends Controller{
 			validation.keep();
 		} else {
 			articlegroup.save();
-			String code = "7_2";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+articlegroup.id);
+			Application.logToFile("7_2", articlegroup.id, "- name : "+articlegroup.name);
 		}
 		
 		show("edit");
@@ -66,15 +62,13 @@ public class ArticleGroups extends Controller{
 			List<Item> items = Item.find("byArticlegroup_id", id).fetch();			
 			String has_child = "has_child";
 			try {
-				String code = "7_3";
-				String user = Security.connected();
 				if (items != null && !items.isEmpty()) {
-					Logger.error(code + " : user = "+user + " id = "+articlegroup.id);
+					Application.logErrorToFile("7_3", id);
 					renderTemplate("ArticleGroups/show.html", "edit", has_child);
 				}
 				else {
 					articlegroup.delete();
-					Logger.info(code + " : user = "+user + " id = "+articlegroup.id);
+					Application.logToFile("7_3", id, "");
 					show("edit");
 				}
 					

@@ -1,6 +1,14 @@
 package controllers;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,6 +17,7 @@ import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -18,6 +27,12 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import models.BusinessPartner;
 import models.BusinessYear;
@@ -33,7 +48,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import play.Logger;
 import play.Play;
 import play.mvc.Controller;
-import play.mvc.results.Result;
 
 public class Invoices extends Controller {
 
@@ -75,9 +89,7 @@ public class Invoices extends Controller {
 			}
 			invoice.number = ++num;
 			invoice.save();
-			String user = Security.connected();
-			String code = "5_1";
-			Logger.info(code + " : user = "+user + " id = "+invoice.id);
+			Application.logToFile("5_1", invoice.id, " - account : "+invoice.businessPartner.account);
 	    }
 		show("add");
 	}
@@ -96,14 +108,13 @@ public class Invoices extends Controller {
 	          validation.keep(); 
 	    } else {
 	    	  invoice.save();
-			  String code = "5_2";
-			  String user = Security.connected();
-			  Logger.info(code + " : user = "+user + " id = "+invoice.id);
+			  Application.logToFile("5_2", invoice.id, " - account : " + invoice.businessPartner.account 
+					  + " total : "+invoice.total);
 	    }
 		show("edit");
 	}
 	
-	public static void delete(Long id) {
+	public static void delete(Long id) throws IOException {
 		authorize("deleteInvoice");
 		if (id != null){
 			Invoice invoice = Invoice.findById(id);
@@ -122,9 +133,7 @@ public class Invoices extends Controller {
 				renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, hasChildren);	
 			} else {
 				invoice.delete();	
-				String code = "5_3";
-				String user = Security.connected();
-				Logger.info(code + " : user = "+user + " id = "+invoice.id);
+				Application.logToFile("5_3", invoice.id, " - account: "+invoice.businessPartner.account + " total: "+ invoice.total);
 			} 
 		}
 		show("edit");
@@ -161,7 +170,8 @@ public class Invoices extends Controller {
 		show("edit");
 	}
 	
-	public static void invoiceReport(Integer id) {
+	public static void invoiceReport(Integer id) throws IOException {
+		show("edit");
 		authorize("exportInvoiceAsPdf");
 		Long idd = Long.parseLong(id.toString());
 		Invoice inv = Invoice.findById(idd);
@@ -191,16 +201,12 @@ public class Invoices extends Controller {
 			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 			List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
 			
-			String code = "5_8";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+id);
+			Application.logToFile("5_8", idd, "");
 			
 			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);
 		} catch (Exception e) {
+			Application.logErrorToFile("5_8", idd);
 			e.printStackTrace();
-			String code = "5_8";
-			String user = Security.connected();
-			Logger.error(code + " : user = "+user + " id = "+id);
 		}
 		
 		show("edit");
@@ -316,16 +322,9 @@ public class Invoices extends Controller {
 	         DOMSource source = new DOMSource(doc);
 	         StreamResult result = new StreamResult(new File("invoices.xml"));
 	         transformer.transform(source, result);
-	         
-	         String code = "5_7";
-			 String user = Security.connected();
-			 Logger.info(code + " : user = "+user + " id = "+invoice.id);
 	               
 	      } catch (Exception e) {
 	         e.printStackTrace();
-	         String code = "5_7";
-			 String user = Security.connected();
-			 Logger.error(code + " : user = "+user + " id = "+invoice.id);
 	      }
 		}
 	
@@ -386,17 +385,13 @@ public class Invoices extends Controller {
 			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 			List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
 			
-			String code = "5_9";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user);
+			Application.logToFile("5_9", 0L, " - from : "+begin + "; to : "+end);
 			
 			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);	
 			
 		} catch (Exception e) {
+			Application.logErrorToFile("5_9", 0L);
 			e.printStackTrace();
-			String code = "5_9";
-			String user = Security.connected();
-			Logger.error(code + " : user = "+user);
 		}
 		show("edit");
 	}
@@ -421,4 +416,7 @@ public class Invoices extends Controller {
 		}
 	}
 	
+
+	
+
 }

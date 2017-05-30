@@ -31,19 +31,15 @@ public class OrderFormItems extends Controller {
 	public static void create(OrderFormItem orderFormItem) {
 		authorize("createOrderFormItem");
 		orderFormItem.orderForm = OrderForm.findById(orderFormItem.orderForm.id);
-		orderFormItem.save();
-		String code = "4_4";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
+		OrderFormItem o = orderFormItem.save();
+		Application.logToFile("4_4", o.id, " - order_form_id : " + o.orderForm.id +" amount : "+o.amount);
 		show("add");
 	}
 	
 	public static void edit(OrderFormItem orderFormItem) {
 		authorize("editOrderFormItem");
 		orderFormItem.save();
-		String code = "4_5";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
+		Application.logToFile("4_5", orderFormItem.id, " - order_form_id : " + orderFormItem.orderForm.id +" amount : "+orderFormItem.amount);
 		show("edit");
 	}
 	
@@ -60,9 +56,7 @@ public class OrderFormItems extends Controller {
 		if (id != null) {
 			OrderFormItem orderFormItem = OrderFormItem.findById(id);
 			orderFormItem.delete();
-			String code = "4_6";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
+			Application.logToFile("4_6", orderFormItem.id, "");
 		}
 		show("edit");
 	}
@@ -81,19 +75,15 @@ public class OrderFormItems extends Controller {
 	public static void createNext(OrderFormItem orderFormItem) {
 		authorize("createOrderFormItem");
 		orderFormItem.orderForm = OrderForm.findById(orderFormItem.orderForm.id);
-		orderFormItem.save();
-		String code = "4_4";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
+		OrderFormItem o =orderFormItem.save();
+		Application.logToFile("4_4", o.id, " - order_form_id : " + o.orderForm.id +" amount : "+o.amount);
 		showNext("add", orderFormItem.orderForm.id);
 	}
 	
 	public static void editNext(OrderFormItem orderFormItem) {
 		authorize("editOrderFormItem");
 		orderFormItem.save();
-		String code = "4_5";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
+		Application.logToFile("4_5", orderFormItem.id, " - order_form_id : " + orderFormItem.orderForm.id +" amount : "+orderFormItem.amount);
 		showNext("edit", orderFormItem.orderForm.id);
 	}
 	
@@ -102,9 +92,7 @@ public class OrderFormItems extends Controller {
 		if (id != null){
 			OrderFormItem orderFormItem = OrderFormItem.findById(id);
 			orderFormItem.delete();		
-			String code = "4_6";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+orderFormItem.id);
+			Application.logToFile("4_6", orderFormItem.id, "");
 		}
 		showNext("edit", orderFormId);
 	}
@@ -144,9 +132,7 @@ public class OrderFormItems extends Controller {
 		List<BusinessYear> businessYears = BusinessYear.findAll();
 		List<BusinessPartner> businessPartners = BusinessPartner.findAll();
 		
-		String code = "4_7";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+id);
+		Application.logToFile("4_7", orderForm.id, " - generated_invoice_number : "+invoice.number);
 		
 		renderTemplate("invoices/show.html", mode, invoices, companies, businessYears, businessPartners);
 	}

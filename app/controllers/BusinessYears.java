@@ -22,19 +22,15 @@ public class BusinessYears extends Controller {
 
 	public static void create(BusinessYear businessyear) {
 		authorize("createBusinessYear");
-		businessyear.save();	
-		String code = "3_1";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+businessyear.id);
+		BusinessYear by = businessyear.save();	
+		Application.logToFile("3_1", by.id, "");
 		show("add");
 	}
 
 	public static void edit(BusinessYear businessyear) {
 		authorize("editBusinessYear");
 		businessyear.save();	
-		String code = "3_2";
-		String user = Security.connected();
-		Logger.info(code + " : user = "+user + " id = "+businessyear.id);
+		Application.logToFile("3_2", businessyear.id, " - active: "+businessyear.active);
 		show("edit");
 	}
 
@@ -50,9 +46,7 @@ public class BusinessYears extends Controller {
 		if (id != null) {
 			BusinessYear year = BusinessYear.findById(id);
 			year.delete();
-			String code = "3_3";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+id);
+			Application.logToFile("3_2", id, "");
 		}
 		show("edit");
 	}

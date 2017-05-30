@@ -68,11 +68,8 @@ public class InvoiceItems extends Controller{
 	        validation.keep(); 
 	    } else {
 	    	invoiceItem = calculate(invoiceItem);
-	    	invoiceItem.save();
-	    	
-			String code = "5_4";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
+	    	InvoiceItem i = invoiceItem.save();
+	    	Application.logToFile("5_4", i.id, " - invoice_id : "+i.invoice.id+" amount : "+i.amount+" discount : "+i.discount);
 	    }
 		show("add");
 	}
@@ -91,9 +88,8 @@ public class InvoiceItems extends Controller{
 	    	invoiceItem = calculate(invoiceItem);
 	    	invoiceItem.save();
 	    	
-			String code = "5_5";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
+			Application.logToFile("5_5", invoiceItem.id, " - invoice_id : "+invoiceItem.invoice.id+" amount : "
+			+invoiceItem.amount+" discount : "+invoiceItem.discount);
 	    }
 		show("edit");
 	}
@@ -109,9 +105,7 @@ public class InvoiceItems extends Controller{
 			invoice.save();
 			invoiceItem.delete();	
 			
-			String code = "5_6";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
+			Application.logToFile("5_5", id, " - invoice_id : "+invoice.id);
 		}
 		show("edit");
 	}
@@ -178,10 +172,8 @@ public class InvoiceItems extends Controller{
 	        validation.keep(); 
 	    } else {
 			invoiceItem = calculate(invoiceItem);
-	    	invoiceItem.save();
-			String code = "5_4";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
+	    	InvoiceItem  i = invoiceItem.save();
+	    	Application.logToFile("5_4", i.id, " - invoice_id : "+i.invoice.id+" amount : "+i.amount+" discount : "+i.discount);
 	    }
 		showNext("add", invoiceItem.invoice.id);
 	}
@@ -199,9 +191,8 @@ public class InvoiceItems extends Controller{
 	    } else {
 	    	invoiceItem = calculate(invoiceItem);
 	    	invoiceItem.save();
-			String code = "5_5";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
+	    	Application.logToFile("5_5", invoiceItem.id, " - invoice_id : "+invoiceItem.invoice.id+" amount : "
+	    			+invoiceItem.amount+" discount : "+invoiceItem.discount);
 	    }
 		showNext("edit", invoiceItem.invoice.id);
 	}
@@ -216,9 +207,7 @@ public class InvoiceItems extends Controller{
 			invoice.total -= invoiceItem.total;
 			invoice.save();
 			invoiceItem.delete();	
-			String code = "5_6";
-			String user = Security.connected();
-			Logger.info(code + " : user = "+user + " id = "+invoiceItem.id);
+			Application.logToFile("5_5", id, " - invoice_id : "+invoice.id);
 		}
 		showNext("edit", invoiceId);
 	}
