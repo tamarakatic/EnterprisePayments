@@ -16,3 +16,5 @@ GET     /public/                                staticDir:public
 
 # Import Secure routes
 *		/										module:secure
+
+POST    /invoices								Invoices.getBody()
