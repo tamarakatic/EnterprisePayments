@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+           elementFormDefault="qualified" 
+           xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+           vc:minVersion="1.1"> 
+    <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" 
+               schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"/>	
+    <xs:element name="invoices">
+        <xs:complexType>
+            <xs:sequence>
+               <xs:element name="invoices_data">
+                   <xs:complexType>
+                       <xs:sequence>
+                           <xs:element name="company" type="xs:string"/>
+                           <xs:element name="partner" type="xs:string"/>
+                           <xs:element name="year" type="xs:string"/>
+                           <xs:element name="number" type="xs:string"/>
+                           <xs:element name="invoiceDate" type="xs:string"/>
+                           <xs:element name="valueDate" type="xs:string"/>
+                           <xs:element name="basicValue" type="xs:string"/>                           
+                           <xs:element name="taxValue" type="xs:string"/>
+                           <xs:element name="sumValue" type="xs:string"/>
+                       </xs:sequence>
+                   </xs:complexType>
+               </xs:element>  
+                <xs:element name="invoice" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="amount" type="xs:string"/>
+                            <xs:element name="total" type="xs:string"/>
+                            <xs:element name="price" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="ds:Signature" minOccurs="0" maxOccurs="1" />                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+ </xs:schema>
