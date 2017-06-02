@@ -11,3 +11,5 @@ require:
         transitive: false
     - net.sourceforge.jexcelapi -> jxl 2.6.10:
         transitive: false
+    - xml-security -> xmlsec 1.3.0
+    - xalan -> xalan 2.7.1
