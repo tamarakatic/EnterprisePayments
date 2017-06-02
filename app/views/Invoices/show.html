@@ -145,14 +145,6 @@ function export_to_xml(id) {
 }
 
 function invoiceReport(id) {
-	#{list items:invoices, as:'invoice'}
-	    if(check(${invoice.id}, id)){
-	    	if(${invoice.invoiceItems.size() == 0}){
-	    		$("#reportAlert2").attr("hidden", false);
-	    		return;
-	    	} 
-	    }
-	#{/list}
 	$(location).attr('href', '/Invoices/invoiceReport?id='+id);
 }
 

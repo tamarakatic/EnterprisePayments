@@ -82,7 +82,7 @@ function pricelist_item(id) {
   <p>	
 	<form action = "${action}" method = "POST">	
 		#{field 'item.articlegroup.id'}
-			<label for = "${field.id}">ArticleGroup</label> &nbsp; 		
+			<label for = "${field.id}">ArticleGroup</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
 			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${articlegroup_id}"/>		
 		#{/}
 		
@@ -95,7 +95,7 @@ function pricelist_item(id) {
 		
 		<p>
 		#{field 'item.name'}
-			<label for = "${field.id}">Name</label>
+			<label for = "${field.id}">Name</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type = "text" name = "${field.name}" id = "${field.id}"/>
 		#{/}
 		<span class="error">#{error 'name' /}</span>
@@ -103,12 +103,12 @@ function pricelist_item(id) {
 		
 		<p>
 		#{field 'item.description'}
-			<label for = "${field.id}">Description</label>
+			<label for = "${field.id}">Description</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type = "text" name = "${field.name}" id = "${field.id}"/>
 		#{/}
 		</p>		
 		<div id = "formActions">
-			<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type = "submit" class="btn btn-success" value = "Submit" style="margin-left:6em"/>
 			<a href = "@{Items.show('edit')}" class="btn btn-warning" style="margin-left:1em">Rollback</a>
 		</div>				
 	</form>
