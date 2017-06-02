@@ -20,7 +20,9 @@ import play.mvc.Controller;
 public class InvoiceItems extends Controller{
 
 	public static void show(String mode){
-		authorize("viewInvoiceItems");
+		if(!Application.authorize("viewInvoiceItems")){
+			render("errors/401.html");
+		}
 		List<InvoiceItem> invoiceItems = InvoiceItem.findAll();
 		List<Invoice> invoices = Invoice.findAll();
 		List<Item> allArticles = Item.findAll();
@@ -55,7 +57,9 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void create(InvoiceItem invoiceItem) {
-		authorize("createInvoiceItem");
+		if(!Application.authorize("createInvoiceItem")){
+			render("errors/401.html");
+		}
 		invoiceItem.invoice = Invoice.findById(invoiceItem.invoice.id);
 		invoiceItem.article = Item.findById(invoiceItem.article.id);
 		validation.required("invoice", invoiceItem.invoice);
@@ -75,7 +79,9 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void edit(InvoiceItem invoiceItem) {
-		authorize("editInvoiceItem");
+		if(!Application.authorize("editInvoiceItem")){
+			render("errors/401.html");
+		}
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
 		validation.min("amount", invoiceItem.amount, 0.01);
@@ -95,7 +101,9 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void delete(Long id) {
-		authorize("deleteInvoiceItem");
+		if(!Application.authorize("deleteInvoiceItem")){
+			render("errors/401.html");
+		}
 		if (id != null){
 			InvoiceItem invoiceItem = InvoiceItem.findById(id);
 			Invoice invoice = invoiceItem.invoice;
@@ -122,7 +130,9 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void showNext(String mode, Long id){
-		authorize("viewInvoiceItems");
+		if(!Application.authorize("viewInvoiceItems")){
+			render("errors/401.html");
+		}
 		Invoice invoice = Invoice.findById(id);
 		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoice", invoice).fetch();
 		List<Item> allArticles = Item.findAll();
@@ -159,7 +169,9 @@ public class InvoiceItems extends Controller{
 	}
 
 	public static void createNext(InvoiceItem invoiceItem) {
-		authorize("createInvoiceItem");
+		if(!Application.authorize("createInvoiceItem")){
+			render("errors/401.html");
+		}
 		invoiceItem.invoice = Invoice.findById(invoiceItem.invoice.id);
 		invoiceItem.article = Item.findById(invoiceItem.article.id);
 		validation.required("invoice", invoiceItem.invoice);
@@ -179,7 +191,9 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void editNext(InvoiceItem invoiceItem) {
-		authorize("editInvoiceItem");
+		if(!Application.authorize("editInvoiceItem")){
+			render("errors/401.html");
+		}
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
 		validation.min("amount", invoiceItem.amount, 0.01);
@@ -198,7 +212,9 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void deleteNext(Long id, Long invoiceId) {
-		authorize("deleteInvoiceItem");
+		if(!Application.authorize("deleteInvoiceItem")){
+			render("errors/401.html");
+		}
 		if (id != null){
 			InvoiceItem invoiceItem = InvoiceItem.findById(id);
 			Invoice invoice = invoiceItem.invoice;
@@ -313,25 +329,5 @@ public class InvoiceItems extends Controller{
 			}
 		}
 		return articles;	
-	}
-	
-	private static void authorize(String operationName){
-		String username = Security.connected();
-		List<User> users = User.find("byUsername", username).fetch();
-		if(users.isEmpty()) {
-			render("errors/401.html");
-		} 
-		User user = users.get(0);
-		boolean check = false;
-		List<Permission> permissions = user.role.permissions;
-		for(Permission p : permissions){
-			if(p.name.equals(operationName)){
-				check = true;
-				break;
-			}
-		}
-		if(!check) {
-			render("errors/401.html");
-		}
 	}
 }

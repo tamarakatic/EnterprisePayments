@@ -16,7 +16,9 @@ import play.mvc.Controller;
 public class OrderForms extends Controller {
 	
 	public static void show(String mode) {
-		authorize("viewOrderForms");
+		if(!Application.authorize("viewOrderForms")){
+			render("errors/401.html");
+		}
 		List<OrderForm> orderForms = OrderForm.findAll();
 		List<Company> companies = Company.findAll();
 		List<BusinessYear> businessYears = BusinessYear.findAll();
@@ -28,7 +30,9 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void create(OrderForm orderForm) {
-		authorize("createOrderForm");
+		if(!Application.authorize("createOrderForm")){
+			render("errors/401.html");
+		}
 		Company company = Company.findById(orderForm.company.id);
 		orderForm.company = company;
 		orderForm.businessYear = BusinessYear.findById(orderForm.businessYear.id);
@@ -47,7 +51,9 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void edit(OrderForm orderForm) {
-		authorize("editOrderForm");
+		if(!Application.authorize("editOrderForm")){
+			render("errors/401.html");
+		}
 		orderForm.save();
 		Application.logToFile("4_2", orderForm.id, " - business_partner : "+orderForm.businessPartner.name);
 		show("edit");
@@ -64,7 +70,9 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void delete(Long id) {
-		authorize("deleteOrderForm");
+		if(!Application.authorize("deleteOrderForm")){
+			render("errors/401.html");
+		}
 		if (id != null) {
 			OrderForm orderForm = OrderForm.findById(id);
 			if (orderForm.orderFormItems.isEmpty()) {
@@ -93,25 +101,5 @@ public class OrderForms extends Controller {
 			renderTemplate("OrderFormItems/showNext.html", "edit", orderFormItems, orderForm, items);
 		}
 		show("edit");
-	}
-	
-	private static void authorize(String operationName){
-		String username = Security.connected();
-		List<User> users = User.find("byUsername", username).fetch();
-		if(users.isEmpty()) {
-			render("errors/401.html");
-		} 
-		User user = users.get(0);
-		boolean check = false;
-		List<Permission> permissions = user.role.permissions;
-		for(Permission p : permissions){
-			if(p.name.equals(operationName)){
-				check = true;
-				break;
-			}
-		}
-		if(!check) {
-			render("errors/401.html");
-		}
 	}
 }

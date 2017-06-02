@@ -16,7 +16,9 @@ import play.mvc.Controller;
 public class Pricelists extends Controller{
 	
 	public static void show(String mode) {
-		authorize("viewPriceLists");
+		if(!Application.authorize("viewPriceLists")){
+			render("errors/401.html");
+		}
 		List<Pricelist> pricelists = Pricelist.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
@@ -24,14 +26,18 @@ public class Pricelists extends Controller{
 	}
 	
 	public static void create(Pricelist pricelist) {
-		authorize("createPriceList");
+		if(!Application.authorize("createPriceList")){
+			render("errors/401.html");
+		}
 		Pricelist p = pricelist.save();	
 		Application.logToFile("10_1", p.id, " - date : "+pricelist.validationDate);
 		show("add");
 	}
 	
 	public static void edit(Pricelist pricelist) {
-		authorize("editPriceList");
+		if(!Application.authorize("editPriceList")){
+			render("errors/401.html");
+		}
 		pricelist.save();
 		Application.logToFile("10_2", pricelist.id, " - date : "+pricelist.validationDate);
 		show("edit");		
@@ -43,7 +49,9 @@ public class Pricelists extends Controller{
 	}
 	
 	public static void delete(Long id) {
-		authorize("deletePriceList");
+		if(!Application.authorize("deletePriceList")){
+			render("errors/401.html");
+		}
 		if (id != null){
 			Pricelist pricelist = Pricelist.findById(id);
 			List<PricelistItem> pricelistitems = PricelistItem.find("byPricelist_id", id).fetch();
@@ -74,7 +82,9 @@ public class Pricelists extends Controller{
 	}
 		
 	public static void change_price_list(Long pricelist_id, Integer percentage) {
-		authorize("copyPriceList");
+		if(!Application.authorize("copyPriceList")){
+			render("errors/401.html");
+		}
 		if (pricelist_id != null) {
 			Pricelist pricelist = Pricelist.findById(pricelist_id);
 			DecimalFormat decimalFormat = new DecimalFormat(".##");
@@ -96,25 +106,4 @@ public class Pricelists extends Controller{
 		}    
 		show("edit");
 	}
-	
-	private static void authorize(String operationName){
-		String username = Security.connected();
-		List<User> users = User.find("byUsername", username).fetch();
-		if(users.isEmpty()) {
-			render("errors/401.html");
-		} 
-		User user = users.get(0);
-		boolean check = false;
-		List<Permission> permissions = user.role.permissions;
-		for(Permission p : permissions){
-			if(p.name.equals(operationName)){
-				check = true;
-				break;
-			}
-		}
-		if(!check) {
-			render("errors/401.html");
-		}
-	}
-
 }

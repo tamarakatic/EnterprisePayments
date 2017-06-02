@@ -19,6 +19,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -34,6 +35,7 @@ import org.xml.sax.SAXException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import models.BankStatementRequest;
 import models.BusinessPartner;
 import models.BusinessYear;
 import models.Company;
@@ -52,7 +54,9 @@ import play.mvc.Controller;
 public class Invoices extends Controller {
 
 	public static void show(String mode){
-		authorize("viewInvoices");
+		if(!Application.authorize("viewInvoices")){
+			render("errors/401.html");
+		}
 		List<Invoice> invoices = Invoice.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
@@ -64,7 +68,9 @@ public class Invoices extends Controller {
 	}
 	
 	public static void create(Invoice invoice) {
-		authorize("createInvoice");
+		if(!Application.authorize("createInvoice")){
+			render("errors/401.html");
+		}
 		Company company = Company.findById(invoice.company.id);
 		invoice.company = company;
 		invoice.businessYear = BusinessYear.findById(invoice.businessYear.id);
@@ -95,7 +101,9 @@ public class Invoices extends Controller {
 	}
 	
 	public static void edit(Invoice invoice) {
-		authorize("editInvoice");
+		if(!Application.authorize("editInvoice")){
+			render("errors/401.html");
+		}
 		validation.required("company",invoice.company);
 		validation.required("business partner", invoice.businessPartner);
 		validation.required("business year",invoice.businessYear);
@@ -114,8 +122,10 @@ public class Invoices extends Controller {
 		show("edit");
 	}
 	
-	public static void delete(Long id) throws IOException {
-		authorize("deleteInvoice");
+	public static void delete(Long id) throws IOException, ParserConfigurationException, TransformerException {
+		if(!Application.authorize("deleteInvoice")){
+			render("errors/401.html");
+		}
 		if (id != null){
 			Invoice invoice = Invoice.findById(id);
 			if(invoice.invoiceItems != null && !invoice.invoiceItems.isEmpty()){
@@ -140,7 +150,9 @@ public class Invoices extends Controller {
 	}
 	
 	public static void export(Long id) {
-		authorize("exportInvoiceAsXML");
+		if(!Application.authorize("exportInvoiceAsXML")){
+			render("errors/401.html");
+		}
 		if (id != null) {
 			Invoice invoice = Invoice.findById(id);
 			List<InvoiceItem> items = InvoiceItem.find("byInvoice_id", id).fetch();
@@ -171,8 +183,9 @@ public class Invoices extends Controller {
 	}
 	
 	public static void invoiceReport(Integer id) throws IOException {
-		show("edit");
-		authorize("exportInvoiceAsPdf");
+		if(!Application.authorize("exportInvoiceAsPdf")){
+			render("errors/401.html");
+		}
 		Long idd = Long.parseLong(id.toString());
 		Invoice inv = Invoice.findById(idd);
 		if(inv.invoiceItems == null || inv.invoiceItems.size() ==0){
@@ -329,7 +342,9 @@ public class Invoices extends Controller {
 		}
 	
 	public static void generateKIF(String begin, String end) {
-		authorize("exportMultipleInvoicesAsPdf");
+		if(!Application.authorize("exportMultipleInvoicesAsPdf")){
+			render("errors/401.html");
+		}
 		Date beginDate = new Date();
 		Date endDate = new Date();
 		if(begin != null && !begin.equals("")) {
@@ -394,29 +409,6 @@ public class Invoices extends Controller {
 			e.printStackTrace();
 		}
 		show("edit");
-	}
-	
-	private static void authorize(String operationName){
-		String username = Security.connected();
-		List<User> users = User.find("byUsername", username).fetch();
-		if(users.isEmpty()) {
-			render("errors/401.html");
-		} 
-		User user = users.get(0);
-		boolean check = false;
-		List<Permission> permissions = user.role.permissions;
-		for(Permission p : permissions){
-			if(p.name.equals(operationName)){
-				check = true;
-				break;
-			}
-		}
-		if(!check) {
-			render("errors/401.html");
-		}
-	}
-	
-
-	
+	}	
 
 }

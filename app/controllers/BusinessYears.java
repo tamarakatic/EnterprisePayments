@@ -12,7 +12,9 @@ import play.mvc.Controller;
 public class BusinessYears extends Controller {
 
 	public static void show(String mode) {
-		authorize("viewBusinessYears");
+		if(!Application.authorize("viewBusinessYears")){
+			render("errors/401.html");
+		}
 		List<BusinessYear> years = BusinessYear.findAll();
 		List<Company> companies = Company.findAll();
 		if (mode == null || mode.equals(""))
@@ -21,14 +23,18 @@ public class BusinessYears extends Controller {
 	}
 
 	public static void create(BusinessYear businessyear) {
-		authorize("createBusinessYear");
+		if(!Application.authorize("createBusinessYear")){
+			render("errors/401.html");
+		}
 		BusinessYear by = businessyear.save();	
 		Application.logToFile("3_1", by.id, "");
 		show("add");
 	}
 
 	public static void edit(BusinessYear businessyear) {
-		authorize("editBusinessYear");
+		if(!Application.authorize("editBusinessYear")){
+			render("errors/401.html");
+		}
 		businessyear.save();	
 		Application.logToFile("3_2", businessyear.id, " - active: "+businessyear.active);
 		show("edit");
@@ -42,32 +48,14 @@ public class BusinessYears extends Controller {
 	}
 
 	public static void delete(Long id) {
-		authorize("deleteBusinessYear");
+		if(!Application.authorize("deleteBusinessYear")){
+			render("errors/401.html");
+		}
 		if (id != null) {
 			BusinessYear year = BusinessYear.findById(id);
 			year.delete();
 			Application.logToFile("3_2", id, "");
 		}
 		show("edit");
-	}
-	
-	private static void authorize(String operationName){
-		String username = Security.connected();
-		List<User> users = User.find("byUsername", username).fetch();
-		if(users.isEmpty()) {
-			render("errors/401.html");
-		} 
-		User user = users.get(0);
-		boolean check = false;
-		List<Permission> permissions = user.role.permissions;
-		for(Permission p : permissions){
-			if(p.name.equals(operationName)){
-				check = true;
-				break;
-			}
-		}
-		if(!check) {
-			render("errors/401.html");
-		}
 	}
 }

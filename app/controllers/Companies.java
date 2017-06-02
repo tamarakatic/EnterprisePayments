@@ -13,7 +13,9 @@ import play.mvc.Controller;
 public class Companies extends Controller {
 	
 	public static void show(String mode) {
-		authorize("viewCompanies");
+		if(!Application.authorize("viewCompanies")){
+			render("errors/401.html");
+		}
 		List<Company> companies = Company.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
@@ -21,7 +23,9 @@ public class Companies extends Controller {
 	}
 	
 	public static void create(Company company) {
-		authorize("createCompany");
+		if(!Application.authorize("createCompany")){
+			render("errors/401.html");
+		}
 		validation.required("name",company.name);
 		validation.required("PIB", company.PIB);
 		validation.minSize("PIB", company.PIB, 9);
@@ -39,7 +43,9 @@ public class Companies extends Controller {
 	}
 	
 	public static void edit(Company company) {
-		authorize("editCompany");
+		if(!Application.authorize("editCompany")){
+			render("errors/401.html");
+		}
 		validation.required("name",company.name);
 		validation.required("PIB", company.PIB);
 		validation.minSize("PIB", company.PIB, 9);
@@ -68,7 +74,9 @@ public class Companies extends Controller {
 	}
 	
 	public static void delete(Long id) {
-		authorize("deleteCompany");
+		if(!Application.authorize("deleteCompany")){
+			render("errors/401.html");
+		}
 		if (id != null){
 			List<BusinessPartner> partners = BusinessPartner.find("byCompany_id", id).fetch();
 			List<BusinessYear> years = BusinessYear.find("byCompany_id", id).fetch();
@@ -106,25 +114,5 @@ public class Companies extends Controller {
 			renderTemplate("BusinessYears/show.html", "edit", years, company_id);
 		}
 		show("edit");
-	}
-	
-	private static void authorize(String operationName){
-		String username = Security.connected();
-		List<User> users = User.find("byUsername", username).fetch();
-		if(users.isEmpty()) {
-			render("errors/401.html");
-		} 
-		User user = users.get(0);
-		boolean check = false;
-		List<Permission> permissions = user.role.permissions;
-		for(Permission p : permissions){
-			if(p.name.equals(operationName)){
-				check = true;
-				break;
-			}
-		}
-		if(!check) {
-			render("errors/401.html");
-		}
 	}
 }

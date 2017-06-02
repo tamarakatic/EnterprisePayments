@@ -13,7 +13,9 @@ import play.mvc.Controller;
 public class ArticleGroups extends Controller{
 	
 	public static void show(String mode) {
-		authorize("viewArticleGroups");
+		if(!Application.authorize("viewArticleGroups")){
+			render("errors/401.html");
+		}
 		List<ArticleGroup> articlegroups = ArticleGroup.findAll();
 		List<GSTType> gsttypes = GSTType.findAll();
 		if (mode == null || mode.equals(""))
@@ -22,7 +24,9 @@ public class ArticleGroups extends Controller{
 	}
 	
 	public static void create(ArticleGroup articlegroup) {	
-		authorize("createArticleGroup");
+		if(!Application.authorize("createArticleGroup")){
+			render("errors/401.html");
+		}
 		validation.required("name", articlegroup.name);		
 		if (validation.hasErrors()) {
 			params.flash();
@@ -36,7 +40,9 @@ public class ArticleGroups extends Controller{
 	}
 
 	public static void edit(ArticleGroup articlegroup) {
-		authorize("editArticleGroup");
+		if(!Application.authorize("editArticleGroup")){
+			render("errors/401.html");
+		}
 		validation.required("name", articlegroup.name);		
 		if (validation.hasErrors()) {
 			params.flash();
@@ -56,7 +62,9 @@ public class ArticleGroups extends Controller{
 	}
 
 	public static void delete(Long id) {
-		authorize("deleteArticleGroup");
+		if(!Application.authorize("deleteArticleGroup")){
+			render("errors/401.html");
+		}
 		if (id != null) {
 			ArticleGroup articlegroup = ArticleGroup.findById(id);
 			List<Item> items = Item.find("byArticlegroup_id", id).fetch();			
@@ -85,26 +93,6 @@ public class ArticleGroups extends Controller{
 			renderTemplate("Items/show.html", "edit", items, articlegroup_id);
 		}
 		show("edit");
-	}
-	
-	private static void authorize(String operationName){
-		String username = Security.connected();
-		List<User> users = User.find("byUsername", username).fetch();
-		if(users.isEmpty()) {
-			render("errors/401.html");
-		} 
-		User user = users.get(0);
-		boolean check = false;
-		List<Permission> permissions = user.role.permissions;
-		for(Permission p : permissions){
-			if(p.name.equals(operationName)){
-				check = true;
-				break;
-			}
-		}
-		if(!check) {
-			render("errors/401.html");
-		}
 	}
 
 }

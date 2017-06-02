@@ -13,7 +13,9 @@ import play.mvc.Controller;
 public class PricelistItems extends Controller{
 	
 	public static void show(String mode) {
-		authorize("viewPriceListItems");
+		if(!Application.authorize("viewPriceListItems")){
+			render("errors/401.html");
+		}
 		List<PricelistItem> pricelistitems = PricelistItem.findAll();
 		List<Item> items = Item.findAll();		
 		List<Pricelist> pricelists = Pricelist.findAll();
@@ -23,7 +25,9 @@ public class PricelistItems extends Controller{
 	}
 	
 	public static void create(PricelistItem pricelistitem) {	
-		authorize("createPriceListItem");
+		if(!Application.authorize("createPriceListItem")){
+			render("errors/401.html");
+		}
 		validation.required("price", pricelistitem.price);
 		validation.min("price", pricelistitem.price, 0.01);		
 		if (validation.hasErrors()) {
@@ -39,7 +43,9 @@ public class PricelistItems extends Controller{
 	}
 
 	public static void edit(PricelistItem pricelistitem) {
-		authorize("editPriceListItem");
+		if(!Application.authorize("editPriceListItem")){
+			render("errors/401.html");
+		}
 		validation.required("price", pricelistitem.price);
 		validation.min("price", pricelistitem.price, 0.01);		
 		if (validation.hasErrors()) {
@@ -61,33 +67,15 @@ public class PricelistItems extends Controller{
 	}
 
 	public static void delete(Long id) {
-		authorize("deletePriceListItem");
+		if(!Application.authorize("deletePriceListItem")){
+			render("errors/401.html");
+		}
 		if (id != null) {
 			PricelistItem pricelistitem = PricelistItem.findById(id);
 			pricelistitem.delete();
 			Application.logToFile("10_6", id, "");
 		}
 		show("edit");
-	}
-	
-	private static void authorize(String operationName){
-		String username = Security.connected();
-		List<User> users = User.find("byUsername", username).fetch();
-		if(users.isEmpty()) {
-			render("errors/401.html");
-		} 
-		User user = users.get(0);
-		boolean check = false;
-		List<Permission> permissions = user.role.permissions;
-		for(Permission p : permissions){
-			if(p.name.equals(operationName)){
-				check = true;
-				break;
-			}
-		}
-		if(!check) {
-			render("errors/401.html");
-		}
 	}
 
 }

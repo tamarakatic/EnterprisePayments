@@ -18,7 +18,9 @@ import play.mvc.Controller;
 public class OrderFormItems extends Controller {
 	
 	public static void show(String mode) {
-		authorize("viewOrderFormItems");
+		if(!Application.authorize("viewOrderFormItems")){
+			render("errors/401.html");
+		}
 		List<OrderFormItem> orderFormItems = OrderFormItem.findAll();
 		List<OrderForm> orderForms = OrderForm.findAll();
 		List<Item> items = Item.findAll();
@@ -29,7 +31,9 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void create(OrderFormItem orderFormItem) {
-		authorize("createOrderFormItem");
+		if(!Application.authorize("createOrderFormItem")){
+			render("errors/401.html");
+		}
 		orderFormItem.orderForm = OrderForm.findById(orderFormItem.orderForm.id);
 		OrderFormItem o = orderFormItem.save();
 		Application.logToFile("4_4", o.id, " - order_form_id : " + o.orderForm.id +" amount : "+o.amount);
@@ -37,7 +41,9 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void edit(OrderFormItem orderFormItem) {
-		authorize("editOrderFormItem");
+		if(!Application.authorize("editOrderFormItem")){
+			render("errors/401.html");
+		}
 		orderFormItem.save();
 		Application.logToFile("4_5", orderFormItem.id, " - order_form_id : " + orderFormItem.orderForm.id +" amount : "+orderFormItem.amount);
 		show("edit");
@@ -52,7 +58,9 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void delete(Long id) {
-		authorize("deleteOrderFormItem");
+		if(!Application.authorize("deleteOrderFormItem")){
+			render("errors/401.html");
+		}
 		if (id != null) {
 			OrderFormItem orderFormItem = OrderFormItem.findById(id);
 			orderFormItem.delete();
@@ -62,7 +70,9 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void showNext(String mode, Long id) {
-		authorize("viewOrderFormItems");
+		if(!Application.authorize("viewOrderFormItems")){
+			render("errors/401.html");
+		}
 		OrderForm orderForm = OrderForm.findById(id);
 		List<OrderFormItem> orderFormItems = OrderFormItem.find("byOrderForm", orderForm).fetch();
 		List<Item> items = Item.findAll();
@@ -73,7 +83,9 @@ public class OrderFormItems extends Controller {
 	}
 
 	public static void createNext(OrderFormItem orderFormItem) {
-		authorize("createOrderFormItem");
+		if(!Application.authorize("createOrderFormItem")){
+			render("errors/401.html");
+		}
 		orderFormItem.orderForm = OrderForm.findById(orderFormItem.orderForm.id);
 		OrderFormItem o =orderFormItem.save();
 		Application.logToFile("4_4", o.id, " - order_form_id : " + o.orderForm.id +" amount : "+o.amount);
@@ -81,14 +93,18 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void editNext(OrderFormItem orderFormItem) {
-		authorize("editOrderFormItem");
+		if(!Application.authorize("editOrderFormItem")){
+			render("errors/401.html");
+		}
 		orderFormItem.save();
 		Application.logToFile("4_5", orderFormItem.id, " - order_form_id : " + orderFormItem.orderForm.id +" amount : "+orderFormItem.amount);
 		showNext("edit", orderFormItem.orderForm.id);
 	}
 	
 	public static void deleteNext(Long id, Long orderFormId) {
-		authorize("deleteOrderFormItem");
+		if(!Application.authorize("deleteOrderFormItem")){
+			render("errors/401.html");
+		}
 		if (id != null){
 			OrderFormItem orderFormItem = OrderFormItem.findById(id);
 			orderFormItem.delete();		
@@ -107,7 +123,9 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void generateInvoice(Long id) {
-		authorize("generateInvoiceFromOrderForm");
+		if(!Application.authorize("generateInvoiceFromOrderForm")){
+			render("errors/401.html");
+		}
 		OrderForm orderForm = OrderForm.findById(id);
 		List<OrderFormItem> orderFormItems = OrderFormItem.find("byOrderForm", orderForm).fetch();
 		
@@ -135,25 +153,5 @@ public class OrderFormItems extends Controller {
 		Application.logToFile("4_7", orderForm.id, " - generated_invoice_number : "+invoice.number);
 		
 		renderTemplate("invoices/show.html", mode, invoices, companies, businessYears, businessPartners);
-	}
-	
-	private static void authorize(String operationName){
-		String username = Security.connected();
-		List<User> users = User.find("byUsername", username).fetch();
-		if(users.isEmpty()) {
-			render("errors/401.html");
-		} 
-		User user = users.get(0);
-		boolean check = false;
-		List<Permission> permissions = user.role.permissions;
-		for(Permission p : permissions){
-			if(p.name.equals(operationName)){
-				check = true;
-				break;
-			}
-		}
-		if(!check) {
-			render("errors/401.html");
-		}
 	}
 }

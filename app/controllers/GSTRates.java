@@ -12,7 +12,9 @@ import play.mvc.Controller;
 public class GSTRates extends Controller {
 	
 	public static void show(String mode) {
-		authorize("viewGSTRates");
+		if(!Application.authorize("viewGSTRates")){
+			render("errors/401.html");
+		}
 		List<GSTRate> gstrates = GSTRate.findAll();
 		List<GSTType> gsttypes = GSTType.findAll();
 		if (mode == null || mode.equals(""))
@@ -21,7 +23,9 @@ public class GSTRates extends Controller {
 	}
 	
 	public static void create(GSTRate gstrate) {
-		authorize("createGSTRate");
+		if(!Application.authorize("createGSTRate")){
+			render("errors/401.html");
+		}
 		validation.required("GSTPercent", gstrate.GSTPercent);
 		validation.min("GSTPercent", gstrate.GSTPercent, 0.01);		
 		if (validation.hasErrors()) {
@@ -36,7 +40,9 @@ public class GSTRates extends Controller {
 	}
 
 	public static void edit(GSTRate gstrate) {
-		authorize("editGSTRate");
+		if(!Application.authorize("editGSTRate")){
+			render("errors/401.html");
+		}
 		validation.required("GSTPercent", gstrate.GSTPercent);
 		validation.min("GSTPercent", gstrate.GSTPercent, 0.01);		
 		if (validation.hasErrors()) {
@@ -58,7 +64,9 @@ public class GSTRates extends Controller {
 	}
 
 	public static void delete(Long id) {
-		authorize("deleteGSTRate");
+		if(!Application.authorize("deleteGSTRate")){
+			render("errors/401.html");
+		}
 		if (id != null) {
 			GSTRate gstrate = GSTRate.findById(id);
 			gstrate.delete();
@@ -66,25 +74,4 @@ public class GSTRates extends Controller {
 		}
 		show("edit");
 	}
-	
-	private static void authorize(String operationName){
-		String username = Security.connected();
-		List<User> users = User.find("byUsername", username).fetch();
-		if(users.isEmpty()) {
-			render("errors/401.html");
-		} 
-		User user = users.get(0);
-		boolean check = false;
-		List<Permission> permissions = user.role.permissions;
-		for(Permission p : permissions){
-			if(p.name.equals(operationName)){
-				check = true;
-				break;
-			}
-		}
-		if(!check) {
-			render("errors/401.html");
-		}
-	}
-
 }
