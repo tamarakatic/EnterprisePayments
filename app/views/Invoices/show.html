@@ -77,6 +77,16 @@ $(document).ready(function(){
 		}
 		invoiceReport(id);
 	});
+	
+	$("#paymentOrderButton").click(function(){
+		highlighted = $(".highlighted");
+		id = highlighted.find(".id").html();
+		amount = $("#amountPaymentOrder").val();
+		currency = $("#currencyPaymentOrder").val();
+		urgent =  document.getElementById("urgentPaymentOrder").checked;
+		$(location).attr('href', '/Invoices/createPaymentOrder?invoiceId='+id+'&amount='+amount+'&isUrgent='+urgent+'&currency='+currency);
+	});
+
 });
 
 function dateChanged(event){
@@ -173,6 +183,7 @@ function check(item, id){
   <li><a href="#" id = "export_to_xml"><img src="@{'/public/images/xml.png'}"/></a></li>
   <li><a href="#" id = "invoiceReport"><img src="@{'/public/images/reporta.png'}"/></a></li>
   <li><a href="#" id = "dateReport" data-toggle="modal" data-target="#dateReportModal"><img src="@{'/public/images/kif.png'}"/></a></li>
+  <li><a href="#" id = "paymentOrderToolbarButton" data-toggle="modal" data-target="#paymentOrderModal"><img src="@{'/public/images/kif.png'}"/></a></li>
 </ul>
 </p>
 
@@ -446,4 +457,41 @@ function check(item, id){
     </div>
    </div>
    
+   
+         <!-- Modal PAYMENT ORDER -->
+  <div class="modal fade" id="paymentOrderModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Create a payment order
+      </div>
+      <div class="modal-body">
+	    <form style = "padding:2em">
+			<p>
+				<label for = "amountPaymentOrder">Amount</label>
+				<input type = "text" id = "amountPaymentOrder" style="width:175px"/>
+				
+			</p>
+			
+			<p>
+				<label for = "currencyPaymentOrder">Currency</label>
+				<input type = "text" id = "currencyPaymentOrder" style="width:175px"/>
+				
+			</p>
+			
+			<p>
+				<label for = "urgentPaymentOrder">Urgent</label>
+				<input type = "checkbox" id = "urgentPaymentOrder" style="width:175px"/>
+				
+			</p>
+			
+		</form>
+		<div class="modal-footer">
+			<input id = "paymentOrderButton" type = "button" value = "Create"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
  

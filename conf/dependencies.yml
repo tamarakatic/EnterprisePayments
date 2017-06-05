@@ -11,3 +11,5 @@ require:
         transitive: false
     - net.sourceforge.jexcelapi -> jxl 2.6.10:
         transitive: false
+    - org.apache.cxf -> cxf-rt-frontend-jaxws 3.1.4
+    - org.apache.cxf -> cxf-rt-transports-http 3.1.4

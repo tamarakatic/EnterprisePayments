@@ -1,20 +1,18 @@
 package controllers;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -28,21 +26,15 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.example.service.paymentorder.PaymentOrder;
+import com.example.service.paymentorder.TCompanyData;
 
-import models.BankStatementRequest;
 import models.BusinessPartner;
 import models.BusinessYear;
 import models.Company;
 import models.Invoice;
 import models.InvoiceItem;
-import models.Permission;
-import models.User;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -50,6 +42,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 import play.Logger;
 import play.Play;
 import play.mvc.Controller;
+import soap.CompanyService;
+import soap.CompanyServiceImplService;
 
 public class Invoices extends Controller {
 
@@ -123,6 +117,7 @@ public class Invoices extends Controller {
 	}
 	
 	public static void delete(Long id) throws IOException, ParserConfigurationException, TransformerException {
+		
 		if(!Application.authorize("deleteInvoice")){
 			render("errors/401.html");
 		}
@@ -409,6 +404,51 @@ public class Invoices extends Controller {
 			e.printStackTrace();
 		}
 		show("edit");
-	}	
+	}
+	
+	public static void createPaymentOrder(Long invoiceId, BigDecimal amount, boolean isUrgent, String currency) throws DatatypeConfigurationException{
+		if (invoiceId != null) {
+			Invoice invoice = Invoice.findById(invoiceId);
+			Company company = invoice.company;
+			BusinessPartner bp = invoice.businessPartner;
+			
+			TCompanyData debtorData = new TCompanyData();
+			debtorData.setInfo(company.name + " " + company.address);
+			//debtorData.setAccountNumber(company.accountNumber);
+			//debtorData.setModel(model);
+			//debtorData.setReferenceNumber(company.referenceNumber);
+			
+			TCompanyData creditorData = new TCompanyData();
+			creditorData.setInfo(bp.name + " " + bp.address);
+			creditorData.setAccountNumber(bp.account);
+			//creditorData.setModel(model);
+			//creditorData.setReferenceNumber(bp.referenceNumber);
+			
+			GregorianCalendar calendar = new GregorianCalendar();
+			calendar.setTime(new Date());
+			XMLGregorianCalendar dateOfPaymentXML = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+			
+			calendar.setTime(invoice.dateOfValue);
+			XMLGregorianCalendar dateOfValueXML = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+			
+			PaymentOrder po = new PaymentOrder();
+			po.setMessageId("messageId");
+			po.setCreditor(creditorData);
+			po.setDebtor(debtorData);
+			po.setPaymentPurpose("Payment based on a recieved invoice");
+			po.setUrgent(isUrgent);
+			po.setAmount(amount);
+			po.setCurrency(currency);
+			po.setDateOfPayment(dateOfPaymentXML);
+			po.setDateOfValue(dateOfValueXML);
+			
+			
+			CompanyServiceImplService service = new CompanyServiceImplService();
+			CompanyService companyService = service.getCompanyServiceImplPort();
+			String response = companyService.processPaymentOrder(po);
+			System.out.println(response);
+		}
+		show("edit");
+	}
 
 }
