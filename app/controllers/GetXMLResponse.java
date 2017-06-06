@@ -60,10 +60,8 @@ public abstract class GetXMLResponse {
         {  
             builder = factory.newDocumentBuilder();  
             InputSource iSource = new InputSource();
-            iSource.setCharacterStream(new StringReader(sb.toString()));
-            
-            doc = builder.parse(iSource);
-//            doc = builder.parse( new InputSource(new StringReader(sb.toString()))); 
+            iSource.setCharacterStream(new StringReader(sb.toString()));            
+            doc = builder.parse(iSource); 
         } catch (Exception e) {  
             e.printStackTrace();  
         } 
@@ -96,8 +94,9 @@ public abstract class GetXMLResponse {
         		  {
         			  Element element = (Element) nNode; 
         			  result = element.getElementsByTagName("id").item(0).getTextContent(); 
-        			  String query = " insert into invoice (company, partner, year, number, dateOfInvoice, dateOfValue, basis, tax, total)"
-        				        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        			  String query = " insert into invoice (company, partner, year, number, "
+    			  					+ "dateOfInvoice, dateOfValue, basis, tax, total)"
+    			  					+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         			  try {
         				con = DriverManager.getConnection(url, user, password);	
 						preparedStatement = con.prepareStatement(query);
