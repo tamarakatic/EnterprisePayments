@@ -8,10 +8,11 @@
                schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"/>	
     <xs:element name="invoices">
         <xs:complexType>
-            <xs:sequence>
+            <xs:sequence>               
                <xs:element name="invoices_data">
                    <xs:complexType>
                        <xs:sequence>
+                           <xs:element name="id" type="xs:string"/>
                            <xs:element name="company" type="xs:string"/>
                            <xs:element name="partner" type="xs:string"/>
                            <xs:element name="year" type="xs:string"/>
