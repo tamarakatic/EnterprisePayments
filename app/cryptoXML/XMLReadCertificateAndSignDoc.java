@@ -33,6 +33,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.apache.xml.security.exceptions.XMLSecurityException;
 import org.apache.xml.security.signature.XMLSignature;
+import org.apache.xml.security.signature.XMLSignatureException;
 import org.apache.xml.security.transforms.TransformationException;
 import org.apache.xml.security.transforms.Transforms;
 import org.apache.xml.security.utils.Constants;
@@ -95,6 +96,8 @@ public class XMLReadCertificateAndSignDoc {
 				
 				return doc;
 			} catch (TransformationException e) {
+				e.printStackTrace();
+			} catch (XMLSignatureException e) {
 				e.printStackTrace();
 			} catch (DOMException e) {
 				e.printStackTrace();
