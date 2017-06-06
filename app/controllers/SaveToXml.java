@@ -112,31 +112,27 @@ public abstract class SaveToXml {
 	         XMLUtility xmlUtility = new XMLUtility();
 	 		 String keyStoreFile = "./data/keystores/primer.jks";
 	 		  		
-	 		 System.out.println("===== XML Encryption & Signature algoritma =====");
 	 		 SecretKey secretKey = xmlUtility.generateDataEncryptionKey();
-	 		 System.out.println("\n===== Generisan kljuc =====");
 	 		 System.out.println(new BASE64Encoder().encode((secretKey.getEncoded())));
 	 		
 	 		 Certificate cert = xml.readCertificate(keyStoreFile, "primer", "primer");
-	 		 System.out.println("\n===== Sifrovanje XML dokumenta =====");
 	 		 doc = xmlUtility.encrypt(doc, secretKey, cert);
 	 		
-	 		 System.out.println("\n===== Potpisivanje XML dokumenta =====");
 	 		 PrivateKey privateKey = xmlUtility.readPrivateKey(keyStoreFile, "primer", "primer", "primer");
 	 		 doc = xml.signDocument(doc, privateKey, cert);
 	 		  		
-	 		 System.out.println("\n===== Transfer XML dokumenta od firme A do firme B =====");	
+	 		 System.out.println("\n Firma A salje XML dokumenat firmi B ");	
 	 		 
-	 	     System.out.println("\n===== Provera validnosti digitalnog potpisa =====");	 	     
+	 	     System.out.println("\n Proverava se validacija digitalnog potpisa...");	 	     
 
 	 	     boolean res = xmlUtility.verifySignature(doc);
 			 if(res) {
-				System.out.println("\n===== Potpis je validan, dokument se desifruje =====");
+				System.out.println("\n Potpis je validan, dokument se desifruje ");
 				doc = xmlUtility.decrypt(doc, privateKey);
-				System.out.println("\n===== Desifrovanje zavrseno, firma B je primila dokument =====");					
+				System.out.println("\n Desifrovanje zavrseno, firma B je primila dokument ");					
 			 
 			 } else {
-				System.out.println("\n===== Potpis nije validan, dokument se odbacuje =====");
+				System.out.println("\n Potpis nije validan! Dokument se odbacuje! ");
 			 }
 
 			 DOMSource srs = new DOMSource(doc);

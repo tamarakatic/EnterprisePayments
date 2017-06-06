@@ -81,7 +81,6 @@ public abstract class GetXMLResponse {
         	  Validator validator = schema.newValidator();
         	          	  validator.validate(xmlFile);
         	  NodeList nodeList = doc.getElementsByTagName("invoices_data");
-        	  System.out.println("-----------------------------");
         	  String url = "jdbc:mysql://localhost/eneterprise_payment?useSSL=false&createDatabaseIfNotExist=true";
         	  String user = "root";
         	  String password = "tasha1994";
@@ -96,16 +95,7 @@ public abstract class GetXMLResponse {
         		  if (nNode.getNodeType() == Node.ELEMENT_NODE) 
         		  {
         			  Element element = (Element) nNode; 
-        			  result = element.getElementsByTagName("id").item(0).getTextContent();
-        			  System.out.println("Company: " + element.getElementsByTagName("company").item(0).getTextContent());
-        			  System.out.println("Partner: " + element.getElementsByTagName("partner").item(0).getTextContent());
-        			  System.out.println("Year: " + element.getElementsByTagName("year").item(0).getTextContent());
-        			  System.out.println("Number: " + element.getElementsByTagName("number").item(0).getTextContent());
-        			  System.out.println("Invoice Date: " + element.getElementsByTagName("invoiceDate").item(0).getTextContent());
-        			  System.out.println("Value Date: " + element.getElementsByTagName("valueDate").item(0).getTextContent());
-        			  System.out.println("Basic Value: " + element.getElementsByTagName("basicValue").item(0).getTextContent());
-        			  System.out.println("Tax Value: " + element.getElementsByTagName("taxValue").item(0).getTextContent());
-        			  System.out.println("Sum Value: " + element.getElementsByTagName("sumValue").item(0).getTextContent()); 
+        			  result = element.getElementsByTagName("id").item(0).getTextContent(); 
         			  String query = " insert into invoice (company, partner, year, number, dateOfInvoice, dateOfValue, basis, tax, total)"
         				        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         			  try {
@@ -124,11 +114,9 @@ public abstract class GetXMLResponse {
 						con.close();
 					} catch (SQLException e) {					
 						System.out.println("Exception with Prepared Statement" + e.getMessage());
-					}    			 
-        			         			  
+					} 	        			  
         		  }
         	  }
-        	  System.out.println("-----------------------------");
         	  System.out.println(xmlFile.getSystemId() + " is valid");
         	} catch (SAXException e) {
         	  System.out.println(xmlFile.getSystemId() + " is NOT valid reason:" + e);
