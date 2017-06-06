@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.security.KeyFactory;
 import java.security.KeyStore;
@@ -22,6 +23,9 @@ import java.util.Arrays;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.xml.security.encryption.EncryptedData;
 import org.apache.xml.security.encryption.EncryptedKey;
@@ -32,6 +36,7 @@ import org.apache.xml.security.keys.KeyInfo;
 import org.apache.xml.security.keys.keyresolver.implementations.RSAKeyValueResolver;
 import org.apache.xml.security.keys.keyresolver.implementations.X509CertificateResolver;
 import org.apache.xml.security.signature.XMLSignature;
+import org.apache.xml.security.signature.XMLSignatureException;
 import org.apache.xml.security.transforms.TransformationException;
 import org.apache.xml.security.transforms.Transforms;
 import org.apache.xml.security.utils.Constants;
@@ -40,6 +45,8 @@ import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
@@ -105,16 +112,6 @@ public class XMLUtility {
 		return null;
 	}
 	
-	public static PrivateKey loadPrivateKey(String key64) 
-				throws GeneralSecurityException, IOException {
-	    byte[] clear = new BASE64Decoder().decodeBuffer(key64);
-	    PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(clear);
-	    KeyFactory fact = KeyFactory.getInstance("DSA");
-	    PrivateKey priv = fact.generatePrivate(keySpec);
-	    Arrays.fill(clear, (byte) 0);
-	    return priv;
-	}
-	
 	public byte[] documentToByte(Document document)
 	{
 	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -142,6 +139,8 @@ public class XMLUtility {
 			        	return signature.checkSignatureValue((X509Certificate) cert);
 			    }
 			}
+		} catch (XMLSignatureException e) {
+			e.printStackTrace();
 		} catch (XMLSecurityException e) {
 			e.printStackTrace();
 		}
