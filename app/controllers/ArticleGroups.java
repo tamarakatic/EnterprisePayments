@@ -6,7 +6,9 @@ import models.ArticleGroup;
 import models.GSTType;
 import models.Item;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(HttpsController.class)
 public class ArticleGroups extends Controller{
 	
 	public static void show(String mode) {

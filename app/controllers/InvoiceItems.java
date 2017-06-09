@@ -13,7 +13,9 @@ import models.InvoiceItem;
 import models.Item;
 import models.PricelistItem;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(HttpsController.class)
 public class InvoiceItems extends Controller{
 
 	public static void show(String mode){

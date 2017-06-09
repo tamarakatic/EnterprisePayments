@@ -12,7 +12,9 @@ import models.BusinessYear;
 import models.BusinessPartner;
 
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(HttpsController.class)
 public class OrderFormItems extends Controller {
 	
 	public static void show(String mode) {

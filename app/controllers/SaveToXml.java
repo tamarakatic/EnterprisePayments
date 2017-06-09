@@ -2,11 +2,21 @@ package controllers;
 
 import java.io.File;
 import java.io.StringWriter;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.util.List;
 
 import javax.crypto.SecretKey;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import javax.security.cert.X509Certificate;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
@@ -15,9 +25,12 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.lang.time.DateFormatUtils;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import com.mysql.fabric.Response;
+import com.ning.http.client.AsyncHttpClient;
+import com.ning.http.client.RequestBuilder;
 
 import cryptoXML.XMLReadCertificateAndSignDoc;
 import cryptoXML.XMLUtility;
@@ -135,24 +148,21 @@ public abstract class SaveToXml {
 				System.out.println("\n Potpis nije validan! Dokument se odbacuje! ");
 			 }
 
-			 DOMSource srs = new DOMSource(doc);
-	 		 StreamResult test = new StreamResult(new File("test.xml"));
-	 		  		
+	 		  		  		
 	         TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	         Transformer transformer = transformerFactory.newTransformer();
 	         DOMSource source = new DOMSource(doc);
 	         StringWriter writer = new StringWriter();
 	         StreamResult result = new StreamResult(writer);     
 
-	         transformer.transform(srs, test);
 	         transformer.transform(source, result);	   
-	     
-	         HttpResponse response = WS.url("http://localhost:8100/invoices")
+
+	         HttpResponse response = WS.url("https://localhost:9444/invoices")
 	        		 .setHeader("Content-Type", "application/xml")
 	        		 .setHeader("PrivateKey", privateKey.toString())
 	        		 .body(writer.toString())
 	        		 .post();
-	         
+	
             System.out.println("Responseeeeeeee: " + response.getString());
      
 	      } catch (Exception e) {

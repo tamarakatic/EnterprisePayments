@@ -6,7 +6,9 @@ import models.ArticleGroup;
 import models.GSTRate;
 import models.GSTType;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(HttpsController.class)
 public class GSTTypes extends Controller{
 
 	public static void show(String mode) {

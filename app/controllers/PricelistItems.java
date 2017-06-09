@@ -6,7 +6,9 @@ import models.Item;
 import models.Pricelist;
 import models.PricelistItem;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(HttpsController.class)
 public class PricelistItems extends Controller{
 	
 	public static void show(String mode) {

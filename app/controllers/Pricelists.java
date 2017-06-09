@@ -9,7 +9,9 @@ import models.GSTType;
 import models.Item;
 import models.Pricelist;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(HttpsController.class)
 public class Pricelists extends Controller{
 	
 	public static void show(String mode) {

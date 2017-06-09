@@ -5,7 +5,9 @@ import java.util.List;
 import models.GSTRate;
 import models.GSTType;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(HttpsController.class)
 public class GSTRates extends Controller {
 	
 	public static void show(String mode) {

@@ -29,6 +29,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import cryptoXML.XMLUtility;
+import play.mvc.With;
 
 public abstract class GetXMLResponse {
 	

@@ -15,6 +15,7 @@ import java.security.PrivateKey;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
 import javax.crypto.KeyGenerator;
@@ -46,6 +47,17 @@ import sun.misc.BASE64Encoder;
 
 public class XMLReadCertificateAndSignDoc {
 			
+	public Certificate readCertificateFromFile(String filename) {
+		Certificate cert = null;
+		try {
+			CertificateFactory cf = CertificateFactory.getInstance("X.509");
+			cert = cf.generateCertificate(new FileInputStream(filename));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cert;
+	}
 	 public Certificate readCertificate(String keyStoreFile, 
 			 							String keyStorePass, 
 			 							String alias) {

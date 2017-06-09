@@ -6,7 +6,9 @@ import models.BusinessPartner;
 import models.BusinessYear;
 import models.Company;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(HttpsController.class)
 public class Companies extends Controller {
 	
 	public static void show(String mode) {

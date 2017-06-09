@@ -9,7 +9,9 @@ import models.OrderForm;
 import models.OrderFormItem;
 import models.Item;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(HttpsController.class)
 public class OrderForms extends Controller {
 	
 	public static void show(String mode) {
