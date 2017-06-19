@@ -15,12 +15,16 @@ public class Application extends Controller {
         render(user);
     }
     
-    public static void logToFile(String operationCode, Long objectId, String logText){
+    protected static void logToFile(String operationCode, Long objectId, String logText){
     	String username = Security.connected();
 		Logger.info(operationCode + " : username = "+username+ " id = "+objectId + " "+logText);
     }
 
-    public static void logErrorToFile(String operationCode, Long objectId) {
+    protected static void logIPToFile(String IPadress){
+    	Logger.info("0_0 IP :"+IPadress);
+    }
+    
+    protected static void logErrorToFile(String operationCode, Long objectId) {
     	String username = Security.connected();
 		Logger.error(operationCode + " : username = "+username+ " id = "+objectId);
     }
