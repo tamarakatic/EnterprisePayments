@@ -30,7 +30,8 @@ public class Register extends Controller {
 		
 		byte[] salt = HashFunction.getSalt();
 		String hash = HashFunction.hashPassword(password, salt);
-		User user = new User(username, hash, email, salt);
+		Role role = Role.findBy("name", "business partner").fetch().get(0);
+		User user = new User(username, hash, email, salt, role);
 		user.save();
 		redirect("http://localhost:9000/secure/login", true);
 	}
