@@ -1,16 +1,17 @@
 package controllers;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -29,7 +30,10 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import play.Logger;
 import play.Play;
+import play.libs.WS;
+import play.libs.WS.HttpResponse;
 import play.mvc.Controller;
 
 public class Invoices extends Controller {
@@ -92,6 +96,15 @@ public class Invoices extends Controller {
 	}
 	
 	public static void delete(Long id) {
+		try {
+			send();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (id != null){
 			Invoice invoice = Invoice.findById(id);
 			if(invoice.invoiceItems != null && !invoice.invoiceItems.isEmpty()){
@@ -341,5 +354,36 @@ public class Invoices extends Controller {
 		}
 		show("edit");
 	}
+	
+	public static void send() throws ParserConfigurationException, TransformerException {
+		HttpResponse httpResponse = null;
+		String username = "";
+		String password = "";
+		String url = "http://localhost:8080/invoices/show";
+		String postBody = "";
+
+	//	BankStatementRequest b = new BankStatementRequest("111", new Date(), 1);
+		
+		String xmlStr = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"+
+                "<Emp id=\"1\"><name>Pankaj</name><age>25</age>\n"+
+                "<role>Developer</role><gen>Male</gen></Emp>";
+		
+		try {
+		    httpResponse = WS.url(url)
+		        .setHeader("Content-Type", "text/xml; charset=UTF-8")
+		        .setHeader("SOAPAction", "")
+		        .body(xmlStr).post();
+
+		    Document document = httpResponse.getXml();
+		 //   String value = XPath.selectText("//value", document);
+		 //   Node node = XPath.selectNode("//node", document);
+
+		    // Do things with the nodes, value and so on
+
+		} catch (Exception e) {
+		    Logger.error("Do something with the connection error: %s", e);
+		}
+	}
+
 	
 }

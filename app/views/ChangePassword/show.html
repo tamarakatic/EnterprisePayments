@@ -1,0 +1,17 @@
+#{extends 'standardForm.html' /}
+
+<h4>Check your email</h4>
+
+<div class="panel">
+<p>
+<form action="@{ChangePassword.update()}">
+	<p id="token-field">
+		<input type="text" name="token" id="token" placeholder="Copy token from email" /> 
+	</p>
+	<p id="password-field">
+		<input type="text" name="password" id="password" placeholder="New password" /> 
+	</p>
+	<input type="submit" value="Submit">
+</form>
+<p>
+</div>
