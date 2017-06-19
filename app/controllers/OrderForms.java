@@ -7,12 +7,18 @@ import models.BusinessYear;
 import models.Company;
 import models.OrderForm;
 import models.OrderFormItem;
+import models.Permission;
+import models.User;
 import models.Item;
+import play.Logger;
 import play.mvc.Controller;
 
 public class OrderForms extends Controller {
 	
 	public static void show(String mode) {
+		if(!Application.authorize("viewOrderForms")){
+			render("errors/401.html");
+		}
 		List<OrderForm> orderForms = OrderForm.findAll();
 		List<Company> companies = Company.findAll();
 		List<BusinessYear> businessYears = BusinessYear.findAll();
@@ -24,6 +30,9 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void create(OrderForm orderForm) {
+		if(!Application.authorize("createOrderForm")){
+			render("errors/401.html");
+		}
 		Company company = Company.findById(orderForm.company.id);
 		orderForm.company = company;
 		orderForm.businessYear = BusinessYear.findById(orderForm.businessYear.id);
@@ -36,12 +45,17 @@ public class OrderForms extends Controller {
 			}
 		}
 		orderForm.numberOfOrder = ++num;
-		orderForm.save();
+		OrderForm o = orderForm.save();
+		Application.logToFile("4_1", o.id, " - business_partner : "+o.businessPartner.name);
 		show("add");
 	}
 	
 	public static void edit(OrderForm orderForm) {
+		if(!Application.authorize("editOrderForm")){
+			render("errors/401.html");
+		}
 		orderForm.save();
+		Application.logToFile("4_2", orderForm.id, " - business_partner : "+orderForm.businessPartner.name);
 		show("edit");
 	}
 	
@@ -56,10 +70,14 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void delete(Long id) {
+		if(!Application.authorize("deleteOrderForm")){
+			render("errors/401.html");
+		}
 		if (id != null) {
 			OrderForm orderForm = OrderForm.findById(id);
 			if (orderForm.orderFormItems.isEmpty()) {
 				orderForm.delete();
+				Application.logToFile("4_3", id, "");
 			}
 			else {
 				List<OrderForm> orderForms = OrderForm.findAll();
@@ -68,6 +86,7 @@ public class OrderForms extends Controller {
 				List<Company> companies = Company.findAll();
 				List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 				List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+				Application.logErrorToFile("4_3", id);
 				renderTemplate("OrderForms/show.html", mode, orderForms, companies, businessYears, businessPartners, hasChildren);	
 			}
 		}
@@ -83,5 +102,4 @@ public class OrderForms extends Controller {
 		}
 		show("edit");
 	}
-	
 }

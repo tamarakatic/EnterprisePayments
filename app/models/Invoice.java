@@ -7,10 +7,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import play.db.jpa.Model;
 
 @Entity
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlRootElement(name = "invoice")
 public class Invoice extends Model{
 
 	public Date dateOfInvoice;

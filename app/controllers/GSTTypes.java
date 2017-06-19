@@ -5,11 +5,17 @@ import java.util.List;
 import models.ArticleGroup;
 import models.GSTRate;
 import models.GSTType;
+import models.Permission;
+import models.User;
+import play.Logger;
 import play.mvc.Controller;
 
 public class GSTTypes extends Controller{
 
 	public static void show(String mode) {
+		if(!Application.authorize("viewGSTTypes")){
+			render("errors/401.html");
+		}
 		List<GSTType> gsttypes = GSTType.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
@@ -17,25 +23,35 @@ public class GSTTypes extends Controller{
 	}
 	
 	public static void create(GSTType gsttype) {
+		if(!Application.authorize("createGSTType")){
+			render("errors/401.html");
+		}
 		validation.required("name",gsttype.name);		
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
 		} 
-		else
-			gsttype.save();		
+		else {
+			GSTType g = gsttype.save();	
+			Application.logToFile("8_1", g.id, "");
+		}
 		
 		show("add");
 	}
 	
 	public static void edit(GSTType gsttype) {
+		if(!Application.authorize("editGSTType")){
+			render("errors/401.html");
+		}
 		validation.required("name",gsttype.name);
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
 		} 
-		else
+		else {
 			gsttype.save();	
+			Application.logToFile("8_2", gsttype.id, "");
+		}
 		
 		show("edit");		
 	}
@@ -46,6 +62,9 @@ public class GSTTypes extends Controller{
 	}
 	
 	public static void delete(Long id) {
+		if(!Application.authorize("deleteGSTType")){
+			render("errors/401.html");
+		}
 		if (id != null){
 			GSTType gsttype = GSTType.findById(id);
 			List<ArticleGroup> articlegroups = ArticleGroup.find("byGSTType_id", id).fetch();
@@ -53,10 +72,12 @@ public class GSTTypes extends Controller{
 			String has_child = "has_child";
 			try {
 				if (articlegroups != null && !articlegroups.isEmpty() && gstrates != null && !gstrates.isEmpty()) {
+					Application.logToFile("8_3", id, "");
 					renderTemplate("GSTTypes/show.html", "edit", has_child);
 				}
 				else {
 					gsttype.delete();
+					Application.logErrorToFile("8_3", id);
 					show("edit");
 				}
 				
@@ -82,4 +103,5 @@ public class GSTTypes extends Controller{
 		}
 		show("edit");
 	}
+
 }

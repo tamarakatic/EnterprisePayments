@@ -1,0 +1,1806 @@
+2017-05-26 21:50:36 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-05-26 21:50:36 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-05-26 21:50:37 WARN  play:367 - You're running Play! in DEV mode
+2017-05-26 21:50:37 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-05-26 21:54:22 INFO  MLog:124 - MLog clients using log4j logging.
+2017-05-26 21:54:22 INFO  C3P0Registry:248 - Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2017-05-26 21:54:22 INFO  AbstractPoolBackedDataSource:527 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hgeby99ojig55z1sxv215|12279ab, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgeby99ojig55z1sxv215|12279ab, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> /* ping */ SELECT 1, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2017-05-26 21:54:22 INFO  play:308 - Connected to jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true for default
+2017-05-26 21:54:23 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+2017-05-26 21:54:23 INFO  Version:41 - HHH000412: Hibernate Core {4.2.19.Final}
+2017-05-26 21:54:23 INFO  Environment:238 - HHH000206: hibernate.properties not found
+2017-05-26 21:54:23 INFO  Environment:345 - HHH000021: Bytecode provider name : javassist
+2017-05-26 21:54:23 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-26 21:54:23 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-26 21:54:23 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-26 21:54:23 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-26 21:54:23 INFO  Version:56 - Hibernate Validator 4.1.0.Final
+2017-05-26 21:54:23 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-26 21:54:23 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-26 21:54:24 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-26 21:54:24 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-26 21:54:24 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-26 21:54:24 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-05-26 21:54:24 INFO  TableMetadata:67 - HHH000037: Columns: [password, id, username]
+2017-05-26 21:54:24 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 21:54:24 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 21:54:24 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-26 21:54:24 INFO  play:308 - Application 'EnterprisePayments' is now started !
+2017-05-26 21:54:29 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-05-26 21:54:29 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-05-26 21:54:30 WARN  play:367 - You're running Play! in DEV mode
+2017-05-26 21:54:30 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-05-26 21:54:32 INFO  MLog:124 - MLog clients using log4j logging.
+2017-05-26 21:54:32 INFO  C3P0Registry:248 - Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2017-05-26 21:54:32 INFO  AbstractPoolBackedDataSource:527 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hgeby99ojigcx0t9h7jp|223f7ca0, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgeby99ojigcx0t9h7jp|223f7ca0, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> /* ping */ SELECT 1, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2017-05-26 21:54:32 INFO  play:308 - Connected to jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true for default
+2017-05-26 21:54:33 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+2017-05-26 21:54:33 INFO  Version:41 - HHH000412: Hibernate Core {4.2.19.Final}
+2017-05-26 21:54:33 INFO  Environment:238 - HHH000206: hibernate.properties not found
+2017-05-26 21:54:33 INFO  Environment:345 - HHH000021: Bytecode provider name : javassist
+2017-05-26 21:54:33 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-26 21:54:33 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-26 21:54:33 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-26 21:54:33 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-26 21:54:33 INFO  Version:56 - Hibernate Validator 4.1.0.Final
+2017-05-26 21:54:33 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-26 21:54:33 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-26 21:54:34 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-26 21:54:34 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-26 21:54:34 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-26 21:54:34 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-05-26 21:54:34 INFO  TableMetadata:67 - HHH000037: Columns: [password, id, username]
+2017-05-26 21:54:34 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 21:54:34 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 21:54:34 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-26 21:54:34 INFO  play:308 - Application 'EnterprisePayments' is now started !
+2017-05-26 21:54:48 INFO  play:308 - 5_3 : user = a id = 21
+2017-05-26 21:59:30 INFO  play:308 - 5_2 : user = a id = 23
+2017-05-26 21:59:52 INFO  play:308 - 5_7 : user = a id = 23
+2017-05-26 22:00:43 INFO  play:308 - 5_8 : user = a id = 8
+2017-05-26 22:01:13 INFO  play:308 - 5_3 : user = a id = 12
+2017-05-26 22:01:19 ERROR play:426 - 5_3 : user = a id = 10
+2017-05-26 22:40:04 INFO  play:308 - Restart: Signature change !
+2017-05-26 22:40:04 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-26 22:40:04 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-26 22:40:04 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-26 22:40:04 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-26 22:40:04 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-26 22:40:04 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-26 22:40:04 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-26 22:40:04 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-26 22:40:04 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-26 22:40:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-05-26 22:40:04 INFO  TableMetadata:67 - HHH000037: Columns: [password, id, username]
+2017-05-26 22:40:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 22:40:04 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 22:40:04 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-26 22:40:30 INFO  play:308 - 5_5 : user = a id = 5
+2017-05-26 23:11:18 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-05-26 23:11:19 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-05-26 23:11:20 WARN  play:367 - You're running Play! in DEV mode
+2017-05-26 23:11:21 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-05-26 23:11:40 INFO  MLog:124 - MLog clients using log4j logging.
+2017-05-26 23:11:41 INFO  C3P0Registry:248 - Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2017-05-26 23:11:41 INFO  AbstractPoolBackedDataSource:527 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hgeby99ojl7k5f1aqwfiz|72d610f3, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgeby99ojl7k5f1aqwfiz|72d610f3, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> /* ping */ SELECT 1, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2017-05-26 23:11:41 INFO  play:308 - Connected to jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true for default
+2017-05-26 23:11:41 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+2017-05-26 23:11:41 INFO  Version:41 - HHH000412: Hibernate Core {4.2.19.Final}
+2017-05-26 23:11:41 INFO  Environment:238 - HHH000206: hibernate.properties not found
+2017-05-26 23:11:41 INFO  Environment:345 - HHH000021: Bytecode provider name : javassist
+2017-05-26 23:11:41 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-26 23:11:42 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-26 23:11:42 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-26 23:11:42 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-26 23:11:42 INFO  Version:56 - Hibernate Validator 4.1.0.Final
+2017-05-26 23:11:42 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-26 23:11:42 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-26 23:11:42 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-26 23:11:42 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-26 23:11:42 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-26 23:11:42 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-26 23:11:42 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-26 23:11:42 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-26 23:11:42 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-26 23:11:42 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-26 23:11:42 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-26 23:11:42 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-26 23:11:42 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-26 23:11:42 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-26 23:11:42 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-26 23:11:42 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-26 23:11:42 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-26 23:11:42 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-26 23:11:42 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-26 23:11:42 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 23:11:42 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 23:11:42 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-26 23:11:42 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-26 23:11:42 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-26 23:11:42 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-26 23:11:42 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-26 23:11:42 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-26 23:11:42 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 23:11:42 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 23:11:43 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-26 23:11:43 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-26 23:11:43 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-26 23:11:43 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-26 23:11:43 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-26 23:11:43 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-26 23:11:43 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-26 23:11:43 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-26 23:11:43 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-26 23:11:43 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-26 23:11:43 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-26 23:11:43 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-26 23:11:43 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-26 23:11:43 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-26 23:11:43 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 23:11:43 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 23:11:43 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-26 23:11:43 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-26 23:11:43 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-26 23:11:43 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-26 23:11:43 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-26 23:11:43 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-26 23:11:43 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-26 23:11:43 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-26 23:11:43 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-26 23:11:43 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-26 23:11:43 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 23:11:43 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 23:11:43 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-26 23:11:43 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-26 23:11:43 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-26 23:11:43 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-26 23:11:43 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-05-26 23:11:43 INFO  TableMetadata:67 - HHH000037: Columns: [password, id, username]
+2017-05-26 23:11:43 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-26 23:11:43 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-26 23:11:43 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-26 23:11:43 INFO  play:308 - Application 'EnterprisePayments' is now started !
+2017-05-26 23:13:13 WARN  SqlExceptionHelper:144 - SQL Error: 1364, SQLState: HY000
+2017-05-26 23:13:13 ERROR SqlExceptionHelper:146 - Field 'JMBG' doesn't have a default value
+2017-05-26 23:13:14 ERROR play:604 - 
+
+@74657mkm8
+Internal Server Error (500) for request POST /companies/edit
+
+Execution exception (In /app/controllers/Companies.java around line 50)
+PersistenceException occurred : org.hibernate.exception.GenericJDBCException: could not execute statement
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.GenericJDBCException: could not execute statement
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:485)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.GenericJDBCException: could not execute statement
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1387)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1310)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1316)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:881)
+	at play.db.jpa.JPABase._save(JPABase.java:35)
+	at play.db.jpa.GenericModel.save(GenericModel.java:232)
+	at controllers.Companies.edit(Companies.java:50)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	... 4 more
+Caused by: org.hibernate.exception.GenericJDBCException: could not execute statement
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:54)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:124)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:189)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:96)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:58)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2987)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3499)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:81)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	... 9 more
+Caused by: java.sql.SQLException: Field 'JMBG' doesn't have a default value
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2677)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:186)
+	... 30 more
+2017-05-26 23:13:30 WARN  SqlExceptionHelper:144 - SQL Error: 1364, SQLState: HY000
+2017-05-26 23:13:30 ERROR SqlExceptionHelper:146 - Field 'JMBG' doesn't have a default value
+2017-05-26 23:13:30 ERROR play:604 - 
+
+@74657mkm9
+Internal Server Error (500) for request POST /companies/edit
+
+Execution exception (In /app/controllers/Companies.java around line 50)
+PersistenceException occurred : org.hibernate.exception.GenericJDBCException: could not execute statement
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.GenericJDBCException: could not execute statement
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:485)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.GenericJDBCException: could not execute statement
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1387)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1310)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1316)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:881)
+	at play.db.jpa.JPABase._save(JPABase.java:35)
+	at play.db.jpa.GenericModel.save(GenericModel.java:232)
+	at controllers.Companies.edit(Companies.java:50)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	... 4 more
+Caused by: org.hibernate.exception.GenericJDBCException: could not execute statement
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:54)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:124)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:189)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:96)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:58)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2987)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3499)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:81)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	... 9 more
+Caused by: java.sql.SQLException: Field 'JMBG' doesn't have a default value
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2677)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:186)
+	... 30 more
+2017-05-26 23:14:15 WARN  SqlExceptionHelper:144 - SQL Error: 1406, SQLState: 22001
+2017-05-26 23:14:15 ERROR SqlExceptionHelper:146 - Data truncation: Data too long for column 'MBR' at row 1
+2017-05-26 23:14:15 ERROR play:604 - 
+
+@74657mkma
+Internal Server Error (500) for request POST /companies/edit
+
+Execution exception (In /app/controllers/Companies.java around line 50)
+PersistenceException occurred : org.hibernate.exception.DataException: could not execute statement
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.DataException: could not execute statement
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:485)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1387)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1310)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1316)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:881)
+	at play.db.jpa.JPABase._save(JPABase.java:35)
+	at play.db.jpa.GenericModel.save(GenericModel.java:232)
+	at controllers.Companies.edit(Companies.java:50)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	... 4 more
+Caused by: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:71)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:124)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:189)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:96)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:58)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2987)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3499)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:81)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	... 9 more
+Caused by: com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'MBR' at row 1
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3968)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2677)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:186)
+	... 30 more
+2017-05-26 23:14:27 WARN  SqlExceptionHelper:144 - SQL Error: 1406, SQLState: 22001
+2017-05-26 23:14:27 ERROR SqlExceptionHelper:146 - Data truncation: Data too long for column 'MBR' at row 1
+2017-05-26 23:14:27 ERROR play:604 - 
+
+@74657mkmb
+Internal Server Error (500) for request POST /companies/edit
+
+Execution exception (In /app/controllers/Companies.java around line 50)
+PersistenceException occurred : org.hibernate.exception.DataException: could not execute statement
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.DataException: could not execute statement
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:485)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1387)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1310)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1316)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:881)
+	at play.db.jpa.JPABase._save(JPABase.java:35)
+	at play.db.jpa.GenericModel.save(GenericModel.java:232)
+	at controllers.Companies.edit(Companies.java:50)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	... 4 more
+Caused by: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:71)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:124)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:189)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:96)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:58)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2987)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3499)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:81)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	... 9 more
+Caused by: com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'MBR' at row 1
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3968)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2677)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:186)
+	... 30 more
+2017-05-26 23:15:49 WARN  SqlExceptionHelper:144 - SQL Error: 1406, SQLState: 22001
+2017-05-26 23:15:49 ERROR SqlExceptionHelper:146 - Data truncation: Data too long for column 'MBR' at row 1
+2017-05-26 23:15:49 ERROR play:604 - 
+
+@74657mkmc
+Internal Server Error (500) for request POST /companies/edit
+
+Execution exception (In /app/controllers/Companies.java around line 50)
+PersistenceException occurred : org.hibernate.exception.DataException: could not execute statement
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.DataException: could not execute statement
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:485)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1387)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1310)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1316)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:881)
+	at play.db.jpa.JPABase._save(JPABase.java:35)
+	at play.db.jpa.GenericModel.save(GenericModel.java:232)
+	at controllers.Companies.edit(Companies.java:50)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	... 4 more
+Caused by: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:71)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:124)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:189)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:96)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:58)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2987)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3499)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:81)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	... 9 more
+Caused by: com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'MBR' at row 1
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3968)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2677)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:186)
+	... 30 more
+2017-05-26 23:16:12 WARN  SqlExceptionHelper:144 - SQL Error: 1406, SQLState: 22001
+2017-05-26 23:16:12 ERROR SqlExceptionHelper:146 - Data truncation: Data too long for column 'MBR' at row 1
+2017-05-26 23:16:12 ERROR play:604 - 
+
+@74657mkmd
+Internal Server Error (500) for request POST /companies/edit
+
+Execution exception (In /app/controllers/Companies.java around line 50)
+PersistenceException occurred : org.hibernate.exception.DataException: could not execute statement
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.DataException: could not execute statement
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:485)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1387)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1310)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1316)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:881)
+	at play.db.jpa.JPABase._save(JPABase.java:35)
+	at play.db.jpa.GenericModel.save(GenericModel.java:232)
+	at controllers.Companies.edit(Companies.java:50)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	... 4 more
+Caused by: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:71)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:124)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:189)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:96)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:58)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2987)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3499)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:81)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	... 9 more
+Caused by: com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'MBR' at row 1
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3968)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2677)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:186)
+	... 30 more
+2017-05-26 23:16:17 WARN  SqlExceptionHelper:144 - SQL Error: 1406, SQLState: 22001
+2017-05-26 23:16:17 ERROR SqlExceptionHelper:146 - Data truncation: Data too long for column 'MBR' at row 1
+2017-05-26 23:16:17 ERROR play:604 - 
+
+@74657mkme
+Internal Server Error (500) for request POST /companies/edit
+
+Execution exception (In /app/controllers/Companies.java around line 50)
+PersistenceException occurred : org.hibernate.exception.DataException: could not execute statement
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.DataException: could not execute statement
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:485)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1387)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1310)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1316)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:881)
+	at play.db.jpa.JPABase._save(JPABase.java:35)
+	at play.db.jpa.GenericModel.save(GenericModel.java:232)
+	at controllers.Companies.edit(Companies.java:50)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	... 4 more
+Caused by: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:71)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:124)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:189)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:96)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:58)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2987)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3499)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:81)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	... 9 more
+Caused by: com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'MBR' at row 1
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3968)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2677)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:186)
+	... 30 more
+2017-05-26 23:18:44 WARN  SqlExceptionHelper:144 - SQL Error: 1364, SQLState: HY000
+2017-05-26 23:18:44 ERROR SqlExceptionHelper:146 - Field 'JMBG' doesn't have a default value
+2017-05-26 23:18:44 ERROR play:604 - 
+
+@74657mkmf
+Internal Server Error (500) for request POST /companies/edit
+
+Execution exception (In /app/controllers/Companies.java around line 50)
+PersistenceException occurred : org.hibernate.exception.GenericJDBCException: could not execute statement
+
+play.exceptions.JavaExecutionException: org.hibernate.exception.GenericJDBCException: could not execute statement
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:485)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: javax.persistence.PersistenceException: org.hibernate.exception.GenericJDBCException: could not execute statement
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1387)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1310)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1316)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:881)
+	at play.db.jpa.JPABase._save(JPABase.java:35)
+	at play.db.jpa.GenericModel.save(GenericModel.java:232)
+	at controllers.Companies.edit(Companies.java:50)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	... 4 more
+Caused by: org.hibernate.exception.GenericJDBCException: could not execute statement
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:54)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:124)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:189)
+	at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:96)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:58)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2987)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3499)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:81)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:395)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:229)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:209)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:193)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:321)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.ejb.event.EJB3PersistEventListener.saveWithGeneratedId(EJB3PersistEventListener.java:78)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:208)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:151)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:78)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:772)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:746)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:750)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:875)
+	... 9 more
+Caused by: java.sql.SQLException: Field 'JMBG' doesn't have a default value
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2677)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:186)
+	... 30 more
+2017-05-26 23:22:49 INFO  play:308 - 1_2 : user = a id = 2
+2017-05-26 23:23:12 INFO  play:308 - 1_2 : user = a id = 2
+2017-05-26 23:23:45 INFO  play:308 - 1_1 : user = a id = 3
+2017-05-26 23:23:59 INFO  play:308 - 1_3 : user = a id = 3
+2017-05-26 23:24:30 ERROR play:426 - 4_3 : user = a id = 2
+2017-05-26 23:26:48 INFO  play:308 - 4_4 : user = a id = 4
+2017-05-26 23:27:13 INFO  play:308 - 4_4 : user = a id = 4
+2017-05-26 23:27:54 INFO  play:308 - 4_5 : user = a id = 4
+2017-05-26 23:28:28 INFO  play:308 - 4_6 : user = a id = 4
+2017-05-26 23:28:56 INFO  play:308 - 4_7 : user = a id = 1
+2017-05-27 00:17:14 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-05-27 00:17:15 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-05-27 00:17:17 WARN  play:367 - You're running Play! in DEV mode
+2017-05-27 00:17:17 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-05-27 00:18:10 INFO  MLog:124 - MLog clients using log4j logging.
+2017-05-27 00:18:10 INFO  C3P0Registry:248 - Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2017-05-27 00:18:11 INFO  AbstractPoolBackedDataSource:527 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hgeby99ojnl2ef15jewf0|420446cf, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgeby99ojnl2ef15jewf0|420446cf, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> /* ping */ SELECT 1, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2017-05-27 00:18:11 INFO  play:308 - Connected to jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true for default
+2017-05-27 00:18:11 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+2017-05-27 00:18:11 INFO  Version:41 - HHH000412: Hibernate Core {4.2.19.Final}
+2017-05-27 00:18:11 INFO  Environment:238 - HHH000206: hibernate.properties not found
+2017-05-27 00:18:11 INFO  Environment:345 - HHH000021: Bytecode provider name : javassist
+2017-05-27 00:18:11 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-27 00:18:11 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-27 00:18:12 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-27 00:18:12 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-27 00:18:12 INFO  Version:56 - Hibernate Validator 4.1.0.Final
+2017-05-27 00:18:12 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 00:18:12 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 00:18:13 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-27 00:18:13 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-27 00:18:13 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-27 00:18:13 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-27 00:18:13 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 00:18:13 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-05-27 00:18:13 INFO  TableMetadata:67 - HHH000037: Columns: [password, id, username]
+2017-05-27 00:18:13 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 00:18:13 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 00:18:13 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 00:18:13 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 00:18:13 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 00:18:13 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 00:18:17 ERROR SchemaUpdate:261 - HHH000388: Unsuccessful: alter table Role add index FK_1wtyy2cjpkrg90j7af2wxqw2 (user_id), add constraint FK_1wtyy2cjpkrg90j7af2wxqw2 foreign key (user_id) references User (id)
+2017-05-27 00:18:17 ERROR SchemaUpdate:262 - Cannot add foreign key constraint
+2017-05-27 00:18:17 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-27 00:18:17 INFO  play:308 - Application 'EnterprisePayments' is now started !
+2017-05-27 00:22:32 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-05-27 00:22:33 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-05-27 00:22:34 WARN  play:367 - You're running Play! in DEV mode
+2017-05-27 00:22:34 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-05-27 00:22:45 INFO  MLog:124 - MLog clients using log4j logging.
+2017-05-27 00:22:45 INFO  C3P0Registry:248 - Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2017-05-27 00:22:45 INFO  AbstractPoolBackedDataSource:527 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hgeby99ojnqypxupijvk|1b5d4e23, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgeby99ojnqypxupijvk|1b5d4e23, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> /* ping */ SELECT 1, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2017-05-27 00:22:45 INFO  play:308 - Connected to jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true for default
+2017-05-27 00:22:46 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+2017-05-27 00:22:46 INFO  Version:41 - HHH000412: Hibernate Core {4.2.19.Final}
+2017-05-27 00:22:46 INFO  Environment:238 - HHH000206: hibernate.properties not found
+2017-05-27 00:22:46 INFO  Environment:345 - HHH000021: Bytecode provider name : javassist
+2017-05-27 00:22:46 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-27 00:22:46 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-27 00:22:46 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-27 00:22:46 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-27 00:22:46 INFO  Version:56 - Hibernate Validator 4.1.0.Final
+2017-05-27 00:22:46 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 00:22:46 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 00:22:46 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-27 00:22:46 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-27 00:22:47 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 00:22:47 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-27 00:22:47 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-27 00:22:47 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-27 00:22:47 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User_Role
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User_Role
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User
+2017-05-27 00:22:47 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User_Role
+2017-05-27 00:22:54 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-27 00:22:54 INFO  play:308 - Application 'EnterprisePayments' is now started !
+2017-05-27 01:04:07 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-05-27 01:04:08 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-05-27 01:04:09 WARN  play:367 - You're running Play! in DEV mode
+2017-05-27 01:04:09 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-05-27 01:04:20 INFO  MLog:124 - MLog clients using log4j logging.
+2017-05-27 01:04:20 INFO  C3P0Registry:248 - Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2017-05-27 01:04:20 INFO  AbstractPoolBackedDataSource:527 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hgeby99ojp8fw51jfyfac|47f2dadb, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgeby99ojp8fw51jfyfac|47f2dadb, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> /* ping */ SELECT 1, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2017-05-27 01:04:20 INFO  play:308 - Connected to jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true for default
+2017-05-27 01:04:21 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+2017-05-27 01:04:21 INFO  Version:41 - HHH000412: Hibernate Core {4.2.19.Final}
+2017-05-27 01:04:21 INFO  Environment:238 - HHH000206: hibernate.properties not found
+2017-05-27 01:04:21 INFO  Environment:345 - HHH000021: Bytecode provider name : javassist
+2017-05-27 01:04:21 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-27 01:04:21 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-27 01:04:21 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-27 01:04:21 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-27 01:04:21 INFO  Version:56 - Hibernate Validator 4.1.0.Final
+2017-05-27 01:04:21 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 01:04:21 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 01:04:22 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-27 01:04:22 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-27 01:04:22 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.permission
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [role_id, name, id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_57pohr0344vpxpx85qj80i32s]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_57pohr0344vpxpx85qj80i32s, primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.role
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [password, id, username]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:04:22 INFO  TableMetadata:66 - HHH000261: Table found: ep.user_role
+2017-05-27 01:04:22 INFO  TableMetadata:67 - HHH000037: Columns: [user_id, roles_id]
+2017-05-27 01:04:22 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_tc5k40i3kit8944syrd366vy1, fk_dv4w2xni693cg4ibi3fo1fkk6]
+2017-05-27 01:04:22 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_tc5k40i3kit8944syrd366vy1, uk_tc5k40i3kit8944syrd366vy1, fk_dv4w2xni693cg4ibi3fo1fkk6]
+2017-05-27 01:04:22 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-27 01:04:22 INFO  play:308 - Application 'EnterprisePayments' is now started !
+2017-05-27 01:06:53 ERROR play:604 - 
+
+@7465mkka7
+Internal Server Error (500) for request POST /invoices/create
+
+Template execution error (In {play}/framework/templates/tags/404.html around line 55)
+Execution error occurred in template {play}/framework/templates/tags/404.html. Exception raised was NullPointerException : Cannot get property 'message' on null object.
+
+play.exceptions.TemplateExecutionException: Cannot get property 'message' on null object
+	at play.templates.BaseTemplate.throwException(BaseTemplate.java:83)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:280)
+	at play.templates.GroovyTemplate$ExecutableTemplate.invokeTag(GroovyTemplate.java:410)
+	at /app/views/errors/404.html.(line:10)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:255)
+	at play.templates.Template.render(Template.java:26)
+	at play.templates.GroovyTemplate.render(GroovyTemplate.java:203)
+	at play.mvc.results.RenderTemplate.<init>(RenderTemplate.java:28)
+	at play.mvc.Controller.renderTemplate(Controller.java:836)
+	at play.mvc.Controller.renderTemplate(Controller.java:814)
+	at play.mvc.Controller.render(Controller.java:876)
+	at controllers.Invoices.create(Invoices.java:55)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException: Cannot get property 'message' on null object
+	at {play}/framework/templates/tags/404.html.(line:55)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:255)
+	... 16 more
+2017-05-27 01:08:44 ERROR play:604 - 
+
+@7465mkkaa
+Internal Server Error (500) for request POST /invoices/create
+
+No route found (In /app/views/Secure/login.html around line 7)
+No route able to invoke action Invoices.authenticate was found.
+
+play.exceptions.NoRouteFoundException: No route found
+	at play.templates.BaseTemplate.throwException(BaseTemplate.java:79)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:265)
+	at play.templates.Template.render(Template.java:26)
+	at play.templates.GroovyTemplate.render(GroovyTemplate.java:203)
+	at play.mvc.results.RenderTemplate.<init>(RenderTemplate.java:28)
+	at play.mvc.Controller.renderTemplate(Controller.java:836)
+	at play.mvc.Controller.renderTemplate(Controller.java:814)
+	at play.mvc.Controller.render(Controller.java:876)
+	at controllers.Invoices.create(Invoices.java:55)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+2017-05-27 01:22:54 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-05-27 01:22:55 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-05-27 01:22:56 WARN  play:367 - You're running Play! in DEV mode
+2017-05-27 01:22:56 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-05-27 01:22:59 INFO  MLog:124 - MLog clients using log4j logging.
+2017-05-27 01:22:59 INFO  C3P0Registry:248 - Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2017-05-27 01:22:59 INFO  AbstractPoolBackedDataSource:527 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hgeby99ojpwf4mz2xqer|3d17f158, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgeby99ojpwf4mz2xqer|3d17f158, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> /* ping */ SELECT 1, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2017-05-27 01:23:00 INFO  play:308 - Connected to jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true for default
+2017-05-27 01:23:00 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+2017-05-27 01:23:00 INFO  Version:41 - HHH000412: Hibernate Core {4.2.19.Final}
+2017-05-27 01:23:00 INFO  Environment:238 - HHH000206: hibernate.properties not found
+2017-05-27 01:23:00 INFO  Environment:345 - HHH000021: Bytecode provider name : javassist
+2017-05-27 01:23:00 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-27 01:23:00 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-27 01:23:00 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-27 01:23:00 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-27 01:23:00 INFO  Version:56 - Hibernate Validator 4.1.0.Final
+2017-05-27 01:23:00 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 01:23:00 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 01:23:01 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-27 01:23:01 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-27 01:23:01 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-27 01:23:01 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-27 01:23:01 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-27 01:23:01 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-27 01:23:01 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-27 01:23:01 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-27 01:23:01 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-27 01:23:01 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-27 01:23:01 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-27 01:23:01 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-27 01:23:01 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-27 01:23:01 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-27 01:23:01 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-27 01:23:01 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-27 01:23:01 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-27 01:23:01 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:23:01 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:23:01 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-27 01:23:01 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-27 01:23:01 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-27 01:23:01 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-27 01:23:01 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-27 01:23:01 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 01:23:01 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:23:01 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:23:01 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-27 01:23:01 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-27 01:23:01 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-27 01:23:01 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-27 01:23:02 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-27 01:23:02 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-27 01:23:02 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-27 01:23:02 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-27 01:23:02 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-27 01:23:02 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-27 01:23:02 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 01:23:02 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 01:23:02 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-27 01:23:02 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-27 01:23:02 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:23:02 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:23:02 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-27 01:23:02 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-27 01:23:02 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-27 01:23:02 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-27 01:23:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-27 01:23:03 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-27 01:23:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-27 01:23:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-27 01:23:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.permission
+2017-05-27 01:23:03 INFO  TableMetadata:67 - HHH000037: Columns: [role_id, name, id]
+2017-05-27 01:23:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_57pohr0344vpxpx85qj80i32s]
+2017-05-27 01:23:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_57pohr0344vpxpx85qj80i32s, primary]
+2017-05-27 01:23:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-27 01:23:03 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-27 01:23:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:23:03 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:23:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-27 01:23:03 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-27 01:23:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-27 01:23:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-27 01:23:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.role
+2017-05-27 01:23:03 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 01:23:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:23:03 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:23:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-05-27 01:23:03 INFO  TableMetadata:67 - HHH000037: Columns: [password, id, username]
+2017-05-27 01:23:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 01:23:03 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 01:23:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.user_role
+2017-05-27 01:23:03 INFO  TableMetadata:67 - HHH000037: Columns: [user_id, roles_id]
+2017-05-27 01:23:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_tc5k40i3kit8944syrd366vy1, fk_dv4w2xni693cg4ibi3fo1fkk6]
+2017-05-27 01:23:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_tc5k40i3kit8944syrd366vy1, uk_tc5k40i3kit8944syrd366vy1, fk_dv4w2xni693cg4ibi3fo1fkk6]
+2017-05-27 01:23:03 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-27 01:23:03 INFO  play:308 - Application 'EnterprisePayments' is now started !
+2017-05-27 20:37:47 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-05-27 20:37:49 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-05-27 20:37:51 WARN  play:367 - You're running Play! in DEV mode
+2017-05-27 20:37:51 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-05-27 20:40:06 INFO  MLog:124 - MLog clients using log4j logging.
+2017-05-27 20:40:07 INFO  C3P0Registry:248 - Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2017-05-27 20:40:07 INFO  AbstractPoolBackedDataSource:527 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hgeby99okv8hjs17idhsi|69af2424, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgeby99okv8hjs17idhsi|69af2424, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> /* ping */ SELECT 1, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2017-05-27 20:40:08 INFO  play:308 - Connected to jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true for default
+2017-05-27 20:40:08 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+2017-05-27 20:40:08 INFO  Version:41 - HHH000412: Hibernate Core {4.2.19.Final}
+2017-05-27 20:40:08 INFO  Environment:238 - HHH000206: hibernate.properties not found
+2017-05-27 20:40:08 INFO  Environment:345 - HHH000021: Bytecode provider name : javassist
+2017-05-27 20:40:08 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-27 20:40:08 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-27 20:40:09 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-27 20:40:09 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-27 20:40:09 INFO  Version:56 - Hibernate Validator 4.1.0.Final
+2017-05-27 20:40:09 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 20:40:09 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 20:40:10 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-27 20:40:10 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-27 20:40:10 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:40:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-27 20:40:10 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-27 20:40:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-27 20:40:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: membership
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: membership
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User
+2017-05-27 20:40:10 INFO  DatabaseMetaData:146 - HHH000262: Table not found: membership
+2017-05-27 20:40:16 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-27 20:40:16 INFO  play:308 - Application 'EnterprisePayments' is now started !
+2017-05-27 20:44:51 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-05-27 20:44:51 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-05-27 20:44:52 WARN  play:367 - You're running Play! in DEV mode
+2017-05-27 20:44:52 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-05-27 20:45:03 INFO  MLog:124 - MLog clients using log4j logging.
+2017-05-27 20:45:03 INFO  C3P0Registry:248 - Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2017-05-27 20:45:03 INFO  AbstractPoolBackedDataSource:527 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hgeby99okveuex1abifo1|784af845, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgeby99okveuex1abifo1|784af845, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> /* ping */ SELECT 1, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2017-05-27 20:45:03 INFO  play:308 - Connected to jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true for default
+2017-05-27 20:45:03 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+2017-05-27 20:45:03 INFO  Version:41 - HHH000412: Hibernate Core {4.2.19.Final}
+2017-05-27 20:45:03 INFO  Environment:238 - HHH000206: hibernate.properties not found
+2017-05-27 20:45:03 INFO  Environment:345 - HHH000021: Bytecode provider name : javassist
+2017-05-27 20:45:03 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-27 20:45:03 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-27 20:45:04 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-27 20:45:04 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-27 20:45:04 INFO  Version:56 - Hibernate Validator 4.1.0.Final
+2017-05-27 20:45:04 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 20:45:04 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 20:45:04 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-27 20:45:04 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-27 20:45:04 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-27 20:45:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-27 20:45:04 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-27 20:45:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-27 20:45:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-27 20:45:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-27 20:45:04 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-27 20:45:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-27 20:45:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-27 20:45:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-27 20:45:04 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-27 20:45:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-27 20:45:04 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-27 20:45:04 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-27 20:45:04 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-27 20:45:04 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:45:04 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:45:05 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-27 20:45:05 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-27 20:45:05 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-27 20:45:05 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-27 20:45:05 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-27 20:45:05 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 20:45:05 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:45:05 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:45:05 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-27 20:45:05 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-27 20:45:05 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-27 20:45:05 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-27 20:45:05 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-27 20:45:05 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-27 20:45:05 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-27 20:45:05 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-27 20:45:05 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-27 20:45:05 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-27 20:45:05 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 20:45:05 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 20:45:05 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-27 20:45:05 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-27 20:45:05 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:45:05 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:45:05 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-27 20:45:05 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-27 20:45:05 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-27 20:45:05 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-27 20:45:05 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-27 20:45:05 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-27 20:45:05 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-27 20:45:05 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 20:45:05 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-27 20:45:05 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-27 20:45:05 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:45:05 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:45:05 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-27 20:45:05 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-27 20:45:05 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-27 20:45:05 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: role_permission
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: role_permission
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Permission
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: Role
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: User
+2017-05-27 20:45:05 INFO  DatabaseMetaData:146 - HHH000262: Table not found: role_permission
+2017-05-27 20:45:10 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-27 20:45:10 INFO  play:308 - Application 'EnterprisePayments' is now started !
+2017-05-27 20:55:02 INFO  play:308 - Restart: 1 classes changed, caused by: java.lang.UnsupportedOperationException: class redefinition failed: attempted to change the schema (add/remove fields)
+2017-05-27 20:55:02 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-27 20:55:02 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-27 20:55:02 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-27 20:55:02 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-27 20:55:02 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 20:55:02 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 20:55:02 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-27 20:55:02 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-27 20:55:02 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-27 20:55:02 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-27 20:55:02 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-27 20:55:02 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-27 20:55:02 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-27 20:55:02 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-27 20:55:02 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-27 20:55:02 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-27 20:55:02 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-27 20:55:02 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-27 20:55:02 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-27 20:55:02 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.permission
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.role
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [password, role_id, id, username]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_fe6nqh4mlcjr068gcfrstmh2y]
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_fe6nqh4mlcjr068gcfrstmh2y, primary]
+2017-05-27 20:55:03 INFO  TableMetadata:66 - HHH000261: Table found: ep.role_permission
+2017-05-27 20:55:03 INFO  TableMetadata:67 - HHH000037: Columns: [permissions_id, role_id]
+2017-05-27 20:55:03 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_bd67q67cmk1xk23k1wagx1h72, fk_rh047niumg9yobn8mmue098p7]
+2017-05-27 20:55:03 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_bd67q67cmk1xk23k1wagx1h72, fk_rh047niumg9yobn8mmue098p7]
+2017-05-27 20:55:03 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-27 20:55:27 INFO  play:308 - 5_1 : user = a id = 25
+2017-05-27 20:59:33 ERROR play:604 - 
+
+@746bna63g
+Internal Server Error (500) for request GET /Invoices/delete?id=25
+
+Template execution error (In {play}/framework/templates/tags/404.html around line 55)
+Execution error occurred in template {play}/framework/templates/tags/404.html. Exception raised was NullPointerException : Cannot get property 'message' on null object.
+
+play.exceptions.TemplateExecutionException: Cannot get property 'message' on null object
+	at play.templates.BaseTemplate.throwException(BaseTemplate.java:83)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:280)
+	at play.templates.GroovyTemplate$ExecutableTemplate.invokeTag(GroovyTemplate.java:410)
+	at /app/views/errors/404.html.(line:10)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:255)
+	at play.templates.Template.render(Template.java:26)
+	at play.templates.GroovyTemplate.render(GroovyTemplate.java:203)
+	at play.mvc.results.RenderTemplate.<init>(RenderTemplate.java:28)
+	at play.mvc.Controller.renderTemplate(Controller.java:836)
+	at play.mvc.Controller.renderTemplate(Controller.java:814)
+	at controllers.Invoices.delete(Invoices.java:110)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException: Cannot get property 'message' on null object
+	at {play}/framework/templates/tags/404.html.(line:55)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:255)
+	... 15 more
+2017-05-27 21:03:08 INFO  play:308 - 5_3 : user = b id = 25
+2017-05-27 21:07:55 ERROR play:604 - 
+
+@746bna63h
+Internal Server Error (500) for request GET /invoices/show
+
+Compilation error (In /app/controllers/Invoices.java around line 52)
+The file /app/controllers/Invoices.java could not be compiled. Error raised is : The method checkPermission(String) is undefined for the type Invoices
+
+play.exceptions.CompilationException: The method checkPermission(String) is undefined for the type Invoices
+	at play.classloading.ApplicationCompiler$2.acceptResult(ApplicationCompiler.java:264)
+	at org.eclipse.jdt.internal.compiler.Compiler.handleInternalException(Compiler.java:678)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:522)
+	at play.classloading.ApplicationCompiler.compile(ApplicationCompiler.java:300)
+	at play.classloading.ApplicationClasses$ApplicationClass.compile(ApplicationClasses.java:288)
+	at play.classloading.ApplicationClassloader.detectChanges(ApplicationClassloader.java:317)
+	at play.Play.detectChanges(Play.java:641)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+2017-05-27 21:08:30 INFO  play:308 - Restart: 1 classes changed, caused by: java.lang.UnsupportedOperationException: class redefinition failed: attempted to change the schema (add/remove fields)
+2017-05-27 21:08:30 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-27 21:08:30 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-27 21:08:30 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-27 21:08:30 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-27 21:08:30 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 21:08:30 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 21:08:30 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-27 21:08:30 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-27 21:08:30 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.permission
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.role
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [password, role_id, id, username]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_fe6nqh4mlcjr068gcfrstmh2y]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_fe6nqh4mlcjr068gcfrstmh2y, primary]
+2017-05-27 21:08:30 INFO  TableMetadata:66 - HHH000261: Table found: ep.role_permission
+2017-05-27 21:08:30 INFO  TableMetadata:67 - HHH000037: Columns: [permissions_id, role_id]
+2017-05-27 21:08:30 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_bd67q67cmk1xk23k1wagx1h72, fk_rh047niumg9yobn8mmue098p7]
+2017-05-27 21:08:30 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_bd67q67cmk1xk23k1wagx1h72, fk_rh047niumg9yobn8mmue098p7]
+2017-05-27 21:08:30 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-27 21:10:06 INFO  play:308 - Restart: 1 classes changed, caused by: java.lang.UnsupportedOperationException: class redefinition failed: attempted to change method modifiers
+2017-05-27 21:10:06 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-05-27 21:10:06 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-05-27 21:10:06 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-05-27 21:10:06 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-05-27 21:10:06 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 21:10:06 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-05-27 21:10:06 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-05-27 21:10:06 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-05-27 21:10:06 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.permission
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.role
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [password, role_id, id, username]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_fe6nqh4mlcjr068gcfrstmh2y]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_fe6nqh4mlcjr068gcfrstmh2y, primary]
+2017-05-27 21:10:06 INFO  TableMetadata:66 - HHH000261: Table found: ep.role_permission
+2017-05-27 21:10:06 INFO  TableMetadata:67 - HHH000037: Columns: [permissions_id, role_id]
+2017-05-27 21:10:06 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_bd67q67cmk1xk23k1wagx1h72, fk_rh047niumg9yobn8mmue098p7]
+2017-05-27 21:10:06 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_bd67q67cmk1xk23k1wagx1h72, fk_rh047niumg9yobn8mmue098p7]
+2017-05-27 21:10:06 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-05-27 21:10:09 INFO  play:308 - 5_3 : user = b id = 20
+2017-05-27 21:10:13 INFO  play:308 - 5_3 : user = b id = 23
+2017-05-27 21:10:16 INFO  play:308 - 5_3 : user = b id = 15
+2017-05-27 21:10:18 INFO  play:308 - 5_3 : user = b id = 17
+2017-05-27 21:10:20 INFO  play:308 - 5_3 : user = b id = 14
+2017-05-27 21:10:23 INFO  play:308 - 5_3 : user = b id = 18
+2017-05-27 21:10:25 INFO  play:308 - 5_3 : user = b id = 16
+2017-05-27 21:10:27 INFO  play:308 - 5_3 : user = b id = 13

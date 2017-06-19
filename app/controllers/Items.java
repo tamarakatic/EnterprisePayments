@@ -3,13 +3,19 @@ package controllers;
 import java.util.List;
 
 import models.Item;
+import models.Permission;
 import models.PricelistItem;
+import models.User;
 import models.ArticleGroup;
+import play.Logger;
 import play.mvc.Controller;
 
 public class Items extends Controller{
 	
 	public static void show(String mode) {
+		if(!Application.authorize("viewItems")){
+			render("errors/401.html");
+		}
 		List<Item> items = Item.findAll();
 		List<ArticleGroup> articlegroups = ArticleGroup.findAll();
 		if (mode == null || mode.equals(""))
@@ -18,23 +24,33 @@ public class Items extends Controller{
 	}
 
 	public static void create(Item item) {	
+		if(!Application.authorize("createItem")){
+			render("errors/401.html");
+		}
 		validation.required("name", item.name);
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
-		} else
-			item.save();
+		} else {
+			Item i = item.save();
+			Application.logToFile("6_1", i.id, " - name : "+i.name);
+		}
 		
 		show("add");
 	}
 
 	public static void edit(Item item) {
+		if(!Application.authorize("editItem")){
+			render("errors/401.html");
+		}
 		validation.required("name", item.name);
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
-		} else
+		} else {
 			item.save();
+			Application.logToFile("6_2", item.id, " - name : "+item.name);
+		}
 		
 		show("edit");
 	}
@@ -47,16 +63,21 @@ public class Items extends Controller{
 	}
 
 	public static void delete(Long id) {
+		if(!Application.authorize("deleteItem")){
+			render("errors/401.html");
+		}
 		if (id != null) {
 			Item item = Item.findById(id);
 			List<PricelistItem> pricelistitems = PricelistItem.find("byItem_id", id).fetch();
 			String has_child = "has_child";
 			try {
 				if (pricelistitems != null && !pricelistitems.isEmpty()) {
+					Application.logErrorToFile("6_3", id);
 					renderTemplate("Items/show.html", "edit", has_child);
 				}
 				else {
 					item.delete();
+					Application.logToFile("6_3", id, "");
 					show("edit");
 				}					
 			} catch (Exception e) {
@@ -73,5 +94,5 @@ public class Items extends Controller{
 		}
 		show("edit");
 	}
-
+	
 }

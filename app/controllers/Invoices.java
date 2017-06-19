@@ -1,12 +1,19 @@
 package controllers;
 
 import java.io.File;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+>>>>>>> 4f76e62bff28ce8edca8a41b4cf206206a694014
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,6 +27,9 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import com.example.service.paymentorder.PaymentOrder;
+import com.example.service.paymentorder.TCompanyData;
 
 import models.BusinessPartner;
 import models.BusinessYear;
@@ -35,10 +45,15 @@ import play.Play;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import play.mvc.Controller;
+import soap.CompanyService;
+import soap.CompanyServiceImplService;
 
 public class Invoices extends Controller {
 
 	public static void show(String mode){
+		if(!Application.authorize("viewInvoices")){
+			render("errors/401.html");
+		}
 		List<Invoice> invoices = Invoice.findAll();
 		if (mode == null || mode.equals(""))
 			mode = "edit";
@@ -50,6 +65,9 @@ public class Invoices extends Controller {
 	}
 	
 	public static void create(Invoice invoice) {
+		if(!Application.authorize("createInvoice")){
+			render("errors/401.html");
+		}
 		Company company = Company.findById(invoice.company.id);
 		invoice.company = company;
 		invoice.businessYear = BusinessYear.findById(invoice.businessYear.id);
@@ -74,11 +92,15 @@ public class Invoices extends Controller {
 			}
 			invoice.number = ++num;
 			invoice.save();
+			Application.logToFile("5_1", invoice.id, " - account : "+invoice.businessPartner.account);
 	    }
 		show("add");
 	}
 	
 	public static void edit(Invoice invoice) {
+		if(!Application.authorize("editInvoice")){
+			render("errors/401.html");
+		}
 		validation.required("company",invoice.company);
 		validation.required("business partner", invoice.businessPartner);
 		validation.required("business year",invoice.businessYear);
@@ -91,19 +113,17 @@ public class Invoices extends Controller {
 	          validation.keep(); 
 	    } else {
 	    	  invoice.save();
+			  Application.logToFile("5_2", invoice.id, " - account : " + invoice.businessPartner.account 
+					  + " total : "+invoice.total);
 	    }
 		show("edit");
 	}
 	
-	public static void delete(Long id) {
-		try {
-			send();
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+	public static void delete(Long id) throws IOException, ParserConfigurationException, TransformerException {
+		
+		if(!Application.authorize("deleteInvoice")){
+			render("errors/401.html");
 		}
 		if (id != null){
 			Invoice invoice = Invoice.findById(id);
@@ -114,15 +134,24 @@ public class Invoices extends Controller {
 				List<Company> companies = Company.findAll();
 				List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 				List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+				
+				String code = "5_3";
+				String user = Security.connected();
+				Logger.error(code + " : user = "+user + " id = "+invoice.id);
+				
 				renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, hasChildren);	
 			} else {
-				invoice.delete();			
+				invoice.delete();	
+				Application.logToFile("5_3", invoice.id, " - account: "+invoice.businessPartner.account + " total: "+ invoice.total);
 			} 
 		}
 		show("edit");
 	}
 	
 	public static void export(Long id) {
+		if(!Application.authorize("exportInvoiceAsXML")){
+			render("errors/401.html");
+		}
 		if (id != null) {
 			Invoice invoice = Invoice.findById(id);
 			List<InvoiceItem> items = InvoiceItem.find("byInvoice_id", id).fetch();
@@ -152,7 +181,22 @@ public class Invoices extends Controller {
 		show("edit");
 	}
 	
-	public static void invoiceReport(Integer id) {
+	public static void invoiceReport(Integer id) throws IOException {
+		if(!Application.authorize("exportInvoiceAsPdf")){
+			render("errors/401.html");
+		}
+		Long idd = Long.parseLong(id.toString());
+		Invoice inv = Invoice.findById(idd);
+		if(inv.invoiceItems == null || inv.invoiceItems.size() ==0){
+			List<Invoice> invoices = Invoice.findAll();
+			String mode = "edit";
+			String errorReport = "errorReport";
+			List<Company> companies = Company.findAll();
+			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
+			List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
+			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, errorReport);
+			
+		}
 		try {
 			Map reportParams = new HashMap();
 			reportParams.put("invoicesjasper", id);
@@ -168,8 +212,12 @@ public class Invoices extends Controller {
 			List<Company> companies = Company.findAll();
 			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 			List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
+			
+			Application.logToFile("5_8", idd, "");
+			
 			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);
 		} catch (Exception e) {
+			Application.logErrorToFile("5_8", idd);
 			e.printStackTrace();
 		}
 		
@@ -293,6 +341,9 @@ public class Invoices extends Controller {
 		}
 	
 	public static void generateKIF(String begin, String end) {
+		if(!Application.authorize("exportMultipleInvoicesAsPdf")){
+			render("errors/401.html");
+		}
 		Date beginDate = new Date();
 		Date endDate = new Date();
 		if(begin != null && !begin.equals("")) {
@@ -347,9 +398,13 @@ public class Invoices extends Controller {
 			List<Company> companies = Company.findAll();
 			List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 			List<BusinessPartner> businessPartners = BusinessPartner.find("byKind", "buyer").fetch();
+			
+			Application.logToFile("5_9", 0L, " - from : "+begin + "; to : "+end);
+			
 			renderTemplate("Invoices/show.html", mode, invoices, companies, businessYears, businessPartners, generatedReport);	
 			
 		} catch (Exception e) {
+			Application.logErrorToFile("5_9", 0L);
 			e.printStackTrace();
 		}
 		show("edit");
@@ -386,4 +441,49 @@ public class Invoices extends Controller {
 	}
 
 	
+	public static void createPaymentOrder(Long invoiceId, BigDecimal amount, boolean isUrgent, String currency) throws DatatypeConfigurationException{
+		if (invoiceId != null) {
+			Invoice invoice = Invoice.findById(invoiceId);
+			Company company = invoice.company;
+			BusinessPartner bp = invoice.businessPartner;
+			
+			TCompanyData debtorData = new TCompanyData();
+			debtorData.setInfo(company.name + " " + company.address);
+			//debtorData.setAccountNumber(company.accountNumber);
+			//debtorData.setModel(model);
+			//debtorData.setReferenceNumber(company.referenceNumber);
+			
+			TCompanyData creditorData = new TCompanyData();
+			creditorData.setInfo(bp.name + " " + bp.address);
+			creditorData.setAccountNumber(bp.account);
+			//creditorData.setModel(model);
+			//creditorData.setReferenceNumber(bp.referenceNumber);
+			
+			GregorianCalendar calendar = new GregorianCalendar();
+			calendar.setTime(new Date());
+			XMLGregorianCalendar dateOfPaymentXML = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+			
+			calendar.setTime(invoice.dateOfValue);
+			XMLGregorianCalendar dateOfValueXML = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+			
+			PaymentOrder po = new PaymentOrder();
+			po.setMessageId("messageId");
+			po.setCreditor(creditorData);
+			po.setDebtor(debtorData);
+			po.setPaymentPurpose("Payment based on a recieved invoice");
+			po.setUrgent(isUrgent);
+			po.setAmount(amount);
+			po.setCurrency(currency);
+			po.setDateOfPayment(dateOfPaymentXML);
+			po.setDateOfValue(dateOfValueXML);
+			
+			
+			CompanyServiceImplService service = new CompanyServiceImplService();
+			CompanyService companyService = service.getCompanyServiceImplPort();
+			String response = companyService.processPaymentOrder(po);
+			System.out.println(response);
+		}
+		show("edit");
+	}
+
 }

@@ -1,0 +1,176 @@
+#{extends 'standardForm.html' /}
+#{set title:'Bank Statements' /}
+	
+<script>
+
+$(document).ready(function(){
+	
+	$("#requestStatementButton").click(function() {
+		var a = $("#accountNumberRequest").val();
+		var d = $("#dateRequest").val();
+		$(location).attr('href', '/BankStatementModels/requestBankStatement?accountNumber='+a+'&javascriptDate='+d);
+	});
+});
+
+function sync(item){
+	/* id = item.find(".id").html();
+	number = item.find(".number").html();
+	dateOfInvoice = item.find(".dateOfInvoice").html();
+	dateOfValue = item.find(".dateOfValue").html();
+	basis = item.find(".basis").html();
+	tax = item.find(".tax").html();
+	total = item.find(".total").html();
+	companyId = item.find(".companyId").html();
+	businessYearId = item.find(".businessYearId").html();
+	businessPartnerId = item.find(".businessPartnerId").html();
+    $("#invoice_id").val(id);
+    $("#invoice_number").val(number);
+    
+    var date1 = new Date(dateOfInvoice);
+	var day1 = ("0" + date1.getDate()).slice(-2);
+    var month1 = ("0" + (date1.getMonth() + 1)).slice(-2);
+	var today1 = date1.getFullYear()+"-"+(month1)+"-"+(day1) ;
+    $("#invoice_dateOfInvoice").val(today1);
+    
+    var date2 = new Date(dateOfValue);
+	var day2 = ("0" + date2.getDate()).slice(-2);
+    var month2 = ("0" + (date2.getMonth() + 1)).slice(-2);
+	var today2 = date2.getFullYear()+"-"+(month2)+"-"+(day2) ;
+    $("#invoice_dateOfValue").val(today2);
+    
+    $("#invoice_basis").val(basis);
+    $("#invoice_tax").val(tax);
+    $("#invoice_sum").val(total);
+    //za combo boxeve
+    var comboZoomCompany = document.getElementById('invoice_company_id');
+    comboZoomCompany.value = companyId;
+    var comboZoomYear = document.getElementById('invoice_businessYear_id');
+    comboZoomYear.value = businessYearId;
+    var comboZoomPartner = document.getElementById('invoice_businessPartner_id');
+    comboZoomPartner.value = businessPartnerId; */
+    
+}
+
+</script>
+
+<p>
+<ul>
+  <li><a href="#" id = "refresh"><img src="@{'/public/images/refresh.gif'}"/></a></li>
+  <li><a href="@{Application.index}" id = "pickup"><img src="@{'/public/images/zoom-pickup.gif'}"/></a></li>
+  <li><a href="#" id = "help"><img src="@{'/public/images/help.gif'}"/></a></li>
+  <li><a id = "first"><img src="@{'/public/images/first.gif'}"/></a></li>
+  <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
+  <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
+  <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+
+  <li><a href="#" id = "nextFormInvoice"><img src="@{'/public/images/nextform.gif'}"/></a></li>
+  <li><a href="#" id = "requestStatement" data-toggle="modal" data-target="#requestStatementModal"><img src="@{'/public/images/kif.png'}"/></a></li>
+</ul>
+</p>
+
+
+<h1>Bank statements</h1>
+
+<table>
+	<tr class = "header">
+	   <th>Account number</th>
+	   <th>Date</th>
+	   <th>Section number</th>
+	   <th>Previous balance</th> 
+	   <th>Number of deposits</th>
+	   <th>Total deposited</th>
+	   <th>Number of withdrawals</th> 
+	   <th>Total withdrawn</th>
+	   <th>New balance</th> 
+    </tr>
+    
+#{list items:bankStatements, as:'bankStatement'}
+	<tr>
+		<td class = "accountNumber">${bankStatement.accountNumber}</td>
+		<td class = "date">${bankStatement.date.toString().split(" ")[0]}</td>
+		<td class = "sectionNumber">${bankStatement.sectionNumber}</td>
+		<td class = "previousBalance">${bankStatement.previousBalance}</td>
+		<td class = "numberOfDeposits">${bankStatement.numberOfDeposits}</td>
+		<td class = "totalDeposited">${bankStatement.totalDeposited}</td>
+		<td class = "numberOfWithdrawals">${bankStatement.numberOfWithdrawals}</td>
+		<td class = "totalWithdrawn">${bankStatement.totalWithdrawn}</td>
+		<td class = "newBalance">${bankStatement.newBalance}</td>
+		<td style = "visibility: hidden; max-width: 0px" class = "id">${bankStatement.id}</td>
+	</tr>
+#{/list}
+</table>
+
+<div class = "panel">
+	<p>
+	
+		<form action = "@{BankStatementModels.filter()}" method = "POST">
+		
+				
+				#{field 'bankStatement.id'}
+					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
+				#{/}
+		
+				<p>
+				#{field 'bankStatement.accountNumber'}
+					<label for = "${field.id}">Account number</label>
+					<input type = "date" name = "${field.name}" id = "${field.id}" style="width:175px" "/>
+					
+				#{/}
+				</p>
+				
+				<p>
+				#{field 'bankStatement.date'}
+					<label for = "${field.id}">Date</label>
+					<input type = "date" name = "${field.name}" id = "${field.id}" style="width:175px"/>
+					
+				#{/}
+				</p>
+				
+				<p>
+				#{field 'bankStatement.sectionNumber'}
+					<label for = "${field.id}">Section number</label>
+					<input type = "date" name = "${field.name}" id = "${field.id}" style="width:175px"/>
+					
+				#{/}
+				</p>
+				
+				
+				<div id = "formActions">
+					<input type = "submit" class="btn btn-success" value = "Search" style="margin-left:6em"/>
+				</div>			
+				
+		</form>
+	</p>
+	
+</div>
+
+
+    
+       <!-- Modal DATE REPORT-->
+  <div class="modal fade" id="requestStatementModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+      	Requesting a bank statement
+      </div>
+      <div class="modal-body">
+	    <form style = "padding:2em">
+			<p>
+				<label for = "accountNumberRequest">Account number</label>
+				<input type = "text" id = "accountNumberRequest" style="width:175px"/>
+				<br>
+				<label for = "dateRequest">Date</label>
+				<input type = "date" id = "dateRequest" style="width:175px"/>
+				<br>			
+			</p>
+		</form>
+		<div class="modal-footer">
+			<input id = "requestStatementButton" class="btn btn-success" type = "button" value = "Make a request"/>
+		</div>
+		</div>
+      </div>
+    </div>
+   </div>
+   
+ 

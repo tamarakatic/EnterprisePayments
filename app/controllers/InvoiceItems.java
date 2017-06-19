@@ -11,12 +11,18 @@ import models.GSTType;
 import models.Invoice;
 import models.InvoiceItem;
 import models.Item;
+import models.Permission;
 import models.PricelistItem;
+import models.User;
+import play.Logger;
 import play.mvc.Controller;
 
 public class InvoiceItems extends Controller{
 
 	public static void show(String mode){
+		if(!Application.authorize("viewInvoiceItems")){
+			render("errors/401.html");
+		}
 		List<InvoiceItem> invoiceItems = InvoiceItem.findAll();
 		List<Invoice> invoices = Invoice.findAll();
 		List<Item> allArticles = Item.findAll();
@@ -51,6 +57,9 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void create(InvoiceItem invoiceItem) {
+		if(!Application.authorize("createInvoiceItem")){
+			render("errors/401.html");
+		}
 		invoiceItem.invoice = Invoice.findById(invoiceItem.invoice.id);
 		invoiceItem.article = Item.findById(invoiceItem.article.id);
 		validation.required("invoice", invoiceItem.invoice);
@@ -63,12 +72,16 @@ public class InvoiceItems extends Controller{
 	        validation.keep(); 
 	    } else {
 	    	invoiceItem = calculate(invoiceItem);
-	    	invoiceItem.save();
+	    	InvoiceItem i = invoiceItem.save();
+	    	Application.logToFile("5_4", i.id, " - invoice_id : "+i.invoice.id+" amount : "+i.amount+" discount : "+i.discount);
 	    }
 		show("add");
 	}
 	
 	public static void edit(InvoiceItem invoiceItem) {
+		if(!Application.authorize("editInvoiceItem")){
+			render("errors/401.html");
+		}
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
 		validation.min("amount", invoiceItem.amount, 0.01);
@@ -80,11 +93,17 @@ public class InvoiceItems extends Controller{
 	    } else {
 	    	invoiceItem = calculate(invoiceItem);
 	    	invoiceItem.save();
+	    	
+			Application.logToFile("5_5", invoiceItem.id, " - invoice_id : "+invoiceItem.invoice.id+" amount : "
+			+invoiceItem.amount+" discount : "+invoiceItem.discount);
 	    }
 		show("edit");
 	}
 	
 	public static void delete(Long id) {
+		if(!Application.authorize("deleteInvoiceItem")){
+			render("errors/401.html");
+		}
 		if (id != null){
 			InvoiceItem invoiceItem = InvoiceItem.findById(id);
 			Invoice invoice = invoiceItem.invoice;
@@ -92,7 +111,9 @@ public class InvoiceItems extends Controller{
 			invoice.tax -= invoiceItem.taxTotal;
 			invoice.total -= invoiceItem.total;
 			invoice.save();
-			invoiceItem.delete();			
+			invoiceItem.delete();	
+			
+			Application.logToFile("5_5", id, " - invoice_id : "+invoice.id);
 		}
 		show("edit");
 	}
@@ -109,6 +130,9 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void showNext(String mode, Long id){
+		if(!Application.authorize("viewInvoiceItems")){
+			render("errors/401.html");
+		}
 		Invoice invoice = Invoice.findById(id);
 		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoice", invoice).fetch();
 		List<Item> allArticles = Item.findAll();
@@ -145,6 +169,9 @@ public class InvoiceItems extends Controller{
 	}
 
 	public static void createNext(InvoiceItem invoiceItem) {
+		if(!Application.authorize("createInvoiceItem")){
+			render("errors/401.html");
+		}
 		invoiceItem.invoice = Invoice.findById(invoiceItem.invoice.id);
 		invoiceItem.article = Item.findById(invoiceItem.article.id);
 		validation.required("invoice", invoiceItem.invoice);
@@ -157,12 +184,16 @@ public class InvoiceItems extends Controller{
 	        validation.keep(); 
 	    } else {
 			invoiceItem = calculate(invoiceItem);
-	    	invoiceItem.save();
+	    	InvoiceItem  i = invoiceItem.save();
+	    	Application.logToFile("5_4", i.id, " - invoice_id : "+i.invoice.id+" amount : "+i.amount+" discount : "+i.discount);
 	    }
 		showNext("add", invoiceItem.invoice.id);
 	}
 	
 	public static void editNext(InvoiceItem invoiceItem) {
+		if(!Application.authorize("editInvoiceItem")){
+			render("errors/401.html");
+		}
 		validation.required("invoice", invoiceItem.invoice);
 		validation.required("article", invoiceItem.article);
 		validation.min("amount", invoiceItem.amount, 0.01);
@@ -174,11 +205,16 @@ public class InvoiceItems extends Controller{
 	    } else {
 	    	invoiceItem = calculate(invoiceItem);
 	    	invoiceItem.save();
+	    	Application.logToFile("5_5", invoiceItem.id, " - invoice_id : "+invoiceItem.invoice.id+" amount : "
+	    			+invoiceItem.amount+" discount : "+invoiceItem.discount);
 	    }
 		showNext("edit", invoiceItem.invoice.id);
 	}
 	
 	public static void deleteNext(Long id, Long invoiceId) {
+		if(!Application.authorize("deleteInvoiceItem")){
+			render("errors/401.html");
+		}
 		if (id != null){
 			InvoiceItem invoiceItem = InvoiceItem.findById(id);
 			Invoice invoice = invoiceItem.invoice;
@@ -186,7 +222,8 @@ public class InvoiceItems extends Controller{
 			invoice.tax -= invoiceItem.taxTotal;
 			invoice.total -= invoiceItem.total;
 			invoice.save();
-			invoiceItem.delete();			
+			invoiceItem.delete();	
+			Application.logToFile("5_5", id, " - invoice_id : "+invoice.id);
 		}
 		showNext("edit", invoiceId);
 	}
@@ -291,7 +328,6 @@ public class InvoiceItems extends Controller{
 				}
 			}
 		}
-		return articles;
-		
+		return articles;	
 	}
 }
