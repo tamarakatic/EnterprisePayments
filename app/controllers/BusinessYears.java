@@ -23,6 +23,7 @@ public class BusinessYears extends Controller {
 	}
 
 	public static void create(BusinessYear businessyear) {
+		checkAuthenticity();
 		if(!Application.authorize("createBusinessYear")){
 			render("errors/401.html");
 		}
@@ -32,6 +33,7 @@ public class BusinessYears extends Controller {
 	}
 
 	public static void edit(BusinessYear businessyear) {
+		checkAuthenticity();
 		if(!Application.authorize("editBusinessYear")){
 			render("errors/401.html");
 		}
@@ -41,6 +43,7 @@ public class BusinessYears extends Controller {
 	}
 
 	public static void filter(BusinessYear businessyear) {
+		checkAuthenticity();
 		List<BusinessYear> years = BusinessYear.find("year = ? or active = ?", 
 													  businessyear.year,
 													  businessyear.active).fetch();

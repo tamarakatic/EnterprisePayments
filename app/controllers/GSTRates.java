@@ -23,6 +23,7 @@ public class GSTRates extends Controller {
 	}
 	
 	public static void create(GSTRate gstrate) {
+		checkAuthenticity();
 		if(!Application.authorize("createGSTRate")){
 			render("errors/401.html");
 		}
@@ -40,6 +41,7 @@ public class GSTRates extends Controller {
 	}
 
 	public static void edit(GSTRate gstrate) {
+		checkAuthenticity();
 		if(!Application.authorize("editGSTRate")){
 			render("errors/401.html");
 		}
@@ -57,6 +59,7 @@ public class GSTRates extends Controller {
 	}
 	
 	public static void filter(GSTRate gstrate) {
+		checkAuthenticity();
 		List<GSTRate> gstrates = GSTRate.find("date = ? or GSTPercent = ?", 
 											   gstrate.date,
 											   gstrate.GSTPercent).fetch();

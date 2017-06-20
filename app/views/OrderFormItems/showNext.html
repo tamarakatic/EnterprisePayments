@@ -77,8 +77,10 @@ function remove(id) {
   <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
   <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+   #{if (session.get("role") == "administrator" || session.get("role") == "business partner")}
   <li><a href="@{OrderFormItems.showNext("add", orderForm.id)}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+  #{/if}
   <li><a href="#" id = "nextform"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
@@ -111,7 +113,7 @@ function remove(id) {
 	
 		<form action = "${action}" method = "POST">
 		
-				
+				#{authenticityToken /}	
 				#{field 'orderFormItem.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 				#{/}
@@ -153,8 +155,9 @@ function remove(id) {
 		</form>
 	</p>
 </div>
+#{if (session.get("role") == "administrator" || session.get("role") == "accountant")}
 <input type = "button" class = "btn btn-success" value = "Generate invoice" id = "generateInvoiceButton" style="margin:0px 0px 0px 10px">
-
+#{/if}
  	<div class=" panel" style="width:100%">
 		<p style="margin-left:1em"><b>Mode: ${mode}</b></p>
 	</div>

@@ -51,9 +51,11 @@ function change_price_modal(id) {
   <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
   <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+   #{if (session.get("role") == "administrator" || session.get("role") == "manager")}
   <li><a href="@{Pricelists.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
     <li><a href="#" id = "change_price" data-toggle="modal" data-target="#change_price_modal"><img src="@{'/public/images/percentage.png'}"/></a></li>
+    #{/if}
   <li><a href="#" id = "pricelist_item"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
@@ -82,6 +84,7 @@ function change_price_modal(id) {
 <div class = "panel">
   <p>	
 	<form action = "${action}" method = "POST">		
+		#{authenticityToken /}	
 		#{field 'pricelist.id'}
 			<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
 		#{/}

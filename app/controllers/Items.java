@@ -24,6 +24,7 @@ public class Items extends Controller{
 	}
 
 	public static void create(Item item) {	
+		checkAuthenticity();
 		if(!Application.authorize("createItem")){
 			render("errors/401.html");
 		}
@@ -40,6 +41,7 @@ public class Items extends Controller{
 	}
 
 	public static void edit(Item item) {
+		checkAuthenticity();
 		if(!Application.authorize("editItem")){
 			render("errors/401.html");
 		}
@@ -56,6 +58,7 @@ public class Items extends Controller{
 	}
 	
 	public static void filter(Item item) {
+		checkAuthenticity();
 		List<Item> items = Item.find("name = ? or description = ?", 
 				item.name,
 				item.description).fetch();

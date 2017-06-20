@@ -31,6 +31,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void create(OrderFormItem orderFormItem) {
+		checkAuthenticity();
 		if(!Application.authorize("createOrderFormItem")){
 			render("errors/401.html");
 		}
@@ -41,6 +42,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void edit(OrderFormItem orderFormItem) {
+		checkAuthenticity();
 		if(!Application.authorize("editOrderFormItem")){
 			render("errors/401.html");
 		}
@@ -50,6 +52,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void filter(OrderFormItem orderFormItem) {
+		checkAuthenticity();
 		List<OrderFormItem> orderFormItems= OrderFormItem.find("byAmountAndItem",
 													orderFormItem.amount, orderFormItem.item).fetch();
 		List<OrderForm> orderForms = OrderForm.findAll();
@@ -83,6 +86,7 @@ public class OrderFormItems extends Controller {
 	}
 
 	public static void createNext(OrderFormItem orderFormItem) {
+		checkAuthenticity();
 		if(!Application.authorize("createOrderFormItem")){
 			render("errors/401.html");
 		}
@@ -93,6 +97,7 @@ public class OrderFormItems extends Controller {
 	}
 	
 	public static void editNext(OrderFormItem orderFormItem) {
+		checkAuthenticity();
 		if(!Application.authorize("editOrderFormItem")){
 			render("errors/401.html");
 		}
@@ -113,7 +118,8 @@ public class OrderFormItems extends Controller {
 		showNext("edit", orderFormId);
 	}
 	
-	public static void filterNext(OrderFormItem orderFormItem) {		
+	public static void filterNext(OrderFormItem orderFormItem) {	
+		checkAuthenticity();
 		List<OrderFormItem> orderFormItems = OrderFormItem.find("byOrderFormAndAmount",
 				orderFormItem.orderForm,
 				orderFormItem.amount

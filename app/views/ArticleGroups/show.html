@@ -44,8 +44,10 @@ function item(id) {
   <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
   <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+    #{if (session.get("role") == "administrator" || session.get("role") == "manager")}
   <li><a href="@{ArticleGroups.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
+ 	#{/if}
   <li><a href="#" id = "items"><img src="@{'/public/images/nextform.gif'}"/></a></li>
 </ul>
 </p>
@@ -77,6 +79,7 @@ function item(id) {
 <div class = "panel">
   <p>	
 	<form action = "${action}" method = "POST">	
+		#{authenticityToken /}
 		#{field 'articlegroup.gsttype.id'}
 			<label for = "${field.id}">GSTType</label> &nbsp; 		
 			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${gsttype_id}"/>		

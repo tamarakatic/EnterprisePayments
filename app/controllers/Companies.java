@@ -23,6 +23,7 @@ public class Companies extends Controller {
 	}
 	
 	public static void create(Company company) {
+		checkAuthenticity();
 		if(!Application.authorize("createCompany")){
 			render("errors/401.html");
 		}
@@ -43,6 +44,7 @@ public class Companies extends Controller {
 	}
 	
 	public static void edit(Company company) {
+		checkAuthenticity();
 		if(!Application.authorize("editCompany")){
 			render("errors/401.html");
 		}
@@ -64,6 +66,7 @@ public class Companies extends Controller {
 	}
 		
 	public static void filter(Company company) {		
+		checkAuthenticity();
 		List<Company> companies = Company.find("name = ? or pib = ? or address = ? or mobile = ? or mbr = ?", 
 												company.name,
 												company.PIB,

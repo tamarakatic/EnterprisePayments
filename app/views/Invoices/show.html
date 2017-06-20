@@ -78,15 +78,6 @@ $(document).ready(function(){
 		invoiceReport(id);
 	});
 	
-	$("#paymentOrderButton").click(function(){
-		highlighted = $(".highlighted");
-		id = highlighted.find(".id").html();
-		amount = $("#amountPaymentOrder").val();
-		currency = $("#currencyPaymentOrder").val();
-		urgent =  document.getElementById("urgentPaymentOrder").checked;
-		$(location).attr('href', '/Invoices/createPaymentOrder?invoiceId='+id+'&amount='+amount+'&isUrgent='+urgent+'&currency='+currency);
-	});
-
 });
 
 function dateChanged(event){
@@ -177,13 +168,15 @@ function check(item, id){
   <li><a id = "prev"><img src="@{'/public/images/prev.gif'}"/></a></li>
   <li><a id = "next"><img src="@{'/public/images/next.gif'}"/></a></li>
   <li><a id = "last"><img src="@{'/public/images/last.gif'}"/></a></li>
+  
+ #{if (session.get("role") == "administrator" || session.get("role") == "accountant")}
   <li><a href="@{Invoices.show("add")}" id = "add"><img src="@{'/public/images/add.gif'}"/></a></li>
   <li><a href="#" id = "remove"><img src="@{'/public/images/remove.gif'}"/></a></li>
   <li><a href="#" id = "nextFormInvoice"><img src="@{'/public/images/nextform.gif'}"/></a></li>
   <li><a href="#" id = "export_to_xml"><img src="@{'/public/images/xml.png'}"/></a></li>
   <li><a href="#" id = "invoiceReport"><img src="@{'/public/images/reporta.png'}"/></a></li>
   <li><a href="#" id = "dateReport" data-toggle="modal" data-target="#dateReportModal"><img src="@{'/public/images/kif.png'}"/></a></li>
-  <li><a href="#" id = "paymentOrderToolbarButton" data-toggle="modal" data-target="#paymentOrderModal"><img src="@{'/public/images/kif.png'}"/></a></li>
+  #{/if}
 </ul>
 </p>
 
@@ -253,7 +246,7 @@ function check(item, id){
 	<p>
 	
 		<form action = "${action}" method = "POST">
-		
+				#{authenticityToken /}
 				
 				#{field 'invoice.id'}
 					<input type = "hidden" name = "${field.name}" id = "${field.id}"/>
@@ -458,40 +451,5 @@ function check(item, id){
    </div>
    
    
-         <!-- Modal PAYMENT ORDER -->
-  <div class="modal fade" id="paymentOrderModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-      <div class="modal-header">
-      	Create a payment order
-      </div>
-      <div class="modal-body">
-	    <form style = "padding:2em">
-			<p>
-				<label for = "amountPaymentOrder">Amount</label>
-				<input type = "text" id = "amountPaymentOrder" style="width:175px"/>
-				
-			</p>
-			
-			<p>
-				<label for = "currencyPaymentOrder">Currency</label>
-				<input type = "text" id = "currencyPaymentOrder" style="width:175px"/>
-				
-			</p>
-			
-			<p>
-				<label for = "urgentPaymentOrder">Urgent</label>
-				<input type = "checkbox" id = "urgentPaymentOrder" style="width:175px"/>
-				
-			</p>
-			
-		</form>
-		<div class="modal-footer">
-			<input id = "paymentOrderButton" type = "button" value = "Create"/>
-		</div>
-		</div>
-      </div>
-    </div>
-   </div>
+
  

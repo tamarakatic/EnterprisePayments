@@ -1,5 +1,21 @@
 #{extends 'Secure/layout.html' /}
 
+<script language="JavaScript" type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){
+	$("#changePassword").click(function(){
+		username = $("#username").val();
+		$.get("/ChangePassword/sendEmail?username="+ username, function(data) {
+			if (data == "OK") {
+				window.location.assign("http://localhost:9000/ChangePassword/show");
+			}
+		})
+	});
+})
+
+</script>
+
 <div id="login">
 	
 	<h1>&{'secure.title'}</h1>
@@ -32,5 +48,9 @@
 		<p id="signin-field">
 			<input type="submit" id="signin" value="&{'secure.signin'}" />
 		</p>
+		<a href="/Register/show">Register</a>
+		<br>
 	#{/form}
+	<input id="changePassword" type="button" value="Change password" />
+		
 </div>

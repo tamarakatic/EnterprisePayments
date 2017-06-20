@@ -24,6 +24,7 @@ public class ArticleGroups extends Controller{
 	}
 	
 	public static void create(ArticleGroup articlegroup) {	
+		checkAuthenticity();
 		if(!Application.authorize("createArticleGroup")){
 			render("errors/401.html");
 		}
@@ -40,6 +41,7 @@ public class ArticleGroups extends Controller{
 	}
 
 	public static void edit(ArticleGroup articlegroup) {
+		checkAuthenticity();
 		if(!Application.authorize("editArticleGroup")){
 			render("errors/401.html");
 		}
@@ -56,6 +58,7 @@ public class ArticleGroups extends Controller{
 	}
 	
 	public static void filter(ArticleGroup articlegroup) {
+		checkAuthenticity();
 		List<ArticleGroup> articlegroups = ArticleGroup.find("name = ?",
 				articlegroup.name).fetch();
 		renderTemplate("ArticleGroups/show.html", "edit", articlegroups);

@@ -25,6 +25,7 @@ public class PricelistItems extends Controller{
 	}
 	
 	public static void create(PricelistItem pricelistitem) {	
+		checkAuthenticity();
 		if(!Application.authorize("createPriceListItem")){
 			render("errors/401.html");
 		}
@@ -43,6 +44,7 @@ public class PricelistItems extends Controller{
 	}
 
 	public static void edit(PricelistItem pricelistitem) {
+		checkAuthenticity();
 		if(!Application.authorize("editPriceListItem")){
 			render("errors/401.html");
 		}
@@ -61,6 +63,7 @@ public class PricelistItems extends Controller{
 	}
 	
 	public static void filter(PricelistItem pricelistitem) {
+		checkAuthenticity();
 		List<PricelistItem> pricelistitems = PricelistItem.find("price = ?", 
 				pricelistitem.price).fetch();
 		renderTemplate("PricelistItems/show.html", "edit", pricelistitems);

@@ -3,9 +3,23 @@
 
 <div id="header">
  <ul id="tools">
+ #{if (session.get("role") == "administrator" || session.get("role") == "manager" || session.get("role") == "accountant")}
   <a href="@{Companies.show}" class="btn btn-primary" role="button">Company</a>
-  <a href="@{BusinessYears.show}" class="btn btn-info" role="button">Year</a>
   <a href="@{BusinessPartners.show}" class="btn btn-success" role="button">Partner</a>
+  #{/if}
+  #{if (session.get("role") == "administrator" || session.get("role") == "manager")}
+  <a href="@{BusinessYears.show}" class="btn btn-info" role="button">Year</a>
+  #{/if}
+  #{if (session.get("role") == "administrator" || session.get("role") == "accountant")}
+   
+    <a href="@{OrderFormItems.show}" class="btn btn-danger" role="button">Order Form Items</a>
+    <a href="@{OrderForms.show}" class="btn btn-info" role="button">Order Forms</a>
+  #{/if}
+ #{if session.get("role") == "business partner"}
+ 	 <a href="@{OrderForms.show}" class="btn btn-info" role="button">Order Forms</a>
+ #{/if}
+ 
+ #{if (session.get("role") == "administrator" || session.get("role") == "accountant" || session.get("role") =="manager") }
   <a href="@{Invoices.show}" class="btn btn-warning" role="button">Invoices</a>
   <a href="@{InvoiceItems.show}" class="btn btn-danger" role="button">Invoice Items</a>
   <a href="@{Pricelists.show}" class="btn btn-primary" role="button">Price Lists</a>
@@ -14,8 +28,7 @@
   <a href="@{GSTRates.show}" class="btn btn-info" role="button">Rates</a>
   <a href="@{GSTTypes.show}" class="btn btn-success" role="button">Rates Type</a>
   <a href="@{Items.show}" class="btn btn-warning" role="button">Items</a>
-  <a href="@{OrderFormItems.show}" class="btn btn-danger" role="button">Order Form Items</a>
-  <a href="@{OrderForms.show}" class="btn btn-info" role="button">Order Forms</a>
+#{/if}
    <li style = "float:right; width: 100px;" >
   		<a href="@{Secure.logout()}" role="button">Logout</a>
    </li>

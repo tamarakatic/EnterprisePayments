@@ -33,6 +33,8 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import play.Logger;
 import play.Play;
+import play.libs.WS;
+import play.libs.WS.HttpResponse;
 import play.mvc.Controller;
 
 public class Invoices extends Controller {
@@ -111,6 +113,7 @@ public class Invoices extends Controller {
 		show("edit");
 	}
 	
+
 	public static void delete(Long id) throws IOException, ParserConfigurationException, TransformerException {
 		
 		if(!Application.authorize("deleteInvoice")){
@@ -401,5 +404,6 @@ public class Invoices extends Controller {
 		}
 		show("edit");
 	}
-	
+		
+
 }

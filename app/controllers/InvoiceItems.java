@@ -57,6 +57,7 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void create(InvoiceItem invoiceItem) {
+		checkAuthenticity();
 		if(!Application.authorize("createInvoiceItem")){
 			render("errors/401.html");
 		}
@@ -79,6 +80,7 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void edit(InvoiceItem invoiceItem) {
+		checkAuthenticity();
 		if(!Application.authorize("editInvoiceItem")){
 			render("errors/401.html");
 		}
@@ -119,6 +121,7 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void filter(InvoiceItem invoiceItem) {
+		checkAuthenticity();
 		List<Invoice> invoices = Invoice.findAll();
 		ArrayList<Item> articles = getArticles();
 		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticle",
@@ -169,6 +172,7 @@ public class InvoiceItems extends Controller{
 	}
 
 	public static void createNext(InvoiceItem invoiceItem) {
+		checkAuthenticity();
 		if(!Application.authorize("createInvoiceItem")){
 			render("errors/401.html");
 		}
@@ -191,6 +195,7 @@ public class InvoiceItems extends Controller{
 	}
 	
 	public static void editNext(InvoiceItem invoiceItem) {
+		checkAuthenticity();
 		if(!Application.authorize("editInvoiceItem")){
 			render("errors/401.html");
 		}
@@ -228,7 +233,8 @@ public class InvoiceItems extends Controller{
 		showNext("edit", invoiceId);
 	}
 	
-	public static void filterNext(InvoiceItem invoiceItem) {	
+	public static void filterNext(InvoiceItem invoiceItem) {
+		checkAuthenticity();
 		ArrayList<Item> articles = getArticles();
 		List<InvoiceItem> invoiceItems = InvoiceItem.find("byInvoiceAndAmountAndDiscountAndArticle",
 				invoiceItem.invoice,

@@ -26,10 +26,20 @@ public class OrderForms extends Controller {
 		if (mode == null || mode.equals("")) {
 			mode = "edit";
 		}
+		if(session.get("role").equals("bussines partner")){
+			User user = (User) User.find("byUsername", Security.connected()).fetch().get(0);
+			businessPartners = BusinessPartner.find("byName", user.username).fetch();
+			if(businessPartners.isEmpty()){
+				render("errors/401.html");
+			}
+			BusinessPartner bp = businessPartners.get(0);
+			orderForms = OrderForm.find("byBusinessPartner", bp).fetch();
+		}
 		renderTemplate("OrderForms/show.html", mode, orderForms, companies, businessYears, businessPartners);
 	}
 	
 	public static void create(OrderForm orderForm) {
+		checkAuthenticity();
 		if(!Application.authorize("createOrderForm")){
 			render("errors/401.html");
 		}
@@ -51,6 +61,7 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void edit(OrderForm orderForm) {
+		checkAuthenticity();
 		if(!Application.authorize("editOrderForm")){
 			render("errors/401.html");
 		}
@@ -60,12 +71,22 @@ public class OrderForms extends Controller {
 	}
 	
 	public static void filter(OrderForm orderForm) {
+		checkAuthenticity();
+		List<BusinessPartner> businessPartners = null;
+		if(session.get("role").equals("bussines partner")){
+			User user = (User) User.find("byUsername", Security.connected()).fetch().get(0);
+			businessPartners = BusinessPartner.find("byName", user.username).fetch();
+			BusinessPartner bp = (BusinessPartner) BusinessPartner.find("byName", user.username).fetch().get(0);
+			orderForm.businessPartner = bp;
+		}
 		List<OrderForm> orderForms = OrderForm.find("byDateOfOrderAndCompanyAndBusinessYearAndBusinessPartner",
 				orderForm.dateOfOrder, orderForm.company, orderForm.businessYear,
 				orderForm.businessPartner).fetch();
 		List<Company> companies = Company.findAll();
 		List<BusinessYear> businessYears = BusinessYear.findAll();
-		List<BusinessPartner> businessPartners = BusinessPartner.findAll();
+		if(!session.get("role").equals("bussines partner")) {
+			businessPartners = BusinessPartner.findAll();
+		}
 		renderTemplate("OrderForms/show.html", "edit", orderForms, companies, businessYears, businessPartners);
 	}
 	
@@ -87,6 +108,16 @@ public class OrderForms extends Controller {
 				List<BusinessYear> businessYears = BusinessYear.find("byActive", true).fetch();
 				List<BusinessPartner> businessPartners = BusinessPartner.findAll();
 				Application.logErrorToFile("4_3", id);
+				
+				if(session.get("role").equals("bussines partner")){
+					User user = (User) User.find("byUsername", Security.connected()).fetch().get(0);
+					businessPartners = BusinessPartner.find("byName", user.username).fetch();
+					if(businessPartners.isEmpty()){
+						render("errors/401.html");
+					}
+					BusinessPartner bp = businessPartners.get(0);
+					orderForms = OrderForm.find("byBusinessPartner", bp).fetch();
+				}
 				renderTemplate("OrderForms/show.html", mode, orderForms, companies, businessYears, businessPartners, hasChildren);	
 			}
 		}

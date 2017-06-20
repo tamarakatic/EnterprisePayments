@@ -24,6 +24,7 @@ public class BusinessPartners extends Controller {
 	}
 
 	public static void create(BusinessPartner businesspartner) {
+		checkAuthenticity();
 		if(!Application.authorize("createBusinessPartner")){
 			render("errors/401.html");
 		}
@@ -43,6 +44,7 @@ public class BusinessPartners extends Controller {
 	}
 
 	public static void edit(BusinessPartner businesspartner) {
+		checkAuthenticity();
 		if(!Application.authorize("editBusinessPartner")){
 			render("errors/401.html");
 		}
@@ -62,6 +64,7 @@ public class BusinessPartners extends Controller {
 	}
 
 	public static void filter(BusinessPartner businesspartner) {
+		checkAuthenticity();
 		List<BusinessPartner> partners = BusinessPartner.find("name = ? or address = ? or kind = ? or "
 															+ "mobile = ? or email = ? or account = ?", 
 															businesspartner.name, 

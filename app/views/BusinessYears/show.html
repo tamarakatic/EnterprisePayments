@@ -78,6 +78,7 @@ function remove(id) {
 <div class = "panel">
   <p>	
 	<form action = "${action}" method = "POST">	
+		#{authenticityToken /}
 		#{field 'businessyear.company.id'}
 			<label for = "${field.id}">Company</label> &nbsp; 		
 			<input type = "number" readonly = "true" name = "${field.name}" id = "${field.id}" value = "${company_id}"/>		

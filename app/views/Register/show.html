@@ -1,0 +1,72 @@
+#{extends 'standardForm.html' /}
+#{set title:'Register' /}
+
+<script>	
+$(document).ready(function(){
+	$("#registerSubmit").click(function(){
+		regex = RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_@$!%*#?&-]{8,}");
+		regex2 = RegExp("[a-zA-Z]+");
+		
+		username = $("#username").val();
+		email = $("#email").val();
+		password = $("#password").val();
+		password2 = $("#password2").val();
+		
+		if (!(username && email && password && password2)) {
+			alert("Please enter values in all fields!");
+			return;
+		}
+		
+		if (password != password2) {
+			$("#passwordError").show();
+		}
+ 		else if (password.length > 100) {
+			alert("Password to long!");
+		}
+ 		else if (!regex2.test(password)) {
+ 			alert("slaba sifra");
+ 		}
+		else {
+			$("#passwordError").hide();
+			$("#submit").click();
+		}
+	});
+})
+</script>
+
+<br>
+<div class="alert alert-info" hidden="true" id="passwordError">
+		 <strong>Error!</strong> Passwords don't match.
+</div>
+
+${response}
+
+<div class="panel">
+ 	<form action="@{Register.register()}"> 
+	<p>
+		<p id="username-field">
+			<label for="username">Username</label>
+			<input type="text" name="username" id="username" value="" style="margin-left: 25px;"/>
+		</p>
+		<p id="email-field">
+			<label for="email">Email</label>
+			<input type="text" name="email" id="email" value="" style="margin-left: 25px;"/>
+		</p>
+		<p id="password-field">
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" value="" style="margin-left: 25px;"/>
+		</p>
+		<p id="password-field2">
+			<label for="password2">Repeat password</label>
+			<input type="password" name="password2" id="password2" value="" style="margin-left: 25px;"/>
+		</p>
+		<p id="register-field">
+			<input type="submit" id="submit" class="hidden">
+		</p>	
+	</form>
+		<p id="register-field">
+			<button id = "registerSubmit" class="btn btn-success">Register</button>
+		</p>
+	
+	</p>
+</div>

@@ -23,6 +23,7 @@ public class GSTTypes extends Controller{
 	}
 	
 	public static void create(GSTType gsttype) {
+		checkAuthenticity();
 		if(!Application.authorize("createGSTType")){
 			render("errors/401.html");
 		}
@@ -40,6 +41,7 @@ public class GSTTypes extends Controller{
 	}
 	
 	public static void edit(GSTType gsttype) {
+		checkAuthenticity();
 		if(!Application.authorize("editGSTType")){
 			render("errors/401.html");
 		}
@@ -56,7 +58,8 @@ public class GSTTypes extends Controller{
 		show("edit");		
 	}
 	
-	public static void filter(GSTType gsttype) {		
+	public static void filter(GSTType gsttype) {	
+		checkAuthenticity();
 		List<GSTType> gsttypes = GSTType.find("name = ?", gsttype.name).fetch();
 		renderTemplate("GSTTypes/show.html", "edit", gsttypes);		
 	}
