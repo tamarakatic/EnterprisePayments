@@ -4,8 +4,8 @@
 <script>	
 $(document).ready(function(){
 	$("#registerSubmit").click(function(){
-		regex = RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_@$!%*#?&-]{8,}");
-		regex2 = RegExp("[a-zA-Z]+");
+		var regex = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
+		var regex2 = new RegExp("[a-z]+");
 		
 		username = $("#username").val();
 		email = $("#email").val();
@@ -23,7 +23,7 @@ $(document).ready(function(){
  		else if (password.length > 100) {
 			alert("Password to long!");
 		}
- 		else if (!regex2.test(password)) {
+ 		else if (!regex.test(password)) {
  			alert("slaba sifra");
  		}
 		else {
@@ -35,8 +35,12 @@ $(document).ready(function(){
 </script>
 
 <br>
-<div class="alert alert-info" hidden="true" id="passwordError">
+<div class="alert alert-danger" hidden="true" id="passwordError">
 		 <strong>Error!</strong> Passwords don't match.
+</div>
+<div class="alert alert-info" id="passwordError">
+		 Password should be at least 8 characters long, containing one uppercase letter, one lowercase letter and one digit.
+		 We strongly advise against the pattern "uppercase letter-lowercase letter-digit"(Aaaaaaa9)
 </div>
 
 ${response}

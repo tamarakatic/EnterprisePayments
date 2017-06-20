@@ -6,6 +6,7 @@ import java.util.List;
 
 import models.Role;
 import models.User;
+import models.Role;
 import play.mvc.Controller;
 
 public class Register extends Controller {
@@ -40,6 +41,6 @@ public class Register extends Controller {
 			redirect("http://localhost:9000/secure/login", true);
 		}
 		
-		
+	
 	}
 }
