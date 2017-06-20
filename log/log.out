@@ -8045,3 +8045,569 @@ Caused by: java.sql.SQLException: Access denied for user ''@'localhost' (using p
 	at java.sql.DriverManager.getConnection(DriverManager.java:270)
 	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
 	... 5 more
+2017-06-20 02:07:48 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-06-20 02:07:49 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-06-20 02:07:49 WARN  play:367 - You're running Play! in DEV mode
+2017-06-20 02:07:49 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-06-20 02:07:56 ERROR play:604 - Database [default] Cannot connected to the database : Access denied for user ''@'localhost' (using password: NO)
+java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+2017-06-20 02:07:56 ERROR play:604 - 
+
+@74coic6kh
+Internal Server Error (500) for request GET /
+
+Database error
+A database error occurred : Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+
+play.exceptions.DatabaseException: Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:212)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	... 5 more
+2017-06-20 02:08:40 ERROR play:604 - Database [default] Cannot connected to the database : Access denied for user ''@'localhost' (using password: NO)
+java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+2017-06-20 02:08:40 ERROR play:604 - 
+
+@74coic6ki
+Internal Server Error (500) for request GET /
+
+Database error
+A database error occurred : Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+
+play.exceptions.DatabaseException: Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:212)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	... 5 more
+2017-06-20 02:10:19 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-06-20 02:10:20 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-06-20 02:10:20 WARN  play:367 - You're running Play! in DEV mode
+2017-06-20 02:10:21 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-06-20 02:10:30 ERROR play:604 - Database [default] Cannot connected to the database : Access denied for user ''@'localhost' (using password: NO)
+java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+2017-06-20 02:10:31 ERROR play:604 - 
+
+@74coil12o
+Internal Server Error (500) for request GET /secure/login
+
+Database error
+A database error occurred : Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+
+play.exceptions.DatabaseException: Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:212)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	... 5 more
+2017-06-20 02:11:57 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-06-20 02:11:57 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-06-20 02:11:58 WARN  play:367 - You're running Play! in DEV mode
+2017-06-20 02:11:58 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-06-20 02:12:06 ERROR play:604 - Database [default] Cannot connected to the database : Access denied for user ''@'localhost' (using password: NO)
+java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+2017-06-20 02:12:06 ERROR play:604 - 
+
+@74coj0cbo
+Internal Server Error (500) for request GET /secure/login
+
+Database error
+A database error occurred : Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+
+play.exceptions.DatabaseException: Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:212)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	... 5 more
+2017-06-20 02:12:30 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-06-20 02:12:31 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-06-20 02:12:32 WARN  play:367 - You're running Play! in DEV mode
+2017-06-20 02:12:32 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-06-20 02:12:35 WARN  play:367 - No secret key defined. Sessions will not be encrypted
+2017-06-20 02:12:38 ERROR play:604 - Database [default] Cannot connected to the database : Access denied for user ''@'localhost' (using password: NO)
+java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+2017-06-20 02:12:38 ERROR play:604 - 
+
+@74coj27le
+Internal Server Error (500) for request GET /secure/login
+
+Database error
+A database error occurred : Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+
+play.exceptions.DatabaseException: Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:212)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	... 5 more
+2017-06-20 02:13:33 INFO  play:308 - Starting C:\Users\Anja\git\EnterprisePayments
+2017-06-20 02:13:33 INFO  play:308 - Module secure is available (D:\Fakultet\IV_godina\POSLOVNA\play-1.4.4\play-1.4.4\modules\secure)
+2017-06-20 02:13:34 WARN  play:367 - You're running Play! in DEV mode
+2017-06-20 02:13:34 INFO  play:308 - Listening for HTTP on port 9000 (Waiting a first request to start) ...
+2017-06-20 02:13:40 ERROR play:604 - Database [default] Cannot connected to the database : Access denied for user ''@'localhost' (using password: NO)
+java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+2017-06-20 02:13:40 ERROR play:604 - 
+
+@74coj5ld3
+Internal Server Error (500) for request GET /secure/login
+
+Database error
+A database error occurred : Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+
+play.exceptions.DatabaseException: Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:212)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	... 5 more
+2017-06-20 02:13:48 ERROR play:604 - Database [default] Cannot connected to the database : Access denied for user ''@'localhost' (using password: NO)
+java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+2017-06-20 02:13:48 ERROR play:604 - 
+
+@74coj5ld4
+Internal Server Error (500) for request GET /secure/login
+
+Database error
+A database error occurred : Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+
+play.exceptions.DatabaseException: Cannot connected to the database[default], Access denied for user ''@'localhost' (using password: NO)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:212)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:616)
+	at play.Play.start(Play.java:541)
+	at play.Play.detectChanges(Play.java:659)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:964)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3970)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3906)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2253)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2284)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2083)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:806)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:410)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:328)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:127)
+	... 5 more
+2017-06-20 02:14:05 ERROR play:604 - Restart: Need to restart Play because C:\Users\Anja\git\EnterprisePayments\conf\application.conf has been changed
+java.lang.RuntimeException: Need to restart Play because C:\Users\Anja\git\EnterprisePayments\conf\application.conf has been changed
+	at play.ConfigurationChangeWatcherPlugin.onConfigurationFileChanged(ConfigurationChangeWatcherPlugin.java:34)
+	at play.ConfigurationChangeWatcherPlugin.detectChange(ConfigurationChangeWatcherPlugin.java:28)
+	at play.plugins.PluginCollection.detectChange(PluginCollection.java:598)
+	at play.Play.detectChanges(Play.java:644)
+	at play.Invoker$Invocation.init(Invoker.java:209)
+	at Invocation.HTTP Request(Play!)
+2017-06-20 02:14:05 INFO  MLog:124 - MLog clients using log4j logging.
+2017-06-20 02:14:06 INFO  C3P0Registry:248 - Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2017-06-20 02:14:06 INFO  AbstractPoolBackedDataSource:527 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 10, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 5000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> library, dataSourceName -> 1hgeby99o1i2alaq1y4237m|46ee8ac, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hgeby99o1i2alaq1y4237m|46ee8ac, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> /* ping */ SELECT 1, privilegeSpawnedThreads -> true, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2017-06-20 02:14:06 INFO  play:308 - Connected to jdbc:mysql://localhost/ep?useSSL=false&createDatabaseIfNotExist=true for default
+2017-06-20 02:14:06 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+2017-06-20 02:14:06 INFO  Version:41 - HHH000412: Hibernate Core {4.2.19.Final}
+2017-06-20 02:14:06 INFO  Environment:238 - HHH000206: hibernate.properties not found
+2017-06-20 02:14:06 INFO  Environment:345 - HHH000021: Bytecode provider name : javassist
+2017-06-20 02:14:06 INFO  ConnectionProviderInitiator:188 - HHH000130: Instantiating explicit connection provider: org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl
+2017-06-20 02:14:06 INFO  Dialect:130 - HHH000400: Using dialect: play.db.jpa.MySQLDialect
+2017-06-20 02:14:06 INFO  TransactionFactoryInitiator:73 - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2017-06-20 02:14:06 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2017-06-20 02:14:07 INFO  Version:56 - Hibernate Validator 4.1.0.Final
+2017-06-20 02:14:07 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-06-20 02:14:07 INFO  DefaultTraversableResolver:81 - Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+2017-06-20 02:14:07 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-06-20 02:14:07 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-06-20 02:14:07 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-06-20 02:14:09 INFO  TableMetadata:66 - HHH000261: Table found: ep.articlegroup
+2017-06-20 02:14:09 INFO  TableMetadata:67 - HHH000037: Columns: [gsttype_id, name, id]
+2017-06-20 02:14:09 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_kw4h7819dwtkhgu22cfxfi768]
+2017-06-20 02:14:09 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_kw4h7819dwtkhgu22cfxfi768, primary]
+2017-06-20 02:14:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.bankstatementitemmodel
+2017-06-20 02:14:10 INFO  TableMetadata:67 - HHH000037: Columns: [amount, creditorinfo, originatorreferencenumber, originatormodel, bankstatement_id, originatoraccountnumber, paymentpurpose, creditoraccountnumber, creditormodel, creditorreferencenumber, id, originatorinfo, dateofvalue, direction]
+2017-06-20 02:14:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_3lsu0h4v0cwwihol0us038rrx]
+2017-06-20 02:14:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_3lsu0h4v0cwwihol0us038rrx, primary]
+2017-06-20 02:14:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.bankstatementmodel
+2017-06-20 02:14:10 INFO  TableMetadata:67 - HHH000037: Columns: [date, accountnumber, numberofwithdrawals, previousbalance, totaldeposited, numberofdeposits, sectionnumber, id, totalwithdrawn, newbalance]
+2017-06-20 02:14:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-06-20 02:14:10 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-06-20 02:14:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.businesspartner
+2017-06-20 02:14:10 INFO  TableMetadata:67 - HHH000037: Columns: [address, company_id, kind, mobile, name, id, account, email]
+2017-06-20 02:14:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_b9aswb56d8099cbn4wuty86d5]
+2017-06-20 02:14:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_b9aswb56d8099cbn4wuty86d5, primary]
+2017-06-20 02:14:10 INFO  TableMetadata:66 - HHH000261: Table found: ep.businessyear
+2017-06-20 02:14:10 INFO  TableMetadata:67 - HHH000037: Columns: [company_id, year, active, id]
+2017-06-20 02:14:10 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lpmd2g0fqpxgwiiwe80rwow2s]
+2017-06-20 02:14:10 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lpmd2g0fqpxgwiiwe80rwow2s, primary]
+2017-06-20 02:14:11 INFO  TableMetadata:66 - HHH000261: Table found: ep.company
+2017-06-20 02:14:11 INFO  TableMetadata:67 - HHH000037: Columns: [address, pib, mobile, name, jmbg, id, mbr]
+2017-06-20 02:14:11 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-06-20 02:14:11 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-06-20 02:14:11 INFO  TableMetadata:66 - HHH000261: Table found: ep.gstrate
+2017-06-20 02:14:11 INFO  TableMetadata:67 - HHH000037: Columns: [date, gsttype_id, gstpercent, id]
+2017-06-20 02:14:11 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_1ngm5vlywpu5e1law4dutvrh5]
+2017-06-20 02:14:11 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_1ngm5vlywpu5e1law4dutvrh5, primary]
+2017-06-20 02:14:11 INFO  TableMetadata:66 - HHH000261: Table found: ep.gsttype
+2017-06-20 02:14:11 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-06-20 02:14:11 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-06-20 02:14:11 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-06-20 02:14:11 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoice
+2017-06-20 02:14:11 INFO  TableMetadata:67 - HHH000037: Columns: [number, total, businessyear_id, company_id, businesspartner_id, tax, id, dateofinvoice, basis, dateofvalue]
+2017-06-20 02:14:11 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg]
+2017-06-20 02:14:11 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_jy063tr026qk9me7eemh29uy6, fk_nhgau3u7p6qjdysa9qf24xkj3, fk_1c9ewm7l4fdk2vinh90q47mqg, primary]
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.invoiceitem
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [article_id, amount, total, unit, price, taxtotal, discount, invoice_id, tax, id, basis]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b]
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_4bu286c9i18u3ja20s5adxhp7, fk_4pvdi78uowm8rnoox4pixw65b, primary]
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.item
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [name, description, id, articlegroup_id]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [primary, fk_7ccklft3fk8yxwcd9ybn1hi00]
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.operationsregistry
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [code, name, id]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderform
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [businessyear_id, company_id, businesspartner_id, numberoforder, id, dateoforder]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq]
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_a12fp0fg9lci63jofiwswm9mo, fk_a4g472cqi8xc3489fhtl31pn, fk_rkkcqog3l92uf0kv7ufvc9lkq, primary]
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.orderformitem
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [amount, item_id, id, orderform_id]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty]
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_cfmogwepgptbm8lcmgiaqr98k, fk_myyyjccn3ndlp4rhd6tp2ohty, primary]
+2017-06-20 02:14:12 INFO  DatabaseMetaData:146 - HHH000262: Table not found: PasswordChangeRequest
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.permission
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelist
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [id, validationdate]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.pricelistitem
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [item_id, price, pricelist_id, id]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf]
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_lad7ly01k1dc2aahld4vg3llk, fk_jisupaopv5x8xwuh5ye26wcyf, primary]
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.role
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [name, id]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: []
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [primary]
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.user
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [password, role_id, id, username]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_fe6nqh4mlcjr068gcfrstmh2y]
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_fe6nqh4mlcjr068gcfrstmh2y, primary]
+2017-06-20 02:14:12 INFO  TableMetadata:66 - HHH000261: Table found: ep.role_permission
+2017-06-20 02:14:12 INFO  TableMetadata:67 - HHH000037: Columns: [permissions_id, role_id]
+2017-06-20 02:14:12 INFO  TableMetadata:69 - HHH000108: Foreign keys: [fk_bd67q67cmk1xk23k1wagx1h72, fk_rh047niumg9yobn8mmue098p7]
+2017-06-20 02:14:12 INFO  TableMetadata:70 - HHH000126: Indexes: [fk_bd67q67cmk1xk23k1wagx1h72, fk_rh047niumg9yobn8mmue098p7]
+2017-06-20 02:14:12 INFO  DatabaseMetaData:146 - HHH000262: Table not found: PasswordChangeRequest
+2017-06-20 02:14:12 INFO  DatabaseMetaData:146 - HHH000262: Table not found: PasswordChangeRequest
+2017-06-20 02:14:18 INFO  SchemaUpdate:267 - HHH000232: Schema update complete
+2017-06-20 02:14:18 INFO  play:308 - Application 'EnterprisePayments' is now started !
+2017-06-20 02:14:32 INFO  play:308 - 0_0 IP :0:0:0:0:0:0:0:1
+2017-06-20 02:14:32 ERROR play:604 - 
+
+@74coj5ld5
+Internal Server Error (500) for request POST /secure/authenticate
+
+Execution exception (In /app/controllers/HashFunction.java around line 51)
+NullPointerException occurred : the salt parameter must be non-null
+
+play.exceptions.JavaExecutionException: the salt parameter must be non-null
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:485)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:467)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:436)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException: the salt parameter must be non-null
+	at javax.crypto.spec.PBEKeySpec.<init>(PBEKeySpec.java:115)
+	at controllers.HashFunction.hashPassword(HashFunction.java:51)
+	at controllers.Security.authenticate(Security.java:19)
+	at play.utils.Java.invokeStaticOrParent(Java.java:145)
+	at play.utils.Java.invokeChildOrStatic(Java.java:167)
+	at controllers.Secure$Security.invoke(Secure.java:202)
+	at controllers.Secure$Security.access$0(Secure.java:199)
+	at controllers.Secure.authenticate(Secure.java:75)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:536)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:473)
+	... 4 more
+2017-06-20 02:15:06 INFO  play:308 - 0_0 IP :0:0:0:0:0:0:0:1
